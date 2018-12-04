@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="course_title_margin_left">20dp</dimen>
+    <dimen name="course_tips_margin_top">5dp</dimen>
+    <dimen name="course_time_margin_top">40dp</dimen>
+    <dimen name="course_title_text_size">20dp</dimen>
+    <dimen name="course_tips_text_size">12dp</dimen>
+    <dimen name="course_title_margin_top">20dp</dimen>
+
+    <dimen name="course_detail_play_time_text_size">12dp</dimen>
+    <dimen name="course_detail_normal_text_size">14dp</dimen>
+    <dimen name="course_detail_line_margin_top">10dp</dimen>
+    <dimen name="course_detail_fenjie_text_margin_top">8dp</dimen>
+    <dimen name="course_detail_line_text_margin_top">4dp</dimen>
+</resources>

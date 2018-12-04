@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/head_ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/page_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/type_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:overScrollMode="never" />
+        <ImageView
+            android:id="@+id/type_pager_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent" />
+        <!-- 用户头像、用户名称、分享按钮一栏 -->
+        <FrameLayout
+            android:id="@+id/head_title_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/type_pager_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|left"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/click_rectangle_selecter_default_tr"
+            android:padding="16dp"
+            android:src="@mipmap/report_arrow_left" />
+
+        <ImageView
+            android:id="@+id/type_pager_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/click_rectangle_selecter_default_tr"
+            android:padding="16dp"
+            android:src="@mipmap/report_arrow_right" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/head_tip_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-18dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/bg_1"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:background="@android:color/transparent"/>
+
+            <View
+                android:id="@+id/bg_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bloodglucose_gray"/>
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/bounf_view_ll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/white_solid_box_2"/>
+    </FrameLayout>
+</LinearLayout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/white_corner_box_dialog"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/blue_top_corner_box"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="25dp"
+            android:paddingBottom="15dp"
+            >
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/unMatchMember"
+                android:textColor="@android:color/white"
+                custom:customtTextSize="30"
+                android:layout_gravity="center"
+                custom:customtTypeface="LTEX" />
+
+            <ImageView
+                android:id="@+id/match_cancel"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/click_rectangle_selecter_default_tr"
+                android:padding="10dp"
+                android:src="@mipmap/role_select_cancel" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|bottom"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/match_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                custom:customtTextSize="90"
+                custom:customtTypeface="CONDL" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/match_value_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                custom:customtTextSize="40"
+                custom:customtTypeface="CONDL" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/match_role_gridview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_corner_box_dialog"
+        android:gravity="center"
+        android:verticalSpacing="25dp"
+        android:numColumns="4"
+        android:listSelector="@android:color/white"
+        android:paddingBottom="35dp"
+        android:paddingTop="35dp"/>
+</LinearLayout>

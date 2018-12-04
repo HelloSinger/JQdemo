@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/my_head_bg"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3">
+
+        <com.jq.code.view.CircleImageView
+            android:id="@+id/my_head_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/default_head_image"
+            app:civ_border_color="@color/borderColor"
+            app:civ_border_width="8dp" />
+
+        <ImageView
+            android:id="@+id/my_head_sex_image"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="12dp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="6">
+
+        <LinearLayout
+            android:id="@+id/my_head_logined_ll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:visibility="invisible">
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/my_head_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                app:customtTextSize="40"
+                app:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/click_corner_rectangle_selecter"
+                android:paddingBottom="2dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:paddingTop="2dp"
+                android:text="@string/myselfChange"
+                android:textColor="#a0ffffff"
+                app:customtTextSize="28"
+                app:customtTypeface="LTEX" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/my_head_visitor_ll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/my_head_login"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/login"
+                android:textColor="@android:color/white"
+                app:customtTextSize="40"
+                app:customtTypeface="LTEX" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="18dp"
+                android:background="@android:color/white">
+
+            </View>
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/my_head_register"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/logonRegister"
+                android:textColor="@android:color/white"
+                app:customtTextSize="40"
+                app:customtTypeface="LTEX" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:src="@mipmap/my_arrow" />
+</LinearLayout>

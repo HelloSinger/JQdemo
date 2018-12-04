@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1F0F5"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.2"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        >
+
+        <com.jq.code.view.text.CustomTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/aboutInittitle"
+            android:textColor="#90000000"
+            custom:customtTextSize="28"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:layout_gravity="center_horizontal|top"
+            custom:customtTypeface="LTEX" />
+
+        <com.jq.code.view.text.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingTop="6dp"
+            android:text="@string/roleWeightcur"
+            android:textColor="#129BFF"
+            android:textStyle="bold"
+            custom:customtTextSize="38"
+            android:layout_gravity="center_horizontal|bottom"
+            custom:customtTypeface="LTEX" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:background="@color/mainColor"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal|bottom"
+            android:orientation="horizontal">
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/goal_weight_ruler_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                custom:customtTextSize="80"
+                custom:customtTypeface="HVCN" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/goal_weight_ruler_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                custom:customtTextSize="32"
+                custom:customtTypeface="LTEX" />
+
+        </LinearLayout>
+
+        <!-- 标尺 -->
+        <com.jq.code.view.ruler.RulerWheel
+            android:id="@+id/goal_weight_ruler"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            custom:hasDivideLine="true"
+            custom:lineColorMax="#a0ffffff"
+            custom:lineColorMid="@android:color/white"
+            custom:lineColorMin="#a0ffffff"
+            custom:lineDivider="18dp"
+            custom:mode="SCALE"
+            custom:rulerTextColor="#a0ffffff"
+            custom:rulerTextSize="12"
+            custom:shadowsColor="@color/mainColor"
+            custom:scaleWidth="1dp"
+            custom:showScaleValue="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal|bottom"
+            android:orientation="horizontal">
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/goal_weight_ruler_value1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                custom:customtTextSize="80"
+                custom:customtTypeface="HVCN" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/goal_weight_ruler_unit1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                custom:customtTextSize="32"
+                custom:customtTypeface="LTEX" />
+
+        </LinearLayout>
+
+        <!-- 标尺 -->
+        <com.jq.code.view.ruler.RulerWheel
+            android:id="@+id/goal_weight_ruler1"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            custom:hasDivideLine="true"
+            custom:lineColorMax="#a0ffffff"
+            custom:lineColorMid="@android:color/white"
+            custom:lineColorMin="#a0ffffff"
+            custom:lineDivider="12dp"
+            custom:mode="SCALE"
+            custom:rulerTextColor="#a0ffffff"
+            custom:rulerTextSize="12"
+            custom:scaleWidth="1dp"
+            custom:shadowsColor="@color/mainColor"
+            custom:showScaleValue="true" />
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/goal_sure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_circle_solid_corner_box"
+            android:paddingBottom="16dp"
+            android:paddingLeft="80dp"
+            android:paddingRight="80dp"
+            android:paddingTop="16dp"
+            android:layout_marginTop="80dp"
+            android:text="@string/sure"
+            android:textColor="@color/mainColor"
+            custom:customtTextSize="36"
+            custom:customtTypeface="LTEX" />
+    </LinearLayout>
+</LinearLayout>

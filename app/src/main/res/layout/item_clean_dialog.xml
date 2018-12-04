@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="140dp"
+        android:orientation="vertical"
+        android:background="@drawable/cache_clean_box"
+        android:gravity="center"
+        >
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/clean_point_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/clean_point1"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/clean_round_box_on"
+                    android:layout_marginRight="10dp"
+                    />
+                <TextView
+                    android:id="@+id/clean_point2"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/clean_round_box_off"
+                    android:layout_marginRight="10dp"
+                    />
+                <TextView
+                    android:id="@+id/clean_point3"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/clean_round_box_off"
+                    android:layout_marginRight="10dp"
+                    />
+                <TextView
+                    android:id="@+id/clean_point4"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/clean_round_box_off"
+                    />
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/clean_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/cache_clean_ok"
+                android:visibility="gone"
+                />
+        </FrameLayout>
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/clean_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            app:customtTextSize="40"
+            android:layout_marginTop="30dp"
+            app:customtTypeface="LTEX" />
+    </LinearLayout>
+</LinearLayout>

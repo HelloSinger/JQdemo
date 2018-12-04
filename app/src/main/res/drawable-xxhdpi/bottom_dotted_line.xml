@@ -1,0 +1,21 @@
+<!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android">--><!--&lt;!&ndash; //NOTE:想让哪个方向描边，哪个方向就不写，或者设置为正数；反之设置为负数&ndash;&gt;--><!--<item  android:left="-3dp" android:top="-3dp" >--><!--<shape>--><!--<stroke--><!--android:dashGap="2dp"--><!--android:dashWidth="5dp"--><!--android:width="1dp"--><!--android:color="@color/background_gray" />--><!--</shape>--><!--</item>-->
+
+<!--</layer-list>-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+            <shape android:shape="rectangle">
+                <solid android:color="@color/white_press"></solid>
+            </shape>
+    </item>
+    <item android:state_pressed="false" >
+        <layer-list>
+            <!-- //NOTE:想让哪个方向描边，哪个方向就不写，或者设置为正数；反之设置为负数-->
+            <item android:left="-3dp" android:top="-3dp" android:right="-3dp">
+                <shape>
+                    <stroke android:width="1dp" android:color="@color/gray" android:dashGap="3dp" android:dashWidth="5dp" />
+                </shape>
+            </item>
+
+        </layer-list>
+    </item>
+</selector>

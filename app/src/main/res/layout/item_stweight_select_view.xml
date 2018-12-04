@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/height_cancleView"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.0"
+        android:background="@drawable/white_top_corner_box"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:id="@+id/height_select_button_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|bottom"
+                android:padding="4dp"
+                android:src="@mipmap/dialog_cancle_icon" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/edit"
+                android:textColor="@color/editColor"
+                custom:customtTextSize="42"
+                custom:customtTypeface="LTEX" />
+
+            <ImageView
+                android:id="@+id/height_select_button_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|bottom"
+                android:padding="4dp"
+                android:src="@mipmap/weight_stat_check" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.8"
+            android:gravity="center"
+            android:background="@android:color/white"
+            android:orientation="vertical" >
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/aboutGoaltitle"
+                android:textColor="#90000000"
+                custom:customtTextSize="28"
+                custom:customtTypeface="LTEX"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <com.jq.code.view.text.CustomTextView
+                    android:id="@+id/st_stander_weight_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/mainColor"
+                    custom:customtTypeface="HVCN"
+                    custom:customtTextSize="46"
+                    />
+
+                <com.jq.code.view.text.CustomTextView
+                    android:id="@+id/st_stander_weight_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="6dp"
+                    android:text="@string/kilo"
+                    custom:customtTextSize="28"
+                    android:textColor="#129BFF"
+                    custom:customtTypeface="LTEX"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4.2"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            android:paddingBottom="20dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.8">
+
+                <com.jq.code.view.wheel.WheelView
+                    android:id="@+id/height_select_wheel_view_feet"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    custom:ShadowsColor="@android:color/white" />
+            </FrameLayout>
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/height_text_view_feet"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:gravity="center"
+                android:text="@string/feet"
+                android:textColor="@color/black"
+                custom:customtTextSize="36"
+                custom:customtTypeface="LTEX" />
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_weight="1">
+
+                <com.jq.code.view.text.CustomTextView
+                    android:id="@+id/height_text_view_inch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|left"
+                    android:paddingLeft="36dp"
+                    android:text="@string/inch"
+                    android:textColor="@color/black"
+                    custom:customtTextSize="36"
+                    custom:customtTypeface="LTEX" />
+
+                <com.jq.code.view.wheel.WheelView
+                    android:id="@+id/height_select_wheel_view_inch"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@android:color/transparent"
+                    custom:ShadowsColor="@android:color/white" />
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

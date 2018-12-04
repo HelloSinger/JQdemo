@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    android:background="@android:color/transparent"
+    android:orientation="vertical" >
+
+    <com.jq.code.view.gif.GifImageView
+        android:id="@+id/gifImageView"
+        android:layout_gravity="center"
+        android:scaleType="fitCenter"
+        android:layout_width="22dp"
+        android:layout_height="22dp"/>
+</FrameLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="course_index_tab_layout_bg">#FFFFFF</color>
+    <color name="course_index_tab_layout_line">#EBEBEB</color>
+    <color name="course_index_tab_layout_text_nor">#969C9F</color>
+    <color name="course_index_tab_layout_text_selected">#000000</color>
+    <color name="course_index_item_equ_tips">#D3D4D6</color>
+</resources>

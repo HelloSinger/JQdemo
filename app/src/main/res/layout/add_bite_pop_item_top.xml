@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/bloodglucose_gray"
+    android:paddingBottom="@dimen/fiveDp"
+    android:paddingTop="@dimen/fiveDp"
+    android:paddingLeft="@dimen/fiftentDp"
+    android:paddingRight="@dimen/fiftentDp"
+    android:gravity="center_vertical"
+    >
+    <TextView
+        android:id="@+id/typeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sportBreakfast"
+        android:layout_weight="1"
+        android:textSize="15sp"
+        android:textColor="@color/text_gray"
+        />
+    <TextView
+        android:id="@+id/clearText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sportClear"
+        android:paddingLeft="@dimen/fiveDp"
+        android:paddingRight="@dimen/fiveDp"
+        android:textSize="15sp"
+        android:textColor="@color/text_gray"
+        />
+</LinearLayout>

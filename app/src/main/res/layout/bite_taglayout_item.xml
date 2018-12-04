@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/fiveDp"
+    android:paddingTop="@dimen/fiveDp"
+    android:paddingLeft="@dimen/tenDp"
+    android:paddingRight="@dimen/tenDp"
+    android:layout_gravity="center"
+    android:background="@drawable/bite_flow_item_bg"
+    android:maxLines="1"
+    android:text="碗(乐盒碗)"
+    android:gravity="center"
+    android:textColor="@color/white"
+    android:textSize="15sp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="@dimen/fiveDp"
+    >
+
+</TextView>

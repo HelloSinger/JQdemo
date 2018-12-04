@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/height_cancleView"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/anti_theft_t9_grid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.78"
+        android:background="@color/white"
+        android:divider="@android:color/darker_gray"
+        android:orientation="vertical"
+        android:showDividers="middle|beginning|end">
+
+        <TextView
+            android:id="@+id/nameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:paddingBottom="@dimen/tenDp"
+            android:paddingLeft="@dimen/fiftentDp"
+            android:paddingTop="@dimen/tenDp"
+            android:text="大米"
+            android:textColor="@color/text_black"
+            android:textSize="17sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/twentyDp">
+
+            <TextView
+                android:id="@+id/numberText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0分钟"
+                android:textColor="@color/text_black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/kiloText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fiftentDp"
+                android:text="消耗热量346千卡"
+                android:textColor="@color/sport_sport_pop_color"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <include layout="@layout/gray_line_layout"></include>
+
+
+        <GridView
+            android:id="@+id/gridView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/tenDp"
+            android:numColumns="4"
+            android:horizontalSpacing="@dimen/tenDp"
+            android:verticalSpacing="@dimen/tenDp"
+            ></GridView>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/oneText"
+                    style="@style/food_keyboard_style"
+                    android:text="1" />
+
+                <TextView
+                    android:id="@+id/twoText"
+                    style="@style/food_keyboard_style"
+                    android:text="2" />
+
+                <TextView
+                    android:id="@+id/threeText"
+                    style="@style/food_keyboard_style"
+                    android:text="3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fourText"
+                    style="@style/food_keyboard_style"
+                    android:text="4" />
+
+                <TextView
+                    android:id="@+id/fiveText"
+                    style="@style/food_keyboard_style"
+                    android:text="5" />
+
+                <TextView
+                    android:id="@+id/sixText"
+                    style="@style/food_keyboard_style"
+                    android:text="6" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/sevenText"
+                    style="@style/food_keyboard_style"
+                    android:text="7" />
+
+                <TextView
+                    android:id="@+id/eightText"
+                    style="@style/food_keyboard_style"
+                    android:text="8" />
+
+                <TextView
+                    android:id="@+id/nineText"
+                    style="@style/food_keyboard_style"
+                    android:text="9" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/pointText"
+                    style="@style/food_keyboard_style"
+                    android:text="." />
+
+                <TextView
+                    android:id="@+id/zeroText"
+                    style="@style/food_keyboard_style"
+                    android:text="0" />
+
+                <ImageView
+                    android:id="@+id/deleteImage"
+                    style="@style/food_keyboard_style"
+                    android:scaleType="center"
+                    android:src="@mipmap/bglucode_delete_icon" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/sport_sport_pop_color"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/cancelBto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/fiftentDp"
+                android:text="@string/cancel"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/fiftentDp"
+                android:layout_marginTop="@dimen/fiftentDp"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/sureBto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/fiftentDp"
+                android:text="@string/sure"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

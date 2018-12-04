@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_solid_box_2"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:orientation="horizontal">
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/item_detal_food_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.1"
+                android:gravity="left"
+                android:paddingBottom="6dp"
+                android:paddingRight="1dp"
+                android:paddingTop="12dp"
+                android:text="维生素A"
+                android:textColor="@color/text_gray"
+                app:customtTextSize="27" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/item_detal_food_intake"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.2"
+                android:gravity="right"
+                android:paddingBottom="6dp"
+                android:paddingRight="1dp"
+                android:paddingTop="12dp"
+                android:text="60g"
+                android:textColor="@color/black"
+                app:customtTextSize="30"
+                app:customtTypeface="PROR" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/item_detal_food_goal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.2"
+                android:gravity="right"
+                android:paddingBottom="6dp"
+                android:paddingRight="1dp"
+                android:paddingTop="12dp"
+                android:text="100g"
+                android:textColor="@color/black"
+                app:customtTextSize="30"
+                app:customtTypeface="PROR" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/item_detal_food_overplus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.2"
+                android:gravity="right"
+                android:paddingBottom="6dp"
+                android:paddingRight="1dp"
+                android:paddingTop="12dp"
+                android:text="40g"
+                android:textColor="@color/black"
+                app:customtTextSize="30"
+                app:customtTypeface="PROR" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:paddingTop="14dp"
+            android:paddingBottom="12dp"
+            >
+            <com.jq.code.view.chart.HorizontalLineChart
+                android:id="@+id/item_detal_food_chart"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                />
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/item_detal_food_tip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:paddingTop="8dp"
+                app:customtTextSize="24"
+                android:text="请限制您的碳水化合物在xxx之内"
+                android:textColor="@android:color/holo_red_light" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

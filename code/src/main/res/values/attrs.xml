@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ====================以后所有定义的大小颜色必须使用小驼峰格式======================== -->
+
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_fill_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ImageTextViewVertical">
+        <attr name="android:text" />
+        <attr name="android:src" />
+        <attr name="android:textColor" />
+        <attr name="android:background" />
+        <attr name="android:textSize" />
+        <attr name="android:gravity"></attr>
+        <attr name="imgWeight" format="integer" />
+        <attr name="txtWeight" format="integer" />
+    </declare-styleable>
+
+    <!-- ImageTextViewHorizontal使用 -->
+    <declare-styleable name="ImageTextViewHorizontal">
+        <attr name="android:src" />
+        <attr name="android:text" />
+        <attr name="android:textColor" />
+        <attr name="android:textSize" />
+        <attr name="isTextBlod" format="boolean"></attr>
+    </declare-styleable>
+
+    <!-- HPieViews使用 -->
+    <declare-styleable name="HPieViews">
+        <attr name="ArcColor0" format="color" />
+        <attr name="ArcColor1" format="color" />
+        <attr name="ArcColor2" format="color" />
+        <attr name="ArcColor3" format="color" />
+        <attr name="ArcColor4" format="color" />
+        <attr name="ArcScale0" format="integer" />
+        <attr name="ArcScale1" format="integer" />
+        <attr name="ArcScale2" format="integer" />
+        <attr name="ArcScale3" format="integer" />
+        <attr name="ArcScale4" format="integer" />
+    </declare-styleable>
+
+    <!-- InputEditText使用 -->
+    <declare-styleable name="InputEditText">
+        <attr name="editHint" format="string" />
+        <attr name="editHintColor" format="color" />
+        <attr name="android:src" />
+        <attr name="android:text" />
+        <attr name="android:password" />
+    </declare-styleable>
+
+    <!-- 圆形进度条 -->
+    <declare-styleable name="RoundProgressBar">
+        <attr name="roundColor" format="color" />
+        <attr name="roundProgressColor" format="color" />
+        <attr name="inRoundBackgroundColor" format="color" />
+        <attr name="roundWidth" format="dimension"></attr>
+        <attr name="roundProgressWidth" format="dimension"></attr>
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="max" format="integer"></attr>
+        <attr name="textIsDisplayable" format="boolean"></attr>
+        <attr name="style">
+            <enum name="STROKE" value="0"></enum>
+            <enum name="FILL" value="1"></enum>
+        </attr>
+    </declare-styleable>
+
+    <!-- 头导航栏 -->
+    <declare-styleable name="HeadLineView">
+        <attr name="titleName" format="string" />
+        <attr name="titleSize" format="integer" />
+        <attr name="titleColor" format="color" />
+        <attr name="leftImage" format="reference|color" />
+        <attr name="rightImage" format="reference|color" />
+
+    </declare-styleable>
+
+    <!-- 健康提示框 -->
+    <declare-styleable name="HealthPromptView">
+        <attr name="promptText" format="string"></attr>
+        <attr name="promptSize" format="dimension" />
+        <attr name="promptColor" format="color" />
+        <attr name="promptImage" format="reference|color" />
+    </declare-styleable>
+
+    <!-- 单选框 -->
+    <declare-styleable name="SingleSelectView">
+        <attr name="SingleColor" format="color" />
+        <attr name="singleImage" format="reference|color" />
+    </declare-styleable>
+
+    <!-- 侧滑栏 -->
+    <declare-styleable name="SlidingMenu">
+        <attr name="rightPadding" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="ThreeButton">
+        <attr name="buttonTextsize" format="integer" />
+    </declare-styleable>
+    <!-- 基础控件 -->
+    <declare-styleable name="CustomTextView">
+        <attr name="customtTextSize" format="integer" />
+        <attr name="customtChecked" format="boolean" />
+        <attr name="customClickBackgound" format="boolean" />
+        <attr name="customTextInvalid" format="boolean" />
+        <attr name="customTextPressedColor" format="color" />
+        <attr name="customtTypeface">
+            <enum name="EX" value="0"></enum>
+            <enum name="HVCN" value="1"></enum>
+            <enum name="LTEX" value="2"></enum>
+            <enum name="LT" value="3"></enum>
+            <enum name="CONDL" value="4"></enum>
+            <enum name="CONDM" value="5"></enum>
+            <enum name="PROL" value="6"></enum>
+            <enum name="PROR" value="7"></enum>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="EditText">
+        <attr name="pEditTextColor" format="color" />
+        <attr name="pEditTextSize" format="integer" />
+        <attr name="pEditDrawable" format="reference" />
+        <attr name="pEditDrawablePadding" format="dimension" />
+        <attr name="pEdittextHint" format="string" />
+        <attr name="pEdittextColorHint" format="color" />
+        <attr name="pCheckable" format="boolean" />
+        <attr name="pEditCheckDrawable" format="reference" />
+        <attr name="pEditTypeface">
+            <enum name="EX" value="0"></enum>
+            <enum name="HVCN" value="1"></enum>
+            <enum name="LTEX" value="2"></enum>
+            <enum name="LT" value="3"></enum>
+            <enum name="CONDL" value="4"></enum>
+            <enum name="CONDM" value="5"></enum>
+            <enum name="PROL" value="6"></enum>
+            <enum name="PROR" value="7"></enum>
+        </attr>
+        <attr name="pEditInputType">
+            <enum name="text" value="0"></enum>
+            <enum name="password" value="1"></enum>
+            <enum name="number" value="2"></enum>
+        </attr>
+    </declare-styleable>
+
+    <!--背景按钮 -->
+    <declare-styleable name="CsButton">
+        <attr name="buttonTextSize" format="integer" />
+        <attr name="buttonBackground" format="reference|color" />
+        <attr name="buttonText" format="string" />
+        <attr name="buttonTextColor" format="color" />
+    </declare-styleable>
+
+    <!--滚动条-->
+    <declare-styleable name="MidScrollView">
+        <attr name="mtextcolor" format="color" />
+        <attr name="mtextRatio" format="integer" />
+        <attr name="mtextSize" format="integer" />
+        <attr name="mShadowsColor" format="reference|color" />
+        <attr name="mShadowsHeight" format="integer" />
+        <attr name="mGravity">
+            <enum name="CENTER" value="0"></enum>
+            <enum name="TOP" value="1"></enum>
+            <enum name="BUTTOM" value="2"></enum>
+        </attr>
+    </declare-styleable>
+
+    <!--选择框-->
+    <declare-styleable name="MCheckBox">
+        <attr name="mCheckedTextColor" format="color" />
+        <attr name="mUnCheckedTextColor" format="color" />
+        <attr name="mCheckedBackGound" format="reference|color" />
+        <attr name="mUnCheckedBackGound" format="reference|color" />
+        <attr name="mCheckTextSize" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="BGASwipeItemLayout">
+        <attr name="bga_sil_swipeDirection" format="enum">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+        <attr name="bga_sil_bottomMode" format="enum">
+            <enum name="pullOut" value="0" />
+            <enum name="layDown" value="1" />
+        </attr>
+        <attr name="bga_sil_springDistance" format="dimension" />
+        <attr name="bga_sil_swipeAble" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ZrcAbsListView">
+        <!-- Drawable used to indicate the currently selected item in the list. -->
+        <attr name="android:listSelector" />
+        <!-- When set to true, the selector will be drawn over the selected item.
+             Otherwise the selector is drawn behind the selected item. The default
+             value is false. -->
+        <attr name="android:drawSelectorOnTop" />
+        <!-- Used by ListView and GridView to stack their content from the bottom. -->
+        <attr name="android:stackFromBottom" />
+        <!-- When set to true, the list uses a drawing cache during scrolling.
+             This makes the rendering faster but uses more memory. The default
+             value is true. -->
+        <attr name="android:scrollingCache" />
+        <!-- Sets the transcript mode for the list. In transcript mode, the list
+             scrolls to the bottom to make new items visible when they are added. -->
+        <attr name="android:transcriptMode" />
+        <!-- Indicates that this list will always be drawn on top of solid, single-color
+             opaque background. This allows the list to optimize drawing. -->
+        <attr name="android:cacheColorHint" />
+        <!-- When set to true, the list will use a more refined calculation
+             method based on the pixels height of the items visible on screen. This
+             property is set to true by default but should be set to false if your adapter
+             will display items of varying heights. When this property is set to true and
+             your adapter displays items of varying heights, the scrollbar thumb will
+             change size as the user scrolls through the list. When set to fale, the list
+             will use only the number of items in the adapter and the number of items visible
+             on screen to determine the scrollbar's properties. -->
+        <attr name="android:smoothScrollbar" />
+        <!-- Defines the choice behavior for the view. By default, lists do not have
+             any choice behavior. By setting the choiceMode to singleChoice, the list
+             allows up to one item to be in a chosen state. By setting the choiceMode to
+             multipleChoice, the list allows any number of items to be chosen.
+             Finally, by setting the choiceMode to multipleChoiceModal the list allows
+             any number of items to be chosen in a special selection mode.
+             The application will supply a
+             {@link android.widget.AbsListView.MultiChoiceModeListener} using
+             {@link android.widget.AbsListView#setMultiChoiceModeListener} to control the
+             selection mode. This uses the {@link android.view.ActionMode} API. -->
+        <attr name="android:choiceMode" />
+    </declare-styleable>
+    <declare-styleable name="ListView">
+        <!-- Reference to an array resource that will populate the ListView.  For static content,
+             this is simpler than populating the ListView programmatically. -->
+        <attr name="android:entries" />
+        <!-- Drawable or color to draw between list items. -->
+        <attr name="android:divider" />
+        <!-- Height of the divider. Will use the intrinsic height of the divider if this
+             is not specified. -->
+        <attr name="android:dividerHeight" />
+        <!-- When set to false, the ListView will not draw the divider after each header view.
+             The default value is true. -->
+        <attr name="android:headerDividersEnabled" />
+        <!-- When set to false, the ListView will not draw the divider before each footer view.
+             The default value is true. -->
+        <attr name="android:footerDividersEnabled" />
+        <!-- Drawable to draw above list content. -->
+        <attr name="android:overScrollHeader" />
+        <!-- Drawable to draw below list content. -->
+        <attr name="android:overScrollFooter" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomSingleLineChartView">
+        <attr name="lineColor" format="color"/>
+        <attr name="yinColor" format="color"/>
+        <attr name="spaceValue" format="float"/>
+
+        <attr name="xSesionValue" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="CustomDoubleLineChartView">
+        <attr name="doubleLineColor" format="color"/>
+        <attr name="doubleYinColor" format="color"/>
+        <attr name="doubleBigValue" format="float"/>
+        <attr name="doubleMinValue" format="float"/>
+        <attr name="doubleSpaceValue" format="float"/>
+        <attr name="xSesionValueDoubleSingle" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="BloodTrendBaseView">
+        <attr name="xSesion" format="integer"/>
+        <attr name="pointPaintColor" format="color"/>
+        <attr name="connLineColor" format="color"/>
+        <attr name="connYinColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="DoubleLineTrendView">
+        <attr name="dXSesion" format="integer"/>
+        <attr name="dPointPaintColor" format="color"/>
+        <attr name="dYinPaintColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="SportTrendDetalisView">
+        <attr name="showSuggestIntake" format="boolean"/>
+        <attr name="IntakeColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="TagFlowLayout">
+        <attr name="auto_select_effect" format="boolean"></attr>
+        <attr name="max_select" format="integer"></attr>
+        <attr name="gravity_layout">
+            <enum name="left" value="-1" />
+            <enum name="center" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="CalendarPickerView">
+        <attr name="android:background"/>
+        <attr name="tsquare_dividerColor" format="color"/>
+        <attr name="tsquare_dayBackground" format="reference"/>
+        <attr name="tsquare_dayTextColor" format="color"/>
+        <attr name="tsquare_titleTextColor" format="color"/>
+        <attr name="tsquare_displayHeader" format="boolean"/>
+        <attr name="tsquare_headerTextColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="calendar_cell">
+        <attr name="tsquare_state_selectable" format="boolean" />
+        <attr name="tsquare_state_current_month" format="boolean" />
+        <attr name="tsquare_state_today" format="boolean" />
+        <attr name="tsquare_state_range_first" format="boolean" />
+        <attr name="tsquare_state_range_middle" format="boolean" />
+        <attr name="tsquare_state_range_last" format="boolean" />
+        <attr name="tsquare_state_highlighted" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ExerciseFoodProgressBar">
+        <attr name="pro_line_path_width" format="integer"/>
+    </declare-styleable>
+    <declare-styleable name="WeightGoalProgressBar">
+        <attr name="line_path_width" format="integer"/>
+    </declare-styleable>
+    <declare-styleable name="PieChart">
+        <attr name="pie_text_size" format="integer"></attr>
+        <attr name="pie_text_color" format="color"></attr>
+        <attr name="pie_assist_line1" format="integer"></attr>
+        <attr name="pie_assist_line2" format="integer"></attr>
+        <attr name="pie_edge_width" format="integer"></attr>
+    </declare-styleable>
+    <declare-styleable name="AutoScrollViewPager">
+        <attr name="slideInterval" format="integer" />
+        <attr name="slideDirection" format="enum">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+        <attr name="stopWhenTouch" format="boolean" />
+        <attr name="cycle" format="boolean" />
+        <attr name="slideDuration" format="integer" />
+    </declare-styleable>
+
+
+    <declare-styleable name="CustomShapeImageView">
+        <attr name="shape" format="integer">
+            <enum name="circle" value="1" />
+            <enum name="rectangle" value="2" />
+            <enum name="arc" value="3" />
+        </attr>
+        <attr name="imageBorderWidth" format="dimension" />
+        <attr name="borderColor" format="color" />
+        <attr name="roundRadius" format="dimension" />
+        <attr name="leftTopRadius" format="dimension" />
+        <attr name="rightTopRadius" format="dimension" />
+        <attr name="rightBottomRadius" format="dimension" />
+        <attr name="leftBottomRadius" format="dimension" />
+        <attr name="onlyDrawBorder" format="boolean" />
+    </declare-styleable>
+
+</resources>

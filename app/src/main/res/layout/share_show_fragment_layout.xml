@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bgLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/share_blue_bg"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/twentyDp"></View>
+            <com.jq.code.view.CircleImageView
+                android:id="@+id/headImg"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@mipmap/default_head_image" />
+
+            <TextView
+                android:id="@+id/nameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="渐渐轻了"
+                android:textStyle="bold"
+                android:textColor="@color/text_black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/timeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="4月25日 13:25"
+                android:textColor="@color/text_gray"
+                android:textSize="13sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/twentyDp"></View>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.8"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/typeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fiveDp"
+                android:background="@drawable/white_strok_corners_2"
+                android:paddingLeft="@dimen/fiveDp"
+                android:paddingRight="@dimen/fiveDp"
+                android:paddingBottom="@dimen/twoDp"
+                android:paddingTop="@dimen/twoDp"
+                android:text="标准型身材"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/changeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tenDp"
+                android:text="你比上次(4月25日)轻了"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.jq.code.view.text.CustomTextView
+                    android:id="@+id/valueText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fiveDp"
+                    android:layout_marginBottom="@dimen/fiveDp"
+                    android:text="3.7"
+                    android:textColor="@color/white"
+                    custom:customtTypeface="CONDM"
+                    custom:customtTextSize="110" />
+
+                <TextView
+                    android:id="@+id/valueUnit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/valueText"
+                    android:layout_marginBottom="@dimen/fiveDp"
+                    android:layout_marginTop="@dimen/fiveDp"
+                    android:layout_toRightOf="@+id/valueText"
+                    android:padding="@dimen/fiveDp"
+                    android:text="公斤"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="150dp"
+                android:layout_height="0.7dp"
+                android:background="@color/line"></View>
+
+            <TextView
+                android:id="@+id/goalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/tenDp"
+                android:layout_marginTop="@dimen/tenDp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:paddingBottom="@dimen/twoDp"
+                android:paddingLeft="@dimen/fiftentDp"
+                android:paddingRight="@dimen/fiftentDp"
+                android:paddingTop="@dimen/twoDp"
+                android:text="距目标：需减重4公斤"
+                android:textColor="@color/text_black"
+                android:textSize="13sp" />
+
+            <View
+                android:layout_width="150dp"
+                android:layout_height="0.7dp"
+                android:background="@color/line"></View>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.9"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/tenDp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <com.jq.code.view.PieChart
+                    android:id="@+id/picChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    custom:pie_edge_width="40"
+                    custom:pie_assist_line2="50"
+                    custom:pie_text_size="15"
+                    />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/fiveDp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/roleWeightcur"
+                        android:textColor="@color/white"
+                        android:textSize="11sp" />
+                    <com.jq.code.view.text.CustomTextView
+                        android:id="@+id/weightValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3.7"
+                        android:textColor="@color/white"
+                        custom:customtTypeface="CONDM"
+                        custom:customtTextSize="60" />
+                    <TextView
+                        android:id="@+id/weightUnit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="公斤"
+                        android:textColor="@color/white"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/bodyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fiveDp"
+                android:text="身体成分(单位：公斤)"
+                android:textColor="@color/white"
+                android:alpha="0.3"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/tenDp"
+        android:background="@color/white"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon"
+            />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/fiftentDp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_black"
+                android:gravity="center"
+                android:background="@color/white"
+                android:textSize="15sp"
+                android:text="@string/share_bottom_tip1"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_gray"
+                android:gravity="center"
+                android:textSize="13sp"
+                android:text="@string/share_bottom_tip2"
+                />
+        </LinearLayout>
+        <com.jq.code.view.SquareImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            ></com.jq.code.view.SquareImageView>
+    </LinearLayout>
+</LinearLayout>

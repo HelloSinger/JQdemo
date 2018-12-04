@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/weight_trend_ll"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:visibility="gone"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/blue_solid_all_corner_box"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp"
+        android:gravity="center">
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/weight_trend_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/white"
+            app:customtTextSize="22"
+            app:customtTypeface="LTEX" />
+
+        <LinearLayout
+            android:id="@+id/weight_trend_value_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/weight_trend_time"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/weight_trend_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                app:customtTextSize="50"
+                app:customtTypeface="PROR" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/weight_trend_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:paddingLeft="3dp"
+                android:textColor="@android:color/white"
+                app:customtTextSize="22"
+                app:customtTypeface="LTEX" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/weight_trend_value_ll"
+            android:paddingLeft="12dp"
+            android:src="@mipmap/common_trend_arrow" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/trend_dialog_bg" />
+</LinearLayout>

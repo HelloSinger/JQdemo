@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="6dp"
+        android:paddingTop="6dp">
+
+        <com.jq.code.view.text.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/metabolismValueHead"
+            android:textColor="#a03F3E44"
+            app:customtTextSize="27" />
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/diet_metabolism_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1200千卡"
+            android:textColor="#a03F3E44"
+            app:customtTextSize="30"
+            app:customtTypeface="PROR" />
+    </LinearLayout>
+
+</LinearLayout>

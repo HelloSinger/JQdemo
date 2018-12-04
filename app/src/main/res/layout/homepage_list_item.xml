@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:padding="10dp"
+    android:background="@color/line"
+    android:gravity="center"
+    >
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/item_swipe_content_weight_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:customtTextSize="70"
+        app:customtTypeface="PROR"
+        android:text="102.9"
+        android:textColor="@color/black"
+        />
+</LinearLayout>

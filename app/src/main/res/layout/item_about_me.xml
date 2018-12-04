@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="66dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:background="@drawable/click_rectangle_selecter_default_wi"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/about_head_image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.22" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4.4"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/about_head_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_weight="1"
+                android:textColor="#505050"
+                custom:customtTextSize="30"
+                custom:customtTypeface="EX" />
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:layout_weight="1">
+
+                <com.jq.code.view.CircleImageView
+                    android:id="@+id/about_head"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_gravity="right"
+                    android:src="@mipmap/default_head_image"
+                    custom:civ_border_color="@color/borderColor"
+                    custom:civ_border_width="2dp"
+                    />
+
+                <com.jq.code.view.text.CustomTextView
+                    android:id="@+id/about_head_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:textColor="#ADADAD"
+                    custom:customtTextSize="28"
+                    custom:customtTypeface="EX" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/about_arrow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:src="@mipmap/arrow" />
+    </LinearLayout>
+
+    <com.jq.code.view.text.SwitchTextView
+        android:id="@+id/about_sex_swithch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|right"
+        android:layout_marginRight="20dp"
+        >
+    </com.jq.code.view.text.SwitchTextView>
+    <com.jq.code.view.button.SwitchButtonPregnant
+        android:id="@+id/pro_model_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center_vertical|right"
+        android:layout_marginRight="20dp" />
+</FrameLayout>

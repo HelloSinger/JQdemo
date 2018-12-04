@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bloodglucose_gray"
+    android:gravity="center"
+    android:minHeight="60dp"
+    android:orientation="horizontal"
+    android:paddingBottom="8dp"
+    android:paddingLeft="@dimen/twentyDp"
+    android:paddingRight="@dimen/twentyDp"
+    android:paddingTop="8dp">
+
+    <com.jq.code.view.edit.CustomEditText
+        android:id="@+id/find_web_comment_edit"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/white_corner_2"
+        android:focusable="true"
+        android:gravity="center_vertical|left"
+        android:hint="@string/commentContentTip"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/text_black"
+        android:textColorHint="@color/gray"
+        android:textCursorDrawable="@null"
+        app:customtTextSize="36"
+        app:customtTypeface="LTEX" />
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/find_web_comment_sumb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/tenDp"
+        android:background="@color/transparent"
+        android:gravity="center"
+        android:text="@string/comment"
+        android:textColor="@color/text_black"
+        android:textCursorDrawable="@null"
+        app:customtTextSize="36"
+        app:customtTypeface="LTEX" />
+</LinearLayout>

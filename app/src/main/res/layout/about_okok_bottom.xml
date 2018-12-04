@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.jq.code.view.text.CustomTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="@dimen/twentyDp"
+    android:layout_alignParentBottom="true"
+    android:gravity="center"
+    android:textColor="@color/darkGrey"
+    app:customtTextSize="22"
+    app:customtTypeface="LTEX"
+    android:text="@string/settingVersionTip">
+</com.jq.code.view.text.CustomTextView>

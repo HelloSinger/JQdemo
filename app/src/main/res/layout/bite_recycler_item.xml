@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/click_rectangle_selecter_default_wi"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/tenDp"
+    android:paddingLeft="@dimen/twentyDp"
+    android:paddingRight="@dimen/twentyDp"
+    android:paddingTop="@dimen/tenDp">
+
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="30dp"
+        android:text="游泳"
+        android:textColor="@color/text_black"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/unitText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nameText"
+        android:layout_marginTop="@dimen/fiveDp"
+        android:text="30分钟/167千卡"
+        android:textColor="@color/text_gray"
+        android:textSize="13sp" />
+
+    <ImageView
+        android:id="@+id/checkImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/bglucose_stat_check" />
+</RelativeLayout>

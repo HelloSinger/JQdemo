@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <RelativeLayout
+        android:id="@+id/wood_titles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#fff">
+
+            <ImageView
+                android:id="@+id/back_wood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/fiftentDp"
+                android:scaleType="centerInside"
+                android:src="@mipmap/dl_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="购物车"
+                android:textColor="#111"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:id="@+id/back_wood_delet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/fiftentDp"
+                android:scaleType="centerInside"
+                android:src="@mipmap/kitchen_deletsimg" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/wood_line1"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/wood_titles"
+        android:background="#c4c4c4" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/wood_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/wood_bottom_rel"
+        android:layout_below="@+id/wood_line1"></android.support.v7.widget.RecyclerView>
+
+    <RelativeLayout
+        android:id="@+id/wood_bottom_rel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#c4c4c4" />
+
+        <CheckBox
+            android:id="@+id/wood_choseall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            style="@style/CustomCheckBoxTheme"
+            android:text=" 全选" />
+
+        <TextView
+            android:id="@+id/wood_tobuy"
+            android:background="@color/sport_date_pop_black"
+            android:layout_alignParentRight="true"
+            android:layout_width="90dp"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:text="结算"
+            android:layout_height="match_parent" />
+        <TextView
+            android:text="合计:"
+            android:textColor="#333333"
+            android:layout_toLeftOf="@+id/wood_allmoney"
+            android:layout_marginRight="5dp"
+            android:layout_alignBottom="@+id/wood_allmoney"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="积分:"
+            android:layout_toLeftOf="@+id/wood_jifen"
+            android:layout_marginRight="5dp"
+            android:layout_alignBottom="@+id/wood_jifen"
+            android:textColor="#939393"
+            android:gravity="center"
+            android:textSize="13sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/wood_allmoney"
+            android:text="¥0.00"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/wood_tobuy"
+            android:textColor="#e12f2f"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/wood_jifen"
+            android:text="0"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/wood_tobuy"
+            android:layout_alignParentBottom="true"
+            android:textColor="#e12f2f"
+            android:gravity="center"
+            android:textSize="13sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</RelativeLayout>

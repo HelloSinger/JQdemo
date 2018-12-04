@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bloodglucose_gray"
+    android:paddingBottom="12dp"
+    android:paddingTop="12dp"
+    android:orientation="vertical">
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/strText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:paddingBottom="6dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="6dp"
+        android:background="@drawable/bglucose_slid_right_corner_20"
+        app:customtTextSize="32"
+        app:customtTypeface="LTEX"
+        />
+</LinearLayout>

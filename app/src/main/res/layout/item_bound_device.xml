@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mWholeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/titleLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true">
+
+            <ImageView
+                android:id="@+id/backImager"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="@dimen/fiftentDp"
+                android:paddingRight="@dimen/fiftentDp"
+                android:scaleType="centerInside"
+                android:src="@mipmap/dl_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/HaierBluetooth_title"
+                android:textColor="#505050"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/mBlueToothDisable"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_below="@+id/titleLayout"
+            android:background="#ff0000"
+            android:gravity="center"
+            android:text="@string/HaierBluetooth_open_bluetooth"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/bound_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mBlueToothDisable"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="@string/tutorialboundTitle"
+            android:textColor="#505050"
+            custom:customtTextSize="36"
+            custom:customtTypeface="LTEX" />
+
+        <ImageView
+            android:id="@+id/bound_animation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bound_title"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="40dp" />
+
+        <LinearLayout
+            android:id="@+id/bounded_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bound_ll"
+            android:layout_below="@+id/bound_title"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp">
+
+            <LinearLayout
+                android:id="@+id/mValueLayout"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.jq.code.view.text.CustomTextView
+                    android:id="@+id/bound_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/mainColor"
+                    custom:customtTextSize="100"
+                    custom:customtTypeface="PROR" />
+
+                <com.jq.code.view.text.CustomTextView
+                    android:id="@+id/bound_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:textColor="@color/mainColor"
+                    custom:customtTextSize="32"
+                    custom:customtTypeface="PROR" />
+            </LinearLayout>
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/bound_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center_horizontal|bottom"
+                android:text="@string/tutorialBoundTip"
+                android:textColor="#505050"
+                custom:customtTextSize="32"
+                custom:customtTypeface="EX" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp">
+
+                <com.jq.code.view.text.CustomTextView
+                    android:id="@+id/bound_device_research"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:background="@color/mainColor"
+                    android:gravity="center"
+                    android:text="@string/tutorialReSearch"
+                    android:textColor="@color/white"
+                    custom:customtTextSize="32"
+                    custom:customtTypeface="EX" />
+
+                <com.jq.code.view.text.CustomTextView
+                    android:id="@+id/bound_device_sure"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/mainColor"
+                    android:gravity="center"
+                    android:text="@string/tutorialSureBound"
+                    android:textColor="@color/white"
+                    custom:customtTextSize="32"
+                    custom:customtTypeface="EX" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bound_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/search_unbound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="12dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingTop="12dp"
+                android:text="@string/tutorialUnbound"
+                android:textColor="#787878"
+                custom:customtTextSize="32"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/bound_buy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="20dp"
+                android:text="@string/buyWeighTip"
+                android:textColor="@android:color/white"
+                android:visibility="gone"
+                custom:customtTextSize="34"
+                custom:customtTypeface="LTEX" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

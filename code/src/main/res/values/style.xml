@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="popwindow_anim_style">
+        <item name="android:windowEnterAnimation">@anim/alpha_in</item>
+        <item name="android:windowExitAnimation">@anim/alpha_out</item>
+    </style>
+    <style name="sliding_translucent" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <!--    <item name="android:windowTranslucentNavigation">true</item> -->
+        <!--         <item name="android:windowContentOverlay">@null</item>-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--       <item name="android:colorBackgroundCacheHint">@null</item> -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:listDivider">@drawable/divider_bg</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <!--      <item name="android:windowAnimationStyle">@android:style/Animation</item> -->
+    </style>
+
+    <!-- dialog显示使用！！！ -->
+    <style name="dialog_style" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
+    <!--自定义滚动尺-->
+    <declare-styleable name="RulerWheel">
+        <!--大号刻度线颜色-->
+        <attr name="lineColorMax" format="color" />
+        <!--中号刻度线颜色-->
+        <attr name="lineColorMid" format="color" />
+        <!--小号刻度线颜色-->
+        <attr name="lineColorMin" format="color" />
+        <!--小号刻度线颜色-->
+        <attr name="shadowsColor" format="color" />
+        <attr name="rulerTextColor" format="color" />
+        <!--是否显示刻度值-->
+        <attr name="showScaleValue" format="boolean" />
+        <!--刻度宽度-->
+        <attr name="scaleWidth" format="dimension" />
+        <!--刻度左右间距-->
+        <attr name="lineDivider" format="dimension" />
+        <attr name="rulerTextSize" format="integer" />
+        <attr name="defValue" format="integer" />
+        <attr name="maxValue" format="integer" />
+        <attr name="maskBg" format="reference"/>
+        <attr name="hasDivideLine" format="boolean"/>
+        <attr name="mode">
+            <flag name="SCALE" value="0" />
+            <flag name="HALF" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <!--自定义滚动尺-->
+    <declare-styleable name="Wheel">
+        <!--大号刻度线颜色-->
+        <attr name="ShadowsColor" format="color" />
+    </declare-styleable>
+    <style name="anti_theft_t9_key">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:background">@drawable/black_strok_selector</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+    </style>
+    <style name="food_keyboard_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:background">@drawable/food_keyboard_bg_selector</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+    </style>
+    <style name="calendar_header">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">#ffffff</item>
+        <item name="android:textColor">@color/sport_date_pop_black</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="stat_tab_style">
+        <item name="android:textSize">15sp</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">top|center_horizontal</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:paddingBottom">@dimen/twoDp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:background">@drawable/trend_rb_bg_selector</item>
+        <item name="android:textColor">@drawable/weight_trend_text_selector</item>
+    </style>
+
+    <declare-styleable name="suitlines">
+        <attr name="xySize" format="float" />
+        <attr name="xyColor" format="reference|color" />
+        <attr name="lineType">
+            <enum name="curve" value="0" />
+            <enum name="segment" value="1" />
+        </attr>
+        <attr name="lineStyle">
+            <enum name="solid" value="0" />
+            <enum name="dashed" value="1" />
+        </attr>
+        <attr name="needEdgeEffect" format="boolean" />
+        <attr name="colorEdgeEffect" format="reference|color" />
+        <attr name="needClickHint" format="boolean" />
+        <attr name="colorHint" format="reference|color" />
+        <attr name="maxOfVisible" format="integer" />
+        <attr name="countOfY" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="animaRadioButton">
+        <attr name="linePaddingValue" format="integer" />
+        <attr name="bottomDrawable" format="reference" />
+    </declare-styleable>
+
+    <style name="CalendarCell">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">center</item>
+    </style>
+
+    <style name="CalendarCell.CalendarDate">
+        <item name="android:textSize">@dimen/calendar_text_medium</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="animate_dialog">
+
+        <item name="android:windowEnterAnimation">@anim/slide_right_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_right_out</item>
+    </style>
+</resources>

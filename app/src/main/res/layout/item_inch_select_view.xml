@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/white_top_corner_box"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <com.jq.code.view.text.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/edit"
+            android:textColor="@color/editColor"
+            custom:customtTypeface="LTEX"
+            custom:customtTextSize="36" />
+
+        <ImageView
+            android:id="@+id/height_select_button_no"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left|center_vertical"
+            android:padding="18dp"
+            android:background="@drawable/click_rectangle_selecter_default_tr"
+            android:src="@mipmap/dialog_cancle_icon" />
+
+        <ImageView
+            android:id="@+id/height_select_button_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center_vertical"
+            android:padding="18dp"
+            android:background="@drawable/click_rectangle_selecter_default_tr"
+            android:src="@mipmap/weight_stat_check" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        >
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+            <com.jq.code.view.wheel.WheelView
+                android:id="@+id/height_select_wheel_view_feet"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                custom:ShadowsColor="@android:color/white" />
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/height_text_view_feet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/feet"
+                android:layout_gravity="center"
+                android:paddingLeft="60dp"
+                custom:customtTextSize="30"
+                custom:customtTypeface="LTEX"
+                android:textColor="@color/text_black" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+            <com.jq.code.view.wheel.WheelView
+                android:id="@+id/height_select_wheel_view_inch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                custom:ShadowsColor="@android:color/white" />
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/height_text_view_inch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/inch"
+                android:layout_gravity="center"
+                android:paddingLeft="60dp"
+                custom:customtTextSize="30"
+                custom:customtTypeface="LTEX"
+                android:textColor="@color/text_black" />
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

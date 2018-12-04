@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/itemLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="16dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="12dp"
+    android:paddingTop="16dp">
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/comentText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="110dp"
+        android:textColor="@color/text_black"
+        app:customtTextSize="32"
+        android:text="@string/detailWeight"
+        app:customtTypeface="LTEX" />
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/valueText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/text_black"
+        app:customtTextSize="46"
+        app:customtTypeface="PROR" />
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/timeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_black"
+        app:customtTextSize="32"
+        app:customtTypeface="LTEX" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dp"
+        android:src="@mipmap/arrow_right" />
+</LinearLayout>

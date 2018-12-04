@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/realtabcontent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+         />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#e6e6e6" />
+
+    <RadioGroup
+        android:id="@+id/main_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="2dp"
+        android:paddingTop="4dp">
+
+        <RadioButton
+            android:id="@+id/dynamic_rb"
+            style="@style/main_tab_bottom"
+            android:layout_gravity="center_vertical"
+            android:checked="true"
+            android:drawableTop="@drawable/dynamic_icon_selector"
+            android:drawablePadding="3dp"
+            android:paddingTop="3dp"
+            android:text="@string/dynamic" />
+
+        <RadioButton
+            android:id="@+id/trend_rb"
+            style="@style/main_tab_bottom"
+            android:layout_gravity="center_vertical"
+            android:drawableTop="@drawable/trend_icon_selector"
+            android:drawablePadding="3dp"
+            android:visibility="gone"
+            android:paddingTop="3dp"
+            android:text="课程" />
+
+        <RadioButton
+            android:id="@+id/trend_shop"
+            style="@style/main_tab_bottom"
+            android:layout_gravity="center_vertical"
+            android:drawableTop="@drawable/shop_icon_selector"
+            android:drawablePadding="3dp"
+            android:visibility="gone"
+            android:paddingTop="3dp"
+            android:text="商城" />
+
+        <RadioButton
+            android:id="@+id/find_rb"
+            style="@style/main_tab_bottom"
+            android:layout_gravity="center_vertical"
+            android:drawableTop="@drawable/find_icon_selector"
+            android:drawablePadding="3dp"
+            android:paddingTop="3dp"
+            android:visibility="gone"
+            android:text="@string/community" />
+
+        <RadioButton
+            android:id="@+id/me_rb"
+            style="@style/main_tab_bottom"
+            android:layout_gravity="center_vertical"
+            android:drawableTop="@drawable/me_icon_selector"
+            android:drawablePadding="3dp"
+            android:paddingTop="3dp"
+            android:visibility="gone"
+            android:text="@string/me" />
+    </RadioGroup>
+</LinearLayout>

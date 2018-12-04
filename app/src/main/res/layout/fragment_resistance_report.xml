@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="horizontal">
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/scoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="86"
+            android:textColor="@android:color/white"
+            custom:customtTextSize="200"
+            custom:customtTypeface="PROR" />
+
+        <com.jq.code.view.text.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reportCode"
+            android:textColor="@android:color/white"
+            custom:customtTextSize="30"
+            custom:customtTypeface="LTEX" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-14dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/reachValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="3dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="2dp"
+            android:text="@string/reportUnreach"
+            android:textColor="#c1ffffff"
+            custom:customtTextSize="27"
+            custom:customtTypeface="LTEX" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="8dp"
+            android:background="#c1ffffff"></View>
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/unReachCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="3dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="2dp"
+            android:text="@string/reportUnreach"
+            android:textColor="#c1ffffff"
+            custom:customtTextSize="27"
+            custom:customtTypeface="LTEX" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="26dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/white_solid_box"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/fiftentDp"
+            android:paddingTop="@dimen/fiftentDp">
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/fiveDp"
+                android:drawableTop="@mipmap/standard_weight_icon"
+                android:text="@string/reportStandardWeight"
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="26" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/standardWeightValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/text_black"
+                custom:customtTextSize="45"
+                custom:customtTypeface="PROR" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/standardWeightUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="24"
+                custom:customtTypeface="PROR" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/fiftentDp"
+            android:paddingTop="@dimen/fiftentDp">
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/fiveDp"
+                android:drawableTop="@mipmap/goal_weight_icon"
+                android:text="@string/reportGoalWeight"
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="26" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/goalWeightValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/text_black"
+                custom:customtTextSize="45"
+                custom:customtTypeface="PROR" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/goalWeightUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="24"
+                custom:customtTypeface="PROR" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/fiftentDp"
+            android:paddingTop="@dimen/fiftentDp">
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/fiveDp"
+                android:drawableTop="@mipmap/weight_control_icon"
+                android:text="@string/reportWeightControl"
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="26" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/weightControlValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/text_black"
+                custom:customtTextSize="45"
+                custom:customtTypeface="PROR" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/weightControlUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="24"
+                custom:customtTypeface="PROR" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/fiftentDp"
+            android:paddingTop="@dimen/fiftentDp">
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/fiveDp"
+                android:drawableTop="@mipmap/body_age_icon"
+                android:text="@string/reportBodyAge"
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="26" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/bodyAgeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/text_black"
+                custom:customtTextSize="45"
+                custom:customtTypeface="PROR" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/bodyAgeUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/reportAgeUnit"
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="24"
+                custom:customtTypeface="PROR" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
+

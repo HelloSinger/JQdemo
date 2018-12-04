@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bgLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/page_bp_bg"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.jq.code.view.text.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DIA"
+            android:textColor="@color/white"
+            custom:customtTextSize="38"
+            custom:customtTypeface="PROR" />
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/gloodpress_dia_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="0.0"
+            android:textColor="@color/white"
+            custom:customtTextSize="100"
+            custom:customtTypeface="PROR" />
+
+        <com.jq.code.view.text.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mmHg"
+            android:textColor="@color/white"
+            custom:customtTextSize="30"
+            custom:customtTypeface="PROR" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.jq.code.view.text.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SYS"
+            android:textColor="@color/white"
+            custom:customtTextSize="38"
+            custom:customtTypeface="PROR" />
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/gloodpress_sys_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="0.0"
+            android:textColor="@color/white"
+            custom:customtTextSize="100"
+            custom:customtTypeface="PROR" />
+
+        <com.jq.code.view.text.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mmHg"
+            android:textColor="@color/white"
+            custom:customtTextSize="30"
+            custom:customtTypeface="PROR" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/progress_father_ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/progress_fl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                custom:customtTypeface="LT" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/progress_percent1"
+                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                custom:customtTextSize="20"
+                custom:customtTypeface="LT" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/progress_percent2"
+                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                custom:customtTextSize="20"
+                custom:customtTypeface="LT" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/progress_percent3"
+                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                custom:customtTextSize="20"
+                custom:customtTypeface="LT" />
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/progress_percent4"
+                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                custom:customtTextSize="20"
+                custom:customtTypeface="LT" />
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/progress_standard"
+            android:layout_width="wrap_content"
+            android:layout_height="4dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/progress_standard_name1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/corState1"
+                android:textColor="#80000000"
+                custom:customtTextSize="20"
+                custom:customtTypeface="LT" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/progress_standard_name2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/corState2"
+                android:textColor="#80000000"
+                custom:customtTextSize="20"
+                custom:customtTypeface="LT" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/progress_standard_name3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/corState3"
+                android:textColor="#80000000"
+                custom:customtTextSize="20"
+                custom:customtTypeface="LT" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/progress_standard_name4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/corState4"
+                android:textColor="#80000000"
+                custom:customtTextSize="20"
+                custom:customtTypeface="LT" />
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/progress_standard_name5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/corState5"
+                android:textColor="#80000000"
+                custom:customtTextSize="20"
+                custom:customtTypeface="LT" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/progress_point"
+        android:textColor="@android:color/white"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="11dp"
+        android:background="@mipmap/progress_point"
+        android:gravity="top|center_horizontal"
+        android:paddingTop="3dp"
+        custom:customtTextSize="30"
+        custom:customtTypeface="LT" />
+
+</FrameLayout>

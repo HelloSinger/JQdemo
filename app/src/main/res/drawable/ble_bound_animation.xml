@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item android:drawable="@mipmap/ble_bound_a1" android:duration="150"></item>
+    <item android:drawable="@mipmap/ble_bound_a2" android:duration="140"></item>
+    <item android:drawable="@mipmap/ble_bound_a3" android:duration="130"></item>
+    <item android:drawable="@mipmap/ble_bound_a4" android:duration="120"></item>
+    <item android:drawable="@mipmap/ble_bound_a5" android:duration="110"></item>
+    <item android:drawable="@mipmap/ble_bound_a6" android:duration="120"></item>
+    <item android:drawable="@mipmap/ble_bound_a7" android:duration="130"></item>
+    <item android:drawable="@mipmap/ble_bound_a8" android:duration="140"></item>
+</animation-list>

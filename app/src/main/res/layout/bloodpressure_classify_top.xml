@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bloodglucose_gray"
+    android:orientation="vertical">
+    <com.jq.code.view.text.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/twentyDp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="12dp"
+        android:text="@string/bPhealthtip5"
+        android:textColor="@color/text_gray"
+        android:maxLines="1"
+        custom:customtTypeface="LTEX"
+        custom:customtTextSize="26"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingRight="23dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/tenDp"
+            android:paddingLeft="26dp"
+            android:paddingTop="@dimen/tenDp">
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:gravity="left"
+                android:layout_marginRight="@dimen/thirtyDp"
+                android:text="SYS"
+                android:textColor="@color/text_gray"
+                custom:customtTypeface="LTEX"
+                custom:customtTextSize="36" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:gravity="left"
+                android:layout_marginRight="@dimen/thirtyDp"
+                android:text="DIA"
+                android:textColor="@color/text_gray"
+                custom:customtTypeface="LTEX"
+                custom:customtTextSize="36" />
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line"
+        />
+</LinearLayout>

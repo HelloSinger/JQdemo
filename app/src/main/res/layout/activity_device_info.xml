@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/white_corner_box"
+    android:orientation="vertical">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <com.jq.code.view.text.CustomTextView
+            android:layout_width="wrap_content"
+            android:id="@+id/company_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/intelligentWeightScale"
+            android:textColor="@color/text_black"
+            app:customtTextSize="38"
+            app:customtTypeface="LTEX"
+            android:padding="12dp"
+            />
+        <ImageView
+            android:id="@+id/company_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/dialog_cancle_icon"
+            android:background="@drawable/click_rectangle_selecter_default_tr"
+            android:padding="20dp"
+            android:layout_gravity="center_vertical|right"
+            />
+    </FrameLayout>
+    <include layout="@layout/gray_line_layout"></include>
+    <ImageView
+        android:id="@+id/company_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/weight_flag_img"/>
+    <include layout="@layout/gray_line_layout"></include>
+
+    <ListView
+        android:id="@+id/company_info"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:listSelector="@android:color/transparent"
+        android:paddingBottom="20dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="12dp"
+        android:scrollbars="none"></ListView>
+</LinearLayout>

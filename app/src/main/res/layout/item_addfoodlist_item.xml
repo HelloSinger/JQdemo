@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#fff"
+    android:layout_height="90dp">
+    <ImageView
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#bfbfbf"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
+    <ImageView
+        android:id="@+id/item_addfood_img"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp" />
+    <TextView
+        android:id="@+id/item_addfood_names"
+        android:textColor="#111"
+        android:textSize="17sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignTop="@+id/item_addfood_img"
+        android:layout_toRightOf="@+id/item_addfood_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/item_addfood_weigh"
+        android:textColor="#4d4c4c"
+        android:textSize="14sp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignBottom="@+id/item_addfood_img"
+        android:layout_toRightOf="@+id/item_addfood_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/addfoodlist_delet"
+        android:visibility="gone"
+        android:background="@drawable/addfoodlist_delet_img"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp" />
+</RelativeLayout>

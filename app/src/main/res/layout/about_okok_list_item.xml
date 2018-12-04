@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/click_rectangle_selecter_default_wi"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="18dp">
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/setting_apple"
+        />
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/fiftentDp"
+        android:layout_weight="1"
+        android:textColor="#505050"
+        custom:customtTextSize="30"
+        android:text="@string/feedback"
+        />
+    <ImageView
+        android:id="@+id/item_setting_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/arrow" />
+</LinearLayout>

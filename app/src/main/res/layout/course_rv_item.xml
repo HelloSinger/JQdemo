@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_marginBottom="10dp">
+
+    <ImageView
+        android:id="@+id/iv_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/course_simple_01"
+        />
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="零基础运动"
+        android:layout_marginTop="@dimen/course_title_margin_top"
+        android:layout_marginLeft="@dimen/course_title_margin_left"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/course_title_text_size"
+        />
+
+    <TextView
+        android:id="@+id/tv_equ_is_have"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title"
+        android:layout_alignLeft="@id/tv_title"
+        android:layout_marginTop="@dimen/course_tips_margin_top"
+        android:textColor="@color/course_index_item_equ_tips"
+        android:text="无器材"
+        android:textSize="@dimen/course_tips_text_size"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_equ_is_have"
+        android:layout_below="@id/tv_equ_is_have"
+        android:layout_marginTop="@dimen/course_time_margin_top"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        >
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/course_title_text_size"
+            android:textColor="#FFFFFF"
+            android:text="45"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/course_index_item_equ_tips"
+            android:text=" · "
+            android:textSize="@dimen/course_tips_text_size"
+
+            />
+        <TextView
+            android:id="@+id/tv_energy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/course_title_text_size"
+            android:textColor="#FFFFFF"
+            android:text="6000"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/course_index_item_equ_tips"
+            android:text="消耗 "
+            android:textSize="@dimen/course_tips_text_size"
+
+            />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

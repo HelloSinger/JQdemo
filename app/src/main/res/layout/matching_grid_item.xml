@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:paddingRight="8dp"
+    android:paddingLeft="8dp"
+    android:orientation="vertical">
+
+    <com.jq.code.view.CircleImageView
+        android:id="@+id/headImg"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:src="@mipmap/default_head_image" />
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/nameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fiveDp"
+        android:text="天下安妮"
+        android:textColor="@color/black"
+        app:customtTextSize="32" />
+</LinearLayout>

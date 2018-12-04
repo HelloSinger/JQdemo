@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/height_cancleView"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.4" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/editTime"
+                custom:customtTypeface="LTEX"
+                custom:customtTextSize="32"
+                android:textColor="@color/text_gray" />
+            <ImageView
+                android:id="@+id/button_no"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left|bottom"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:background="@drawable/click_rectangle_selecter_default_tr"
+                android:src="@mipmap/dialog_cancle_icon" />
+
+            <ImageView
+                android:id="@+id/button_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right|bottom"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:background="@drawable/click_rectangle_selecter_default_tr"
+                android:src="@mipmap/weight_stat_check" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="20dp">
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.6"
+                android:orientation="horizontal"
+                >
+                <com.jq.code.view.wheel.WheelView
+                    android:id="@+id/yearWheelView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    custom:ShadowsColor="@android:color/white" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" "
+                    android:layout_gravity="center_vertical|right"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_gray" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:orientation="horizontal"
+                >
+                <com.jq.code.view.wheel.WheelView
+                    android:id="@+id/hourWheelView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    custom:ShadowsColor="@android:color/white" />
+                <com.jq.code.view.text.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="点"
+                    android:layout_gravity="center_vertical|right"
+                    custom:customtTypeface="LTEX"
+                    custom:customtTextSize="30"
+                    android:textColor="@color/text_black" />
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:orientation="horizontal"
+                >
+                <com.jq.code.view.wheel.WheelView
+                    android:id="@+id/minWheelView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    custom:ShadowsColor="@android:color/white" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" "
+                    android:layout_gravity="center_vertical|right"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_gray" />
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

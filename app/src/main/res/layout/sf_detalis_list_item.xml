@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_view"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@color/white"
+    app:bga_sil_bottomMode="pullOut"
+    app:bga_sil_swipeDirection="left">
+
+    <ImageView
+        android:id="@+id/item_swipe_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#Ed4242"
+        android:scaleType="centerInside"
+        android:src="@mipmap/delete" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/fiftentDp">
+
+        <TextView
+            android:id="@+id/contentText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="羽毛球，30分钟"
+            android:layout_marginRight="@dimen/twentyDp"
+            android:singleLine="true"
+            android:textColor="@color/text_black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/kiloText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="272千卡"
+            android:textColor="@color/text_black"
+            android:textSize="15sp" />
+    </LinearLayout>
+</cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout>

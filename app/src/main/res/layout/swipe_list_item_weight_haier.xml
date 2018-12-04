@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:background="@drawable/click_rectangle_selecter_default_wi_2"
+    app:bga_sil_bottomMode="pullOut"
+    app:bga_sil_swipeDirection="left">
+
+    <ImageView
+        android:id="@+id/item_swipe_delete"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="#Ed4242"
+        android:scaleType="centerInside"
+        android:src="@mipmap/delete" />
+
+    <include layout="@layout/list_item_weight_haier" />
+</cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout>

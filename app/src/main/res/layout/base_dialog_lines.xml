@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/white_corner_box"
+    >
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/titleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/twentyDp"
+        android:gravity="center"
+        app:customtTextSize="40"
+        android:textColor="@color/text_black"
+         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/cancelText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/fiftentDp"
+            android:background="@drawable/white_corner_box"
+            android:text="确定"
+            android:gravity="center"
+            app:customtTextSize="38"
+            android:textColor="@color/activityBackground"
+             />
+    </LinearLayout>
+</LinearLayout>

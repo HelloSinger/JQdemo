@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:custom="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/line"
+              android:orientation="vertical"
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="36dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/device_unbound"
+            />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/about_okok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="@string/settingAboutOKOK"
+            android:textColor="@color/darkGrey"
+            custom:customtTextSize="36"
+            custom:customtTypeface="LTEX"
+            />
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/bound_okok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/blue_stroke_box"
+            android:padding="16dp"
+            android:text="@string/settingBoundOKOK"
+            android:textColor="@color/activityBackground"
+            custom:customtTextSize="36"
+            custom:customtTypeface="LTEX"
+            />
+    </LinearLayout>
+</LinearLayout>

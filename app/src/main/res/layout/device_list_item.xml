@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:gravity="bottom"
+    >
+
+    <LinearLayout
+        android:id="@+id/type_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal">
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/device_list_type_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_black"
+            app:customtTextSize="24"
+            app:customtTypeface="LTEX" />
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/device_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/black_circle_corner_box"
+            android:paddingBottom="2dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:paddingTop="2dp"
+            android:text="@string/bounded"
+            android:textColor="@android:color/white"
+            app:customtTextSize="20"
+            app:customtTypeface="LTEX" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/device_list_type_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentLeft="true"
+        android:src="@mipmap/blood_glucose_img"
+        android:layout_below="@+id/type_ll" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/twentyDp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.jq.code.view.text.CustomTextView
+                    android:id="@+id/device_list_opreat_bt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/device_circle_corner_box"
+                    android:paddingBottom="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="12dp"
+                    android:textColor="@drawable/text_selector1"
+                    app:customtTextSize="32"
+                    app:customtTypeface="LTEX" />
+
+                <com.jq.code.view.text.CustomTextView
+                    android:id="@+id/device_list_device_bt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/blue_circle_corner_selector"
+                    android:paddingBottom="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="12dp"
+                    android:text="@string/settingDeviceInfo"
+                    android:textColor="@drawable/photo_text_selector"
+                    app:customtTextSize="32"
+                    app:customtTypeface="LTEX" />
+            </FrameLayout>
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/device_list_unbund_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:paddingBottom="12dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="12dp"
+                android:background="@drawable/blue_circle_corner_selector"
+                android:text="@string/settingDeviceUnbound"
+                android:textColor="@drawable/photo_text_selector"
+                app:customtTextSize="30"
+                app:customtTypeface="LTEX" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

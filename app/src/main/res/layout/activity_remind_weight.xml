@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F0F5"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/remind_weight_item_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1px"
+        android:background="@android:color/white"
+        android:paddingBottom="14.3dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="14.3dp"
+        >
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/remind_weight_time_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/time"
+            android:textColor="@color/black"
+            custom:customtTextSize="70"
+            custom:customtTypeface="PROL"
+            />
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/remind_weight_state_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/remind_weight_time_1"
+            android:textColor="@color/darkGrey"
+            android:text="@string/close"
+            custom:customtTextSize="30"
+            custom:customtTypeface="LTEX"
+            />
+
+        <com.jq.code.view.button.SwitchButton
+            android:id="@+id/remind_weight_switch_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/remind_weight_item_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:layout_marginBottom="1px"
+        android:paddingBottom="14.3dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="14.3dp"
+        >
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/remind_weight_time_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/time"
+            android:textColor="@color/black"
+            custom:customtTextSize="70"
+            custom:customtTypeface="PROL"
+            />
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/remind_weight_state_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/remind_weight_time_2"
+            android:textColor="@color/darkGrey"
+            android:text="@string/close"
+            custom:customtTextSize="30"
+            custom:customtTypeface="LTEX"
+            />
+
+        <com.jq.code.view.button.SwitchButton
+            android:id="@+id/remind_weight_switch_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/remind_weight_item_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+       	android:paddingBottom="14.3dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="14.3dp"
+       >
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/remind_weight_time_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/time"
+            android:textColor="@color/black"
+            custom:customtTextSize="70"
+            custom:customtTypeface="PROL"
+            />
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/remind_weight_state_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/remind_weight_time_3"
+            android:textColor="@color/darkGrey"
+            android:text="@string/close"
+            custom:customtTextSize="30"
+            custom:customtTypeface="LTEX"
+            />
+
+        <com.jq.code.view.button.SwitchButton
+            android:id="@+id/remind_weight_switch_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+</LinearLayout>

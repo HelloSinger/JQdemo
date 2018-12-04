@@ -1,0 +1,139 @@
+<resources>
+
+    <color name="black">#5a5a5a</color>
+    <color name="black1">#b4b4b4</color>
+    <color name="gray">#14000000</color>
+    <color name="darkGrey">#64000000</color>
+    <color name="editColor">#33BEFF</color>
+    <color name="mainColor">#33BEFF</color>
+    <color name="main_color_press">#aa33BEFF</color>
+    <color name="line">#F1F0F5</color>
+    <color name="yellow">#FF7800</color>
+    <color name="borderColor">#0E000000</color>
+    <color name="sportAndFoodBg">#ff7d1e</color>
+    <color name="bPressBg">#e14641</color>
+    <color name="bGlucoseBg">#00a5b4</color>
+
+    <color name="activityBackground">#26A3E4</color>
+
+    <!--xlj 4.18-->
+    <color name="darkYellow">#ff7e00</color>
+    <color name="text_gray">#A0A0A0</color>
+    <color name="text_trans_gray">#B4B4B4</color>
+    <color name="text_gray_quan">#C8C8C8</color>
+    <color name="text_black">#505050</color>
+    <color name="thin_text_black">#bb3F3E44</color>
+    <color name="red_line">#E76662</color>
+    <color name="standard_line">#80000000</color>
+    <color name="standard_text">#80000000</color>
+
+    <color name="bloodglucose_level1">#00A5B3</color>
+    <color name="bloodglucose_level2">#30B4C0</color>
+    <color name="bloodglucose_level3">#53BECB</color>
+    <color name="bloodglucose_level4">#85CED8</color>
+    <color name="bloodglucose_level5">#C0E1E8</color>
+    <color name="white">#ffffffff</color>
+    <color name="translucence_white">#9Effffff</color>
+    <color name="white_press">#eeeeee</color>
+    <color name="bloodglucose_gray">#F1F0F6</color>
+    <color name="transparent">#00000000</color>
+    <color name="ban_transparent">#55ffffff</color>
+
+    <color name="haier_white">#88f0f0f5</color>
+
+    <color name="bloodpressure_color">#E14641</color>
+    <color name="bloodpressure_color_press">#EA4822</color>
+    <color name="bloodpressure_level1">#69B03A</color>
+    <color name="bloodpressure_level2">#98D21D</color>
+    <color name="bloodpressure_level3">#EAB323</color>
+    <color name="bloodpressure_level4">#E98523</color>
+    <color name="bloodpressure_level5">#E96D23</color>
+    <color name="bloodpressure_level6">#EA4822</color>
+
+    <color name="pwd_dialog_top">#00A9B0</color>
+
+    <color name="main_tab_bg">#3A3A42</color>
+    <color name="main_tab_default_text">#626266</color>
+    <!--sport-->
+    <color name="exercise_sport_color">#3D325A</color>
+    <color name="trend_view_text_clor">#cccccc</color>
+    <color name="sport_trend_value1_color">#FF8C3C</color>
+    <color name="sport_trend_value2_color">#57CECA</color>
+    <color name="sport_trend_value3_color">#ECEBF0</color>
+    <color name="sport_total_color">#ACABD3</color>
+    <color name="sport_average_color">#AACCDD</color>
+    <color name="sport_highest_color">#D4576C</color>
+    <color name="sport_lowest_color">#D6C17E</color>
+    <color name="sport_trend_color">#57CECA</color>
+    <color name="sport_breakfast_color">#FEC262</color>
+    <color name="sport_breakfast_color_translucence">#55FEC262</color>
+    <color name="sport_lunch_color">#FF9A62</color>
+    <color name="sport_lunch_color_translucence">#55FF9A62</color>
+    <color name="sport_supper_color">#FF807A</color>
+    <color name="sport_supper_color_translucence">#55FF807A</color>
+    <color name="sport_extrameal_color">#F68C96</color>
+    <color name="sport_extrameal_color_translucence">#55F68C96</color>
+    <color name="sport_select_bite_color">#8C8CA4</color>
+    <color name="sport_select_bite_color_trans">#558C8CA4</color>
+    <color name="sport_sport_pop_color">#57CECA</color>
+    <color name="sport_sprot_color_translucence">#5557CECA</color>
+    <color name="sport_foot_pop_color">#FF7D1F</color>
+    <color name="sport_data_picker_color">#FF9A62</color>
+    <color name="sport_zi_color">#BEA5DC</color>
+    <color name="sport_sf_deatlis_color">#FAFAFA</color>
+
+    <color name="sport_date_pop_black">#828282</color>
+    <color name="sport_date_pop_gray">#DCDCDC</color>
+    <color name="standard1">#00aff0</color>
+    <color name="standard2">#91d250</color>
+    <color name="standard3">#f5dc28</color>
+    <color name="standard4">#ff0000</color>
+    <color name="standard5">#69b41e</color>
+    <color name="standard6">#A9D18D</color>
+    <color name="standard7">#C5E0B2</color>
+    <color name="standard8">#FFAF1E</color>
+    <color name="standard9">#FF691E</color>
+
+    <color name="report_bodily_state1">#78dcdc</color>
+    <color name="report_bodily_state2">#96c896</color>
+    <color name="report_bodily_state3">#e6c878</color>
+    <color name="report_bodily_state4">#eb876e</color>
+    <color name="report_bodily_state5">#e1737d</color>
+
+    <color name="corState1">#78dcdc</color>
+    <color name="corState2">#64bed7</color>
+    <color name="corState3">#96c896</color>
+    <color name="corState4">#e6c878</color>
+    <color name="corState5">#eb876e</color>
+    <color name="corState6">#e1737d</color>
+    <color name="corState7">#c84455</color>
+    <color name="corState8">#82aa58</color>
+
+    <!--3.0-->
+    <color name="text_color_black">#285F82</color>
+    <color name="text_color_black2">#505050</color>
+    <color name="trend_weight_rg_color">#4077BA</color>
+    <color name="trend_sport_rg_color">#312A4C</color>
+    <color name="trend_blue1">#99129BE1</color>
+    <color name="trend_blue2">#55129BE1</color>
+
+    <color name="calendar_active_month_bg">#ffffff</color>
+    <color name="calendar_bg">#ffffffff</color>
+    <color name="calendar_divider">#00000000</color>
+    <color name="calendar_selected_day_bg">#B7D1F1</color>
+    <color name="calendar_highlighted_day_bg">#ccffcc</color>
+    <color name="calendar_selected_range_bg">#EDF3FB</color>
+    <color name="calendar_text_active">#ff778088</color>
+    <color name="calendar_text_selected">#ff778088</color>
+    <color name="calendar_text_unselectable">#cccccc</color> //不能选择的文字颜色
+    <color name="calendar_text_highlighted">#ff778088</color>
+    <color name="login_upgrade_text_color">#FCAA57</color>
+    <color name="login_upgrade_text_bg">#44FCAA57</color>
+
+    <color name="share_pie_color_protein">#fac358</color>
+    <color name="share_pie_color_water">#19f0e1</color>
+    <color name="share_pie_color_bone">#f03a66</color>
+    <color name="share_pie_color_axunge">#ff9178</color>
+    <color name="share_pie_color_muscle">#dc64c3</color>
+    <color name="share_pie_color_other">#5abe87</color>
+</resources>

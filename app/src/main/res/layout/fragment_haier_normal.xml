@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mWholeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainColor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/mBlueLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.3"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:paddingLeft="5dp"
+                android:visibility="invisible"
+                android:paddingRight="5dp">
+
+                <com.jq.code.view.CircleImageView
+                    android:id="@+id/mRoleImage"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+
+                    android:layout_marginLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:src="@mipmap/default_head_image" />
+
+                <TextView
+                    android:id="@+id/mTimeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="13.5sp" />
+
+                <ImageView
+                    android:id="@+id/mShareView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:src="@mipmap/icon_share" />
+
+                <ImageView
+                    android:id="@+id/mHistoryView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/mShareView"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:src="@mipmap/icon_history" />
+                <ImageView
+                    android:id="@+id/mTrends"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/mHistoryView"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:src="@mipmap/icon_qushi" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/mBluetoothStateLayout"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/mBluetoothIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/bt_not_connected" />
+
+                <TextView
+                    android:id="@+id/bluetooth_state_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="6dp"
+                    android:textColor="#8F000000"
+                    android:textSize="14sp"
+                    tools:text="连续跳绳10分钟，相当于慢跑30分钟" />
+
+
+                <TextView
+                    android:id="@+id/icon_go"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="3dp"
+                    android:text=">"
+                    android:textColor="#8F000000"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp">
+
+                <com.jq.code.view.WeightGoalProgressBar
+                    android:id="@+id/mWeightGoalProgressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:line_path_width="3" />
+
+                <ImageView
+                    android:id="@+id/goal_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/goal_icon" />
+
+                <TextView
+                    android:id="@+id/mSetWeightGoalView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/goal_icon"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/shape_rectangle_while_border_null_bg"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:paddingTop="3dp"
+                    android:text="设置目标"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:visibility="gone" />
+
+                <com.jq.code.view.text.CustomTextView
+                    android:id="@+id/mWeightGoalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/goal_icon"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="7dp"
+                    android:textColor="@color/white"
+                    custom:customtTextSize="@integer/custom_textSize_12sp"
+                    tools:text="58公斤" />
+
+                <com.jq.code.view.text.CustomTextView
+                    android:id="@+id/mWeightText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    custom:customtTextSize="@integer/custom_textSize_60sp"
+                    custom:customtTypeface="CONDM"
+                    tools:text="67.8" />
+
+                <LinearLayout
+                    android:id="@+id/mBmiLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/mWeightText"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="1dp"
+                    android:orientation="horizontal">
+
+                    <com.jq.code.view.text.CustomTextView
+                        android:id="@+id/mBmiText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        custom:customtTextSize="@integer/custom_textSize_14sp"
+                        tools:text="BMI:24.8" />
+
+                    <TextView
+                        android:id="@+id/mBmiLevelText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:background="@drawable/shape_rectangle_while_border_null_bg"
+                        android:paddingBottom="3dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="3dp"
+                        android:textColor="@color/white"
+                        android:textSize="11sp"
+                        tools:text="微胖" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/mNoDataIcon"
+                    android:layout_width="82dp"
+                    android:layout_height="64dp"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/no_data_bg" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/mCompareLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="18dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="7dp"
+                            android:background="@color/white" />
+
+                        <TextView
+                            android:id="@+id/mCompareLastText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            tools:text="@string/weight_more_than_last" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="7dp" />
+
+                        <com.jq.code.view.text.CustomTextView
+                            android:id="@+id/mCompareLastWeight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+                            android:textColor="@color/white"
+                            custom:textSize="@integer/custom_textSize_23sp"
+                            tools:text="2.3" />
+
+                        <TextView
+                            android:id="@+id/mCompareLastWeightUnit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textColor="@color/white"
+                            android:textSize="10sp"
+                            tools:text="公斤" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/mCompareGoalLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="7dp"
+                            android:background="@color/white" />
+
+                        <TextView
+                            android:id="@+id/mCompareGoalText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+                            android:textColor="@color/white"
+                            android:textSize="11sp"
+                            tools:text="@string/weight_goal_reduce" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="7dp" />
+
+                        <com.jq.code.view.text.CustomTextView
+                            android:id="@+id/mCompareGoalWeight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+                            android:textColor="@color/white"
+                            custom:textSize="@integer/custom_textSize_23sp"
+                            tools:text="0.7" />
+
+                        <TextView
+                            android:id="@+id/mCompareGoalWeightUnit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textColor="@color/white"
+                            android:textSize="10sp"
+                            tools:text="公斤" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/mHasDataBottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <include
+                    android:id="@+id/mFatUnit"
+                    layout="@layout/fragment_haier_normal_unit"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <include
+                    android:id="@+id/mBoneUnit"
+                    layout="@layout/fragment_haier_normal_unit"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <include
+                    android:id="@+id/mMuscleUnit"
+                    layout="@layout/fragment_haier_normal_unit"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/mToReportPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="15dp"
+                android:padding="8dp"
+                android:src="@mipmap/to_up" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/mNoDataBottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/HaierHome_nodata_text1"
+                android:textColor="@color/mainColor"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/HaierHome_nodata_text2"
+                android:textColor="@color/mainColor"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:weightSum="3.3">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.3" />
+
+        <com.jq.code.view.waveview.DynamicWave2
+            android:id="@+id/mDynamicView"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="-20dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/mAddWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/zy_add" />
+
+        <ImageView
+            android:id="@+id/click_kitchen_scale"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="62dp"
+            android:background="@drawable/kitchen_scale" />
+    </RelativeLayout>
+
+
+</FrameLayout>

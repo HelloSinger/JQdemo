@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="10dp"
+    >
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:gravity="center_horizontal|bottom"
+       >
+
+       <com.jq.code.view.text.CustomTextView
+           android:id="@+id/fate_value"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           custom:customtTypeface="PROR"
+           custom:customtTextSize="200"
+           android:textColor="@android:color/white"
+           android:layout_centerInParent="true"
+           />
+       <com.jq.code.view.text.CustomTextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           custom:customtTypeface="LTEX"
+           custom:customtTextSize="30"
+           android:textColor="@android:color/white"
+           android:text="@string/reportCode"
+           />
+   </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="-14dp"
+        android:paddingBottom="10dp"
+        >
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/fate_reach_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:customtTextSize="27"
+            custom:customtTypeface="LTEX"
+            android:textColor="#c1ffffff"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="3dp"
+            android:paddingTop="2dp"
+            />
+        <View
+            android:layout_width="1px"
+            android:layout_height="8dp"
+            android:background="#c1ffffff"
+            ></View>
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/fate_unreach_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:customtTextSize="27"
+            custom:customtTypeface="LTEX"
+            android:textColor="#c1ffffff"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="3dp"
+            android:paddingTop="2dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="26dp"
+        android:background="@drawable/white_solid_box"
+        android:paddingTop="6dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="6dp"
+        >
+        <ImageView
+            android:id="@+id/fate_tip_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/weight_tip_0"
+            />
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/fate_tip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left|center_vertical"
+            android:textColor="@color/black"
+            android:paddingLeft="10dp"
+            custom:customtTextSize="28"
+            custom:customtTypeface="EX"
+            />
+    </LinearLayout>
+
+</LinearLayout>
+

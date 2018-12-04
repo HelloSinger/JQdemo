@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/relat1"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_height="87dp">
+    <TextView
+        android:id="@+id/item_adnames"
+        android:textSize="16sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:textColor="#3e3e3e"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/item_adphone"
+            android:textSize="16sp"
+            android:layout_toRightOf="@+id/item_adnames"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="#3e3e3e"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/item_adaddress"
+            android:textSize="14sp"
+            android:layout_below="@+id/item_adnames"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:textColor="#3e3e3e"
+            android:lines="2"
+            android:ellipsize="end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <!--<ImageView-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_marginBottom="15dp"-->
+            <!--android:background="@drawable/black_arrows"-->
+            <!--android:layout_marginRight="15dp"-->
+            <!--android:layout_width="8dp"-->
+            <!--android:layout_height="15dp" />-->
+        <ImageView
+            android:id="@+id/item_add_edits"
+            android:background="@drawable/address_edit"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/item_ammo"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/relat1"
+        android:visibility="gone"
+        android:background="#fff"
+        android:layout_height="40dp">
+        <ImageView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#dfdfdf"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp" />
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/pay_imgs"
+            android:layout_height="16dp" />
+        <TextView
+            android:textSize="14sp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="35dp"
+            android:textColor="#3e3e3e"
+            android:text="默认地址"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</RelativeLayout>

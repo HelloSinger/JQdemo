@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/white_corner_box"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.18"
+        android:background="@mipmap/login_or_register_dialog_bg"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/longoTip"
+                android:textColor="@color/text_black"
+                android:layout_gravity="center"
+                app:customtTextSize="32"
+                app:customtTypeface="LTEX" />
+
+            <ImageView
+                android:id="@+id/item_r_l_cancle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:padding="22dp"
+                android:src="@mipmap/gray_close" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.13"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/twentyDp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_r_l_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/blue_corner_solid_5"
+                android:gravity="center"
+                android:paddingBottom="@dimen/fiftentDp"
+                android:paddingTop="@dimen/fiftentDp"
+                android:text="@string/logonRegister"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/item_r_l_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/fiftentDp"
+                android:layout_weight="1"
+                android:background="@drawable/blue_stroke_corners_5"
+                android:gravity="center"
+                android:paddingBottom="@dimen/fiftentDp"
+                android:paddingTop="@dimen/fiftentDp"
+                android:text="@string/login"
+                android:textColor="@color/mainColor"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fiftentDp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_weight="1"
+                android:background="@color/gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/twoDp"
+                android:paddingLeft="@dimen/tenDp"
+                android:paddingRight="@dimen/tenDp"
+                android:paddingTop="@dimen/twoDp"
+                android:text="@string/registerOtherLogin"
+                android:textColor="@color/text_gray"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="1px"
+                android:layout_weight="1"
+                android:background="@color/gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="30dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/item_r_l_qq"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/qq_icon" />
+
+            <ImageView
+                android:id="@+id/item_r_l_wechat"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/thirtyDp"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/wechat_icon" />
+
+            <ImageView
+                android:id="@+id/item_r_l_sina"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/thirtyDp"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/sina_icon" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+
+    <com.jq.code.view.CircleView
+        android:id="@+id/item_sport_detail_point"
+        android:layout_width="9dp"
+        android:layout_height="9dp"
+        android:layout_centerVertical="true" />
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/item_sport_detail_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="12dp"
+        android:layout_toRightOf="@+id/item_sport_detail_point"
+        android:layout_toLeftOf="@+id/item_sport_detail_value"
+        android:paddingRight="10dp"
+        android:textColor="@color/text_gray"
+        app:customtTextSize="28" />
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/item_sport_detail_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:textColor="@color/black"
+        app:customtTextSize="32"
+        app:customtTypeface="LTEX" />
+</RelativeLayout>

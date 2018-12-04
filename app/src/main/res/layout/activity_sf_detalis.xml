@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bloodglucose_gray"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/titleBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.8"
+        android:background="@color/exercise_sport_color"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/common_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/click_rectangle_selecter_default_tr"
+            android:paddingLeft="@dimen/fiftentDp"
+            android:paddingRight="@dimen/fiftentDp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/head_back" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/click_rectangle_selecter_default_tr"
+            android:paddingLeft="@dimen/fiftentDp"
+            android:paddingRight="@dimen/fiftentDp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/head_back"
+            android:visibility="invisible" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titleName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/fiveDp"
+                android:text=""
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/timeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/fiveDp"
+                android:drawablePadding="@dimen/fiveDp"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/dateIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/click_rectangle_selecter_default_tr"
+            android:paddingLeft="@dimen/fiftentDp"
+            android:paddingRight="@dimen/fiftentDp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/date_icon" />
+
+        <ImageView
+            android:id="@+id/shareIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/click_rectangle_selecter_default_tr"
+            android:paddingLeft="@dimen/fiftentDp"
+            android:paddingRight="@dimen/fiftentDp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/flag_share_white" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="14.0"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/sf_detalis_top_layout"></include>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/fiftentDp">
+
+                    <ImageView
+                        android:id="@+id/sportIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/sf_detalis_sport_icon" />
+
+                    <TextView
+                        android:id="@+id/sportName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/fiftentDp"
+                        android:layout_toRightOf="@+id/sportIcon"
+                        android:text="@string/sport"
+                        android:textColor="@color/text_black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/suggestSport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/sportName"
+                        android:layout_below="@+id/sportName"
+                        android:layout_marginTop="@dimen/fiveDp"
+                        android:textColor="@color/text_gray"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/addSportBto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/gray_stroke_box_5"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:text="@string/sportAddSport"
+                        android:textColor="@color/text_gray"
+                        android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/sportKiloValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/tenDp"
+                        android:textColor="@color/text_black"
+                        android:textSize="17sp"
+                        android:visibility="gone"
+                        />
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/fiftentDp"
+                    android:layout_marginRight="@dimen/fiftentDp"
+                    android:background="@color/line" />
+                <ListView
+                    android:id="@+id/sportList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/fiftentDp"
+                    android:layout_marginRight="@dimen/fiftentDp"
+                    android:cacheColorHint="@color/transparent"
+                    android:divider="@color/gray"
+                    android:dividerHeight="1px"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/fiftentDp">
+
+                    <TextView
+                        android:id="@+id/breakfastName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/fiftentDp"
+                        android:layout_toRightOf="@+id/breakfastIcon"
+                        android:text="@string/sportBreakfast"
+                        android:textColor="@color/text_black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/addBreakfastBto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/gray_stroke_box_5"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:text="@string/sportAddBreakfast"
+                        android:textColor="@color/text_gray"
+                        android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/breakfastKiloValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/tenDp"
+                        android:textColor="@color/text_black"
+                        android:textSize="17sp"
+                        android:visibility="gone"
+                        />
+                    <ImageView
+                        android:id="@+id/breakfastIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:src="@mipmap/sf_detalis_breakfast_icon" />
+
+                    <TextView
+                        android:id="@+id/suggestBreakfast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/breakfastName"
+                        android:layout_below="@+id/breakfastName"
+                        android:textColor="@color/text_gray"
+                        android:textSize="13sp" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/fiftentDp"
+                    android:layout_marginRight="@dimen/fiftentDp"
+                    android:background="@color/line" />
+                <ListView
+                    android:id="@+id/breakfastList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/fiftentDp"
+                    android:layout_marginRight="@dimen/fiftentDp"
+                    android:cacheColorHint="@color/transparent"
+                    android:divider="@color/gray"
+                    android:dividerHeight="1px"
+                    />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/fiftentDp">
+
+                    <ImageView
+                        android:id="@+id/lunchIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/sf_detalis_lunch_icon" />
+
+                    <TextView
+                        android:id="@+id/lunchName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/fiftentDp"
+                        android:layout_toRightOf="@+id/lunchIcon"
+                        android:text="@string/sportLunch"
+                        android:textColor="@color/text_black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/addLunchBto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/gray_stroke_box_5"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:text="@string/sportAddLunch"
+                        android:textColor="@color/text_gray"
+                        android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/lunchKiloValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/tenDp"
+                        android:textColor="@color/text_black"
+                        android:textSize="17sp"
+                        android:visibility="gone"
+                        />
+                    <TextView
+                        android:id="@+id/suggestLunch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/lunchName"
+                        android:layout_below="@+id/lunchName"
+                        android:textColor="@color/text_gray"
+                        android:textSize="13sp" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/fiftentDp"
+                    android:layout_marginRight="@dimen/fiftentDp"
+                    android:background="@color/line" />
+                <ListView
+                    android:id="@+id/lunchList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/fiftentDp"
+                    android:layout_marginRight="@dimen/fiftentDp"
+                    android:cacheColorHint="@color/transparent"
+                    android:divider="@color/gray"
+                    android:dividerHeight="1px"
+                    />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/fiftentDp">
+
+                    <ImageView
+                        android:id="@+id/supperIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/sf_detalis_dinner_icon" />
+
+                    <TextView
+                        android:id="@+id/supperName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/fiftentDp"
+                        android:layout_toRightOf="@+id/supperIcon"
+                        android:text="@string/sportSupper"
+                        android:textColor="@color/text_black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/suggestDinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/supperName"
+                        android:layout_below="@+id/supperName"
+                        android:layout_marginTop="@dimen/fiveDp"
+                        android:textColor="@color/text_gray"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/addDinnerBto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/gray_stroke_box_5"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:text="@string/sportAddSupper"
+                        android:textColor="@color/text_gray"
+                        android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/dinnerKiloValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/tenDp"
+                        android:textColor="@color/text_black"
+                        android:textSize="17sp"
+                        android:visibility="gone"
+                        />
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/fiftentDp"
+                    android:layout_marginRight="@dimen/fiftentDp"
+                    android:background="@color/line" />
+                <ListView
+                    android:id="@+id/dinnerList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/fiftentDp"
+                    android:layout_marginRight="@dimen/fiftentDp"
+                    android:cacheColorHint="@color/transparent"
+                    android:divider="@color/gray"
+                    android:dividerHeight="1px"
+                    />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/fiftentDp">
+
+                    <ImageView
+                        android:id="@+id/extraMealIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/sf_detalis_snacks_icon" />
+
+                    <TextView
+                        android:id="@+id/extraMealName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/fiftentDp"
+                        android:layout_toRightOf="@+id/extraMealIcon"
+                        android:text="@string/sportExtraMeal"
+                        android:textColor="@color/text_black"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/suggestSnacks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/extraMealName"
+                        android:layout_below="@+id/extraMealName"
+                        android:layout_marginTop="@dimen/fiveDp"
+                        android:textColor="@color/text_gray"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/addSnacksBto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/gray_stroke_box_5"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:text="@string/sportAddExtraMeal"
+                        android:textColor="@color/text_gray"
+                        android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/snacksKiloValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/tenDp"
+                        android:text="523千卡"
+                        android:textColor="@color/text_black"
+                        android:textSize="17sp"
+                        android:visibility="gone"
+                        />
+                </RelativeLayout>
+                <ListView
+                    android:id="@+id/snacksList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/fiftentDp"
+                    android:layout_marginRight="@dimen/fiftentDp"
+                    android:cacheColorHint="@color/transparent"
+                    android:divider="@color/gray"
+                    android:dividerHeight="1px"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

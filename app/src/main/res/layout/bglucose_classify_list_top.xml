@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.jq.code.view.text.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="4dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="10dp"
+        android:text="@string/gluTip"
+        android:textColor="@color/text_gray"
+        custom:customtTextSize="26" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bloodglucose_gray"
+        android:orientation="vertical"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp">
+
+        <com.jq.code.view.text.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bglucose_slid_right_corner_20"
+            android:paddingBottom="6dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="6dp"
+            android:text="@string/normalFastingBloodGlucose"
+            android:textColor="@color/white"
+            custom:customtTextSize="32" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <com.jq.code.view.text.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bloodGlucose"
+            android:textColor="@color/text_gray"
+            custom:customtTextSize="32"
+            custom:customtTypeface="LTEX" />
+
+        <com.jq.code.view.text.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/thirtyDp"
+            android:text="@string/plasmaGlucose"
+            android:textColor="@color/text_gray"
+            custom:customtTextSize="32"
+            custom:customtTypeface="LTEX" />
+    </LinearLayout>
+
+    <include layout="@layout/gray_line_layout"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="12dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/fiveDp">
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/type1level1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3.9~6.1"
+                android:textColor="@color/text_black"
+                custom:customtTextSize="34"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/type1ml"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/type1level1"
+                android:text="mmol/L"
+                android:textColor="@color/text_black"
+                custom:customtTextSize="26"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/type2level1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/thirtyDp"
+                android:layout_toRightOf="@+id/type1level1"
+                android:text="3.9~6.9"
+                android:textColor="@color/text_black"
+                custom:customtTextSize="34"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/type2level1"
+                android:layout_below="@+id/type2level1"
+                android:text="mmol/L"
+                android:textColor="@color/text_black"
+                custom:customtTextSize="26"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/type1ignore1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/type1ml"
+                android:layout_marginTop="@dimen/fiveDp"
+                android:text="70~110"
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="34"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/type1ignore1"
+                android:text="mg/dl"
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="26"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/type2ignore1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/type2level1"
+                android:layout_alignTop="@+id/type1ignore1"
+                android:layout_toRightOf="@+id/type1ignore1"
+                android:text="70~125"
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="34"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/type2ignore1"
+                android:layout_below="@+id/type2ignore1"
+                android:text="mg/dl"
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="26"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/level1Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/thirtyDp"
+                android:layout_toRightOf="@+id/type2level1"
+                android:textColor="@color/text_black"
+                custom:customtTextSize="32"
+                custom:customtTypeface="LTEX" />
+        </RelativeLayout>
+
+        <include layout="@layout/gray_line_layout"></include>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/fiveDp">
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/type1level2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=">5.6      "
+                android:textColor="@color/text_black"
+                custom:customtTextSize="34"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/type1ml2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/type1level2"
+                android:text="mmol/L"
+                android:textColor="@color/text_black"
+                custom:customtTextSize="26"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/type2level2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/thirtyDp"
+                android:layout_toRightOf="@+id/type1level2"
+                android:text=">6.4      "
+                android:textColor="@color/text_black"
+                custom:customtTextSize="34"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/type2level2"
+                android:layout_below="@+id/type2level2"
+                android:text="mmol/L"
+                android:textColor="@color/text_black"
+                custom:customtTextSize="26"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/type1ignore2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/type1ml2"
+                android:layout_marginTop="@dimen/fiveDp"
+                android:text=">100    "
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="34"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/type1ignore2"
+                android:text="mg/dl"
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="26"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/type2ignore2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/type2level2"
+                android:layout_alignTop="@+id/type1ignore2"
+                android:layout_toRightOf="@+id/type1ignore2"
+                android:text=">115"
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="34"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/type2ignore2"
+                android:layout_below="@+id/type2ignore2"
+                android:text="mg/dl"
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="26"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/level2Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/thirtyDp"
+                android:layout_toRightOf="@+id/type2level2"
+                android:text="应做糖耐量试验"
+                android:textColor="@color/text_black"
+                custom:customtTextSize="32"
+                custom:customtTypeface="LTEX" />
+        </RelativeLayout>
+
+        <include layout="@layout/gray_line_layout"></include>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/fiveDp">
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/type1level3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="≥6.7      "
+                android:textColor="@color/text_black"
+                custom:customtTextSize="34"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/type1ml3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/type1level3"
+                android:text="mmol/L"
+                android:textColor="@color/text_black"
+                custom:customtTextSize="26"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/type2level3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/thirtyDp"
+                android:layout_toRightOf="@+id/type1level3"
+                android:text="≥7.8      "
+                android:textColor="@color/text_black"
+                custom:customtTextSize="34"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/type2level3"
+                android:layout_below="@+id/type2level3"
+                android:text="mmol/L"
+                android:textColor="@color/text_black"
+                custom:customtTextSize="26"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/type1ignore3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/type1ml3"
+                android:layout_marginTop="@dimen/fiveDp"
+                android:text="≥120     "
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="34"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/type1ignore3"
+                android:text="mg/dl"
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="26"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/type2ignore3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/type2level3"
+                android:layout_alignTop="@+id/type1ignore3"
+                android:layout_toRightOf="@+id/type1ignore3"
+                android:text="≥140      "
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="34"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/type2ignore3"
+                android:layout_below="@+id/type2ignore3"
+                android:text="mg/dl"
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="26"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/level3Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/thirtyDp"
+                android:layout_toRightOf="@+id/type2level3"
+                android:text="2次重复测定可诊断为糖尿病。"
+                android:textColor="@color/text_black"
+                custom:customtTextSize="32"
+                custom:customtTypeface="LTEX" />
+        </RelativeLayout>
+
+        <include layout="@layout/gray_line_layout"></include>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/fiveDp">
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/type1level4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=">11.1      "
+                android:textColor="@color/text_black"
+                custom:customtTextSize="34"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/type1ml4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/type1level4"
+                android:text="mmol/L"
+                android:textColor="@color/text_black"
+                custom:customtTextSize="26"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/type1ignore4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/type1ml4"
+                android:layout_marginTop="@dimen/fiveDp"
+                android:text=">200     "
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="34"
+                custom:customtTypeface="LTEX" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/type1ignore4"
+                android:text="mg/dl"
+                android:textColor="@color/text_gray"
+                custom:customtTextSize="26"
+                custom:customtTypeface="LTEX" />
+
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/level4Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/thirtyDp"
+                android:layout_toRightOf="@+id/type1level4"
+                android:text="表示胰岛素分泌极少或缺乏。因此，空腹血糖显著增高时，不必进行其它检查，即可诊断为糖尿病。"
+                android:textColor="@color/text_black"
+                custom:customtTextSize="32"
+                custom:customtTypeface="LTEX" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

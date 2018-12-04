@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="#f5f5fa"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/aboutInittitle"
+            android:textColor="#505050"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="horizontal">
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/goal_weight_ruler_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/mainColor"
+            custom:customtTextSize="80"
+            tools:text="49" />
+
+        <TextView
+            android:id="@+id/goal_weight_ruler_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:textColor="@color/mainColor"
+            android:textSize="11sp"
+            tools:text="公斤" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <com.jq.code.view.ruler.RulerWheel
+            android:id="@+id/goal_weight_ruler"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            custom:lineColorMax="#505050"
+            custom:lineColorMid="#00000000"
+            custom:lineColorMin="#8c8c8c"
+            custom:lineDivider="12dp"
+            custom:maxValue="2000"
+            custom:mode="SCALE"
+            custom:rulerTextColor="#b4b4b4"
+            custom:rulerTextSize="11"
+            custom:scaleWidth="1dp"
+            custom:shadowsColor="#00000000"
+            custom:showScaleValue="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/zhizhen" />
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/goal_sure"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="@string/Haier_sure"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+</LinearLayout>

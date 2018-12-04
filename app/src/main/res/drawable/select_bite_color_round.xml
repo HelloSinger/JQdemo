@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<shape xmlns:android="http://schemas.android.com/apk/res/android"  android:shape="oval">-->
+   <!--<solid android:color="@color/sport_select_bite_color"/>-->
+<!--</shape>-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+   <item android:state_enabled="true">
+      <shape android:shape="oval">
+         <solid android:color="@color/sport_select_bite_color"/>
+      </shape>
+   </item>
+   <item android:state_checkable="true">
+      <shape android:shape="oval">
+         <solid android:color="@color/sport_select_bite_color"/>
+      </shape>
+   </item>
+   <item>
+      <shape android:shape="oval">
+         <solid android:color="@color/sport_select_bite_color_trans"/>
+      </shape>
+   </item>
+</selector>

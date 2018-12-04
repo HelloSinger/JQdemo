@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainColor"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="42dp">
+
+    <ImageView
+        android:id="@+id/add_weight_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/click_rectangle_selecter_default_tr"
+        android:padding="14dp"
+        android:src="@mipmap/cancel" />
+
+    <com.jq.code.view.text.CustomTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/roleDataAdd1"
+        android:textColor="@android:color/white"
+        custom:customtTextSize="36"
+        custom:customtTypeface="LTEX" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="horizontal">
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/add_weight_ruler_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            custom:customtTextSize="120"
+            custom:customtTypeface="LTEX" />
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/add_weight_ruler_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kg"
+            android:textColor="@android:color/white"
+            custom:customtTextSize="42"
+            custom:customtTypeface="LTEX" />
+    </LinearLayout>
+
+    <com.jq.code.view.ruler.RulerWheel
+        android:id="@+id/add_weight_ruler"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        custom:lineColorMax="#a0ffffff"
+        custom:lineColorMid="@android:color/white"
+        custom:lineColorMin="#a0ffffff"
+        custom:lineDivider="12dp"
+        custom:maxValue="2000"
+        custom:mode="SCALE"
+        custom:rulerTextColor="#a0ffffff"
+        custom:rulerTextSize="18"
+        custom:scaleWidth="1dp"
+        custom:shadowsColor="@color/mainColor"
+        custom:showScaleValue="true" />
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/add_sure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/white_circle_corner_box"
+        android:paddingBottom="16dp"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        android:paddingTop="16dp"
+        android:text="@string/sure"
+        android:textColor="@android:color/white"
+        custom:customtTextSize="40"
+        custom:customtTypeface="LTEX" />
+</LinearLayout>

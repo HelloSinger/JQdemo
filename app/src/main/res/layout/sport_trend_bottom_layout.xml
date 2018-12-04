@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/tenDp"
+    android:background="@drawable/white_corner_2"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/tenDp"
+    android:paddingLeft="@dimen/twentyDp"
+    android:paddingRight="@dimen/twentyDp"
+    android:paddingTop="@dimen/tenDp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/fiveDp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/total_corner_2"
+            android:paddingBottom="@dimen/twoDp"
+            android:paddingLeft="@dimen/fiveDp"
+            android:paddingRight="@dimen/fiveDp"
+            android:paddingTop="@dimen/twoDp"
+            android:layout_marginRight="@dimen/fortyDp"
+            android:text="@string/sportTotal"
+            android:textColor="@color/white"
+            android:visibility="invisible"
+            android:textSize="13sp"
+            android:id="@+id/textView2" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="@string/sportIntake"
+            android:textColor="@color/text_gray"
+            android:textSize="15sp"
+            android:id="@+id/textView" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:layout_marginLeft="@dimen/tenDp"
+            android:text="@string/sportConsume"
+            android:textColor="@color/text_gray"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <include layout="@layout/gray_line_layout"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/tenDp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/total_corner_2"
+                android:paddingBottom="@dimen/twoDp"
+                android:paddingRight="@dimen/fiveDp"
+                android:paddingLeft="@dimen/fiveDp"
+                android:paddingTop="@dimen/twoDp"
+                android:layout_marginRight="@dimen/fortyDp"
+                android:text="@string/sportTotal"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/allIntakeValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="15623千卡"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/allConsumeValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="15623千卡"
+                android:layout_marginLeft="@dimen/tenDp"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/tenDp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/average_corner_2"
+                android:paddingBottom="@dimen/twoDp"
+                android:paddingLeft="@dimen/fiveDp"
+                android:paddingRight="@dimen/fiveDp"
+                android:paddingTop="@dimen/twoDp"
+                android:text="@string/sportAverage"
+                android:layout_marginRight="@dimen/fortyDp"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/avgIntakeValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="15623千卡"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/avgConsumeValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="15623千卡"
+                android:layout_marginLeft="@dimen/tenDp"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/tenDp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/highest_corner_2"
+                android:paddingBottom="@dimen/twoDp"
+                android:paddingLeft="@dimen/fiveDp"
+                android:paddingRight="@dimen/fiveDp"
+                android:paddingTop="@dimen/twoDp"
+                android:text="@string/sportHighest"
+                android:textColor="@color/white"
+                android:layout_marginRight="@dimen/fortyDp"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/highestIntakeValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="15623千卡"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/highestConsumeValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="15623千卡"
+                android:layout_marginLeft="@dimen/tenDp"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/tenDp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/lowest_corner_2"
+                android:paddingBottom="@dimen/twoDp"
+                android:paddingLeft="@dimen/fiveDp"
+                android:paddingRight="@dimen/fiveDp"
+                android:paddingTop="@dimen/twoDp"
+                android:text="@string/sportLowest"
+                android:layout_marginRight="@dimen/fortyDp"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/lowestIntakeValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="15623千卡"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/lowestConsumeValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="15623千卡"
+                android:textColor="@color/black"
+                android:layout_marginLeft="@dimen/tenDp"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

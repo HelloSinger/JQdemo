@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/e_dd_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:src="@mipmap/detail_sport" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/e_dd_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_black"
+            app:customtTextSize="32" />
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/e_dd_suggest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#b4b4b4"
+            app:customtTextSize="24" />
+    </LinearLayout>
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/e_dd_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="609千卡"
+        android:textColor="@color/black"
+        app:customtTextSize="38"
+        app:customtTypeface="PROR" />
+</LinearLayout>

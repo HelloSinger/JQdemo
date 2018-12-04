@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/twentyDp"
+    android:paddingRight="@dimen/twentyDp"
+    android:paddingBottom="@dimen/tenDp"
+    android:paddingTop="@dimen/tenDp"
+    android:orientation="horizontal"
+    android:background="@drawable/click_rectangle_selecter_default_wi"
+    android:gravity="center_vertical"
+    >
+    <ImageView
+        android:id="@+id/brandImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/add_default_icon"
+        />
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="@dimen/fiftentDp"
+        android:text = "游泳"
+        android:textColor="@color/text_black"
+        android:textSize="15sp"
+        />
+    <ImageView
+        android:id="@+id/checkImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/sport_check_icon"
+        />
+</LinearLayout>

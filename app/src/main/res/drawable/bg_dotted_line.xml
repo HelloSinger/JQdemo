@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 虚线 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="line">
+    <stroke
+        android:width="0.5dp"
+        android:color="#ffa0a0a0"
+        android:dashGap="3dp"
+        android:dashWidth="5dp" />
+</shape>

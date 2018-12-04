@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="2.6"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SYS"
+                custom:customtTypeface="LTEX"
+                android:textColor="@color/white"
+                custom:customtTextSize="38" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/gloodpress_detalis_sys_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                custom:customtTypeface="LTEX"
+                android:text="80"
+                android:textColor="@color/white"
+                custom:customtTextSize="80" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mmHg"
+                custom:customtTypeface="LTEX"
+                android:textColor="@color/white"
+                custom:customtTextSize="28" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="30dp"
+            android:orientation="vertical">
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DIA"
+                custom:customtTypeface="LTEX"
+                android:textColor="@color/white"
+                custom:customtTextSize="38" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/gloodpress_detalis_dia_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                custom:customtTypeface="LTEX"
+                android:textColor="@color/white"
+                android:text="80"
+                custom:customtTextSize="80" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mmHg"
+                custom:customtTypeface="LTEX"
+                android:textColor="@color/white"
+                custom:customtTextSize="28" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/heartRate"
+                custom:customtTypeface="LTEX"
+                android:textColor="@color/white"
+                custom:customtTextSize="36" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/gloodpress_detalis_hb_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                custom:customtTypeface="LTEX"
+                android:textColor="@color/white"
+                android:text="80"
+                custom:customtTextSize="80" />
+
+            <com.jq.code.view.text.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BPM"
+                custom:customtTypeface="LTEX"
+                android:textColor="@color/white"
+                custom:customtTextSize="28" />
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/gloodpress_detalis_Left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_gravity="center_vertical|left"
+        android:background="@drawable/click_rectangle_selecter_default_tr"
+        android:src="@mipmap/report_arrow_left" />
+    <ImageView
+        android:id="@+id/gloodpress_detalis_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_gravity="center_vertical|right"
+        android:background="@drawable/click_rectangle_selecter_default_tr"
+        android:src="@mipmap/report_arrow_right" />
+</FrameLayout>

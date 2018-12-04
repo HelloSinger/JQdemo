@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line"
+    android:orientation="vertical">
+
+    <com.jq.code.view.text.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:text="@string/settingLongUnit"
+        android:textColor="#64000000"
+        custom:customtTextSize="28"
+        custom:customtTypeface="EX" />
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/button_gmi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:drawablePadding="40dp"
+        android:paddingBottom="18dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="18dp"
+        android:text="@string/settingUnitMKM"
+        android:textColor="#505050"
+        custom:customtTextSize="30"
+        custom:customtTypeface="EX" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/line" />
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/button_ychi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:drawablePadding="40dp"
+        android:paddingBottom="18dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="18dp"
+        android:text="@string/settingUnitYchi"
+        android:textColor="#505050"
+        custom:customtTextSize="30"
+        custom:customtTypeface="EX" />
+
+
+    <com.jq.code.view.text.CustomTextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:text="@string/settingWeightUnit"
+        android:textColor="#64000000"
+        custom:customtTextSize="28"
+        custom:customtTypeface="EX" />
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/button_sjin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:drawablePadding="40dp"
+        android:paddingBottom="18dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="18dp"
+        android:text="@string/settingUnitSjin"
+        android:textColor="#505050"
+        custom:customtTextSize="30"
+        custom:customtTypeface="EX" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/line" />
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/button_gjin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:drawablePadding="40dp"
+        android:paddingBottom="18dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="18dp"
+        android:text="@string/settingUnitGjin"
+        android:textColor="#505050"
+        custom:customtTextSize="30"
+        custom:customtTypeface="EX" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:visibility="gone"
+        android:background="@color/line" />
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/button_ybang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:background="@android:color/white"
+        android:drawablePadding="40dp"
+        android:paddingBottom="18dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="18dp"
+        android:text="@string/settingUnitYbang"
+        android:textColor="@color/black"
+        custom:customtTextSize="36"
+        custom:customtTypeface="EX" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:visibility="gone"
+        android:background="@color/line" />
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/button_st"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:background="@android:color/white"
+        android:drawablePadding="40dp"
+        android:paddingBottom="18dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="18dp"
+        android:text="@string/settingUnitST"
+        android:textColor="@color/black"
+        custom:customtTextSize="36"
+        custom:customtTypeface="EX" />
+</LinearLayout>

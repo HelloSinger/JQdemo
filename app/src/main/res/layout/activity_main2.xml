@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="#fff"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:id="@+id/kitchen_weigh_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/back_kitchen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/fiftentDp"
+        android:scaleType="centerInside"
+        android:src="@mipmap/dl_back" />
+    <TextView
+        android:textSize="18sp"
+        android:padding="10dp"
+        android:textColor="#111"
+        android:layout_centerInParent="true"
+        android:text="食物称重"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/kitchen_tohistery"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/icon_history_1"
+        android:layout_alignParentRight="true"
+        android:layout_width="20dp"
+        android:layout_height="20dp" />
+</RelativeLayout>
+    <ScrollView
+        android:layout_below="@+id/kitchen_weigh_title"
+        android:layout_above="@+id/kitchen_bottoms_relat"
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/kitchen_numss"
+                android:background="@mipmap/kitchen_background"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+                <ImageView
+                    android:id="@+id/mBluetoothIcon1"
+                    android:layout_width="wrap_content"
+                    android:layout_toLeftOf="@+id/kitchen_states"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/bt_not_connected" />
+                <TextView
+                    android:id="@+id/kitchen_states"
+                    android:textSize="16sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="等待设备连接..."
+                    android:textColor="#111"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textSize="16sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="50dp"
+                    android:text="食物重量"
+                    android:textColor="#8c8c8c"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/kitchen_numclicks"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="90dp"
+                    android:layout_centerHorizontal="true"
+                    android:text="0"
+                    android:textColor="#111"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/kitchen_units"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_alignBottom="@+id/kitchen_numclicks"
+                    android:layout_toRightOf="@+id/kitchen_numclicks"
+                    android:layout_marginBottom="5dp"
+                    android:text="g"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#111"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/kitchen_states2"
+                    android:textSize="12sp"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="gone"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="20dp"
+                    android:text="注:为了便于计算热量，APP端只显示克数"
+                    android:textColor="#666565"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/kitchen_foodname_click"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:textSize="17sp"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:layout_below="@+id/kitchen_numss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/text_calory"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:layout_below="@+id/kitchen_foodname_click"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textColor="#807f7f"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/text_state1"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:text="营养成分"
+                android:textSize="18sp"
+                android:textColor="#111"
+                android:visibility="gone"
+                android:gravity="center"
+                android:layout_below="@+id/text_calory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <com.jq.btc.kitchenscale.view.MyGridViewFood
+                android:id="@+id/kitchen_gridview"
+                android:layout_below="@+id/text_state1"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:numColumns="2"
+                android:visibility="gone"
+                android:verticalSpacing="0.5dp"
+                android:background="#fff"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></com.jq.btc.kitchenscale.view.MyGridViewFood>
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/kitchen_bottoms_relat"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <RelativeLayout
+            android:id="@+id/kitchen_checklick"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:background="@mipmap/kitchen_arrows"
+                android:layout_toLeftOf="@+id/kitchen_checkpantry"
+                android:layout_marginRight="5dp"
+                android:layout_centerVertical="true"
+                android:layout_width="12dp"
+                android:layout_height="8dp" />
+            <TextView
+                android:id="@+id/kitchen_checkpantry"
+                android:textSize="15sp"
+                android:layout_centerInParent="true"
+                android:textColor="#333"
+                android:text="查看"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/kitchen_checknums"
+                android:background="@mipmap/kitchen_reddot"
+                android:gravity="center"
+                android:textSize="11sp"
+                android:layout_toRightOf="@+id/kitchen_checkpantry"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:textColor="#fff"
+                android:text=""
+                android:layout_width="18dp"
+                android:layout_height="18dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:background="@color/standard1"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/kitchen_addpantry"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_toLeftOf="@+id/kitchen_lines1"
+                android:textColor="#fff"
+                android:background="#EB7E3E"
+                android:text="加入我的配餐"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/kitchen_lines1"
+                android:background="#fff"
+                android:layout_centerInParent="true"
+                android:layout_width="0dp"
+                android:layout_height="0dp" />
+            <TextView
+                android:id="@+id/kitchen_finishpantry"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_toRightOf="@+id/kitchen_lines1"
+                android:textColor="#fff"
+                android:text="完成配餐"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

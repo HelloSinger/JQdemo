@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mWholeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/backImager"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="@dimen/fiftentDp"
+            android:paddingRight="@dimen/fiftentDp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/dl_back" />
+
+        <TextView
+            android:id="@+id/mTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/settingDevice"
+            android:textColor="#3c3c3c"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/device_add_click"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="13dp"
+            android:background="@drawable/device_addimg" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/mBoundedLayout"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/device_img1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:src="@mipmap/myscale" />
+
+        <TextView
+            android:id="@+id/mBoundDevice"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/device_img1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="@string/DeviceActivity_bound"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+
+
+        <TextView
+            android:id="@+id/mDeviceInfo"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/mBoundDevice"
+            android:layout_marginLeft="30dp"
+            android:gravity="center"
+            android:text="@string/DeviceActivity_DEVinfo"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/mUnBoundDevice"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="30dp"
+            android:gravity="center"
+            android:layout_below="@+id/mBoundDevice"
+            android:layout_alignParentRight="true"
+            android:text="@string/DeviceActivity_unbound"
+            android:textColor="@color/mainColor"
+            android:textSize="14sp" />
+    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/device_recycler"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+</LinearLayout>

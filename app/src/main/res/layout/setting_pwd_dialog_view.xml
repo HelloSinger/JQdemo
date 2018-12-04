@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/white_corner_box"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingRight="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:background="@drawable/pwd_dialog_top_corner_10"
+        >
+
+        <com.jq.code.view.text.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:text="@string/changePwd"
+            android:textColor="@color/white"
+            custom:customtTextSize="40"
+            custom:customtTypeface="LTEX"
+            />
+
+        <ImageView
+            android:id="@+id/change_pwd_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/pwd_cancel"
+            />
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@color/pwd_dialog_top"
+        android:padding="55dp">
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:orientation="vertical">
+
+        <com.jq.code.view.edit.CustomEditText
+            android:id="@+id/change_pwd_old"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:padding="16dp"
+            android:textColorHint="#B2B2B2"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:hint="@string/pwdOld"
+            android:layout_marginTop="40dp"
+            android:singleLine="true"
+            android:textCursorDrawable="@drawable/cursor_drawable"
+            android:inputType="textPassword"
+            custom:customtTextSize="34" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line" />
+        <com.jq.code.view.edit.CustomEditText
+            android:id="@+id/change_pwd_new"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:padding="16dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:hint="@string/pwdNew"
+            android:textColorHint="#B2B2B2"
+            android:singleLine="true"
+            android:textCursorDrawable="@drawable/cursor_drawable"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            custom:customtTextSize="34" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line" />
+        <com.jq.code.view.edit.CustomEditText
+            android:id="@+id/change_pwd_new_sure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:padding="16dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:hint="@string/pwdNewSure"
+            android:textColorHint="#B2B2B2"
+            android:singleLine="true"
+            android:textCursorDrawable="@drawable/cursor_drawable"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            custom:customtTextSize="34" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line" />
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        >
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/change_pwd_sure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/sure"
+            android:textColor="@android:color/white"
+            custom:customtTextSize="40"
+            custom:customtTypeface="EX"
+            android:background="@mipmap/button"
+            />
+    </FrameLayout>
+</LinearLayout>

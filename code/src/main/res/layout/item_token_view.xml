@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/white_corner_box"
+    android:orientation="vertical">
+
+    <com.jq.code.view.text.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/tokenTitle"
+        android:textColor="@color/black"
+        custom:customtTextSize="40" />
+
+    <com.jq.code.view.text.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        android:text="@string/tokenTip"
+        android:textColor="@color/darkGrey"
+        custom:customtTextSize="32" />
+
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/tip_sure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/blue_bottom_small_corner_box"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/sure"
+        android:textColor="@android:color/white"
+        custom:customtTextSize="40" />
+
+</LinearLayout>

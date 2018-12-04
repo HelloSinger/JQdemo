@@ -1,0 +1,86 @@
+<resources>
+
+    <style name="web_comment_sliding_translucent">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <!--    <item name="android:windowTranslucentNavigation">true</item> -->
+        <!--         <item name="android:windowContentOverlay">@null</item>-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--       <item name="android:colorBackgroundCacheHint">@null</item> -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--      <item name="android:windowAnimationStyle">@android:style/Animation</item> -->
+    </style>
+
+    <style name="windowIsTranslucent_translucent" parent="sliding_translucent">
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+    <!-- 5.9 xlj -->
+    <style name="main_tab_bottom">
+        <item name="android:textSize">11.0sp</item>
+        <item name="android:textColor">@drawable/tab_text_selector</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:background">@drawable/main_tab_selector</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+    <style name="add_bite_activity_style" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:listDivider">@drawable/divider_layout</item>
+    </style>
+
+    <style name="trend_tab_style">
+        <item name="android:textSize">15sp</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingLeft">@dimen/thirtyDp</item>
+        <item name="android:paddingRight">@dimen/thirtyDp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+    <style name="add_bite_tab_layout_style">
+        <item name="android:textSize">17sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="share_checkbox_style">
+        <item name="android:textSize">13sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">3dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/share_checkbox_bg_selector</item>
+        <item name="android:textColor">@drawable/share_checkbox_text_selector</item>
+        <item name="android:layout_marginRight">@dimen/tenDp</item>
+    </style>
+
+    <style name="mydialog" parent="android:style/Theme.Dialog">
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 没有标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 背景模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="CustomCheckBoxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_style</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+</resources>

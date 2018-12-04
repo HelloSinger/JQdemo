@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.jq.code.view.text.CustomTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_time"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bloodglucose_gray"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:textColor="@color/black1"
+    app:customtTextSize="28"
+    app:customtTypeface="LTEX"></com.jq.code.view.text.CustomTextView>

@@ -1,0 +1,28 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="twoDp">2dp</dimen>
+    <dimen name="fiveDp">5dp</dimen>
+    <dimen name="tenDp">10dp</dimen>
+    <dimen name="fiftentDp">15dp</dimen>
+    <dimen name="twentyDp">20dp</dimen>
+    <dimen name="thirtyDp">30dp</dimen>
+    <dimen name="twelveDp">12dp</dimen>
+
+    <dimen name="calendar_day_headers_paddingbottom">4dp</dimen>
+    <dimen name="calendar_month_topmargin">16dp</dimen>
+    <dimen name="calendar_month_title_bottommargin">4dp</dimen>
+    <dimen name="calendar_text_medium">16sp</dimen>
+
+    <integer name="custom_textSize_10sp">20</integer>
+    <integer name="custom_textSize_12sp">24</integer>
+    <integer name="custom_textSize_14sp">28</integer>
+    <integer name="custom_textSize_15sp">30</integer>
+    <integer name="custom_textSize_17sp">34</integer>
+    <integer name="custom_textSize_19sp">36</integer>
+    <integer name="custom_textSize_20sp">38</integer>
+    <integer name="custom_textSize_23sp">41</integer>
+    <integer name="custom_textSize_27sp">50</integer>
+    <integer name="custom_textSize_60sp">120</integer>
+</resources>

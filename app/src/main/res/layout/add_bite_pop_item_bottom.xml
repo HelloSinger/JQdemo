@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_view"
+    android:layout_width="match_parent"
+    android:layout_height="65dp"
+    android:background="@drawable/click_rectangle_selecter_default_wi_2"
+    app:bga_sil_bottomMode="pullOut"
+    app:bga_sil_swipeDirection="left">
+    <ImageView
+        android:id="@+id/item_swipe_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#Ed4242"
+        android:padding="@dimen/fiftentDp"
+        android:scaleType="centerInside"
+        android:src="@mipmap/delete" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/tenDp"
+        android:paddingLeft="@dimen/twentyDp"
+        android:paddingRight="@dimen/twentyDp"
+        android:paddingTop="@dimen/tenDp">
+
+        <TextView
+            android:id="@+id/nameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="62dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="游泳"
+            android:textColor="@color/text_black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/unitText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameText"
+            android:layout_marginTop="@dimen/fiveDp"
+            android:text="30分钟/167千卡"
+            android:textColor="@color/text_gray"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/kiloText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:text="351千卡"
+            android:textColor="@color/text_black"
+            android:textSize="15sp" />
+    </RelativeLayout>
+</cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/bound_tip_text"
+        app:customtTextSize="28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:gravity="center"
+        android:text="@string/reportBoundTip"
+        android:textColor="#ff7e00" />
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/bound_tip_button"
+        app:customtTextSize="32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/yellow_stroke_box"
+        android:paddingBottom="6dp"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:paddingTop="6dp"
+        android:text="@string/gotoBound"
+        android:textColor="#ff7e00" />
+</LinearLayout>

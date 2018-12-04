@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sportItem"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/fiveDp"
+    android:layout_weight="1"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/sport_top_corner_box_5"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sportBiteAndSport"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                />
+        </LinearLayout>
+
+        <com.jq.code.view.trend.SportTrendView
+            android:id="@+id/sportView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.1"
+            android:background="@color/white"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.3"
+            android:orientation="horizontal"
+            android:background="@drawable/gray_bottom_corner_box_5"
+            >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+                <com.jq.code.view.text.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_gray"
+                    app:customtTextSize="28"
+                    android:text="@string/sportAllIntake"
+                    app:customtTypeface="LTEX"
+                    />
+                <com.jq.code.view.text.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_gray"
+                    app:customtTextSize="28"
+                    android:text="@string/sportKilocalorie2"
+                    app:customtTypeface="LTEX"
+                    />
+                <com.jq.code.view.text.CustomTextView
+                    android:id="@+id/allIntakeValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:customtTextSize="50"
+                    android:layout_marginLeft="@dimen/fiveDp"
+                    android:textColor="@color/text_black"
+                    app:customtTypeface="CONDM"
+                    android:text="- -"
+                    />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#E8E7E9"
+                android:layout_marginTop="@dimen/fiftentDp"
+                android:layout_marginBottom="@dimen/fiftentDp"
+                />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+                <com.jq.code.view.text.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_gray"
+                    app:customtTextSize="28"
+                    app:customtTypeface="LTEX"
+                    android:text="@string/sportAllConsume"
+                    />
+                <com.jq.code.view.text.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_gray"
+                    app:customtTextSize="28"
+                    app:customtTypeface="LTEX"
+                    android:text="@string/sportKilocalorie2"
+                    />
+                <com.jq.code.view.text.CustomTextView
+                    android:id="@+id/allConsumeValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:customtTextSize="50"
+                    android:layout_marginLeft="@dimen/fiveDp"
+                    android:textColor="@color/text_black"
+                    app:customtTypeface="CONDM"
+                    android:text="- -"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

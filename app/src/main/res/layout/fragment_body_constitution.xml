@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/mBgLayout"
+            android:layout_width="match_parent"
+            android:layout_height="232dp"
+            android:background="@mipmap/report_report_bg"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="当前体重"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <com.jq.code.view.text.CustomTextView
+                        android:id="@+id/mWeightText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        custom:customtTextSize="@integer/custom_textSize_17sp"
+                        custom:customtTypeface="CONDM"
+                        tools:text="48.7" />
+
+                    <TextView
+                        android:id="@+id/mUnit4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        tools:text="公斤" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:background="#4cffffff" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/mCompareLastText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        tools:text="@string/weight_more_than_last" />
+
+                    <com.jq.code.view.text.CustomTextView
+                        android:id="@+id/mCompareLastWeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/white"
+                        custom:customtTextSize="@integer/custom_textSize_14sp"
+                        custom:customtTypeface="CONDM"
+                        tools:text="2.3" />
+
+                    <TextView
+                        android:id="@+id/mUnit5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        tools:text="公斤" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/mCompareGoalText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        tools:text="@string/weight_goal_reduce2" />
+
+                    <com.jq.code.view.text.CustomTextView
+                        android:id="@+id/mCompareGoalWeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/white"
+                        custom:customtTextSize="@integer/custom_textSize_14sp"
+                        custom:customtTypeface="CONDM"
+                        tools:text="0.7" />
+
+                    <TextView
+                        android:id="@+id/mUnit6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        tools:text="公斤" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginBottom="-36dp"
+            android:layout_marginTop="-36dp"
+            android:background="@mipmap/diwen" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="20dp">
+
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="70dp"
+                    android:layout_height="150dp"
+                    android:src="@mipmap/haier_xiaoqing" />
+
+                <TextView
+                    android:id="@+id/hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_toRightOf="@+id/icon"
+                    android:text="小轻建议"
+                    android:textColor="#32beff"
+                    android:textSize="14sp" />
+
+                <com.jq.code.view.text.CustomTextView
+                    android:id="@+id/xiaoqingHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hint"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toRightOf="@+id/icon"
+                    android:lineSpacingExtra="2dp"
+                    android:textColor="#505050"
+                    custom:customtTextSize="@integer/custom_textSize_14sp"
+                    tools:text="@string/reportBodilyState3Text" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="9dp"
+                android:background="#f0f0f5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="30dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/HaierReport_weight_ctrl"
+                    android:textColor="#505050"
+                    android:textSize="14sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp">
+
+                    <TextView
+                        android:id="@+id/t1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:text="体重"
+                        android:textColor="#a0a0a0"
+                        android:textSize="14sp" />
+
+                    <com.jq.code.view.text.CustomTextView
+                        android:id="@+id/weight2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/t1"
+                        android:textColor="#a0a0a0"
+                        custom:customtTextSize="@integer/custom_textSize_14sp"
+                        custom:customtTypeface="CONDM"
+                        tools:text="48.7" />
+
+                    <TextView
+                        android:id="@+id/mUnit7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_toRightOf="@+id/weight2"
+                        android:textColor="#a0a0a0"
+                        android:textSize="10sp"
+                        tools:text="公斤" />
+
+                    <TextView
+                        android:id="@+id/mUnit8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:textColor="#646464"
+                        android:textSize="10sp"
+                        tools:text="公斤" />
+
+                    <com.jq.code.view.text.CustomTextView
+                        android:id="@+id/mComparePerfectWeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_toLeftOf="@+id/mUnit8"
+                        android:textColor="#646464"
+                        custom:customtTextSize="@integer/custom_textSize_17sp"
+                        custom:customtTypeface="CONDM"
+                        tools:text="3.7" />
+
+                    <TextView
+                        android:id="@+id/mComparePerfectWeightHint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginRight="6dp"
+                        android:layout_toLeftOf="@+id/mComparePerfectWeight"
+                        android:background="#32beff"
+                        android:paddingBottom="3dp"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp"
+                        android:paddingTop="3dp"
+                        android:text="@string/weight_control_weight_increment"
+                        android:textColor="@color/white"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="8dp">
+
+                    <ProgressBar
+                        android:id="@+id/mPerfectWeightProgressBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="6dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="2dp"
+                        android:indeterminate="false"
+                        android:indeterminateOnly="false"
+                        android:max="100"
+                        android:progress="50"
+                        android:progressDrawable="@drawable/progressbar_horizontal_2_1" />
+
+                    <View
+                        android:id="@+id/weightStandardIcon"
+                        android:layout_width="3dp"
+                        android:layout_height="10dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/shape_rectangle_blue_bg" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="2dp"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:id="@+id/vWeight"
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/thumb_weight" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <com.jq.code.view.text.CustomTextView
+                    android:id="@+id/mPerfectWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:textColor="#8c8c8c"
+                    custom:customtTextSize="@integer/custom_textSize_10sp"
+                    tools:text="理想体重：45kg" />
+
+                <LinearLayout
+                    android:id="@+id/mMuscleLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/t2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentLeft="true"
+                            android:text="肌肉"
+                            android:textColor="#a0a0a0"
+                            android:textSize="14sp" />
+
+                        <com.jq.code.view.text.CustomTextView
+                            android:id="@+id/muscle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/t2"
+                            android:textColor="#a0a0a0"
+                            custom:customtTextSize="@integer/custom_textSize_14sp"
+                            custom:customtTypeface="CONDM"
+                            tools:text="2.2" />
+
+                        <TextView
+                            android:id="@+id/mUnit9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_toRightOf="@+id/muscle"
+                            android:textColor="#a0a0a0"
+                            android:textSize="10sp"
+                            tools:text="公斤" />
+
+                        <TextView
+                            android:id="@+id/mUnit10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:textColor="#646464"
+                            android:textSize="10sp"
+                            tools:text="公斤" />
+
+                        <com.jq.code.view.text.CustomTextView
+                            android:id="@+id/mCompareMuscle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_toLeftOf="@+id/mUnit10"
+                            android:textColor="#646464"
+                            custom:customtTextSize="@integer/custom_textSize_17sp"
+                            custom:customtTypeface="CONDM"
+                            tools:text="1.8" />
+
+                        <TextView
+                            android:id="@+id/mCompareMuscleHint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginRight="6dp"
+                            android:layout_toLeftOf="@+id/mCompareMuscle"
+                            android:background="#aa82d2"
+                            android:paddingBottom="3dp"
+                            android:paddingLeft="6dp"
+                            android:paddingRight="6dp"
+                            android:paddingTop="3dp"
+                            android:text="@string/weight_control_muscle_increment"
+                            android:textColor="@color/white"
+                            android:textSize="11sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="8dp">
+
+                        <ProgressBar
+                            android:id="@+id/mMuscleProgressBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="2dp"
+                            android:indeterminate="false"
+                            android:indeterminateOnly="false"
+                            android:max="100"
+                            android:progress="50"
+                            android:progressDrawable="@drawable/progressbar_horizontal_2_2" />
+
+                        <View
+                            android:id="@+id/muscleStandardIcon"
+                            android:layout_width="3dp"
+                            android:layout_height="10dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/shape_rectangle_blue_bg" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="2dp"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:id="@+id/vMuscle"
+                                android:layout_width="10dp"
+                                android:layout_height="match_parent" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/thumb_muscle" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <com.jq.code.view.text.CustomTextView
+                        android:id="@+id/mPerfectMuscle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:textColor="#8c8c8c"
+                        custom:customtTextSize="@integer/custom_textSize_10sp"
+                        tools:text="标准肌肉：3kg" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/mFatLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/t3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentLeft="true"
+                            android:text="脂肪"
+                            android:textColor="#a0a0a0"
+                            android:textSize="14sp" />
+
+                        <com.jq.code.view.text.CustomTextView
+                            android:id="@+id/fatWeight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/t3"
+                            android:textColor="#a0a0a0"
+                            custom:customtTextSize="@integer/custom_textSize_14sp"
+                            custom:customtTypeface="CONDM"
+                            tools:text="19.7" />
+
+                        <TextView
+                            android:id="@+id/mUnit11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_toRightOf="@+id/fatWeight"
+                            android:textColor="#a0a0a0"
+                            android:textSize="10sp"
+                            tools:text="公斤" />
+
+                        <TextView
+                            android:id="@+id/mUnit12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:textColor="#646464"
+                            android:textSize="10sp"
+                            tools:text="公斤" />
+
+
+                        <com.jq.code.view.text.CustomTextView
+                            android:id="@+id/mCompareFatWeight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_toLeftOf="@+id/mUnit12"
+                            android:textColor="#646464"
+                            custom:customtTextSize="@integer/custom_textSize_17sp"
+                            custom:customtTypeface="CONDM"
+                            tools:text="9.7" />
+
+                        <TextView
+                            android:id="@+id/mCompareFatWeightHint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginRight="6dp"
+                            android:layout_toLeftOf="@+id/mCompareFatWeight"
+                            android:background="#ff9178"
+                            android:paddingBottom="3dp"
+                            android:paddingLeft="6dp"
+                            android:paddingRight="6dp"
+                            android:paddingTop="3dp"
+                            android:text="@string/weight_control_fat_reduce"
+                            android:textColor="@color/white"
+                            android:textSize="11sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="8dp">
+
+                        <ProgressBar
+                            android:id="@+id/mFatWeightProgressBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="2dp"
+                            android:indeterminate="false"
+                            android:indeterminateOnly="false"
+                            android:max="100"
+                            android:progress="50"
+                            android:progressDrawable="@drawable/progressbar_horizontal_2_3" />
+
+                        <View
+                            android:id="@+id/fatStandardIcon"
+                            android:layout_width="3dp"
+                            android:layout_height="10dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/shape_rectangle_blue_bg" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="2dp"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:id="@+id/vFat"
+                                android:layout_width="10dp"
+                                android:layout_height="match_parent" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/thumb_fat" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <com.jq.code.view.text.CustomTextView
+                        android:id="@+id/mPerfectFat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:textColor="#8c8c8c"
+                        custom:customtTextSize="@integer/custom_textSize_10sp"
+                        tools:text="标准脂肪：10kg" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="9dp"
+                android:background="#f0f0f5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/HaierReport_chengfen"
+                    android:textColor="#505050"
+                    android:textSize="14sp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp">
+
+                    <com.jq.code.view.PieChart
+                        android:id="@+id/mPieChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_gravity="center_horizontal"
+                        custom:pie_assist_line2="43"
+                        custom:pie_edge_width="35"
+                        custom:pie_text_color="#787878" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingTop="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/HaierReport_curWeight"
+                            android:textColor="#646464"
+                            android:textSize="12sp" />
+
+                        <com.jq.code.view.text.CustomTextView
+                            android:id="@+id/mWeight3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:textColor="#646464"
+                            custom:customtTextSize="@integer/custom_textSize_23sp"
+                            custom:customtTypeface="CONDM"
+                            tools:text="48.7" />
+
+                        <TextView
+                            android:id="@+id/mUnit3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:textColor="#646464"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--八电机-->
+
+        <include layout="@layout/report_elec_conten_layout"></include>
+
+    </LinearLayout>
+</ScrollView>

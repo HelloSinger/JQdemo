@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ae000000"
+    android:padding="@dimen/thirtyDp"
+    android:orientation="vertical"
+    android:id="@+id/mainlayout"
+    >
+    <LinearLayout
+        android:id="@+id/contentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        ></LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/shareRg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="8dp"
+        android:gravity="center_horizontal"
+        android:paddingBottom="8dp"
+        >
+
+        <RadioButton
+            android:id="@+id/blueRb"
+            style="@style/share_checkbox_style"
+            android:layout_gravity="center_vertical"
+            android:text="@string/share_checkbox_blue"
+            android:checked="true"
+            />
+
+        <RadioButton
+            android:id="@+id/coloursRb"
+            style="@style/share_checkbox_style"
+            android:layout_gravity="center_vertical"
+            android:text="@string/share_checkbox_colours" />
+
+        <RadioButton
+            android:id="@+id/blackRb"
+            style="@style/share_checkbox_style"
+            android:layout_gravity="center_vertical"
+            android:text="@string/share_checkbox_black" />
+    </RadioGroup>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/fiveDp"
+        >
+        <ImageView
+            android:id="@+id/shareCommunity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/share_community_icon"
+            />
+        <ImageView
+            android:id="@+id/shareWechat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/share_wechat"
+            />
+        <ImageView
+            android:id="@+id/sharePyq"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/share_pyq"
+            />
+        <ImageView
+            android:id="@+id/shareWeibo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/share_weibo"
+            />
+        <ImageView
+            android:id="@+id/shareQQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/share_qq"
+            />
+
+    </LinearLayout>
+</LinearLayout>

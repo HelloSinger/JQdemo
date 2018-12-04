@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              android:padding="@dimen/fiftentDp">
+	<com.jq.code.view.CircleImageView
+		android:id="@+id/headImg"
+		android:layout_width="40dp"
+		android:layout_height="40dp"
+		android:src="@mipmap/default_head_image"
+	/>
+	<com.jq.code.view.text.CustomTextView
+		android:id="@+id/nameText"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="@dimen/twentyDp"
+		android:text="小安妮"
+		android:textColor="@color/text_black"
+		app:customtTextSize="33"
+	/>
+</LinearLayout>

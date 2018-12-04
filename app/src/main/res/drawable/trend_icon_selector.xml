@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@mipmap/icon_kecheng" android:state_pressed="true"/>
+    <!-- pressed -->
+    <item android:drawable="@mipmap/icon_kecheng" android:state_focused="true"/>
+    <!-- focused -->
+    <item android:drawable="@mipmap/icon_kecheng" android:state_checked="true"></item>
+    <item android:drawable="@mipmap/icon_kecheng_nos"/>
+
+
+    <!--<item android:drawable="@mipmap/icon_2_sel" android:state_pressed="true"/>-->
+    <!--&lt;!&ndash; pressed &ndash;&gt;-->
+    <!--<item android:drawable="@mipmap/icon_2_sel" android:state_focused="true"/>-->
+    <!--&lt;!&ndash; focused &ndash;&gt;-->
+    <!--<item android:drawable="@mipmap/icon_2_sel" android:state_checked="true"></item>-->
+    <!--<item android:drawable="@mipmap/icon_2"/>-->
+</selector>

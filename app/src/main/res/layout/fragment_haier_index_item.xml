@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/mLayout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <ImageView
+            android:id="@+id/iconView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            tools:src="@mipmap/report_viscera_icon" />
+
+        <TextView
+            android:id="@+id/nameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:layout_toRightOf="@+id/iconView"
+            android:textColor="#505050"
+            android:textSize="14sp"
+            tools:text="内脏脂肪" />
+
+        <TextView
+            android:id="@+id/mLevelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/shape_rectangle_green_bg"
+            android:gravity="center"
+            android:minWidth="40dp"
+            android:paddingBottom="4dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="4dp"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            tools:text="过多" />
+
+        <TextView
+            android:id="@+id/mUnitText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:layout_toLeftOf="@+id/mLevelText"
+            android:paddingTop="2dp"
+            android:layout_centerVertical="true"
+            android:textColor="#505050"
+            android:textSize="10sp"
+            tools:text="中文单位" />
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/mValueText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/mUnitText"
+            android:textColor="#505050"
+            custom:customtTextSize="@integer/custom_textSize_14sp"
+            tools:text="9" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/mOpenDetailView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View
+            android:id="@+id/dotted_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/bg_dotted_line"
+            android:layerType="software" />
+
+        <com.jq.code.view.CustomReportView
+            android:id="@+id/reportView"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/mLevelTip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:lineSpacingMultiplier="1.2"
+            android:padding="8dp"
+            android:textColor="#505050"
+            android:textSize="13sp"
+            tools:text="@string/reportWaterLowTip" />
+
+    </LinearLayout>
+</LinearLayout>

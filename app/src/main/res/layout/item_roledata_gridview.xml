@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/click_rectangle_selecter_default_wi"
+    android:orientation="vertical"
+    >
+
+    <com.jq.code.view.text.CustomTextView
+        android:id="@+id/item_roledata_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|top"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/darkGrey"
+        app:customtTextSize="30"
+        app:customtTypeface="LTEX" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="20dp"
+        android:paddingBottom="30dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/item_roledata_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#7E000000"
+                app:customtTextSize="62"
+                android:layout_gravity="center"
+                android:text="0.0"
+                app:customtTypeface="CONDM"
+                android:layout_marginBottom="2dp"
+                />
+            <com.jq.code.view.text.CustomTextView
+                android:id="@+id/item_roledata_value1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#7E000000"
+                app:customtTextSize="36"
+                app:customtTypeface="CONDM"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="2dp"
+                />
+        </FrameLayout>
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/item_roledata_standard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="middle"
+            android:gravity="center"
+            android:paddingBottom="2dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="2dp"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            app:customtTextSize="24"
+            app:customtTypeface="LTEX" />
+    </LinearLayout>
+</LinearLayout>

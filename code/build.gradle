@@ -1,0 +1,61 @@
+apply plugin: 'com.android.library'
+def dbflow_version = "4.2.4"
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.0'
+    useLibrary 'org.apache.http.legacy'
+
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion 22
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile(
+            [group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.4.1'],
+            [group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.4.1'],
+            [group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.4.1']
+    )
+    compile 'com.github.lzyzsd.randomcolor:library:1.0.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
+    compile 'top.zibin:Luban:1.0.9'
+    compile 'cn.bingoogolapple:bga-adapter:1.0.5@aar'
+    compile 'cn.bingoogolapple:bga-swipeitemlayout:1.0.3@aar'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.android.support:design:23.2.0'
+    compile 'com.timehop.stickyheadersrecyclerview:library:0.4.3@aar'
+    compile 'com.umeng.analytics:analytics:latest.integration'
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.android.support:support-v4:23.2.0'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'com.mylhyl:acp:1.1.5'
+    compile project(':libbt')
+    compile('com.alibaba.android:vlayout:1.0.9@aar') {
+        transitive = true
+    }
+    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar'
+    compile 'io.reactivex:rxandroid:1.2.1'
+
+}

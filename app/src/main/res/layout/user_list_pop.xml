@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+	<ImageView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@mipmap/role_list_bg_head"
+	    android:layout_marginRight="12dp"
+	></ImageView>
+	<ListView
+		android:id="@+id/user_list"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/white"
+		android:divider="@color/line"
+		android:dividerHeight="1px"
+		android:listSelector="@drawable/click_rectangle_selecter_default_wi"
+		android:overScrollMode="never"
+		android:layout_marginRight="12dp"
+	/>
+</LinearLayout>

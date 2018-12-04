@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/add_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/add_tip_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gotoAddTip"
+            android:textColor="@color/text_gray"
+            app:customtTextSize="28" />
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/add_tip_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/yellow_stroke_box"
+            android:paddingBottom="6dp"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:paddingTop="6dp"
+            android:text="@string/gotoAdd"
+            android:textColor="@color/darkYellow"
+            app:customtTextSize="32" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/added_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/added_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/time_icon"
+            android:drawablePadding="6dp"
+            android:paddingBottom="6dp"
+            android:text="您刚刚添加了"
+            android:textColor="#dcdcdc"
+            app:customtTextSize="25" />
+
+        <com.jq.code.view.text.CustomTextView
+            android:id="@+id/added_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
+            android:singleLine="true"
+            android:textColor="#8c8c8c"
+            app:customtTextSize="28" />
+    </LinearLayout>
+</FrameLayout>
