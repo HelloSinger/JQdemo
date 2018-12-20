@@ -19,7 +19,9 @@ public class IndexDataItem {
 
     // 画区间值相关
     public int level;
-    /** 提示语 */
+    /**
+     * 提示语
+     */
     public int mLevelTipRes;
     public WeighDataParser.StandardSet mStandard;
     public float[] levelNums;
@@ -29,10 +31,15 @@ public class IndexDataItem {
     public float value;
     public int mBiaoqingIcon;
 
-    public void calLevel(float va, float[] levelNums, WeighDataParser.StandardSet standard) {
+    public float mLevelMaxtRes;
+    public float criticalValue;
+
+    public void calLevel(float mLevelMaxtRes, float criticalValue, float va, float[] levelNums, WeighDataParser.StandardSet standard) {
         mStandard = standard;
         value = va;
         this.levelNums = levelNums;
+        this.mLevelMaxtRes=mLevelMaxtRes;
+        this.criticalValue=criticalValue;
 
         // 计算级别
         int level = 0;

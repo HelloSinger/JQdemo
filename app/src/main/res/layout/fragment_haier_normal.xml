@@ -6,12 +6,13 @@
     android:id="@+id/mWholeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainColor">
+    android:background="@mipmap/icon_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/mBlueLayout"
@@ -24,8 +25,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:paddingLeft="5dp"
-                android:visibility="invisible"
-                android:paddingRight="5dp">
+                android:paddingRight="5dp"
+                android:visibility="invisible">
 
                 <com.jq.code.view.CircleImageView
                     android:id="@+id/mRoleImage"
@@ -33,7 +34,6 @@
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-
                     android:layout_marginLeft="10dp"
                     android:paddingRight="10dp"
                     android:src="@mipmap/default_head_image" />
@@ -66,6 +66,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:src="@mipmap/icon_history" />
+
                 <ImageView
                     android:id="@+id/mTrends"
                     android:layout_width="wrap_content"
@@ -81,13 +82,13 @@
                 android:id="@+id/mBluetoothStateLayout"
                 android:layout_width="300dp"
                 android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingBottom="5dp"
                 android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:visibility="visible">
 
                 <ImageView
@@ -148,10 +149,10 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="7dp"
                     android:background="@drawable/shape_rectangle_while_border_null_bg"
-                    android:paddingBottom="3dp"
                     android:paddingLeft="6dp"
-                    android:paddingRight="6dp"
                     android:paddingTop="3dp"
+                    android:paddingRight="6dp"
+                    android:paddingBottom="3dp"
                     android:text="设置目标"
                     android:textColor="@color/white"
                     android:textSize="10sp"
@@ -201,10 +202,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:background="@drawable/shape_rectangle_while_border_null_bg"
-                        android:paddingBottom="3dp"
                         android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
                         android:paddingTop="3dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="3dp"
                         android:textColor="@color/white"
                         android:textSize="11sp"
                         tools:text="微胖" />
@@ -223,8 +224,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="18dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="18dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -423,7 +424,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         android:weightSum="3.3">
 
         <View
@@ -440,7 +441,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/mAddWeight"
@@ -454,13 +456,297 @@
             android:id="@+id/click_kitchen_scale"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_gravity="center_vertical|end"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="62dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/kitchen_scale" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
 
+
+        <RelativeLayout
+            android:id="@+id/rl_head"
+            android:layout_width="match_parent"
+            android:layout_height="450px"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="80px"
+            android:layout_marginRight="20px"
+            android:background="@mipmap/icon_message_bg">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="40px"
+                android:layout_marginRight="82px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_add_member"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tv_add_member_bg"
+                    android:gravity="center"
+                    android:text="添加用户"
+                    android:textColor="@color/tv_4B83E9"
+                    android:textSize="17px" />
+
+                <TextView
+                    android:id="@+id/tv_more_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10px"
+                    android:background="@drawable/tv_add_member_bg"
+                    android:gravity="center"
+                    android:text="更多体脂数据"
+                    android:textColor="@color/tv_4B83E9"
+                    android:textSize="17px" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="390px"
+                android:layout_alignParentBottom="true">
+
+                <LinearLayout
+                    android:id="@+id/ll_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80px"
+                    android:layout_marginTop="96px"
+                    android:orientation="vertical">
+
+                    <com.jq.code.view.CircleImageView
+                        android:id="@+id/iv_head"
+                        android:layout_width="130px"
+                        android:layout_height="130px"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@mipmap/default_head_image" />
+
+                    <TextView
+                        android:id="@+id/tv_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/iv_head"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10px"
+                        android:text="小飞侠"
+                        android:textColor="@color/white" />
+
+                    <LinearLayout
+                        android:layout_width="170px"
+                        android:layout_height="44px"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@mipmap/icon_tv_bmi_bg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/mBmiText_one"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="20px"
+                            android:text="--"
+                            android:textColor="@color/tv_00CF9B"
+                            android:textSize="20px" />
+
+                        <TextView
+                            android:id="@+id/mBmiLevelText_one"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="20px"
+                            android:text="--"
+                            android:textColor="@color/tv_00CF9B"
+                            android:textSize="20px" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view_v"
+                    android:layout_width="1px"
+                    android:layout_height="418px"
+                    android:layout_marginLeft="414px"
+                    android:layout_marginTop="50px"
+                    android:layout_toRightOf="@id/ll_head"
+                    android:background="@color/white" />
+
+                <View
+                    android:layout_width="652px"
+                    android:layout_height="1px"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="88px"
+                    android:layout_toRightOf="@id/ll_head"
+                    android:background="@color/white" />
+
+
+                <include
+                    android:id="@+id/mWeightUnit1"
+                    layout="@layout/item_component_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90px"
+                    android:layout_marginLeft="141px"
+                    android:layout_marginTop="60px"
+                    android:layout_toRightOf="@id/ll_head" />
+
+                <include
+                    android:id="@+id/mFatUnit1"
+                    layout="@layout/item_component_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90px"
+                    android:layout_marginLeft="80px"
+                    android:layout_marginTop="60px"
+                    android:layout_toRightOf="@id/view_v" />
+
+                <include
+                    android:id="@+id/mBoneUnit1"
+                    layout="@layout/item_component_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mWeightUnit1"
+                    android:layout_marginLeft="141px"
+                    android:layout_marginTop="120px"
+                    android:layout_toRightOf="@id/ll_head" />
+
+                <include
+                    android:id="@+id/mMuscleUnit1"
+                    layout="@layout/item_component_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mWeightUnit1"
+                    android:layout_marginLeft="80px"
+                    android:layout_marginTop="120px"
+                    android:layout_toRightOf="@id/view_v" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="240px"
+            android:layout_below="@id/rl_head"
+            android:layout_marginTop="76px"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="140px"
+                    android:layout_marginTop="10px"
+                    android:background="@mipmap/icon_proposal" />
+
+                <TextView
+                    android:id="@+id/tv_jk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="120px"
+                    android:text="@string/tv_jiankang"
+                    android:textColor="@color/tv_6EABFF"
+                    android:textSize="24px"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_jk"
+                    android:layout_marginLeft="140px"
+                    android:layout_marginTop="70px"
+                    android:background="@mipmap/icon_proposal" />
+
+                <View
+                    android:id="@+id/view_one"
+                    android:layout_width="1px"
+                    android:layout_height="140px"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="32px"
+                    android:layout_toRightOf="@id/tv_jk"
+                    android:background="@color/tv_4B83E9" />
+            </RelativeLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbarThumbVertical="@mipmap/icon_scroll_bar_bg"
+                android:scrollbarTrackVertical="@mipmap/icon_scroll_bar"
+                android:scrollbars="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/ll_score"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30px"
+                            android:layout_marginTop="50px"
+                            android:text="身体得分："
+                            android:textColor="@color/tv_6EABFF"
+                            android:textSize="18px" />
+
+                        <TextView
+                            android:id="@+id/tv_score"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="50px"
+                            android:text=""
+                            android:textColor="@color/tv_6EABFF"
+                            android:textSize="18px" />
+
+                        <TextView
+                            android:id="@+id/mCompareLastText_new"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="50px"
+                            android:text="你的体重比上次重了"
+                            android:textColor="@color/tv_6EABFF"
+                            android:textSize="18px" />
+
+                        <TextView
+                            android:id="@+id/mCompareLastWeight_new"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="50px"
+                            android:text="2KG"
+                            android:textColor="@color/tv_6EABFF"
+                            android:textSize="18px" />
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/tv_tips"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ll_score"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="20px"
+                        android:lineSpacingExtra="5dp"
+                        android:maxEms="20"
+                        android:text="身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，\n你的体重闭上次重了：2KG"
+                        android:textColor="@color/tv_6EABFF"
+                        android:textSize="18px" />
+
+                </RelativeLayout>
+            </ScrollView>
+        </LinearLayout>
+    </RelativeLayout>
 </FrameLayout>

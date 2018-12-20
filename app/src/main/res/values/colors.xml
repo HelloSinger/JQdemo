@@ -5,4 +5,49 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="divider">#ffd2d2d2</color>
+
+    <color name="deivce_selecter_bg">#f2f2f2</color>
+    <color name="color_00a3af">#00afaf</color>
+    <color name="color_2a2a2a">#2a2a2a</color>
+    <color name="color_00ca98">#00ca98</color>
+    <color name="gray_divide">#eee</color>
+    <color name="color_007deb">#007deb</color>
+    <color name="color_cookdetail_19181d">#19181d</color>
+    <color name="color_dedede">#dedede</color>
+    <color name="color_767676">#767676</color>
+    <color name="color_cc002ba6">#cc002ba6</color>
+    <color name="transparent">#00000000</color>
+    <color name="bg_white">#ffffff</color>
+    <color name="color_ccdeff">#ccfefe</color>
+    <color name="color_ccfefefefe">#ccfefefe</color>
+    <color name="color_f2ffffff">#f2ffffff</color>
+    <color name="color_b4b4b4">#b4b4b4</color>
+    <color name="color_e96a38">#e96a38</color>
+    <color name="color_fefefe">#fefefe</color>
+    <color name="color_2283e2">#2283e2</color>
+    <color name="tv_3E6ECC">#3E6ECC</color>
+    <color name="tv_4B83E9">#4B83E9</color>
+    <color name="tv_00CF9B">#00CF9B</color>
+    <color name="tv_53c66a">#53c66a</color>
+    <color name="tv_6EABFF">#6EABFF</color>
+    <color name="tv_C6C6C6">#C6C6C6</color>
+    <color name="tv_A1ABBE">#A1ABBE</color>
+
+
+
+    <color name="colorBaseBlack">#1E2024</color>
+    <color name="colorSelected">#2ac6f6</color>
+    <color name="colorLineStart">#139DFF</color>
+    <color name="colorLineEnd">#1C47FF</color>
+    <color name="colorText">#737373</color>
+    <color name="colorShadowStart">#331261FF</color>
+    <color name="colorShadowEnd">#33101113</color>
+    <color name="colorGrid">#803D3D3D</color>
+    <color name="colorCircle">#139DFF</color>
+    <color name="colorBackCircle">#101113</color>
+    <color name="colorIndicatorStart">#3E4B7B</color>
+    <color name="colorIndicatorEnd">#0780ED</color>
+    <color name="colorSelected1">#AA2ac6f6</color>
+
 </resources>
+

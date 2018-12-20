@@ -29,6 +29,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jq.btc.CSApplication;
@@ -100,14 +101,14 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
                 mViewHolder.value.setText("");
                 mViewHolder.unit.setText("g");
                 mViewHolder.unit.setVisibility(View.GONE);
-                mViewHolder.value.setBackgroundResource(R.mipmap.scale);
+//                mViewHolder.value.setBackgroundResource(R.mipmap.scale);
                 mViewHolder.tip.setText("");
             } else {
                 mViewHolder.unit.setVisibility(View.VISIBLE);
                 mViewHolder.unit.setText("g");
                 mViewHolder.value.setBackgroundColor(Color.TRANSPARENT);
                 mViewHolder.value.setText(split[1]);
-                mViewHolder.tip.setText("已经发现智能营养秤，请确认秤显示的数值和搜索数值一样，即可确认绑定");
+                mViewHolder.tip.setText("已经发现智能营养秤，请确认秤显示的数值和搜索数值一样" + "\n" + "即可确认绑定");
             }
         }
     }
@@ -124,6 +125,7 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
 
         mViewHolder.viewpager.setCurrentItem(mPagerList.size() - 1);
     }
+
     /**
      * 添加蓝牙教程View
      */
@@ -144,22 +146,23 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
         mViewHolder.mWholeLayout = view.findViewById(R.id.mWholeLayout);
         mViewHolder.mBackView = view.findViewById(R.id.backImager);
         mViewHolder.mBlueToothDisable = view.findViewById(R.id.mBlueToothDisable);
-        mViewHolder.mValueLayout = view.findViewById(R.id.mValueLayout);
-        mViewHolder.boundedLL = (LinearLayout) view.findViewById(R.id.bounded_ll);
-        mViewHolder.title = (CustomTextView) view.findViewById(R.id.bound_title);
-        mViewHolder.research = (CustomTextView) view.findViewById(R.id.bound_device_research);
-        mViewHolder.sure = (CustomTextView) view.findViewById(R.id.bound_device_sure);
-        mViewHolder.tip = (CustomTextView) view.findViewById(R.id.bound_tip);
-        mViewHolder.value = (CustomTextView) view.findViewById(R.id.bound_value);
-        mViewHolder.unit = (CustomTextView) view.findViewById(R.id.bound_unit);
-        mViewHolder.animtor = (ImageView) view.findViewById(R.id.bound_animation);
+//        mViewHolder.mValueLayout = view.findViewById(R.id.mValueLayout);
+        mViewHolder.boundedLL = view.findViewById(R.id.bounded_ll);
+        mViewHolder.title = view.findViewById(R.id.bound_title);
+        mViewHolder.tv_title_two = view.findViewById(R.id.tv_title_two);
+        mViewHolder.research = view.findViewById(R.id.bound_device_research);
+        mViewHolder.sure = view.findViewById(R.id.bound_device_sure);
+        mViewHolder.tip = view.findViewById(R.id.bound_tip);
+        mViewHolder.value = view.findViewById(R.id.bound_value);
+        mViewHolder.unit = view.findViewById(R.id.bound_unit);
+        mViewHolder.animtor = view.findViewById(R.id.bound_animation);
+        mViewHolder.un_bound_ll = view.findViewById(R.id.un_bound_ll);
 //        mViewHolder.animtor.setImageResource(R.drawable.ble_bound_animation);
-        mViewHolder.animtor.setImageResource(R.drawable.kitchen_animation);
+        mViewHolder.animtor.setImageResource(R.mipmap.icon_body_fat_scale);
         mViewHolder.mBackView.setOnClickListener(this);
         mViewHolder.research.setOnClickListener(this);
         mViewHolder.sure.setOnClickListener(this);
-        mViewHolder.unBoundButton = (CustomTextView) view.findViewById(R.id.search_unbound);
-        mViewHolder.unBoundButton.setOnClickListener(this);
+        mViewHolder.un_bound_ll.setOnClickListener(this);
 //        mViewHolder.buyBt.setOnClickListener(this);
         mPagerList.add(view);
 
@@ -177,13 +180,13 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
         gd.setColor(getResources().getColor(R.color.mainColor));
         float roundRadius = getResources().getDisplayMetrics().density * 3;
         gd.setCornerRadius(roundRadius);
-        mViewHolder.research.setBackground(gd);
-        mViewHolder.sure.setBackground(gd);
+//        mViewHolder.research.setBackground(gd);
+//        mViewHolder.sure.setBackground(gd);
 
         GradientDrawable gdValue = new GradientDrawable();
         gdValue.setColor(0x0d32beff);
         gdValue.setCornerRadius(getResources().getDisplayMetrics().density * 90);
-        mViewHolder.mValueLayout.setBackground(gdValue);
+//        mViewHolder.mValueLayout.setBackground(gdValue);
     }
 
     @Override
@@ -224,13 +227,13 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
     public void onBound(final ScaleInfo scaleInfo, final String value, final int tip) {
         mScaleInfo = scaleInfo;
         if (mScaleInfo != null) {
-            SharedPreferences sh1 = getSharedPreferences("kitchens1",Context.MODE_PRIVATE);
+            SharedPreferences sh1 = getSharedPreferences("kitchens1", Context.MODE_PRIVATE);
             SharedPreferences.Editor edit = sh1.edit();
-                if (mScaleInfo.getName() == null || mScaleInfo.getName().equals("null")) {
-                    edit.putString("kitchen_name1", "UNKNOWN");
-                } else {
-                    edit.putString("kitchen_name1", mScaleInfo.getName());
-                }
+            if (mScaleInfo.getName() == null || mScaleInfo.getName().equals("null")) {
+                edit.putString("kitchen_name1", "UNKNOWN");
+            } else {
+                edit.putString("kitchen_name1", mScaleInfo.getName());
+            }
             edit.commit();
             runOnUiThread(new Runnable() {
                 @Override
@@ -244,24 +247,24 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
                         isStartSearch = false;
                     }
                     if (value.isEmpty()) {
-                        mViewHolder.value.setText("");
+                        mViewHolder.value.setText("0.00");
                         mViewHolder.unit.setText("");
                         mViewHolder.unit.setVisibility(View.GONE);
-                        mViewHolder.value.setBackgroundResource(R.mipmap.scale);
-                        if(scaleInfo.getKitchens().equals("1")){
+//                        mViewHolder.value.setBackgroundResource(R.mipmap.scale);
+                        if (scaleInfo.getKitchens().equals("1")) {
                             mViewHolder.tip.setText("已经搜索到智能营养秤，请确认绑定");
-                        }else {
+                        } else {
                             mViewHolder.tip.setText("已经搜索到智能体脂秤，请确认绑定");
                         }
 
                     } else {
                         mViewHolder.unit.setVisibility(View.VISIBLE);
-                        if(scaleInfo.getKitchens().equals("1")){
+                        if (scaleInfo.getKitchens().equals("1")) {
                             mViewHolder.unit.setText("g");
-                            mViewHolder.tip.setText("已经发现智能营养秤，请确认秤显示的数值和搜索数值一样，即可确认绑定");
-                        }else {
+                            mViewHolder.tip.setText("已经发现智能营养秤，请确认秤显示的数值和搜索数值一样" + "\n" + "即可确认绑定");
+                        } else {
                             mViewHolder.unit.setText(StandardUtil.getWeightExchangeUnit(BoundDeviceActivity.this));
-                            mViewHolder.tip.setText("已经发现智能体脂秤，请确认秤显示的数值和搜索数值一样，即可确认绑定");
+                            mViewHolder.tip.setText("已经发现智能体脂秤，请确认秤显示的数值和搜索数值一样" + "\n" + "即可确认绑定");
                         }
                         mViewHolder.value.setBackgroundColor(Color.TRANSPARENT);
                         mViewHolder.value.setText(value);
@@ -283,15 +286,16 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
         View mBlueToothDisable;
         ImageView animtor;
         LinearLayout boundedLL;
-        CustomTextView title;
-        CustomTextView research;
-        CustomTextView sure;
-        CustomTextView tip;
+        TextView title, tv_title_two;
+
+        TextView research;
+        TextView sure;
+        TextView tip;
         View mValueLayout;
-        CustomTextView value;
-        CustomTextView unit;
-        CustomTextView unBoundButton;
-//        CustomTextView buyBt;
+        TextView value;
+        TextView unit;
+        LinearLayout un_bound_ll;
+
     }
 
     @Override
@@ -332,13 +336,16 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
     private AnimationDrawable animationDrawable;
 
     private void startAnimation() {
+        mViewHolder.title.setVisibility(View.VISIBLE);
+        mViewHolder.tv_title_two.setVisibility(View.VISIBLE);
         mViewHolder.title.setText(R.string.tutorialboundTitle);
+//        mViewHolder.tv_title_two.setText(R.string.tv_title_two);
         mViewHolder.animtor.setVisibility(View.VISIBLE);
         mViewHolder.boundedLL.setVisibility(View.GONE);
 //        mViewHolder.buyBt.setVisibility(View.VISIBLE);
 
-        animationDrawable = (AnimationDrawable) mViewHolder.animtor.getDrawable();
-        animationDrawable.start();
+//        animationDrawable = (AnimationDrawable) mViewHolder.animtor.getDrawable();
+//        animationDrawable.start();
     }
 
     @Override
@@ -360,7 +367,9 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
     }
 
     private void showBoundView() {
-        mViewHolder.title.setText(R.string.HaierBluetooth_bluetooth_confirming);
+        mViewHolder.title.setVisibility(View.GONE);
+        mViewHolder.tv_title_two.setVisibility(View.GONE);
+//        mViewHolder.title.setText(R.string.HaierBluetooth_bluetooth_confirming);
 //        mViewHolder.buyBt.setVisibility(View.GONE);
         mViewHolder.boundedLL.setVisibility(View.VISIBLE);
         mViewHolder.animtor.setVisibility(View.GONE);
@@ -369,20 +378,20 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
     @Override
     public void onClick(View v) {
 
-        if (v == mViewHolder.unBoundButton) {
+        if (v == mViewHolder.un_bound_ll) {
             finish();
         } else if (v == mViewHolder.research) {
             reSearch();
         } else if (v == mViewHolder.sure) {
 
-            if(mScaleInfo.getKitchens().equals("1")){
+            if (mScaleInfo.getKitchens().equals("1")) {
                 SharedPreferences sh = getSharedPreferences("kitchens", Context.MODE_PRIVATE);
                 SharedPreferences.Editor edit = sh.edit();
                 edit.putString("kitchen_name", mScaleInfo.getName());
                 edit.putString("kitchen_mac", mScaleInfo.getMac());
                 edit.commit();
                 startActivity(new Intent(BoundDeviceActivity.this,
-                        Kitchen_Weigh_Activity.class).putExtra("where",1));
+                        Kitchen_Weigh_Activity.class).putExtra("where", 1));
                 this.finish();
             } else {
                 mScaleInfo.getName();
@@ -436,7 +445,8 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
 
     private void toActivity() {
         Intent intent = new Intent();
-            intent.setClass(this, NewMainActivity.class);
+        intent.setClass(this, NewMainActivity.class);
+        intent.putExtra("mak", 11);
         startActivity(intent);
         ActivityUtil.getInstance().finishAllActivity();
         this.finish();
@@ -477,9 +487,9 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
         public void onServicesDiscovered(int state) {
             SharedPreferences sh = getSharedPreferences("kitchens", Context.MODE_PRIVATE);
             SharedPreferences.Editor edit = sh.edit();
-            if(currDevice.getBluetoothDevice().getName().equals("null") || currDevice.getBluetoothDevice().getName() == null){
+            if (currDevice.getBluetoothDevice().getName().equals("null") || currDevice.getBluetoothDevice().getName() == null) {
                 edit.putString("kitchen_name", "UNKNOWN");
-            }else {
+            } else {
                 edit.putString("kitchen_name", currDevice.getBluetoothDevice().getName());
             }
             edit.putString("kitchen_mac", currDevice.getBluetoothDevice().getAddress());
@@ -541,7 +551,7 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
             }
             String substring = sb.substring(10, 14);
             String substring1 = sb.substring(18, 20);
-            if(substring.equals("cb18") && substring1.equals("02")){
+            if (substring.equals("cb18") && substring1.equals("02")) {
                 currDevice = new BLEDevice();
                 currDevice.setBluetoothDevice(device);
 //                mBle.requestConnect(currDevice.getBluetoothDevice().getAddress(), connectionCallback, true);

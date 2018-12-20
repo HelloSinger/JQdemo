@@ -28,6 +28,7 @@
         <item name="android:singleLine">true</item>
         <item name="android:layout_weight">1.0</item>
     </style>
+
     <style name="add_bite_activity_style" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
@@ -52,10 +53,12 @@
         <item name="android:singleLine">true</item>
         <item name="android:layout_weight">1.0</item>
     </style>
+
     <style name="add_bite_tab_layout_style">
         <item name="android:textSize">17sp</item>
         <item name="android:gravity">center</item>
     </style>
+
     <style name="share_checkbox_style">
         <item name="android:textSize">13sp</item>
         <item name="android:gravity">center</item>
@@ -83,4 +86,11 @@
         <item name="android:layout_gravity">center</item>
     </style>
 
+    <style name="WeightDialog" parent="android:style/Theme.Dialog">
+        <item name="android:background">@color/white</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:layout_width">@dimen/px552</item>
+        <item name="android:layout_height">@dimen/px780</item>
+    </style>
 </resources>

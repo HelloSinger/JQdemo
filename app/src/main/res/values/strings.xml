@@ -1,6 +1,15 @@
 <resources>
-    <string name="app_name">渐轻</string>
+    <string name="app_name">体脂秤</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="tv_scale">下载U+APP并绑定匹配的海尔智能体脂秤后，可通过冰箱屏幕看到家庭成员的体重、体质报告以及健康建议</string>
+    <string name="tv_details">详情图</string>
+    <string name="tv_q81w">绑定海尔智能体脂秤-Q81W后,我们会根据您的健康信息，给出健康及营养建议哟~</string>
+    <string name="tv_bind_device">还没有绑定设备？</string>
+    <string name="tv_jiankang">健 康\n\n建 议</string>
+    <string name="tv_title_two">并保持常亮</string>
+
 </resources>

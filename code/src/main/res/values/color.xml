@@ -101,14 +101,18 @@
     <color name="report_bodily_state5">#e1737d</color>
 
     <color name="corState1">#78dcdc</color>
-    <color name="corState2">#64bed7</color>
-    <color name="corState3">#96c896</color>
+    <!--<color name="corState2">#64bed7</color>-->
+    <color name="corState2">#D28672</color>
+    <!--<color name="corState3">#96c896</color>-->
+    <color name="corState3">#07A3D9</color>
     <color name="corState4">#e6c878</color>
     <color name="corState5">#eb876e</color>
-    <color name="corState6">#e1737d</color>
+    <!--<color name="corState6">#e1737d</color>-->
+    <color name="corState6">#F66361</color>
     <color name="corState7">#c84455</color>
-    <color name="corState8">#82aa58</color>
-
+    <!--<color name="corState8">#82aa58</color>-->
+    <color name="corState8">#1E56D9</color>
+    <color name="tv_A1ABBE">#A1ABBE</color>
     <!--3.0-->
     <color name="text_color_black">#285F82</color>
     <color name="text_color_black2">#505050</color>

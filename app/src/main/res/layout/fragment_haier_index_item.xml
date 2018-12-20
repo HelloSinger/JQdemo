@@ -9,7 +9,8 @@
     <RelativeLayout
         android:id="@+id/mLayout"
         android:layout_width="match_parent"
-        android:layout_height="55dp">
+        android:layout_height="50px"
+        android:layout_marginTop="40px">
 
         <ImageView
             android:id="@+id/iconView"
@@ -17,18 +18,55 @@
             android:layout_height="20dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+            android:visibility="gone"
             tools:src="@mipmap/report_viscera_icon" />
 
         <TextView
             android:id="@+id/nameView"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="64px"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px"
+            tools:text="内脏脂肪" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="544px"
+            android:layout_height="16px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40px"
+            android:layout_toRightOf="@id/nameView"
+            android:background="@drawable/progressbar_bg"
+            android:indeterminate="false"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progress="10"
+            android:progressDrawable="@drawable/progressbar_progress" />
+
+        <TextView
+            android:id="@+id/mValueText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="12dp"
-            android:layout_toRightOf="@+id/iconView"
-            android:textColor="#505050"
-            android:textSize="14sp"
-            tools:text="内脏脂肪" />
+            android:layout_marginLeft="30px"
+            android:layout_toRightOf="@id/progressBar"
+            android:text="safafa"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:id="@+id/mUnitText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/mValueText"
+            android:paddingTop="2dp"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px"
+            tools:text="中文单位" />
 
         <TextView
             android:id="@+id/mLevelText"
@@ -36,38 +74,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginRight="58px"
             android:background="@drawable/shape_rectangle_green_bg"
             android:gravity="center"
             android:minWidth="40dp"
-            android:paddingBottom="4dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:paddingTop="4dp"
             android:textColor="@color/white"
-            android:textSize="11sp"
+            android:textSize="24px"
             tools:text="过多" />
 
-        <TextView
-            android:id="@+id/mUnitText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:layout_toLeftOf="@+id/mLevelText"
-            android:paddingTop="2dp"
-            android:layout_centerVertical="true"
-            android:textColor="#505050"
-            android:textSize="10sp"
-            tools:text="中文单位" />
-
-        <com.jq.code.view.text.CustomTextView
-            android:id="@+id/mValueText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/mUnitText"
-            android:textColor="#505050"
-            custom:customtTextSize="@integer/custom_textSize_14sp"
-            tools:text="9" />
     </RelativeLayout>
 
     <LinearLayout
@@ -89,8 +103,8 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp" />
 
         <TextView
             android:id="@+id/mLevelTip"
@@ -99,6 +113,7 @@
             android:layout_marginTop="5dp"
             android:lineSpacingMultiplier="1.2"
             android:padding="8dp"
+
             android:textColor="#505050"
             android:textSize="13sp"
             tools:text="@string/reportWaterLowTip" />

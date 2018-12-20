@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">渐轻</string>
+    <string name="app_name">体脂秤</string>
     <string name="login">登录</string>
     <string name="loginOut">退出登录</string>
     <string name="guideTest">立即体验</string>
@@ -430,7 +430,7 @@
     <!--*******************************Code***********************************-->
     <string name="appName">OKOK</string>
     <string name="jin">斤</string>
-    <string name="kilo">公斤</string>
+    <string name="kilo">KG</string>
     <string name="pounds">磅</string>
     <string name="st">英石:磅</string>
     <string name="stalias">英石</string>

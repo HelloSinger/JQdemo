@@ -65,7 +65,11 @@ public class BuildItemsUtil {
         visceraItem.valueText = df.format(viscera);
         visceraItem.mUnitText = context.getString(R.string.HaierReport_unit_level);
         float[] levelNums = WeighDataParser.StandardSet.VISCERA.getLevelNums();
-        visceraItem.calLevel(viscera, levelNums, WeighDataParser.StandardSet.VISCERA);
+        float max = levelNums[levelNums.length - 1];
+        float criticalValue = levelNums[levelNums.length - 2];
+
+        Log.e("AYD----->内脏脂肪", "max--->" + max + "criticalValue--->" + criticalValue);
+        visceraItem.calLevel(max, criticalValue, viscera, levelNums, WeighDataParser.StandardSet.VISCERA);
         String[] topStr = new String[levelNums.length];
         for (int i = 0; i < levelNums.length; i++) {
             topStr[i] = (int) levelNums[i] + "";
@@ -92,8 +96,12 @@ public class BuildItemsUtil {
         float[] waterStandard = WeighDataParser.getWaterStandardRange(WeighDataParser.getCalSex(roleInfo, mWeightEntity),
                 WeighDataParser.getCalAge(roleInfo, mWeightEntity));
         float[] levelNumsWater = new float[waterStandard.length - 2];
+        float max = waterStandard[waterStandard.length - 1];
+        float criticalValue = waterStandard[waterStandard.length - 2];
+        Log.e("AYD----->水分", "max--->" + max + "criticalValue--->" + criticalValue);
+
         System.arraycopy(waterStandard, 1, levelNumsWater, 0, levelNumsWater.length);
-        waterItem.calLevel(water, levelNumsWater, WeighDataParser.StandardSet.WATER);
+        waterItem.calLevel(max, criticalValue, water, levelNumsWater, WeighDataParser.StandardSet.WATER);
 
         String[] topStrWater = new String[levelNumsWater.length];
         for (int i = 0; i < levelNumsWater.length; i++) {
@@ -121,8 +129,13 @@ public class BuildItemsUtil {
         float[] waterStandard = WeighDataParser.getWaterStandardRange(WeighDataParser.getCalSex(roleInfo, mWeightEntity),
                 WeighDataParser.getCalAge(roleInfo, mWeightEntity));
         float[] levelNumsWater = new float[waterStandard.length - 2];
+
+        float max = waterStandard[waterStandard.length - 1];
+        float criticalValue = waterStandard[waterStandard.length - 2];
+        Log.e("AYD----->水分重量", "max--->" + max + "criticalValue--->" + criticalValue);
+
         System.arraycopy(waterStandard, 1, levelNumsWater, 0, levelNumsWater.length);
-        waterWeightItem.calLevel(water, levelNumsWater, WeighDataParser.StandardSet.WATER);
+        waterWeightItem.calLevel(max, criticalValue, water, levelNumsWater, WeighDataParser.StandardSet.WATER);
 
         String[] topStrWater = new String[levelNumsWater.length];
         for (int i = 0; i < levelNumsWater.length; i++) {
@@ -151,7 +164,7 @@ public class BuildItemsUtil {
             levelNums[i] = bmiLevel[i] * height * height / 10000f;
         }
 
-        weightItem.calLevel(weight, levelNums, WeighDataParser.StandardSet.WEIGHT);
+        weightItem.calLevel(weight, weight, weight, levelNums, WeighDataParser.StandardSet.WEIGHT);
 
         String[] topStr = new String[levelNums.length];
         for (int i = 0; i < levelNums.length; i++) {
@@ -174,8 +187,12 @@ public class BuildItemsUtil {
         float[] axungeStandard = WeighDataParser.getAxungeStandardRange(WeighDataParser.getCalSex(roleInfo, mWeightEntity),
                 WeighDataParser.getCalAge(roleInfo, mWeightEntity));
         float[] levelNums = new float[axungeStandard.length - 2];
+        float max = axungeStandard[axungeStandard.length - 1];
+        float criticalValue = axungeStandard[axungeStandard.length - 2];
+        Log.e("AYD----->体脂率", "max--->" + max + "criticalValue--->" + criticalValue);
+
         System.arraycopy(axungeStandard, 1, levelNums, 0, levelNums.length);
-        axungeItem.calLevel(axunge, levelNums, WeighDataParser.StandardSet.AXUNGE);
+        axungeItem.calLevel(max, criticalValue, axunge, levelNums, WeighDataParser.StandardSet.AXUNGE);
 
         String[] topStr = new String[levelNums.length];
         for (int i = 0; i < levelNums.length; i++) {
@@ -203,8 +220,11 @@ public class BuildItemsUtil {
         float[] axungeStandard = WeighDataParser.getAxungeStandardRange(WeighDataParser.getCalSex(roleInfo, mWeightEntity),
                 WeighDataParser.getCalAge(roleInfo, mWeightEntity));
         float[] levelNums = new float[axungeStandard.length - 2];
+        float max = axungeStandard[axungeStandard.length - 1];
+        float criticalValue = axungeStandard[axungeStandard.length - 2];
+        Log.e("AYD----->脂肪重量", "max--->" + max + "criticalValue--->" + criticalValue);
         System.arraycopy(axungeStandard, 1, levelNums, 0, levelNums.length);
-        fatWeightItem.calLevel(axunge, levelNums, WeighDataParser.StandardSet.AXUNGE);
+        fatWeightItem.calLevel(max, criticalValue, axunge, levelNums, WeighDataParser.StandardSet.AXUNGE);
 
         String[] topStr = new String[levelNums.length];
         for (int i = 0; i < levelNums.length; i++) {
@@ -240,7 +260,11 @@ public class BuildItemsUtil {
         proteinItem.nameRes = WeighDataParser.StandardSet.PROTEIN.getName();
         proteinItem.valueText = context.getString(R.string.HaierReport_unit_percent, df.format(protein));
         float[] levelNums = WeighDataParser.StandardSet.PROTEIN.getLevelNums();
-        proteinItem.calLevel(protein, levelNums, WeighDataParser.StandardSet.PROTEIN);
+
+        float max = levelNums[levelNums.length - 1];
+        float criticalValue = levelNums[levelNums.length - 2];
+        Log.e("AYD----->蛋白质", "max--->" + max + "criticalValue--->" + criticalValue);
+        proteinItem.calLevel(max, criticalValue, protein, levelNums, WeighDataParser.StandardSet.PROTEIN);
         String[] topStr = new String[levelNums.length];
         for (int i = 0; i < levelNums.length; i++) {
             topStr[i] = (int) levelNums[i] + "";
@@ -265,8 +289,12 @@ public class BuildItemsUtil {
         float[] boneStandard = WeighDataParser.getBoneStandardRange(WeighDataParser.getCalSex(roleInfo, mWeightEntity),
                 WeighDataParser.getCalAge(roleInfo, mWeightEntity));
         float[] levelNums = new float[boneStandard.length - 2];
+
+        float max = boneStandard[boneStandard.length - 1];
+        float criticalValue = boneStandard[boneStandard.length - 2];
+        Log.e("AYD----->骨量", "max--->" + max + "criticalValue--->" + criticalValue);
         System.arraycopy(boneStandard, 1, levelNums, 0, levelNums.length);
-        boneItem.calLevel(bone, levelNums, WeighDataParser.StandardSet.BONE);
+        boneItem.calLevel(max, criticalValue, bone, levelNums, WeighDataParser.StandardSet.BONE);
 
         String[] topStr = new String[levelNums.length];
         for (int i = 0; i < levelNums.length; i++) {
@@ -282,15 +310,18 @@ public class BuildItemsUtil {
      * 肌肉率
      */
     public IndexDataItem buildMuscleItem() {
-        float muscle = mWeightEntity.getMuscle()/2;
+        float muscle = mWeightEntity.getMuscle() / 2;
         IndexDataItem muscleItem = new IndexDataItem();
         muscleItem.mIconRes = WeighDataParser.StandardSet.MUSCLE.getIcon();
         muscleItem.nameRes = WeighDataParser.StandardSet.MUSCLE.getName();
         muscleItem.valueText = context.getString(R.string.HaierReport_unit_percent, df.format(muscle));
         float[] muscleStandard = WeighDataParser.getMuscleStandardRange(WeighDataParser.getCalSex(roleInfo, mWeightEntity));
         float[] levelNums = new float[muscleStandard.length - 2];
+        float max = muscleStandard[muscleStandard.length - 1];
+        float criticalValue = muscleStandard[muscleStandard.length - 2];
+        Log.e("AYD----->肌肉率", "max--->" + max + "criticalValue--->" + criticalValue);
         System.arraycopy(muscleStandard, 1, levelNums, 0, levelNums.length);
-        muscleItem.calLevel(muscle, levelNums, WeighDataParser.StandardSet.MUSCLE);
+        muscleItem.calLevel(max, criticalValue, muscle, levelNums, WeighDataParser.StandardSet.MUSCLE);
 
         String[] topStr = new String[levelNums.length];
         for (int i = 0; i < levelNums.length; i++) {
@@ -319,8 +350,13 @@ public class BuildItemsUtil {
         muscleWeightItem.mUnitText = currentWeightUnit;
         float[] muscleStandard = WeighDataParser.getMuscleStandardRange(WeighDataParser.getCalSex(roleInfo, mWeightEntity));
         float[] levelNums = new float[muscleStandard.length - 2];
+
+        float max = muscleStandard[muscleStandard.length - 1];
+        float criticalValue = muscleStandard[muscleStandard.length - 2];
+
+        Log.e("AYD----->肌肉重量", "max--->" + max + "criticalValue--->" + criticalValue);
         System.arraycopy(muscleStandard, 1, levelNums, 0, levelNums.length);
-        muscleWeightItem.calLevel(muscle, levelNums, WeighDataParser.StandardSet.MUSCLE);
+        muscleWeightItem.calLevel(max, criticalValue, muscle, levelNums, WeighDataParser.StandardSet.MUSCLE);
 
         String[] topStr = new String[levelNums.length];
         for (int i = 0; i < levelNums.length; i++) {
@@ -345,8 +381,12 @@ public class BuildItemsUtil {
         float[] metabolismStandard = WeighDataParser.getMetabolismStandardRange(WeighDataParser.getCalSex(roleInfo, mWeightEntity),
                 WeighDataParser.getCalAge(roleInfo, mWeightEntity));
         float[] levelNums = new float[metabolismStandard.length - 2];
+
+        float max = metabolismStandard[metabolismStandard.length - 1];
+        float criticalValue = metabolismStandard[metabolismStandard.length - 2];
+        Log.e("AYD----->基础代谢", "max--->" + max + "criticalValue--->" + criticalValue);
         System.arraycopy(metabolismStandard, 1, levelNums, 0, levelNums.length);
-        metabolismItem.calLevel(metabolism, levelNums, WeighDataParser.StandardSet.METABOLISM);
+        metabolismItem.calLevel(max, criticalValue, metabolism, levelNums, WeighDataParser.StandardSet.METABOLISM);
 
         String[] topStr = new String[levelNums.length];
         for (int i = 0; i < levelNums.length; i++) {
@@ -375,7 +415,11 @@ public class BuildItemsUtil {
         corpulentItem.nameRes = WeighDataParser.StandardSet.CORPULENT.getName();
         corpulentItem.valueText = context.getString(R.string.HaierReport_unit_percent, df.format(corpulent));
         float[] levelNums = WeighDataParser.StandardSet.CORPULENT.getLevelNums();
-        corpulentItem.calLevel(corpulent, levelNums, WeighDataParser.StandardSet.CORPULENT);
+
+        float max = levelNums[levelNums.length - 1];
+        float criticalValue = levelNums[levelNums.length - 3];
+        Log.e("AYD----->肥胖度", "max--->" + max + "criticalValue--->" + criticalValue);
+        corpulentItem.calLevel(max, criticalValue, corpulent, levelNums, WeighDataParser.StandardSet.CORPULENT);
 
         String[] topStr = new String[levelNums.length];
         for (int i = 0; i < levelNums.length; i++) {
@@ -398,7 +442,12 @@ public class BuildItemsUtil {
         bmiItem.nameRes = WeighDataParser.StandardSet.BMI.getName();
         bmiItem.valueText = df.format(bmi);
         float[] levelNums = WeighDataParser.StandardSet.BMI.getLevelNums();
-        bmiItem.calLevel(bmi, levelNums, WeighDataParser.StandardSet.BMI);
+
+        float max = levelNums[levelNums.length - 1];
+        float criticalValue = levelNums[levelNums.length - 2];
+
+        Log.e("AYD----->BMI", "max--->" + max + "criticalValue--->" + criticalValue);
+        bmiItem.calLevel(max, criticalValue, bmi, levelNums, WeighDataParser.StandardSet.BMI);
 
         String[] topStr = new String[levelNums.length];
         for (int i = 0; i < levelNums.length; i++) {

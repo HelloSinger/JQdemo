@@ -20,6 +20,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:visibility="gone"
             android:paddingRight="15dp">
 
             <ImageView

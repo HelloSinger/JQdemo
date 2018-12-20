@@ -9,6 +9,7 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.haiersmart.user.sdk.UserUtils;
+import com.jq.btc.adapter.ViewPagerMainAdapter;
 import com.jq.btc.app.R;
 import com.jq.btc.app.R2;
 import com.jq.btc.bluettooth.BLEController;
@@ -40,6 +43,9 @@ import com.jq.code.model.RoleInfo;
 import com.jq.code.model.ScaleInfo;
 import com.jq.code.model.WeightEntity;
 import com.jq.code.view.CustomToast;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.AbsCallback;
+import com.lzy.okgo.model.Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,9 +66,12 @@ public class HomeFragment extends Fragment {
     private static final String TAG = HomeFragment.class.getSimpleName();
     @BindView(R2.id.mRealContent)
     FrameLayout mRealContent;
-    @BindView(R2.id.mWholeLayout)
-    LinearLayout mWholeLayout;
+    @BindView(R2.id.vp_main)
+    ViewPager vp_main;
     Unbinder unbinder;
+
+    private ViewPagerMainAdapter viewPagerMainAdapter;
+    private List<Fragment> fragments;
 
     private Handler mHandler = new Handler();
     private RoleInfo mCurRoleInfo;
@@ -74,123 +83,53 @@ public class HomeFragment extends Fragment {
     private boolean mShouldRefresh = false;
     private RadioButton radioButton;
     private NewMainActivity context;
+//    private BaseFragment fragment;
 
     @SuppressLint("ValidFragment")
-    public HomeFragment(RadioButton radioButton,NewMainActivity context){
+    public HomeFragment(RadioButton radioButton, NewMainActivity context) {
         this.radioButton = radioButton;
         this.context = context;
     }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_haier_home, null, false);
         unbinder = ButterKnife.bind(this, view);
         initValue();
-
-//        LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(getContext());
-//        IntentFilter intentFilter = new IntentFilter();
-//        intentFilter.addAction(LocalBroadcastUtil.ACTION_WEIGHTS_SYNC);
-//        intentFilter.addAction(LocalBroadcastUtil.ACTION_TEMP_WEIGHT_DATA_MATCH_ROLE);
-//        intentFilter.addAction(LocalBroadcastUtil.ACTION_DELETE_WEIGHT);
-//        intentFilter.addAction(LocalBroadcastUtil.ACTION_ROLE_PREGNANT_MODE_CHANGE);
-//
-//        localBroadcastManager.registerReceiver(mLocalReceiver, intentFilter);
         return view;
     }
 
     private void initValue() {
-//        Account account = Account.getInstance(getActivity());
-//        if (account.isAccountLogined()) {
-//            boolean accountLoaded = Account.getInstance(getActivity()).isCurrentAccountDataLoaded();
-//            // 是否该账号的全量数据已加载
-//            if (accountLoaded) {
-//                loadDataAndShowView();
-//            } else {
-//            }
-//        } else {
-            // 访客模式（未登录模式）
-            loadDataAndShowView();
-//        }
+        loadDataAndShowView();
+        getUserList();
     }
 
     private void loadDataAndShowView() {
         mShouldRefresh = false;
-//        ThreadUtil.executeThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                Account account = Account.getInstance(getActivity());
-//                mCurRoleInfo = account.getRoleInfo();
-//                int roleType = mCurRoleInfo.getRole_type();
-//                int roleId = mCurRoleInfo.getId();
-//                List<WeightEntity> weightEntities = WeightDataDB.getInstance(getActivity()).loadLatestWeight(account.getAccountInfo().getId(), mCurRoleInfo.getId(), 2);
-//                WeightEntity first = null != weightEntities && weightEntities.size() > 0 ? weightEntities.get(0) : null;
-//                WeightEntity second = null != weightEntities && weightEntities.size() > 1 ? weightEntities.get(1) : null;
-//                // 比较下两个体重是否一样，都一样就不必刷新。
-//                boolean same1 = false;
-//                boolean same2 = false;
-//                if (first != null && curEntity != null) {
-//                    same1 = (first.getRole_id() == curEntity.getRole_id()) && (first.getWeight_time().equals(curEntity.getWeight_time()));
-//                } else if (first == null && curEntity == null) {
-//                    same1 = true;
-//                } else {
-//                    same1 = false;
-//                }
-//                if (!same1) {
-//                    curEntity = first;
-//                }
-//
-//                if (second != null && lastEntity != null) {
-//                    same2 = (second.getRole_id() == lastEntity.getRole_id()) && (second.getWeight_time().equals(lastEntity.getWeight_time()));
-//                } else if (second == null && lastEntity == null) {
-//                    same2 = true;
-//                } else {
-//                    same2 = false;
-//                }
-//                if (!same2) {
-//                    lastEntity = second;
-//                }
-//
-//                boolean same3 = false;
-//                if(mCurRoleType != roleType) {
-//                    mCurRoleType = roleType;
-//                    same3 = false;
-//                } else {
-//                    same3 = true;
-//                }
-//
-//                boolean same4 = false;
-//                if(mCurRoleId != roleId) {
-//                    mCurRoleId = roleId;
-//                    same4 = false;
-//                } else {
-//                    same4 = true;
-//                }
-//
-//                if (!same1 || !same2 || !same3 || !same4 || null == mCurFragment) {
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            showFragment(curEntity, lastEntity);
-                        }
-                    });
-//                }
-//            }
-//        });
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                showFragment(curEntity, lastEntity);
+            }
+        });
     }
 
     private void showFragment(WeightEntity currentEntity, WeightEntity lastEntity) {
         BaseFragment fragment;
+        fragments = new ArrayList<>();
+        fragment = new NormalFragment(radioButton, this);
 
-
-            fragment = new NormalFragment(radioButton,this);
-
+//        for (int i = 0; i < 2; i++) {
+//            fragments.add(fragment);
+//        }
         fragment.setWeightEntity(currentEntity, lastEntity);
 
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        if (mCurFragment != null) {
-            transaction.hide(mCurFragment);
-            transaction.remove(mCurFragment);
-        }
+//        if (mCurFragment != null) {
+//            transaction.hide(mCurFragment);
+//            transaction.remove(mCurFragment);
+//        }
         if (fragment.isAdded()) {
             transaction.show(fragment);
         } else {
@@ -199,6 +138,9 @@ public class HomeFragment extends Fragment {
         }
         mCurFragment = fragment;
         transaction.commitAllowingStateLoss();
+//        viewPagerMainAdapter = new ViewPagerMainAdapter(getFragmentManager(), fragments);
+//        vp_main.setAdapter(viewPagerMainAdapter);
+
     }
 
     public void setOnResume() {
@@ -206,7 +148,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void setWaveViewVisible(boolean visible) {
-        if(null != mCurFragment) {
+        if (null != mCurFragment) {
             mCurFragment.setWaveViewVisible(visible);
         }
     }
@@ -221,7 +163,7 @@ public class HomeFragment extends Fragment {
         lastEntity = curEntity;
         curEntity = entity;
 //        if (null != mCurFragment && mCurFragment.isAdded()) {
-            mCurFragment.setWeightEntity(entity, lastEntity);
+        mCurFragment.setWeightEntity(entity, lastEntity);
 //        }
     }
 
@@ -235,31 +177,10 @@ public class HomeFragment extends Fragment {
         unbinder.unbind();
     }
 
-//    private BroadcastReceiver mLocalReceiver = new BroadcastReceiver() {
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//            String action = intent.getAction();
-//            if (action.equals(LocalBroadcastUtil.ACTION_WEIGHTS_SYNC)) {
-//                // 从服务端更新体重信息完成
-//                mShouldRefresh = true;
-//            } else if (LocalBroadcastUtil.ACTION_DELETE_WEIGHT.equals(action)) {
-//                // 删除体重
-//                mShouldRefresh = true;
-//            } else if (LocalBroadcastUtil.ACTION_TEMP_WEIGHT_DATA_MATCH_ROLE.equals(action)) {
-//                // 认领未匹配角色的体重数据完成，刷新整体界面（因为不确定匹配 的角色是否当前角色）
-//                mShouldRefresh = true;
-//            } else if(LocalBroadcastUtil.ACTION_ROLE_PREGNANT_MODE_CHANGE.equals(action)) {
-//                // 有角色的孕妇模式改变了
-//                Account account = Account.getInstance(getActivity());
-//                int curRoleId = account.getRoleInfo().getId();
-//                int rId = intent.getIntExtra("dataKey", curRoleId);
-//                if(rId == curRoleId) {
-//                    // 当前角色的孕妇模式改变了
-//                    mShouldRefresh = true;
-//                }
-//            }
-//        }
-//    };
+    private void getUserList() {
+
+
+    }
 
     // ------------------------------ 蓝牙 start --------------------------------------------
     private static final int ADD_ROLE_REQUEST = 12;
@@ -299,13 +220,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        mScalePresser = ScaleParser.getInstance(getContext());
-//        SharedPreferences sh = getActivity().getSharedPreferences("kitchens",Context.MODE_PRIVATE);
-//        sh.getString("kitchen_name","00");
-//        if(!getMsg().equals("00")){
-//            openBluetoothScanDevice();
-//        }
-
         mBleController = BLEController.create(getContext());
         mSoundPlayer = new SoundPlayer(getContext(), "Tethys.ogg");
     }
@@ -362,7 +276,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initBlutooth() {
-        if(mBleController != null) {
+        if (mBleController != null) {
             mBleController.registerReceiver(getActivity());
             mBleController.setOnBLEChangeListener(onBlEChangeListener);
             mBleController.connectBluetooth();
@@ -373,7 +287,7 @@ public class HomeFragment extends Fragment {
     }
 
     public String getMsg() {
-        if(mBleController != null) {
+        if (mBleController != null) {
             if (!mBleController.isLocationEnable(getContext())) {
                 return getContext().getString(R.string.locationServiceNotOpen);
             }
@@ -395,7 +309,7 @@ public class HomeFragment extends Fragment {
             }
 
             return mBluetoothMsg;
-        }else {
+        } else {
             return getContext().getString(R.string.reportBoundTip);
         }
     }
@@ -404,7 +318,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        if(mBleController != null) {
+        if (mBleController != null) {
             mBleController.unregisterReceiver(getActivity());
             mBleController.setBound(false);
             mBleController.setReConnectable(false);
@@ -441,12 +355,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void doRefreshIfNeeded() {
-//        if (mShouldRefresh) {
-            // 需要刷新
-            loadDataAndShowView();
-//        } else if(null != mCurFragment) {
-//            mCurFragment.onActivityResume();
-//        }
+        loadDataAndShowView();
     }
 
     /**
@@ -489,37 +398,6 @@ public class HomeFragment extends Fragment {
         addNewRoleData(roleDataInfo, roleInfo);
     }
 
-    private void showMatchDailog(ArrayList<RoleInfo> roleInfos, WeightEntity entity) {
-//        mMatchWeight = entity;
-//        if (matchRoleDialog != null) {
-//            if (matchRoleDialog.isShowing()) {
-//                matchRoleDialog.dismiss();
-//            }
-//            matchRoleDialog = null;
-//        }
-//        matchRoleDialog = new MatchRoleDialog(getContext(), mMatchWeight, roleInfos, true);
-//        matchRoleDialog.setOnGridItemClicklisenter(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                if (getActivity() == null) return;
-//                RoleInfo roleInfo = matchRoleDialog.getRole(position);
-//                if (roleInfo == null) {
-//                    statrtAddRoleActivity();
-//                } else {
-//                }
-//                matchRoleDialog.dismiss();
-//            }
-//        });
-//        matchRoleDialog.showDialog();
-    }
-
-    public void statrtAddRoleActivity() {
-        if (RoleDB.getInstance(getActivity()).getRoleCount(Account.getInstance(getActivity()).getAccountInfo().getId()) >= 8) {
-            CustomToast.showToast(getContext(), getString(R.string.myselfNoAdd), Toast.LENGTH_SHORT);
-            return;
-        }
-    }
-
 
     /**
      * 把蓝牙得到的、并匹配好某个角色的体重数据，保存到数据库和上传到服务器，并实际添加到列表中
@@ -536,7 +414,7 @@ public class HomeFragment extends Fragment {
 //            lockAnim(false);
 //            onWeightAdded(roleDataInfo, true);
 //        } else {
-            WeighDataParser.create(getContext()).fillFatWithSmoothImpedance(roleDataInfo, roleInfo);
+        WeighDataParser.create(getContext()).fillFatWithSmoothImpedance(roleDataInfo, roleInfo);
 //
 //            ThreadUtil.executeThread(new Runnable() {
 //                @Override
@@ -552,8 +430,8 @@ public class HomeFragment extends Fragment {
 //                Account.getInstance(getContext()).setRoleInfo(roleInfo);
 //                onRoleChange();
 //            } else {
-                lockAnim(false);
-                onWeightAdded(roleDataInfo, true);
+        lockAnim(false);
+        onWeightAdded(roleDataInfo, true);
 //            }
 //        }
     }
@@ -593,23 +471,6 @@ public class HomeFragment extends Fragment {
             }
         }
         return roleInfos;
-    }
-
-    private DelayTimer checker = new DelayTimer(new Handler(new Handler.Callback() {
-        @Override
-        public boolean handleMessage(Message msg) {
-//            if (matchRoleDialog != null) {
-//                if (matchRoleDialog.getRole() != null) {
-//                    mBleController.reSelecteRole(matchRoleDialog.getRole().getId());
-//                }
-//                matchRoleDialog.dismiss();
-//            }
-            return true;
-        }
-    }));
-
-    public int getBluetoothIcon() {
-        return mBluetoothIcon;
     }
 
     private void setBLEState(int currentImage) {
@@ -675,7 +536,7 @@ public class HomeFragment extends Fragment {
          */
         @Override
         public void onStateChange(final int state, final String msg, final int currentImge) {
-            if(state == 2||state == 0){
+            if (state == 2 || state == 0) {
                 if (mBle != null) {
                     mBle.stopScan();
                     myhandler.removeCallbacksAndMessages(null);
@@ -717,245 +578,4 @@ public class HomeFragment extends Fragment {
             }
         }
     };
-
-    public void setGridus(){
-        context.clickable();
-    }
-    // ------------------------------ 蓝牙 end --------------------------------------------
-
-
-//    List<BluetoothGattService> servicesList = new ArrayList<>();
-//
-//    private BleReadOrWriteCallback bleReadOrWriteCallback = new BleReadOrWriteCallback() {
-//        @Override
-//        public void onReadSuccess() {
-//
-//        }
-//
-//        @Override
-//        public void onReadFail(int errorCode) {
-//
-//        }
-//
-//        @Override
-//        public void onWriteSuccess() {
-//
-//        }
-//
-//        @Override
-//        public void onWriteFail(int errorCode) {
-//
-//        }
-//
-//        @Override
-//        public void onServicesDiscovered(int state) {
-//            servicesList = CSApplication.getInstance().getmBle().getServicesList();
-//            Log.v("===listv",""+servicesList.size());
-//            for (int i = 0; i < servicesList.size(); i++) {
-//                boolean bs = CSApplication.getInstance().getmBle().characteristicNotification(servicesList.get(i).getUuid().toString());
-//                if(bs){
-//                    Log.v("===logs",bs+"||"+i);
-//                    startActivity(new Intent(getActivity(),Kitchen_Weigh_Activity.class));
-//                }else {
-//                    Log.v("===logs",bs+"||"+i);
-//                }
-//            }
-//        }
-//
-//        @Override
-//        public void onDiscoverServicesFail(int errorCode) {
-//
-//        }
-//    };
-//    BLEDevice currDevice;
-//
-//    private BleConnectionCallback connectionCallback = new BleConnectionCallback() {
-//        @Override
-//        public void onConnectionStateChange(int status, int newState) {
-//            Log.e(TAG, "连接状态发生变化：" + status + "     " + newState);
-//            if (newState == BluetoothProfile.STATE_CONNECTED) {
-//                currDevice.setConntect(true);
-//                mBle.discoverServices(currDevice.getBluetoothDevice().getAddress(), bleReadOrWriteCallback);
-//
-//            } else {
-//                currDevice.setConntect(false);
-//            }
-//        }
-//
-//        @Override
-//        public void onFail(int errorCode) {
-//            Log.e(TAG, "连接失败：" + errorCode);
-//
-//        }
-//    };
-//    private BleScanResultCallback resultCallback = new BleScanResultCallback() {
-//        @Override
-//        public void onSuccess() {
-//
-//            Log.d(TAG, "开启扫描成功");
-//        }
-//
-//        @Override
-//        public void onFail() {
-//            Log.d(TAG, "开启扫描失败");
-//        }
-//
-//        @Override
-//        public void onFindDevice(BluetoothDevice device, int rssi, byte[] scanRecord) {
-//            currDevice = new BLEDevice();
-//            currDevice.setBluetoothDevice(device);
-//            Log.d(TAG, "扫描到新设备：" + currDevice.getBluetoothDevice().getName() + "     " + device.getAddress());
-//            if(!BluetoothAdapter.getDefaultAdapter().isEnabled()){
-//                //检查下当前是否在进行扫描 如果是则先停止
-//                if (mBle != null && mScanning) {
-//                    mBle.stopScan();
-//                }
-//            }
-//
-//            if("Chipsea-BLE".equals(device.getName())){
-//                mBle.stopScan();
-//                mScanning = false;
-//                mBle.requestConnect(currDevice.getBluetoothDevice().getAddress(), connectionCallback, true);
-//            }
-//        }
-//    };
-//
-//    private void scanLeDevice(final boolean enable) {
-//        //获取ble操作类
-//        mBle = CSApplication.getInstance().getmBle();
-//        if (mBle == null) {
-//            return;
-//        }
-//        if (enable) {
-//            //开始扫描
-//            if (mBle != null) {
-//                boolean startscan = mBle.startScan(resultCallback);
-//                if (!startscan) {
-//                    Toast.makeText(getActivity(), "开启蓝牙扫描失败，请检查蓝牙是否正常工作！", Toast.LENGTH_LONG).show();
-//                    return;
-//                }
-//                mScanning = true;
-//                //扫描一分钟后停止扫描
-////                myhandler.postDelayed(stopRunnable, 3000);
-//
-//            }
-//        } else {
-//            //停止扫描
-//            mScanning = false;
-//            if (mBle != null) {
-//                mBle.stopScan();
-//                myhandler.removeCallbacksAndMessages(null);
-//            }
-//        }
-//
-//    }
-//
-//    private Runnable stopRunnable = new Runnable() {
-//        @Override
-//        public void run() {
-//            mBle.stopScan();
-//            mScanning = false;
-//
-//        }
-//    };
-//
-//
-//    /**
-//     * 检测蓝牙是否打开
-//     */
-//    void openBluetoothScanDevice() {
-//        if (!BluetoothAdapter.getDefaultAdapter().isEnabled()) {
-//            //蓝牙没打开则去打开蓝牙
-//            boolean openresult = toEnable(BluetoothAdapter.getDefaultAdapter());
-//            if (!openresult) {
-//                Toast.makeText(getActivity(), "打开蓝牙失败，请检查是否禁用了蓝牙权限", Toast.LENGTH_LONG).show();
-//                return;
-//            }
-//            //停个半秒再检查一次
-//            SystemClock.sleep(500);
-//            getActivity().runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    int i = 0;
-//                    while (!BluetoothAdapter.getDefaultAdapter().isEnabled()) {
-//                        try {
-//                            Thread.sleep(500);
-//                        } catch (InterruptedException e) {
-//                            e.printStackTrace();
-//                        }
-//                        if (i >= 15) {
-//                            Toast.makeText(getActivity(), "打开蓝牙失败，请检查是否禁用了蓝牙权限", Toast.LENGTH_LONG).show();
-//                            break;
-//                        } else {
-//                            i++;
-//                        }
-//
-//                    }
-//                    //发现蓝牙打开了，则进行开启扫描的步骤
-//                    scanDevice();
-//                }
-//            });
-//        }else {
-//            //检查下当前是否在进行扫描 如果是则先停止
-//            if (mBle != null && mScanning) {
-//                mBle.stopScan();
-//            }
-//            scanDevice();
-//        }
-//    }
-//
-//    @UiThread
-//    void scanDevice() {
-//        //如果此时发蓝牙工作还是不正常 则打开手机的蓝牙面板让用户开启
-//        if (mBle != null && !mBle.adapterEnabled()) {
-//            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-//            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-//        }
-//
-//        myhandler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                //检查一下去那些，如果没有则动态请求一下权限
-//                requestPermission();
-//                //开启扫描
-//                scanLeDevice(true);
-//            }
-//        }, 500);
-//    }
-//
-//    synchronized private void requestPermission() {
-//        //TODO 向用户请求权限
-//        int checkCallPhonePermission = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.BLUETOOTH);
-//        if (checkCallPhonePermission != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.BLUETOOTH}, REQUEST_FINE_LOCATION);
-//            Toast.makeText(getActivity(), "打开蓝牙失败，请检查是否禁用了蓝牙权限", Toast.LENGTH_LONG).show();
-//            return;
-//        } else {
-//
-//        }
-//    }
-//
-//
-//
-//    private boolean toEnable(BluetoothAdapter bluertoothadapter) {
-//        //TODO 启动蓝牙
-//        boolean result = false;
-//        try {
-//            for (Method temp : Class.forName(bluertoothadapter.getClass().getName()).getMethods()) {
-//                if (temp.getName().equals("enableNoAutoConnect")) {
-//                    result = (boolean) temp.invoke(bluertoothadapter);
-//                }
-//            }
-//        } catch (Exception e) {
-//            //反射调用失败就启动通过enable()启动;
-//            result = bluertoothadapter.enable();
-//            Log.d(TAG, "启动蓝牙的结果:" + result);
-//            e.printStackTrace();
-//
-//        }
-//        return result;
-//
-//    }
-
-
 }

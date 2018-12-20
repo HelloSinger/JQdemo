@@ -45,6 +45,7 @@
     <permission android:name="com.jq.btc.app.MUSIC_SERVER" />
 
     <uses-permission android:name="com.jq.btc.app.MUSIC_SERVER" />
+    <uses-permission android:name="hs.permission.user.info" />
 
     <application
         android:name="com.jq.btc.CSApplication"
@@ -53,7 +54,7 @@
         android:theme="@style/sliding_translucent">
         <activity
             android:name="com.jq.btc.InitActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -63,6 +64,11 @@
             android:name="com.jq.btc.homePage.NewMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/windowIsTranslucent_translucent" />
+
+        <activity
+            android:name="com.jq.btc.BodyFatScaleInduceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/sliding_translucent" />
         <activity
             android:name="com.jq.btc.account.role.WeightGoalActivity"
             android:screenOrientation="portrait"

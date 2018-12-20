@@ -75,4 +75,11 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.growingio.android:vds-android-agent:OP-2.3.2@aar'
     compile 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
+    implementation(name: 'um-common-res', ext: 'aar')
+    //用户中心北京user
+    implementation(name: 'user-sdk', ext: 'aar')
+    implementation(name: 'utilslib', ext: 'aar')
+    compile 'com.lzy.net:okgo:3.0.4'
+    compile 'com.alibaba:fastjson:1.2.2'
+    implementation 'com.google.code.gson:gson:2.8.5'
 }
