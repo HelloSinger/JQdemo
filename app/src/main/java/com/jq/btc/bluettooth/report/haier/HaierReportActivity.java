@@ -60,8 +60,12 @@ public class HaierReportActivity extends FragmentActivity {
     private RoleInfo mCurRoleInfo;
     private List<Fragment> fragments;
     private MyPagerAdapter adapter;
-    /** 是否从动态页来 */
+    /**
+     * 是否从动态页来
+     */
     private boolean mFromHome;
+
+    private String useId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,15 +78,16 @@ public class HaierReportActivity extends FragmentActivity {
     }
 
     public void onFinish() {
-        if(mFromHome) {
+        if (mFromHome) {
             finish();
             overridePendingTransition(0, R.anim.slide_up_out);
         }
     }
 
     private void initValue() {
+        useId = getIntent().getStringExtra("useId");
         mCurWeightEntity = getIntent().getParcelableExtra(INTENT_KEY_WEIGHT);
-        Log.v("===sess3",""+mCurWeightEntity.toString());
+        Log.v("===sess3", "" + mCurWeightEntity.toString());
         mLastWeightEntity = getIntent().getParcelableExtra(INTENT_KEY_LAST_WEIGHT);
         mFromHome = getIntent().getBooleanExtra(INTENT_KEY_FROM_HOME, false);
         mCurRoleInfo = Account.getInstance(this).getRoleInfo();
@@ -90,7 +95,7 @@ public class HaierReportActivity extends FragmentActivity {
 
     private void initView() {
         mTopLayout.setPadding(0, ScreenUtils.getStatusBarHeight(this), 0, 0);
-        if(mFromHome) {
+        if (mFromHome) {
             mGoBackView.setImageResource(R.mipmap.back_bottom);
             bottomAnim();
         } else {
@@ -102,7 +107,7 @@ public class HaierReportActivity extends FragmentActivity {
         if ((mCurWeightEntity.getR1() == 0 && mCurWeightEntity.getAxunge() <= 0) || (mCurWeightEntity.getSex() == 2)) {
             // 只有体重和BMI
             OnlyWeightBmiFragment onlyWeightBmiFragment = new OnlyWeightBmiFragment();
-            Log.v("===sess1",""+onlyWeightBmiFragment.toString());
+            Log.v("===sess1", "" + onlyWeightBmiFragment.toString());
             onlyWeightBmiFragment.setWeightEntity(mCurWeightEntity);
             fragments.add(onlyWeightBmiFragment);
 
@@ -117,7 +122,10 @@ public class HaierReportActivity extends FragmentActivity {
             BodyConstitutionFragment bodyConstitutionFragment = new BodyConstitutionFragment();
             bodyConstitutionFragment.setCurrWeightEntity(mCurWeightEntity);
             bodyConstitutionFragment.setLastWeightEntity(mLastWeightEntity);
-            Log.v("===sess2",""+mCurWeightEntity.toString());
+            Log.v("===sess2", "" + mCurWeightEntity.toString());
+            Bundle bundle = new Bundle();
+            bundle.putString("useId", useId);
+            indexFragment.setArguments(bundle);
             fragments.add(indexFragment);
             fragments.add(bodyConstitutionFragment);
 
@@ -136,7 +144,7 @@ public class HaierReportActivity extends FragmentActivity {
         switch (view.getId()) {
             case R2.id.mGoBackView:
                 finish();
-                if(mFromHome) {
+                if (mFromHome) {
                     overridePendingTransition(0, R.anim.slide_up_out);
                 }
                 break;
@@ -164,7 +172,7 @@ public class HaierReportActivity extends FragmentActivity {
 
     private void bottomAnim() {
         boolean b = false;
-        if(b) {
+        if (b) {
             return;
         }
         ObjectAnimator animatorScaleX = ObjectAnimator.ofFloat(mGoBackView, "scaleX", 1, 0.8f);
@@ -187,26 +195,27 @@ public class HaierReportActivity extends FragmentActivity {
 
     private boolean mIndexUp;
     private boolean mReportUp;
+
     public void setScrollUpState(boolean scrollUp, Fragment fragment) {
         boolean different = false;
-        if(fragment instanceof HaierIndexFragment || fragment instanceof OnlyWeightBmiFragment) {
-            if(scrollUp != mIndexUp) {
+        if (fragment instanceof HaierIndexFragment || fragment instanceof OnlyWeightBmiFragment) {
+            if (scrollUp != mIndexUp) {
                 different = true;
                 mIndexUp = scrollUp;
             }
         } else {
-            if(scrollUp != mReportUp) {
+            if (scrollUp != mReportUp) {
                 different = true;
                 mReportUp = scrollUp;
             }
         }
-        if(different) {
+        if (different) {
             setLayoutTextColor(fragment);
         }
     }
 
     public boolean getScrollUpState(Fragment fragment) {
-        if(fragment instanceof HaierIndexFragment || fragment instanceof OnlyWeightBmiFragment) {
+        if (fragment instanceof HaierIndexFragment || fragment instanceof OnlyWeightBmiFragment) {
             return mIndexUp;
         } else {
             return mReportUp;
@@ -215,11 +224,11 @@ public class HaierReportActivity extends FragmentActivity {
 
     private void setLayoutTextColor(Fragment fragment) {
         //0xFF505050
-        if(fragment instanceof HaierIndexFragment) {
-            if(mIndexUp) {
+        if (fragment instanceof HaierIndexFragment) {
+            if (mIndexUp) {
                 mTopLayout.setBackgroundColor(0xFFFFFFFF);
                 ScreenUtils.setScreenFullStyle(this, Color.WHITE);
-                if(mFromHome) {
+                if (mFromHome) {
                     mGoBackView.setImageResource(R.mipmap.back_bottom_blue);
                 }
 
@@ -229,8 +238,8 @@ public class HaierReportActivity extends FragmentActivity {
                 reportImg.setBackgroundColor(0xFF505050);
             } else {
                 mTopLayout.setBackgroundColor(0);
-                ScreenUtils.setScreenFullStyle(this,Color.TRANSPARENT);
-                if(mFromHome) {
+                ScreenUtils.setScreenFullStyle(this, Color.TRANSPARENT);
+                if (mFromHome) {
                     mGoBackView.setImageResource(R.mipmap.back_bottom);
                 }
 
@@ -239,11 +248,11 @@ public class HaierReportActivity extends FragmentActivity {
                 indexImg.setBackgroundColor(0xFFFFFFFF);
                 reportImg.setBackgroundColor(0xFFFFFFFF);
             }
-        } else if(fragment instanceof BodyConstitutionFragment) {
-            if(mReportUp) {
+        } else if (fragment instanceof BodyConstitutionFragment) {
+            if (mReportUp) {
                 mTopLayout.setBackgroundColor(0xFFFFFFFF);
-                ScreenUtils.setScreenFullStyle(this,Color.WHITE);
-                if(mFromHome) {
+                ScreenUtils.setScreenFullStyle(this, Color.WHITE);
+                if (mFromHome) {
                     mGoBackView.setImageResource(R.mipmap.back_bottom_blue);
                 }
 
@@ -253,8 +262,8 @@ public class HaierReportActivity extends FragmentActivity {
                 reportImg.setBackgroundColor(0xFF505050);
             } else {
                 mTopLayout.setBackgroundColor(0);
-                ScreenUtils.setScreenFullStyle(this,Color.TRANSPARENT);
-                if(mFromHome) {
+                ScreenUtils.setScreenFullStyle(this, Color.TRANSPARENT);
+                if (mFromHome) {
                     mGoBackView.setImageResource(R.mipmap.back_bottom);
                 }
 
@@ -263,11 +272,11 @@ public class HaierReportActivity extends FragmentActivity {
                 indexImg.setBackgroundColor(0xFFFFFFFF);
                 reportImg.setBackgroundColor(0xFFFFFFFF);
             }
-        } else if(fragment instanceof OnlyWeightBmiFragment) {
-            if(mIndexUp) {
+        } else if (fragment instanceof OnlyWeightBmiFragment) {
+            if (mIndexUp) {
                 mTopLayout.setBackgroundColor(0xFFFFFFFF);
-                ScreenUtils.setScreenFullStyle(this,Color.WHITE);
-                if(mFromHome) {
+                ScreenUtils.setScreenFullStyle(this, Color.WHITE);
+                if (mFromHome) {
                     mGoBackView.setImageResource(R.mipmap.back_bottom_blue);
                 }
 
@@ -277,8 +286,8 @@ public class HaierReportActivity extends FragmentActivity {
                 reportImg.setBackgroundColor(0xFF505050);
             } else {
                 mTopLayout.setBackgroundColor(0);
-                ScreenUtils.setScreenFullStyle(this,Color.TRANSPARENT);
-                if(mFromHome) {
+                ScreenUtils.setScreenFullStyle(this, Color.TRANSPARENT);
+                if (mFromHome) {
                     mGoBackView.setImageResource(R.mipmap.back_bottom);
                 }
 

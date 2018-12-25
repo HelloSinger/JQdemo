@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/icon_bg"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="1040px"
+        android:layout_height="360px"
+        android:layout_marginLeft="20px"
+        android:layout_marginTop="42px"
+        android:layout_marginRight="20px"
+        android:background="@mipmap/icon_circle_rect">
+
+        <RelativeLayout
+            android:id="@+id/rl_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_scale"
+                android:layout_width="100px"
+                android:layout_height="98px"
+                android:layout_marginLeft="36px"
+                android:layout_marginTop="40px"
+                android:background="@mipmap/icon_bodyfatscale" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="32px"
+                android:layout_toRightOf="@id/iv_scale"
+                android:text="体脂报告"
+                android:textColor="@color/white"
+                android:textSize="24px" />
+
+
+            <TextView
+                android:id="@+id/tv_open"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="36px"
+                android:background="@drawable/tv_open_bg"
+                android:gravity="center"
+                android:text="打开"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20px" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_induce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_icon"
+            android:layout_marginLeft="36px"
+            android:layout_marginTop="28px"
+            android:text="@string/tv_scale"
+            android:textColor="@color/white"
+            android:textSize="18px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_induce"
+            android:layout_marginLeft="36px"
+            android:layout_marginTop="84px"
+            android:text="匹配型号：海尔智能体脂秤-Q81W"
+            android:textColor="@color/white"
+            android:textSize="16px" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_title"
+        android:layout_marginLeft="40px"
+        android:layout_marginTop="34px"
+        android:text="@string/tv_details"
+        android:textColor="@color/white" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_title"
+        android:layout_marginTop="86px"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="750px"
+                android:layout_height="1294px"
+                android:layout_marginLeft="20px"
+                android:background="@mipmap/icon_induce_one" />
+
+            <ImageView
+                android:layout_width="750px"
+                android:layout_height="1294px"
+                android:layout_marginLeft="20px"
+                android:background="@mipmap/icon_induce_two" />
+
+            <ImageView
+                android:layout_width="750px"
+                android:layout_height="1294px"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:background="@mipmap/icon_induce_three" />
+        </LinearLayout>
+
+
+    </HorizontalScrollView>
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="62px"
+        android:layout_height="62px"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40px"
+        android:background="@mipmap/icon_back" />
+</RelativeLayout>

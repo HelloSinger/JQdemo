@@ -47,7 +47,8 @@ public class DialogRecyAdapter extends RecyclerView.Adapter<DialogRecyAdapter.My
 
     @Override
     public int getItemCount() {
-        return userDataList == null ? 0 : userDataList.size();
+//        return userDataList == null ? 0 : userDataList.size();
+        return 6;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

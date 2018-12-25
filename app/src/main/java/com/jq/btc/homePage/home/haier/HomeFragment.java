@@ -4,22 +4,17 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
-import com.haiersmart.user.sdk.UserUtils;
 import com.jq.btc.adapter.ViewPagerMainAdapter;
 import com.jq.btc.app.R;
 import com.jq.btc.app.R2;
@@ -31,21 +26,15 @@ import com.jq.btc.homePage.NewMainActivity;
 import com.jq.btc.kitchenscale.ble.BleHelper;
 import com.jq.btlib.util.CsBtUtil_v11;
 import com.jq.code.code.business.Account;
-import com.jq.code.code.business.DelayTimer;
 import com.jq.code.code.business.ScaleParser;
 import com.jq.code.code.business.SoundPlayer;
 import com.jq.code.code.db.RoleDB;
-import com.jq.code.code.db.WeightDataDB;
 import com.jq.code.code.db.WeightTmpDB;
 import com.jq.code.code.util.LogUtil;
 import com.jq.code.model.PutBase;
 import com.jq.code.model.RoleInfo;
 import com.jq.code.model.ScaleInfo;
 import com.jq.code.model.WeightEntity;
-import com.jq.code.view.CustomToast;
-import com.lzy.okgo.OkGo;
-import com.lzy.okgo.callback.AbsCallback;
-import com.lzy.okgo.model.Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,30 +105,29 @@ public class HomeFragment extends Fragment {
     }
 
     private void showFragment(WeightEntity currentEntity, WeightEntity lastEntity) {
-        BaseFragment fragment;
+        BaseFragment fragment = null;
         fragments = new ArrayList<>();
-        fragment = new NormalFragment(radioButton, this);
 
-//        for (int i = 0; i < 2; i++) {
-//            fragments.add(fragment);
-//        }
+        for (int i = 0; i < 2; i++) {
+            fragment = new NormalFragment(radioButton, this);
+            fragments.add(fragment);
+        }
         fragment.setWeightEntity(currentEntity, lastEntity);
-
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
 //        if (mCurFragment != null) {
 //            transaction.hide(mCurFragment);
 //            transaction.remove(mCurFragment);
 //        }
-        if (fragment.isAdded()) {
-            transaction.show(fragment);
-        } else {
-            transaction.add(R.id.mRealContent, fragment);
-            transaction.show(fragment);
-        }
+//        if (fragment.isAdded()) {
+//            transaction.show(fragment);
+//        } else {
+//            transaction.add(R.id.mRealContent, fragment);
+//            transaction.show(fragment);
+//        }
         mCurFragment = fragment;
-        transaction.commitAllowingStateLoss();
-//        viewPagerMainAdapter = new ViewPagerMainAdapter(getFragmentManager(), fragments);
-//        vp_main.setAdapter(viewPagerMainAdapter);
+//        transaction.commitAllowingStateLoss();
+        viewPagerMainAdapter = new ViewPagerMainAdapter(getFragmentManager(), fragments);
+        vp_main.setAdapter(viewPagerMainAdapter);
 
     }
 
@@ -375,18 +363,18 @@ public class HomeFragment extends Fragment {
      *
      * @param isChangeRole 是否切换角色
      */
-    private void lockAnim(boolean isChangeRole) {
-        if (isChangeRole) {
-            mSoundPlayer.play();
-            try {
-                Thread.sleep(600);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } else {
-            mSoundPlayer.play();
-        }
-    }
+//    private void lockAnim(boolean isChangeRole) {
+//        if (isChangeRole) {
+//            mSoundPlayer.play();
+//            try {
+//                Thread.sleep(600);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        } else {
+//            mSoundPlayer.play();
+//        }
+//    }
 
     /**
      * 把蓝牙得到的一条体重数据，用来匹配某个角色
@@ -430,7 +418,7 @@ public class HomeFragment extends Fragment {
 //                Account.getInstance(getContext()).setRoleInfo(roleInfo);
 //                onRoleChange();
 //            } else {
-        lockAnim(false);
+//        lockAnim(false);
         onWeightAdded(roleDataInfo, true);
 //            }
 //        }
@@ -473,15 +461,15 @@ public class HomeFragment extends Fragment {
         return roleInfos;
     }
 
-    private void setBLEState(int currentImage) {
-        mBluetoothIcon = currentImage;
-        if (mBluetoothMsg == null) return;
-        if (getContext() == null) return;
-
-        if (null != mCurFragment && mCurFragment.isAdded()) {
-            mCurFragment.setMsgLayout(currentImage);
-        }
-    }
+//    private void setBLEState(int currentImage) {
+//        mBluetoothIcon = currentImage;
+//        if (mBluetoothMsg == null) return;
+//        if (getContext() == null) return;
+//
+//        if (null != mCurFragment && mCurFragment.isAdded()) {
+//            mCurFragment.setMsgLayout(currentImage);
+//        }
+//    }
 
     private BLEController.OnBlEChangeListener onBlEChangeListener = new BLEController.OnBlEChangeListener() {
 
@@ -556,7 +544,7 @@ public class HomeFragment extends Fragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    setBLEState(currentImge);
+//                    setBLEState(currentImge);
                 }
             });
         }

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/icon_bg">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/px62"
+        android:text="设备绑定"
+        android:textColor="@color/white"
+        android:textSize="@dimen/px30" />
+
+    <RelativeLayout
+        android:id="@+id/rl_ble_bind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:id="@+id/rl_weight"
+            android:layout_width="@dimen/px488"
+            android:layout_height="@dimen/px488"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/px310"
+            android:background="@mipmap/icon_first_cirlce">
+
+            <ImageView
+                android:layout_width="@dimen/px411"
+                android:layout_height="@dimen/px411"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/icon_circle_bg" />
+
+            <ImageView
+                android:layout_width="@dimen/px410"
+                android:layout_height="@dimen/px410"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/icon_bind_circle_two" />
+
+            <LinearLayout
+                android:id="@+id/ll_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/px150"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px80" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_weight"
+                    android:text="kg"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px40" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/px200"
+                android:layout_height="1px"
+                android:layout_below="@id/ll_weight"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/px10"
+                android:background="@color/white" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_weight"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/px30"
+                android:text="体 重"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px30" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_show_bind_induce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_weight"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/px160"
+            android:text="已发现智能体脂秤,请确认秤显示的数值和上方一致,\n即可确认"
+            android:textColor="@color/white"
+            android:textSize="@dimen/px28" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_show_bind_induce"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/px120"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/tv_search_again"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tv_bind_bg1"
+                android:gravity="center"
+                android:text="重新搜索"
+                android:textColor="@color/tv_00CF9B"
+                android:textSize="@dimen/px24" />
+
+            <TextView
+                android:id="@+id/tv_commit_bind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px180"
+                android:background="@drawable/tv_bind_bg2"
+                android:gravity="center"
+                android:text="确认绑定"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/px24" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_bind_before"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/px428">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/px260"
+            android:text="请轻踏或按压秤面,"
+            android:textColor="@color/white"
+            android:textSize="@dimen/px30" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/px300"
+            android:text="并保持常亮"
+            android:textColor="@color/white"
+            android:textSize="@dimen/px30" />
+
+        <ImageView
+            android:layout_width="@dimen/px586"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/icon_body_fat_scale" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_cancle_bind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/px100"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消绑定"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:layout_width="@dimen/px60"
+            android:layout_height="@dimen/px60"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/px16"
+            android:background="@mipmap/icon_cancle_bind" />
+
+    </LinearLayout>
+</RelativeLayout>

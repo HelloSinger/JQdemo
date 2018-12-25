@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/icon_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px450"
+        android:layout_marginLeft="@dimen/px20"
+        android:layout_marginTop="@dimen/px80"
+        android:layout_marginRight="@dimen/px20"
+        android:background="@mipmap/icon_message_bg">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/px40"
+            android:layout_marginRight="@dimen/px82"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_add_member"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tv_add_member_bg"
+                android:gravity="center"
+                android:text="添加用户"
+                android:textColor="@color/tv_4B83E9"
+                android:textSize="@dimen/px17" />
+
+            <TextView
+                android:id="@+id/tv_more_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px10"
+                android:background="@drawable/tv_add_member_bg"
+                android:gravity="center"
+                android:text="更多体脂数据"
+                android:textColor="@color/tv_4B83E9"
+                android:textSize="@dimen/px17" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px390"
+            android:layout_alignParentBottom="true">
+
+            <LinearLayout
+                android:id="@+id/ll_head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px80"
+                android:layout_marginTop="@dimen/px96"
+                android:orientation="vertical">
+
+                <com.haiersmart.bodyfatscale.myview.CircleImageView
+                    android:id="@+id/iv_head"
+                    android:layout_width="@dimen/px130"
+                    android:layout_height="@dimen/px130"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@mipmap/default_head_image" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_head"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/px10"
+                    android:text="小飞侠"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@mipmap/icon_tv_bmi_bg"
+                    android:gravity="center"
+                    android:text="BMI:185 正常"
+                    android:textColor="@color/tv_00CF9B"
+                    android:textSize="@dimen/px20" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_v"
+                android:layout_width="@dimen/px1"
+                android:layout_height="@dimen/px418"
+                android:layout_marginLeft="@dimen/px414"
+                android:layout_marginTop="@dimen/px50"
+                android:layout_toRightOf="@id/ll_head"
+                android:background="@color/white" />
+
+            <View
+                android:layout_width="@dimen/px652"
+                android:layout_height="@dimen/px1"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/px88"
+                android:layout_toRightOf="@id/ll_head"
+                android:background="@color/white" />
+
+            <RelativeLayout
+                android:id="@+id/rl_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/px90"
+                android:layout_marginLeft="@dimen/px141"
+                android:layout_marginTop="@dimen/px60"
+                android:layout_toRightOf="@id/ll_head">
+
+                <ImageView
+                    android:id="@+id/iv_weight"
+                    android:layout_width="@dimen/px64"
+                    android:layout_height="@dimen/px64"
+                    android:background="@mipmap/icon_weight_new" />
+
+                <TextView
+                    android:id="@+id/tv_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px50"
+                    android:layout_toRightOf="@id/iv_weight"
+                    android:text="50.0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px50" />
+
+
+                <TextView
+                    android:id="@+id/one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_weight"
+                    android:layout_marginLeft="@dimen/px130"
+                    android:text="体重"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/one"
+                    android:layout_toRightOf="@id/tv_weight"
+                    android:text="KG"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px20" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_body_fat_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/px90"
+                android:layout_marginLeft="@dimen/px100"
+                android:layout_marginTop="@dimen/px60"
+                android:layout_toRightOf="@id/view_v">
+
+                <ImageView
+                    android:id="@+id/iv_body_fat_rate"
+                    android:layout_width="@dimen/px64"
+                    android:layout_height="@dimen/px64"
+                    android:background="@mipmap/icon_body_fat_rate" />
+
+                <TextView
+                    android:id="@+id/tv_body_fat_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px50"
+                    android:layout_toRightOf="@id/iv_body_fat_rate"
+                    android:text="25.0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px50" />
+
+
+                <TextView
+                    android:id="@+id/three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_body_fat_rate"
+                    android:layout_marginLeft="@dimen/px130"
+                    android:text="体脂率"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/three"
+                    android:layout_toRightOf="@id/tv_body_fat_rate"
+                    android:text="%"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px20" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_weight"
+                android:layout_marginLeft="@dimen/px141"
+                android:layout_marginTop="@dimen/px120"
+                android:layout_toRightOf="@id/ll_head">
+
+                <ImageView
+                    android:id="@+id/iv_bone_weight"
+                    android:layout_width="@dimen/px64"
+                    android:layout_height="@dimen/px64"
+                    android:background="@mipmap/icon_bone_weight" />
+
+                <TextView
+                    android:id="@+id/tv_bone_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px50"
+                    android:layout_toRightOf="@id/iv_bone_weight"
+                    android:text="50.0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px50" />
+
+
+                <TextView
+                    android:id="@+id/two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_bone_weight"
+                    android:layout_marginLeft="@dimen/px130"
+                    android:text="骨重"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/two"
+                    android:layout_toRightOf="@id/tv_bone_weight"
+                    android:text="KG"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px20" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_weight"
+                android:layout_marginLeft="@dimen/px100"
+                android:layout_marginTop="@dimen/px120"
+                android:layout_toRightOf="@id/view_v">
+
+                <ImageView
+                    android:id="@+id/iv_rate_of_muscle"
+                    android:layout_width="@dimen/px64"
+                    android:layout_height="@dimen/px64"
+                    android:background="@mipmap/icon_rate_of_muscle" />
+
+                <TextView
+                    android:id="@+id/tv_rate_of_muscle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px50"
+                    android:layout_toRightOf="@id/iv_rate_of_muscle"
+                    android:text="30.0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px50" />
+
+
+                <TextView
+                    android:id="@+id/four"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_rate_of_muscle"
+                    android:layout_marginLeft="@dimen/px130"
+                    android:text="肌肉率"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/four"
+                    android:layout_toRightOf="@id/tv_rate_of_muscle"
+                    android:text="%"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/px20" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px240"
+        android:layout_below="@id/rl_head"
+        android:layout_marginTop="@dimen/px76"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px140"
+                android:layout_marginTop="@dimen/px10"
+                android:background="@mipmap/icon_proposal" />
+
+            <TextView
+                android:id="@+id/tv_jk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/px120"
+                android:text="@string/tv_jiankang"
+                android:textColor="@color/tv_6EABFF"
+                android:textSize="@dimen/px24"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_jk"
+                android:layout_marginLeft="@dimen/px140"
+                android:layout_marginTop="@dimen/px70"
+                android:background="@mipmap/icon_proposal" />
+
+            <View
+                android:id="@+id/view_one"
+                android:layout_width="1px"
+                android:layout_height="@dimen/px140"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/px32"
+                android:layout_toRightOf="@id/tv_jk"
+                android:background="@color/tv_4B83E9" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarThumbVertical="@mipmap/icon_scroll_bar_bg"
+            android:scrollbarTrackVertical="@mipmap/icon_scroll_bar"
+            android:scrollbars="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px30"
+                    android:layout_marginTop="@dimen/px50"
+                    android:text="身体得分：90分，你的体重闭上次重了：2KG"
+                    android:textColor="@color/tv_6EABFF"
+                    android:textSize="@dimen/px18" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_score"
+                    android:layout_marginLeft="@dimen/px30"
+                    android:layout_marginTop="@dimen/px20"
+                    android:lineSpacingExtra="5dp"
+                    android:maxEms="20"
+                    android:text="身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，\n你的体重闭上次重了：2KG"
+                    android:textColor="@color/tv_6EABFF"
+                    android:textSize="@dimen/px18" />
+
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

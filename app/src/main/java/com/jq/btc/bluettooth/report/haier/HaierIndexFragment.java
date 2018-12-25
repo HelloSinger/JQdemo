@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -27,11 +28,13 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
+import com.haiersmart.user.sdk.UserUtils;
 import com.jq.btc.ConstantUrl;
 import com.jq.btc.app.R;
 import com.jq.btc.app.R2;
 import com.jq.btc.bluettooth.report.haier.item.BuildItemsUtil;
 import com.jq.btc.bluettooth.report.haier.item.IndexDataItem;
+import com.jq.btc.bluettooth.report.haier.item.NewBuidItemUtil;
 import com.jq.btc.helper.WeighDataParser;
 import com.jq.btc.homePage.home.utils.ScrollJudge;
 import com.jq.btc.model.MoreDataModel;
@@ -110,6 +113,13 @@ public class HaierIndexFragment extends Fragment {
     ScrollChartView scroll_chart_main;
     @BindView(R2.id.civ_main)
     CircleIndicatorView civ_main;
+    @BindView(R2.id.lv_body_fat_data)
+    ListView lv_body_fat_data;
+
+    private String useId;
+
+    private NewBuidItemUtil newBuidItemUtil;
+    private List<MoreDataModel.DataBean> data;
 
     public void setWeightEntity(WeightEntity weightEntity) {
         mWeightEntity = weightEntity;
@@ -130,32 +140,24 @@ public class HaierIndexFragment extends Fragment {
         mSortedNames.add(WeighDataParser.StandardSet.CONTAINWATER.getName());
         mSortedNames.add(WeighDataParser.StandardSet.CORPULENT.getName());
         mSortedNames.add(WeighDataParser.StandardSet.BMI.getName());
-//        mSortedNames.add(WeighDataParser.StandardSet.WEIGHT.getName());
-//        mSortedNames.add(WeighDataParser.StandardSet.AXUNGE.getName());
-//        mSortedNames.add(WeighDataParser.StandardSet.AXUNGEWEIGHT.getName());
-//        mSortedNames.add(WeighDataParser.StandardSet.PROTEIN.getName());
+
     }
 
     /**
      * 不正常指标
      */
     private List<IndexDataItem> mAbnormalIndexList = new ArrayList<>();
-    /**
-     * 正常指标
-     */
-//    private List<IndexDataItem> normalIndexList = new ArrayList<>();
-    /**
-     * 其他指标
-     */
-    private List<IndexDataItem> mOtherIndexList = new ArrayList<>();
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_haier_index, container, false);
         unbinder = ButterKnife.bind(this, view);
-
+        Bundle bundle = getArguments();
+        useId = bundle.getString("useId");
         mCurrentWeightUnit = StandardUtil.getWeightExchangeUnit(getContext());
+
         buildSuanfa();
 
         mBgLayout.setPadding(0, ScreenUtils.getStatusBarHeight(getActivity()), 0, 0);
@@ -165,6 +167,7 @@ public class HaierIndexFragment extends Fragment {
 
         return view;
     }
+
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
@@ -187,6 +190,7 @@ public class HaierIndexFragment extends Fragment {
                     tv_weight.setText(dataList.get(position) + "");
                     ScrollChartView.Point point = scroll_chart_main.getList().get(position);
                     civ_main.setCircleY(point.y);
+
                 }
             });
 
@@ -194,92 +198,20 @@ public class HaierIndexFragment extends Fragment {
             scroll_chart_main.smoothScrollTo(dataList.size() - 1);
         }
     };
+
     private void initView() {
         scroll_chart_main.setLineType(ScrollChartView.LineType.LINE);
         scroll_chart_main.invalidateView();
-
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity().finish();
             }
         });
-//        final GestureDetector mGestureDetector = new GestureDetector(getActivity(), new GestureDetector.SimpleOnGestureListener() {
-//            private ScrollJudge scrollJudge = new ScrollJudge();
-//
-//            public boolean onDown(MotionEvent e) {
-//                return true;
-//            }
-//
-//            @Override
-//            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-//                if (mScrollView.getScrollY() > 10) {
-//                    return false;
-//                }
-//
-//                // 手势向下 down
-//                if (scrollJudge.shouldBottom(e1, e2, velocityX, velocityY)) {
-//                    ((HaierReportActivity) getActivity()).onFinish();
-//                    return true;
-//                }
-//                // 手势向上 up
-////                if ((e1.getRawY() - e2.getRawY()) > 200) {
-////                    return true;
-////                }
-//                return super.onFling(e1, e2, velocityX, velocityY);
-//            }
-//        });
-
-//        mScrollView.setOnTouchListener(new View.OnTouchListener() {
-//            private int lastY = 0;
-//            private int touchEventId = -9983761;
-//            private int height;
-//            Handler handler = new Handler() {
-//                @Override
-//                public void handleMessage(Message msg) {
-//                    View scroller = (View) msg.obj;
-//                    if (height == 0) {
-//                        height = (int) getResources().getDisplayMetrics().density * 50;
-//                    }
-//                    if (msg.what == touchEventId) {
-//                        if (lastY == scroller.getScrollY()) {
-//                            //停止了，此处你的操作业务
-//                            if (lastY > height) {
-//                                ((HaierReportActivity) getActivity()).setScrollUpState(true, HaierIndexFragment.this);
-//                            } else {
-//                                ((HaierReportActivity) getActivity()).setScrollUpState(false, HaierIndexFragment.this);
-//                            }
-//                        } else {
-//                            handler.sendMessageDelayed(handler.obtainMessage(touchEventId, scroller), 1);
-//                            lastY = scroller.getScrollY();
-//
-//                            // 不停止也要做
-//                            if (lastY > height) {
-//                                ((HaierReportActivity) getActivity()).setScrollUpState(true, HaierIndexFragment.this);
-//                            } else {
-//                                ((HaierReportActivity) getActivity()).setScrollUpState(false, HaierIndexFragment.this);
-//                            }
-//                        }
-//                    }
-//                }
-//            };
-//
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                int eventAction = event.getAction();
-//                switch (eventAction) {
-//                    case MotionEvent.ACTION_UP:
-//                        handler.sendMessageDelayed(handler.obtainMessage(touchEventId, v), 5);
-//                        break;
-//                    default:
-//                        break;
-//                }
-//                return mGestureDetector.onTouchEvent(event);//返回手势识别触发的事件
-//            }
-//        });
     }
 
     private void initValue() {
+        getMoreData(UserUtils.get().userId(), useId);
         RoleInfo roleInfo = Account.getInstance(getContext()).getRoleInfo();
         WeighDataParser weighDataParser = WeighDataParser.create(getContext());
         WeightEntity weightEntity = mWeightEntity;
@@ -322,7 +254,7 @@ public class HaierIndexFragment extends Fragment {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
+        newBuidItemUtil = new NewBuidItemUtil(getContext(), roleInfo, csAlgoBuilder);
         BuildItemsUtil util = new BuildItemsUtil(getContext(), mWeightEntity, roleInfo, csAlgoBuilder);
         IndexDataItem weightItem = util.buildWeightItem();
         IndexDataItem axungeItem = util.buildAxungeItem();
@@ -335,22 +267,14 @@ public class HaierIndexFragment extends Fragment {
         IndexDataItem bmiItem = util.buildBMIItem();
         IndexDataItem thinItem = util.buildThinItem();
 
-//        judgeItemAndAdd(weightItem, WeighDataParser.StandardSet.WEIGHT);
-//        judgeItemAndAdd(axungeItem, WeighDataParser.StandardSet.AXUNGE);
-//        judgeItemAndAdd(fatWeightItem, WeighDataParser.StandardSet.AXUNGEWEIGHT);
         judgeItemAndAdd(boneItem, WeighDataParser.StandardSet.BONE);
         judgeItemAndAdd(muscleItem, WeighDataParser.StandardSet.MUSCLE);
         judgeItemAndAdd(muscleWeightItem, WeighDataParser.StandardSet.MUSCLEWEIGHT);
         judgeItemAndAdd(metabolismItem, WeighDataParser.StandardSet.METABOLISM);
 
-//        mOtherIndexList.add(corpulentItem);
-//        mOtherIndexList.add(bmiItem);
-//        mOtherIndexList.add(thinItem);
         mAbnormalIndexList.add(corpulentItem);
         mAbnormalIndexList.add(bmiItem);
-//        if (weightEntity.getR1() > 0 && age < 18) {
-//            // 交流测脂称，未成年人，水份、水含量、蛋白质、内脏脂肪、身体年龄，隐藏不显示
-//        } else {
+
         IndexDataItem waterItem = util.buildWaterItem();
         IndexDataItem waterWeightItem = util.buildWaterWeightItem();
         IndexDataItem proteinItem = util.buildProteinItem();
@@ -360,9 +284,6 @@ public class HaierIndexFragment extends Fragment {
         judgeItemAndAdd(visceraItem, WeighDataParser.StandardSet.VISCERA);
         judgeItemAndAdd(waterItem, WeighDataParser.StandardSet.WATER);
         judgeItemAndAdd(waterWeightItem, WeighDataParser.StandardSet.CONTAINWATER);
-//            judgeItemAndAdd(proteinItem, WeighDataParser.StandardSet.PROTEIN);
-//            mOtherIndexList.add(bodyAgeItem);
-//        }
 
         createViews();
     }
@@ -386,18 +307,6 @@ public class HaierIndexFragment extends Fragment {
             case CONTAINWATER://水含量
                 normal = item.level >= 1;
                 break;
-//            case WEIGHT://体重
-//                normal = item.level == 1;
-//                break;
-//            case AXUNGE://体脂率
-//                normal = item.level == 1;
-//                break;
-//            case AXUNGEWEIGHT://脂肪重量
-//                normal = item.level == 1;
-//                break;
-//            case PROTEIN://蛋白质
-//                normal = item.level == 1;
-//                break;
             case BONE://骨量
                 normal = item.level >= 1;
                 break;
@@ -411,9 +320,7 @@ public class HaierIndexFragment extends Fragment {
 //                normal = item.level == 1;
                 break;
         }
-//        if (normal) {
-//            normalIndexList.add(item);
-//        } else {
+
         mAbnormalIndexList.add(item);
 //        }
     }
@@ -453,37 +360,6 @@ public class HaierIndexFragment extends Fragment {
                 }
             }
         });
-
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                if (normalIndexList.size() > 0) {
-//                    mNormalHint.setVisibility(View.VISIBLE);
-//                    mNormalIndexLayout.setVisibility(View.VISIBLE);
-//
-//                    sort(normalIndexList);
-//                    inflateViews(normalIndexList, mNormalIndexLayout);
-//                } else {
-//                    mNormalHint.setVisibility(View.GONE);
-//                    mNormalIndexLayout.setVisibility(View.GONE);
-//                }
-//            }
-//        }, 100);
-
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                if (mOtherIndexList.size() > 0) {
-//                    mOtherHint.setVisibility(View.VISIBLE);
-//                    mOtherIndexLayout.setVisibility(View.VISIBLE);
-//
-//                    inflateViews(mOtherIndexList, mOtherIndexLayout);
-//                } else {
-//                    mOtherHint.setVisibility(View.GONE);
-//                    mOtherIndexLayout.setVisibility(View.GONE);
-//                }
-//            }
-//        }, 400);
 
     }
 
@@ -631,21 +507,26 @@ public class HaierIndexFragment extends Fragment {
 
     /**
      * 请求个人每一天的数据
+     *
      * @param famaliyId
      * @param userId
      */
-    private void getMoreData(String famaliyId,String userId){
-
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("famaliyId",famaliyId);
-        jsonObject.put("userId",userId);
+    private void getMoreData(String famaliyId, String userId) {
+        final IndexDataItem indexDataItem = new IndexDataItem();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("famaliyId", famaliyId);
+        jsonObject.put("userId", userId);
         OkGo.<String>post(ConstantUrl.GET_CHARTLINE_DATA_URL)
                 .upJson(String.valueOf(jsonObject))
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-                        MoreDataModel moreDataModel=new Gson().fromJson(response.body(),MoreDataModel.class);
+                        MoreDataModel moreDataModel = new Gson().fromJson(response.body(), MoreDataModel.class);
+                        data = moreDataModel.getData();
+                        Log.e("AYD", "--->" + response.body());
+                        Log.e("AYD", "" + newBuidItemUtil.buildVisceraItem(Float.parseFloat(data.get(0).getVisceralFat())));
 
+                        Log.e("ADY", "an" + indexDataItem.mLevelTextRes);
                     }
                 });
 

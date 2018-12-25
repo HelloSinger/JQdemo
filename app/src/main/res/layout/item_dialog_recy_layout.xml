@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.jq.code.view.CircleImageView
+        android:id="@+id/iv_add_head"
+        android:layout_width="92px"
+        android:layout_height="92px"
+        android:layout_margin="10px"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/px50"
+        android:background="@mipmap/default_head_image" />
+
+
+</RelativeLayout>

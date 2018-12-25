@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="58px"
+            android:layout_marginRight="50px"
             android:background="@drawable/shape_rectangle_green_bg"
             android:gravity="center"
             android:minWidth="40dp"

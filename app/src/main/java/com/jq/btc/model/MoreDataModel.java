@@ -11,7 +11,7 @@ public class MoreDataModel {
     /**
      * code : 200
      * message : 查询成功
-     * data : [{"id":7,"score":66.5,"weight":123,"metabolism":0,"boneWeight":0,"muscleRate":0,"muscleWeight":0,"visceralFat":0,"water":0,"waterWeight":0,"obesity":333,"bmi":0,"isDel":0,"create_time":"Dec 6, 2018 9:46:59 AM"},{"id":10,"score":66.5,"weight":0,"metabolism":0,"boneWeight":0,"muscleRate":0,"muscleWeight":0,"visceralFat":0,"water":0,"waterWeight":0,"obesity":0,"bmi":0,"isDel":0,"create_time":"Dec 9, 2018 4:53:27 PM"},{"id":11,"score":66.7,"weight":0,"metabolism":0,"boneWeight":0,"muscleRate":0,"muscleWeight":0,"visceralFat":0,"water":0,"waterWeight":0,"obesity":0,"bmi":0,"isDel":0,"create_time":"Dec 10, 2018 6:16:28 PM"}]
+     * data : [{"id":14,"famaliyId":"201611301119574263","userId":"201812171606391939","score":"61","weight":"31","metabolism":"1095.1","boneWeight":"1","muscleRate":"45.9","muscleWeight":"14.2","visceralFat":"1","water":"77.4","waterWeight":"24","obesity":"-52.9","bmi":"10.2","isDel":0,"createTime":"Dec 18, 2018 4:04:17 PM"},{"id":42,"famaliyId":"201611301119574263","userId":"201812171606391939","score":"61","weight":"20.65","metabolism":"958.4","boneWeight":"1.0","muscleRate":"45.1%","muscleWeight":"9.3","visceralFat":"1","water":"85%","waterWeight":"17.6","obesity":"-68.6%","bmi":"6.8","isDel":0,"createTime":"Dec 22, 2018 2:55:35 PM"}]
      */
 
     private String code;
@@ -44,36 +44,40 @@ public class MoreDataModel {
 
     public static class DataBean {
         /**
-         * id : 7
-         * score : 66.5
-         * weight : 123
-         * metabolism : 0
-         * boneWeight : 0
-         * muscleRate : 0
-         * muscleWeight : 0
-         * visceralFat : 0
-         * water : 0
-         * waterWeight : 0
-         * obesity : 333
-         * bmi : 0
+         * id : 14
+         * famaliyId : 201611301119574263
+         * userId : 201812171606391939
+         * score : 61
+         * weight : 31
+         * metabolism : 1095.1
+         * boneWeight : 1
+         * muscleRate : 45.9
+         * muscleWeight : 14.2
+         * visceralFat : 1
+         * water : 77.4
+         * waterWeight : 24
+         * obesity : -52.9
+         * bmi : 10.2
          * isDel : 0
-         * create_time : Dec 6, 2018 9:46:59 AM
+         * createTime : Dec 18, 2018 4:04:17 PM
          */
 
         private int id;
-        private double score;
-        private int weight;
-        private int metabolism;
-        private int boneWeight;
-        private int muscleRate;
-        private int muscleWeight;
-        private int visceralFat;
-        private int water;
-        private int waterWeight;
-        private int obesity;
-        private int bmi;
+        private String famaliyId;
+        private String userId;
+        private String score;
+        private String weight;
+        private String metabolism;
+        private String boneWeight;
+        private String muscleRate;
+        private String muscleWeight;
+        private String visceralFat;
+        private String water;
+        private String waterWeight;
+        private String obesity;
+        private String bmi;
         private int isDel;
-        private String create_time;
+        private String createTime;
 
         public int getId() {
             return id;
@@ -83,91 +87,107 @@ public class MoreDataModel {
             this.id = id;
         }
 
-        public double getScore() {
+        public String getFamaliyId() {
+            return famaliyId;
+        }
+
+        public void setFamaliyId(String famaliyId) {
+            this.famaliyId = famaliyId;
+        }
+
+        public String getUserId() {
+            return userId;
+        }
+
+        public void setUserId(String userId) {
+            this.userId = userId;
+        }
+
+        public String getScore() {
             return score;
         }
 
-        public void setScore(double score) {
+        public void setScore(String score) {
             this.score = score;
         }
 
-        public int getWeight() {
+        public String getWeight() {
             return weight;
         }
 
-        public void setWeight(int weight) {
+        public void setWeight(String weight) {
             this.weight = weight;
         }
 
-        public int getMetabolism() {
+        public String getMetabolism() {
             return metabolism;
         }
 
-        public void setMetabolism(int metabolism) {
+        public void setMetabolism(String metabolism) {
             this.metabolism = metabolism;
         }
 
-        public int getBoneWeight() {
+        public String getBoneWeight() {
             return boneWeight;
         }
 
-        public void setBoneWeight(int boneWeight) {
+        public void setBoneWeight(String boneWeight) {
             this.boneWeight = boneWeight;
         }
 
-        public int getMuscleRate() {
+        public String getMuscleRate() {
             return muscleRate;
         }
 
-        public void setMuscleRate(int muscleRate) {
+        public void setMuscleRate(String muscleRate) {
             this.muscleRate = muscleRate;
         }
 
-        public int getMuscleWeight() {
+        public String getMuscleWeight() {
             return muscleWeight;
         }
 
-        public void setMuscleWeight(int muscleWeight) {
+        public void setMuscleWeight(String muscleWeight) {
             this.muscleWeight = muscleWeight;
         }
 
-        public int getVisceralFat() {
+        public String getVisceralFat() {
             return visceralFat;
         }
 
-        public void setVisceralFat(int visceralFat) {
+        public void setVisceralFat(String visceralFat) {
             this.visceralFat = visceralFat;
         }
 
-        public int getWater() {
+        public String getWater() {
             return water;
         }
 
-        public void setWater(int water) {
+        public void setWater(String water) {
             this.water = water;
         }
 
-        public int getWaterWeight() {
+        public String getWaterWeight() {
             return waterWeight;
         }
 
-        public void setWaterWeight(int waterWeight) {
+        public void setWaterWeight(String waterWeight) {
             this.waterWeight = waterWeight;
         }
 
-        public int getObesity() {
+        public String getObesity() {
             return obesity;
         }
 
-        public void setObesity(int obesity) {
+        public void setObesity(String obesity) {
             this.obesity = obesity;
         }
 
-        public int getBmi() {
+        public String getBmi() {
             return bmi;
         }
 
-        public void setBmi(int bmi) {
+        public void setBmi(String bmi) {
             this.bmi = bmi;
         }
 
@@ -179,12 +199,12 @@ public class MoreDataModel {
             this.isDel = isDel;
         }
 
-        public String getCreate_time() {
-            return create_time;
+        public String getCreateTime() {
+            return createTime;
         }
 
-        public void setCreate_time(String create_time) {
-            this.create_time = create_time;
+        public void setCreateTime(String createTime) {
+            this.createTime = createTime;
         }
     }
 }

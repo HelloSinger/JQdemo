@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -30,7 +31,9 @@ import com.jq.btc.account.role.STWeightGoalActivity;
 import com.jq.btc.account.role.WeightGoalActivity;
 import com.jq.btc.app.R;
 import com.jq.btc.app.R2;
+import com.jq.btc.bluettooth.BLEController;
 import com.jq.btc.bluettooth.BoundDeviceActivity;
+import com.jq.btc.bluettooth.report.haier.HaierReportActivity;
 import com.jq.btc.bluettooth.report.haier.item.BuildItemsUtil;
 import com.jq.btc.bluettooth.report.haier.item.IndexDataItem;
 import com.jq.btc.dialog.WeightDialog;
@@ -38,15 +41,21 @@ import com.jq.btc.dialog.haier.AddWeightDialogFragment;
 import com.jq.btc.helper.WeighDataParser;
 import com.jq.btc.homePage.home.utils.ScrollJudge;
 import com.jq.btc.kitchenscale.Kitchen_Weigh_Activity;
+import com.jq.btc.kitchenscale.ble.BleHelper;
 import com.jq.btc.model.MatchModel;
 import com.jq.btc.model.UpdataModel;
 import com.jq.btc.utils.SpUtils;
+import com.jq.btlib.util.CsBtUtil_v11;
 import com.jq.code.code.algorithm.CsAlgoBuilder;
 import com.jq.code.code.business.Account;
 import com.jq.code.code.business.Config;
+import com.jq.code.code.business.ScaleParser;
+import com.jq.code.code.business.SoundPlayer;
 import com.jq.code.code.util.ScreenUtils;
 import com.jq.code.code.util.StandardUtil;
+import com.jq.code.model.PutBase;
 import com.jq.code.model.RoleInfo;
+import com.jq.code.model.ScaleInfo;
 import com.jq.code.model.WeightEntity;
 import com.jq.code.view.CircleImageView;
 import com.jq.code.view.WeightGoalProgressBar;
@@ -64,6 +73,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,7 +88,6 @@ import butterknife.Unbinder;
 @SuppressLint("ValidFragment")
 public class NormalFragment extends BaseFragment implements View.OnTouchListener {
     private static final int REQUEST_GOAL_WEIGHT_SETTINGS = 89;
-
     @BindView(R2.id.click_kitchen_scale)
     ImageView click_kitchen_scale;
     @BindView(R2.id.mRoleImage)
@@ -165,14 +174,10 @@ public class NormalFragment extends BaseFragment implements View.OnTouchListener
     TextView tv_tips;
     @BindView(R2.id.tv_user_name)
     TextView tv_user_name;
-
     @BindView(R2.id.tv_more_data)
     TextView tv_more_data;
-
     Unbinder unbinder;
-
     WeightDialog weightDialog;
-
     @BindView(R2.id.mTrends)
     ImageView mTrends;
     @BindView(R2.id.tv_add_member)
@@ -570,6 +575,8 @@ public class NormalFragment extends BaseFragment implements View.OnTouchListener
             mAbnormalIndexList.add(waterItem);
             mAbnormalIndexList.add(waterWeightItem);
             sort(mAbnormalIndexList);
+            inList(mAbnormalIndexList);
+
             upData(UserUtils.get().userId(), roleInfo.getUseId(), score + "", weight + ""
                     , mAbnormalIndexList.get(0).valueText
                     , mAbnormalIndexList.get(1).valueText
@@ -594,6 +601,11 @@ public class NormalFragment extends BaseFragment implements View.OnTouchListener
 
     }
 
+    private void inList(List<IndexDataItem> items) {
+        for (IndexDataItem item : items) {
+            Log.e("AYD", "value--->" + item.nameRes + "--->" + item.valueText);
+        }
+    }
 
     private ArrayList<Integer> mSortedNames = new ArrayList<>();
 
@@ -747,7 +759,6 @@ public class NormalFragment extends BaseFragment implements View.OnTouchListener
     @Override
     public void setMsgLayout(int bluetoothIcon) {
         String s = ((HomeFragment) getParentFragment()).getMsg();
-
         int bluetoothIconRes;
         if (bluetoothIcon == R.mipmap.ble_connected || bluetoothIcon == R.mipmap.bt_connected) {
             // 已连接标志
@@ -759,12 +770,10 @@ public class NormalFragment extends BaseFragment implements View.OnTouchListener
             bluetoothIconRes = R.mipmap.icon_tishi;
         }
         mBluetoothIcon.setImageResource(bluetoothIconRes);
-
         if (null == s || s.trim().length() == 0) {
             mBluetoothStateLayout.setVisibility(View.GONE);
         } else {
             mBluetoothStateLayout.setVisibility(View.VISIBLE);
-
             final String msg = s;
             mBluetoothStateText.setText(msg);
             if (getContext().getString(R.string.reportBoundTip).equals(msg)) {
@@ -936,12 +945,21 @@ public class NormalFragment extends BaseFragment implements View.OnTouchListener
                 break;
 
             case R2.id.tv_more_data:
-                toReportActivity();
+                toMoreActivity();
                 break;
 
         }
     }
 
+    private void toMoreActivity() {
+        Intent intent = new Intent(getActivity(), HaierReportActivity.class);
+        intent.putExtra(HaierReportActivity.INTENT_KEY_WEIGHT, mCurrentWeightEntity);
+        intent.putExtra(HaierReportActivity.INTENT_KEY_LAST_WEIGHT, mLastWeightEntity);
+        intent.putExtra(HaierReportActivity.INTENT_KEY_FROM_HOME, true);
+        intent.putExtra("useId", roleInfo.getUseId());
+        startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.slide_bottom_in, 0);
+    }
 
     /**
      * 匹配查询家庭成员
@@ -966,16 +984,16 @@ public class NormalFragment extends BaseFragment implements View.OnTouchListener
 
                         if (matchModel.getCode().equals("200")) {
                             weightDialog.setMatchVisibility(true);
-                            WeightDialog.setProgressVisibility(false);
+                            weightDialog.setProgressVisibility(false);
                             weightDialog.setResultVisibility(false);
-                            WeightDialog.setMatchWeight(weight);
+                            weightDialog.setMatchWeight(weight);
                             weightDialog.setMatchModel(matchModel);
-                            WeightDialog.setTitle("匹配到家庭成员");
+                            weightDialog.setTitle("匹配到家庭成员");
                         } else {
                             weightDialog.setResultVisibility(true);
-                            WeightDialog.setProgressVisibility(false);
+                            weightDialog.setProgressVisibility(false);
                             weightDialog.setMatchVisibility(false);
-                            WeightDialog.setTitle("海尔智能体脂秤-Q81W");
+                            weightDialog.setTitle("海尔智能体脂秤-Q81W");
                             weightDialog.setPersonlData("BMI: " + df.format(bmi), roleInfo.getNickname(), weight,
                                     df.format(axunge) + "", df.format(bone) + "", df.format(muscle) + "");
                         }
@@ -1033,4 +1051,143 @@ public class NormalFragment extends BaseFragment implements View.OnTouchListener
 //        ScaleParser.getInstance(getActivity()).setScale(new ScaleInfo());
 //
 //    }
+
+    // ------------------------------ 蓝牙 start --------------------------------------------
+    private static final int ADD_ROLE_REQUEST = 12;
+    private static final int REQUEST_CODE_LOCATION_SETTINGS = 88;
+    /**
+     * 蓝牙管理类
+     */
+    private BLEController mBleController;
+    private SoundPlayer mSoundPlayer;
+    /**
+     * 是否正在弹窗让用户选择多用户匹配
+     */
+    private boolean mV14MatchingUser = false;
+    /**
+     * 从蓝牙获得的体重信息？
+     */
+    private WeightEntity mMatchWeight;
+    /**
+     * 蓝牙状态标志
+     */
+    private int mBluetoothState;
+    /**
+     * 蓝牙状态消息
+     */
+    private String mBluetoothMsg;
+    private int historyCount;
+
+    private ScaleParser mScalePresser;
+
+    private static final int REQUEST_ENABLE_BT = 1;
+    private static final int REQUEST_FINE_LOCATION = 0;
+    private BleHelper mBle;
+    private boolean mScanning;
+    Handler myhandler = new Handler();
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mBleController = BLEController.create(getContext());
+    }
+
+
+//    private BLEController.OnBlEChangeListener onBlEChangeListener = new BLEController.OnBlEChangeListener() {
+//
+//        /**
+//         * 匹配用户回调（用于OKOK V1.5秤）
+//         * @param entity 当前测量结果(包含体重和单位)
+//         * @param matchedRoleList 相近体重用户列表
+//         */
+//        public void onMachRole(final WeightEntity entity, final ArrayList<Integer> matchedRoleList) {
+//            if (getActivity() == null) return;
+//            if (!mV14MatchingUser) {
+//                mV14MatchingUser = true;
+//                getActivity().runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        onMachWeightEntity(entity, matchedRoleList);
+//                    }
+//                });
+//            }
+//        }
+//
+//        /**
+//         * 测量结果回调(对所有秤有效)
+//         * @param isLock 表示当前测量结果是否锁定
+//         * @param data 测量结果（非锁定仅包含体重、单位；锁定数据包含体重、单位、脂肪等）
+//         */
+//        public void onDataChange(final boolean isLock, final WeightEntity data) {
+//            if (getActivity() == null) return;
+//            if (!isLock) {
+//                mV14MatchingUser = false;
+//            }
+//            if (!Account.getInstance(getContext()).isAccountLogined()) {
+//                data.setAxunge(0);
+//            }
+//            getActivity().runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    if (getContext() == null) return;
+//                    onShowBluetoothTempWeightData(true, isLock, data);
+//                    if (isLock) {
+//                        onWeight(data);
+//                    }
+//                }
+//            });
+//        }
+//
+//        /**
+//         * 蓝牙状态改变回调
+//         * @param state 当前蓝牙状态
+//         * @param msg 蓝牙状态消息
+//         * @param currentImge 蓝牙状态对应图标
+//         */
+//        @Override
+//        public void onStateChange(final int state, final String msg, final int currentImge) {
+//            if (state == 2 || state == 0) {
+//                if (mBle != null) {
+//                    mBle.stopScan();
+//                    myhandler.removeCallbacksAndMessages(null);
+//                }
+//            }
+//            if (getActivity() == null) {
+//                return;
+//            }
+//
+//            mBluetoothState = state;
+//            mBluetoothMsg = msg;
+//
+//            if (state == CsBtUtil_v11.STATE_BLE_CLOSE || state == CsBtUtil_v11.STATE_BLE_OPEN || state == CsBtUtil_v11.STATE_CLOSE) {
+//                mV14MatchingUser = false;
+//            }
+//
+////            getActivity().runOnUiThread(new Runnable() {
+////                @Override
+////                public void run() {
+////                    setBLEState(currentImge);
+////                }
+////            });
+//        }
+//
+//        @Override
+//        public void onBound(ScaleInfo scaleInfo, String value, int tip) {
+//        }
+//
+//        /**
+//         * 同步历史数据回调
+//         * @param weightEntities 历史数据
+//         */
+//        public void syncHistoryEnd(List<PutBase> weightEntities) {
+//            if (weightEntities != null && !weightEntities.isEmpty()) {
+//                historyCount = weightEntities.size();
+//            }
+////            if (null != mCurFragment && mCurFragment.isAdded()) {
+////                mCurFragment.setMsgLayout(mBluetoothIcon);
+////            }
+//        }
+//    };
+
+
 }

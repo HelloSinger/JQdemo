@@ -106,6 +106,7 @@ public class WeightDialog extends Dialog implements View.OnClickListener {
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rv_family.setLayoutManager(linearLayoutManager);
         dialogRecyAdapter = new DialogRecyAdapter(getContext());
+        rv_family.setAdapter(dialogRecyAdapter);
 //        dialogRecyAdapter.setUserDataList();
         iv_close_dialog.setOnClickListener(this);
     }
@@ -144,7 +145,7 @@ public class WeightDialog extends Dialog implements View.OnClickListener {
      *
      * @param b
      */
-    public void setMatchVisibility(boolean b) {
+    public  void setMatchVisibility(boolean b) {
         if (b) {
             ll_match.setVisibility(View.VISIBLE);
             tv_count_time.setVisibility(View.VISIBLE);
@@ -160,7 +161,7 @@ public class WeightDialog extends Dialog implements View.OnClickListener {
      *
      * @param
      */
-    private void startTimes() {
+    private  void startTimes() {
         countDownTimers = new CountDownTimers(30000, 1000);
         countDownTimers.start();
     }
@@ -275,7 +276,8 @@ public class WeightDialog extends Dialog implements View.OnClickListener {
 
         @Override
         public void onFinish() {
-            dismiss();
+           dismiss();
         }
     }
+
 }

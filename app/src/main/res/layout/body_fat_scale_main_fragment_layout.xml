@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/icon_bg">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/tv_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/px90"
+            android:layout_marginTop="@dimen/px51"
+            android:background="@mipmap/icon_bind_report" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/px20"
+            android:layout_marginTop="@dimen/px70"
+            android:layout_toRightOf="@id/tv_report"
+            android:text="体质报告"
+            android:textColor="@color/white"
+            android:textSize="@dimen/px24" />
+
+        <TextView
+            android:id="@+id/tv_unserstand_scene"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/px65"
+            android:layout_marginRight="@dimen/px30"
+            android:background="@drawable/tv_understand_scene_bg"
+            android:drawableLeft="@mipmap/icon_understand_the_scene"
+            android:drawablePadding="@dimen/px26"
+            android:paddingLeft="@dimen/px30"
+            android:paddingTop="@dimen/px11"
+            android:paddingBottom="@dimen/px11"
+            android:text="了解场景"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_circle"
+        android:layout_width="@dimen/px540"
+        android:layout_height="@dimen/px540"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/px280"
+        android:background="@mipmap/icon_bind_circle">
+
+        <LinearLayout
+            android:id="@+id/ll_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/px220"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="@dimen/px84"
+                android:layout_height="@dimen/px8"
+                android:background="@color/white" />
+
+            <View
+                android:layout_width="@dimen/px84"
+                android:layout_height="@dimen/px8"
+                android:layout_marginLeft="@dimen/px20"
+                android:background="@color/white" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="@dimen/px280"
+            android:layout_height="@dimen/px2"
+            android:layout_below="@id/ll_line"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/px20"
+            android:layout_marginTop="@dimen/px70"
+            android:background="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_line"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/px40"
+            android:text="体   重"
+            android:textColor="@color/white"
+            android:textSize="@dimen/px32" />
+    </RelativeLayout>
+
+
+    <ImageView
+        android:id="@+id/iv_curve"
+        android:layout_width="@dimen/px868"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_circle"
+        android:layout_centerHorizontal="true"
+        android:background="@mipmap/icon_curve_bg" />
+
+    <View
+        android:id="@+id/view_h"
+        android:layout_width="@dimen/px868"
+        android:layout_height="@dimen/px1"
+        android:layout_below="@id/iv_curve"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white" />
+
+
+    <View
+        android:id="@+id/view_v"
+        android:layout_width="@dimen/px1"
+        android:layout_height="@dimen/px418"
+        android:layout_below="@id/view_h"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white" />
+
+
+    <View
+        android:layout_width="@dimen/px868"
+        android:layout_height="@dimen/px1"
+        android:layout_below="@id/view_h"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/px209"
+        android:background="@color/white" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_bmi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_h"
+        android:layout_marginLeft="@dimen/px170"
+        android:layout_marginTop="@dimen/px65"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/px68"
+            android:layout_height="@dimen/px68"
+            android:background="@mipmap/icon_bmi" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/px114"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/px38"
+                    android:layout_height="@dimen/px4"
+                    android:background="@color/white" />
+
+                <View
+                    android:layout_width="@dimen/px38"
+                    android:layout_height="@dimen/px4"
+                    android:layout_marginLeft="@dimen/px6"
+                    android:background="@color/white" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/px10"
+                android:text="BMI"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px20" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_h"
+        android:layout_marginLeft="@dimen/px220"
+        android:layout_marginTop="@dimen/px65"
+        android:layout_toRightOf="@id/ll_bmi"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/px68"
+            android:layout_height="@dimen/px68"
+            android:background="@mipmap/icon_bone_weight" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/px114"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/px38"
+                    android:layout_height="@dimen/px4"
+                    android:background="@color/white" />
+
+                <View
+                    android:layout_width="@dimen/px38"
+                    android:layout_height="@dimen/px4"
+                    android:layout_marginLeft="@dimen/px6"
+                    android:background="@color/white" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/px10"
+                android:text="骨重"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px20" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_body_fat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_bmi"
+        android:layout_marginLeft="@dimen/px170"
+        android:layout_marginTop="@dimen/px170"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/px68"
+            android:layout_height="@dimen/px68"
+            android:background="@mipmap/icon_body_fat_rate" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/px114"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/px38"
+                    android:layout_height="@dimen/px4"
+                    android:background="@color/white" />
+
+                <View
+                    android:layout_width="@dimen/px38"
+                    android:layout_height="@dimen/px4"
+                    android:layout_marginLeft="@dimen/px6"
+                    android:background="@color/white" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/px10"
+                android:text="体脂率"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px20" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_bone"
+        android:layout_marginLeft="@dimen/px220"
+        android:layout_marginTop="@dimen/px170"
+        android:layout_toRightOf="@id/ll_body_fat"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/px68"
+            android:layout_height="@dimen/px68"
+            android:background="@mipmap/icon_rate_of_muscle" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/px114"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/px38"
+                    android:layout_height="@dimen/px4"
+                    android:background="@color/white" />
+
+                <View
+                    android:layout_width="@dimen/px38"
+                    android:layout_height="@dimen/px4"
+                    android:layout_marginLeft="@dimen/px6"
+                    android:background="@color/white" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/px10"
+                android:text="肌肉率"
+                android:textColor="@color/white"
+                android:textSize="@dimen/px20" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px400"
+        android:layout_below="@id/view_v"
+        android:layout_marginTop="@dimen/px30">
+
+        <com.haiersmart.bodyfatscale.myview.DynamicWave2
+            android:id="@+id/mDynamicView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px50" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/mDynamicView"
+            android:background="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_bind_device"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/px120"
+            android:background="@drawable/tv_understand_scene_bg"
+            android:drawableLeft="@mipmap/icon_bind"
+            android:drawablePadding="@dimen/px26"
+            android:paddingLeft="@dimen/px40"
+            android:paddingTop="@dimen/px11"
+            android:paddingBottom="@dimen/px11"
+            android:text="绑 定"
+            android:textColor="@color/white" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:id="@+id/tv_jk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/px120"
+                android:text="@string/tv_jiankang"
+                android:textColor="@color/tv_3E6ECC"
+                android:textSize="@dimen/px24"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/view_one"
+                android:layout_width="1px"
+                android:layout_height="@dimen/px140"
+                android:layout_marginLeft="@dimen/px32"
+                android:layout_toRightOf="@id/tv_jk"
+                android:background="@color/tv_4B83E9" />
+
+            <TextView
+                android:id="@+id/tv_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px32"
+                android:layout_toRightOf="@id/view_one"
+                android:text="@string/tv_bind_device"
+                android:textColor="@color/tv_4B83E9"
+                android:textSize="@dimen/px24"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_one"
+                android:layout_marginLeft="@dimen/px32"
+                android:layout_marginTop="@dimen/px70"
+                android:layout_toRightOf="@id/view_one"
+                android:text="@string/tv_q81w"
+                android:textColor="@color/tv_4B83E9"
+                android:textSize="@dimen/px20" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="@dimen/px62"
+        android:layout_height="@dimen/px62"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/px40"
+        android:background="@mipmap/icon_back" />
+
+</RelativeLayout>
