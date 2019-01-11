@@ -542,6 +542,7 @@
                         android:layout_width="170px"
                         android:layout_height="44px"
                         android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10px"
                         android:background="@mipmap/icon_tv_bmi_bg"
                         android:orientation="horizontal">
 
@@ -588,7 +589,7 @@
 
                 <include
                     android:id="@+id/mWeightUnit1"
-                    layout="@layout/item_component_layout"
+                    layout="@layout/item_weight_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="90px"
                     android:layout_marginLeft="141px"
@@ -597,7 +598,7 @@
 
                 <include
                     android:id="@+id/mFatUnit1"
-                    layout="@layout/item_component_layout"
+                    layout="@layout/item_body_fat_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="90px"
                     android:layout_marginLeft="80px"
@@ -606,7 +607,7 @@
 
                 <include
                     android:id="@+id/mBoneUnit1"
-                    layout="@layout/item_component_layout"
+                    layout="@layout/item_bone_weight_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/mWeightUnit1"
@@ -616,7 +617,7 @@
 
                 <include
                     android:id="@+id/mMuscleUnit1"
-                    layout="@layout/item_component_layout"
+                    layout="@layout/item_muscle_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/mWeightUnit1"
@@ -716,7 +717,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="50px"
-                            android:text="你的体重比上次重了"
+                            android:text=""
                             android:textColor="@color/tv_6EABFF"
                             android:textSize="18px" />
 
@@ -725,7 +726,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="50px"
-                            android:text="2KG"
+                            android:text=""
                             android:textColor="@color/tv_6EABFF"
                             android:textSize="18px" />
 
@@ -741,7 +742,7 @@
                         android:layout_marginTop="20px"
                         android:lineSpacingExtra="5dp"
                         android:maxEms="20"
-                        android:text="身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，你的体重闭上次重了：2KG身体得分：90分，\n你的体重闭上次重了：2KG"
+                        android:text=""
                         android:textColor="@color/tv_6EABFF"
                         android:textSize="18px" />
 

@@ -9,12 +9,18 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
+import com.haiersmart.user.sdk.UserUtils;
+import com.jq.btc.ConstantUrl;
+import com.jq.btc.InitActivity;
 import com.jq.btc.adapter.ViewPagerMainAdapter;
 import com.jq.btc.app.R;
 import com.jq.btc.app.R2;
@@ -24,6 +30,8 @@ import com.jq.btc.bluettooth.WeightMatchingActivity;
 import com.jq.btc.helper.WeighDataParser;
 import com.jq.btc.homePage.NewMainActivity;
 import com.jq.btc.kitchenscale.ble.BleHelper;
+import com.jq.btc.model.UserData;
+import com.jq.btc.utils.SpUtils;
 import com.jq.btlib.util.CsBtUtil_v11;
 import com.jq.code.code.business.Account;
 import com.jq.code.code.business.ScaleParser;
@@ -31,10 +39,14 @@ import com.jq.code.code.business.SoundPlayer;
 import com.jq.code.code.db.RoleDB;
 import com.jq.code.code.db.WeightTmpDB;
 import com.jq.code.code.util.LogUtil;
+import com.jq.code.model.AccountEntity;
 import com.jq.code.model.PutBase;
 import com.jq.code.model.RoleInfo;
 import com.jq.code.model.ScaleInfo;
 import com.jq.code.model.WeightEntity;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +56,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.LOCATION_SERVICE;
 
 /**
  * 海尔动态页
@@ -58,9 +71,9 @@ public class HomeFragment extends Fragment {
     @BindView(R2.id.vp_main)
     ViewPager vp_main;
     Unbinder unbinder;
-
+    UserData userData;
     private ViewPagerMainAdapter viewPagerMainAdapter;
-    private List<Fragment> fragments;
+    private List<NormalFragment> fragments;
 
     private Handler mHandler = new Handler();
     private RoleInfo mCurRoleInfo;
@@ -72,7 +85,7 @@ public class HomeFragment extends Fragment {
     private boolean mShouldRefresh = false;
     private RadioButton radioButton;
     private NewMainActivity context;
-//    private BaseFragment fragment;
+
 
     @SuppressLint("ValidFragment")
     public HomeFragment(RadioButton radioButton, NewMainActivity context) {
@@ -85,33 +98,34 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_haier_home, null, false);
         unbinder = ButterKnife.bind(this, view);
+        getUseList();
         initValue();
         return view;
     }
 
     private void initValue() {
         loadDataAndShowView();
-        getUserList();
     }
 
     private void loadDataAndShowView() {
         mShouldRefresh = false;
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                showFragment(curEntity, lastEntity);
-            }
-        });
+        showFragment(curEntity, lastEntity);
+//        mHandler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                showFragment(curEntity, lastEntity);
+//            }
+//        });
     }
 
     private void showFragment(WeightEntity currentEntity, WeightEntity lastEntity) {
-        BaseFragment fragment = null;
+        NormalFragment fragment = null;
         fragments = new ArrayList<>();
 
-        for (int i = 0; i < 2; i++) {
-            fragment = new NormalFragment(radioButton, this);
-            fragments.add(fragment);
-        }
+//        for (int i = 0; i <2; i++) {
+//            fragment = new NormalFragment(radioButton, this);
+//            fragments.add(fragment);
+//        }
         fragment.setWeightEntity(currentEntity, lastEntity);
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
 //        if (mCurFragment != null) {
@@ -137,7 +151,7 @@ public class HomeFragment extends Fragment {
 
     public void setWaveViewVisible(boolean visible) {
         if (null != mCurFragment) {
-            mCurFragment.setWaveViewVisible(visible);
+//            mCurFragment.setWaveViewVisible(visible);
         }
     }
 
@@ -165,9 +179,24 @@ public class HomeFragment extends Fragment {
         unbinder.unbind();
     }
 
-    private void getUserList() {
+    private void getUseList() {
+        JSONObject use = new JSONObject();
+        use.put("user_id", UserUtils.get().userId());
+        JSONObject data = new JSONObject();
+        data.put("app", use);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("verify_info", data);
+        Log.e("AYD", "--->" + jsonObject.toJSONString());
+        OkGo.<String>post(ConstantUrl.GET_USER_URL)
+                .upJson(String.valueOf(jsonObject))
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        userData = new Gson().fromJson(response.body(), UserData.class);
+                        Log.e("AYD", "onSuccess: " + userData.getData().getMemberList().size());
 
-
+                    }
+                });
     }
 
     // ------------------------------ 蓝牙 start --------------------------------------------
@@ -250,7 +279,7 @@ public class HomeFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_LOCATION_SETTINGS) {
             if (null != mCurFragment && mCurFragment.isAdded()) {
-                mCurFragment.setMsgLayout(mBluetoothIcon);
+//                mCurFragment.setMsgLayout(mBluetoothIcon);
             }
         } else if (resultCode == RESULT_OK && requestCode == ADD_ROLE_REQUEST) {
             if (data != null) {
@@ -353,9 +382,14 @@ public class HomeFragment extends Fragment {
      * @param entity 体重数据
      */
     private void onShowBluetoothTempWeightData(boolean needShowAnim, boolean isLock, WeightEntity entity) {
-        if (null != mCurFragment && mCurFragment.isAdded()) {
-            mCurFragment.setTempBluetoothWeight(entity);
+        for (NormalFragment fragment : fragments) {
+            fragment.setTempBluetoothWeight(entity);
         }
+
+//        NormalFragment fragment = (NormalFragment) fragments.get(0);
+////        if (null != mCurFragment && mCurFragment.isAdded()) {
+//        fragment.setTempBluetoothWeight(entity);
+//        }
     }
 
     /**
@@ -562,8 +596,10 @@ public class HomeFragment extends Fragment {
                 historyCount = weightEntities.size();
             }
             if (null != mCurFragment && mCurFragment.isAdded()) {
-                mCurFragment.setMsgLayout(mBluetoothIcon);
+//                mCurFragment.setMsgLayout(mBluetoothIcon);
             }
         }
     };
+
+
 }

@@ -36,7 +36,7 @@ public abstract class BaseFragment extends Fragment {
         initValue();
     }
 
-    public abstract void setWaveViewVisible(boolean visible);
+//    public abstract void setWaveViewVisible(boolean visible);
     /**
      * 点击弹出角色列表
      *
@@ -55,7 +55,7 @@ public abstract class BaseFragment extends Fragment {
                     }
                 } else {
                     Account.getInstance(getContext()).setRoleInfo(roleInfo);
-                    doChangeRole();
+//                    doChangeRole();
                 }
             }
         });
@@ -98,17 +98,17 @@ public abstract class BaseFragment extends Fragment {
             if (data != null) {
                 RoleInfo roleInfo = data.getParcelableExtra(RoleInfo.ROLE_KEY);
                 Account.getInstance(getContext()).setRoleInfo(roleInfo);
-                doChangeRole();
+//                doChangeRole();
             }
         }
     }
 
-    protected void doChangeRole() {
-        // 同步角色信息到1.2协议秤
-        BLEController.create(getContext()).reSelecteRole12();
-        HomeFragment homeFragment = (HomeFragment) getParentFragment();
-        homeFragment.onRoleChange();
-    }
+//    protected void doChangeRole() {
+//        // 同步角色信息到1.2协议秤
+//        BLEController.create(getContext()).reSelecteRole12();
+//        HomeFragment homeFragment = (HomeFragment) getParentFragment();
+//        homeFragment.onRoleChange();
+//    }
 
     protected abstract void initValue();
 
@@ -117,7 +117,7 @@ public abstract class BaseFragment extends Fragment {
      *
      * @param bluetoothIcon 蓝牙图标
      */
-    public abstract void setMsgLayout(int bluetoothIcon);
+//    public abstract void setMsgLayout(int bluetoothIcon);
 
     /**
      * 显示蓝牙秤得到的未锁定的体重数据，即临时的未锁定的体重

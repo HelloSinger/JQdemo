@@ -170,7 +170,7 @@ public class DynamicWave2 extends SurfaceView {
                         }
                         mHolder.unlockCanvasAndPost(canvas);
                         // 引发view重绘，一般可以考虑延迟20-30ms重绘，空出时间片
-                        Thread.sleep(30);
+                        Thread.sleep(20);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

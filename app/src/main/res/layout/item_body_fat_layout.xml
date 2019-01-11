@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rl_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="90px">
+
+        <ImageView
+            android:id="@+id/mTypeIcon1"
+            android:layout_width="64px"
+            android:layout_height="64px"
+            android:background="@mipmap/icon_body_fat_rate" />
+
+        <TextView
+            android:id="@+id/tv_body_fat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50px"
+            android:layout_toRightOf="@id/mTypeIcon1"
+            android:text="- -"
+            android:textColor="@color/white"
+            android:textSize="50px" />
+
+
+        <TextView
+            android:id="@+id/mTypeName1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_body_fat"
+            android:layout_marginLeft="120px"
+            android:text="体脂率"
+            android:textColor="@color/white"
+            android:textSize="20px" />
+
+        <TextView
+            android:id="@+id/tv_body_fat_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/mTypeName1"
+            android:layout_toRightOf="@id/tv_body_fat"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="20px" />
+    </RelativeLayout>
+</RelativeLayout>

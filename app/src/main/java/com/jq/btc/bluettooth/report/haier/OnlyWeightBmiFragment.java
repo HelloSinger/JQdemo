@@ -229,7 +229,7 @@ public class OnlyWeightBmiFragment extends Fragment {
             holder.iconView.setImageResource(item.mIconRes);
             holder.nameView.setText(item.nameRes);
             holder.mValueText.setText(item.valueText);
-            if (-1 != item.mLevelTextRes) {
+            if (null != item.mLevelTextRes) {
                 holder.mLevelText.setVisibility(View.VISIBLE);
 
                 holder.mLevelText.setText(item.mLevelTextRes);

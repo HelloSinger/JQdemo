@@ -196,7 +196,7 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
     }
 
     public void showViewpager(boolean isAnima) {
-        toActivity(isAnima);
+//        toActivity(isAnima);
     }
 
     private void toActivity(boolean isAnima) {
@@ -213,9 +213,7 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-
                         UserData userData = new Gson().fromJson(response.body(), UserData.class);
-
                         ArrayList<String> useid = new ArrayList<>();
                         for (int i = 0; i < userData.getData().getMemberList().size(); i++) {
                             useid.add(userData.getData().getMemberList().get(i).getFamilyMemeberId());
@@ -247,39 +245,40 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
 
                     }
                 });
-
-//        AccountEntity af = new AccountEntity();
-//        af.setId(100);
-//        af.setAccess_token("sss");
-//        af.setWeixin("123123");
-//        Account.getInstance(this).setAccountInfo(af);
-//        RoleInfo roleInfo = new RoleInfo();
-//        roleInfo.setSex("男");
-//        roleInfo.setNickname("测试");
-//        roleInfo.setHeight(180);
-//        roleInfo.setAccount_id(195871);
-//        roleInfo.setBirthday("1990-09-09");
-//        roleInfo.setId(1993456);
-//        roleInfo.setCurrent_state(1);
-//        roleInfo.setCreate_time("2018-11-29 11:01:11");
-//        roleInfo.setWeight_init(70);
-//        roleInfo.setWeight_goal(70);
-//        roleInfo.setRole_type(0);
-//        Account.getInstance(this).setRoleInfo(roleInfo);
-        Log.e("AYD", "---->" + UserUtils.get().familyId());
-        Log.e("AYD", "---->" + UserUtils.get().userId());
-
-
-        // 初始化单位
-//        Intent intent = new Intent();
-//        intent.setClass(InitActivity.this, NewMainActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-//        startActivity(intent);
-//        this.finish();
-//        if (isAnima) {
-//            overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
-//        }
     }
+//
+////        AccountEntity af = new AccountEntity();
+////        af.setId(100);
+////        af.setAccess_token("sss");
+////        af.setWeixin("123123");
+////        Account.getInstance(this).setAccountInfo(af);
+////        RoleInfo roleInfo = new RoleInfo();
+////        roleInfo.setSex("男");
+////        roleInfo.setNickname("测试");
+////        roleInfo.setHeight(180);
+////        roleInfo.setAccount_id(195871);
+////        roleInfo.setBirthday("1990-09-09");
+////        roleInfo.setId(1993456);
+////        roleInfo.setCurrent_state(1);
+////        roleInfo.setCreate_time("2018-11-29 11:01:11");
+////        roleInfo.setWeight_init(70);
+////        roleInfo.setWeight_goal(70);
+////        roleInfo.setRole_type(0);
+////        Account.getInstance(this).setRoleInfo(roleInfo);
+//        Log.e("AYD", "---->" + UserUtils.get().familyId());
+//        Log.e("AYD", "---->" + UserUtils.get().userId());
+//
+//
+//        // 初始化单位
+////        Intent intent = new Intent();
+////        intent.setClass(InitActivity.this, NewMainActivity.class);
+////        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+////        startActivity(intent);
+////        this.finish();
+////        if (isAnima) {
+////            overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
+////        }
+//    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

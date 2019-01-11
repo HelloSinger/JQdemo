@@ -86,6 +86,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/sliding_translucent" />
         <activity
+            android:name="com.jq.btc.bluettooth.report.haier.BodyFatMoreDataActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/sliding_translucent" />
+        <activity
             android:name="com.jq.btc.mine.DeviceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/sliding_translucent" />

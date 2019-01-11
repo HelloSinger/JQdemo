@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
@@ -21,38 +22,44 @@ import android.widget.TextView;
 import com.jq.btc.adapter.DialogRecyAdapter;
 import com.jq.btc.app.R;
 import com.jq.btc.model.MatchModel;
+import com.jq.btc.model.UserData;
 
 /**
  * Create by AYD on 2018/12/7
+ * 计算, 匹配, 详细数据弹窗
  */
-public class WeightDialog extends Dialog implements View.OnClickListener {
-    private static TextView tv_count_time;
-    private static ImageView iv_progress;
-    private static RelativeLayout rl_progress;
-    private static ImageView iv_close_dialog;
-    private static TextView tv_dialog_weight_cal;
-    private static TextView tv_title_dialog;//title
+public class WeightDialog extends Dialog implements View.OnClickListener, DialogRecyAdapter.RecyItemOnClickListener {
+    //----以下显示计算中的布局
+    private TextView tv_count_time;
+    private ImageView iv_progress;
+    private RelativeLayout rl_progress;
+    private ImageView iv_close_dialog;
+    private TextView tv_dialog_weight_cal;
+    private TextView tv_title_dialog;//title
     //-----以下是显示各项数据布局
-    private static LinearLayout ll_result;
-    private static TextView tv_dialog_name;
-    private static TextView tv_dialog_weight;
-    private static TextView tv_dialog_bmi;
-    private static TextView tv_dialog_style;
-    private static ImageView iv_dialog_head;
-    private static TextView tv_body_fat;
-    private static TextView tv_bone_weight;
-    private static TextView tv_muscle_rate;
-
+    private LinearLayout ll_result;
+    private TextView tv_dialog_name;
+    private TextView tv_dialog_weight;
+    private TextView tv_dialog_bmi;
+    private TextView tv_dialog_style;
+    private ImageView iv_dialog_head;
+    private TextView tv_body_fat;
+    private TextView tv_bone_weight;
+    private TextView tv_muscle_rate;
     //------以下是匹配家庭成员数据
-    private static LinearLayout ll_match;
-    private static TextView tv_dialog_weight_match;
-    private static TextView tv_add_family;//添加成员
-    private static RecyclerView rv_family;
+    private LinearLayout ll_match;
+    private TextView tv_dialog_weight_match;
+    private TextView tv_add_family;//添加成员
+    private RecyclerView rv_family;
     private DialogRecyAdapter dialogRecyAdapter;
 
-    private MatchModel matchModel;
+    private UserData userData;
 
-    private static CountDownTimers countDownTimers;
+    private static CountDownTimers countDownTimersMatch;
+    private static CountDownTimers countDownTimersData;
+    private DiaLogRecyItemOnClick diaLogRecyItemOnClick;
+
+    private WeightDialog weightDialog;
 
     public WeightDialog(@NonNull Context context) {
         super(context);
@@ -66,16 +73,20 @@ public class WeightDialog extends Dialog implements View.OnClickListener {
         super(context, cancelable, cancelListener);
     }
 
+    public void setUserData(UserData userData) {
+        this.userData = userData;
+        Log.e("ADY", "setUserDataList: " + userData.getData().getMemberList().size());
 
-    public void setMatchModel(MatchModel matchModel) {
-        this.matchModel = matchModel;
+    }
+
+    public void setDiaLogRecyItemOnClick(DiaLogRecyItemOnClick diaLogRecyItemOnClick) {
+        this.diaLogRecyItemOnClick = diaLogRecyItemOnClick;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.weight_dialog_layout);
-
         initView();
         setAnimator();
     }
@@ -101,13 +112,11 @@ public class WeightDialog extends Dialog implements View.OnClickListener {
         tv_muscle_rate = findViewById(R.id.tv_muscle_rate);
         tv_dialog_weight_match = findViewById(R.id.tv_dialog_weight_match);
         tv_add_family = findViewById(R.id.tv_add_family);
+        tv_add_family.setOnClickListener(this);
         rv_family = findViewById(R.id.rv_family);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rv_family.setLayoutManager(linearLayoutManager);
-        dialogRecyAdapter = new DialogRecyAdapter(getContext());
-        rv_family.setAdapter(dialogRecyAdapter);
-//        dialogRecyAdapter.setUserDataList();
         iv_close_dialog.setOnClickListener(this);
     }
 
@@ -116,11 +125,12 @@ public class WeightDialog extends Dialog implements View.OnClickListener {
      *
      * @param b
      */
-    public  void setResultVisibility(boolean b) {
+    public void setResultVisibility(boolean b) {
         if (b) {
             ll_result.setVisibility(View.VISIBLE);
             tv_count_time.setVisibility(View.VISIBLE);
-            startTimes();
+            countDownTimersMatch.cancel();
+            startTimesData();
         } else {
             ll_result.setVisibility(View.GONE);
         }
@@ -131,7 +141,7 @@ public class WeightDialog extends Dialog implements View.OnClickListener {
      *
      * @param b
      */
-    public static void setProgressVisibility(boolean b) {
+    public void setProgressVisibility(boolean b) {
         if (b) {
             rl_progress.setVisibility(View.VISIBLE);
             tv_count_time.setVisibility(View.GONE);
@@ -145,11 +155,14 @@ public class WeightDialog extends Dialog implements View.OnClickListener {
      *
      * @param b
      */
-    public  void setMatchVisibility(boolean b) {
+    public void setMatchVisibility(boolean b) {
         if (b) {
             ll_match.setVisibility(View.VISIBLE);
+            dialogRecyAdapter = new DialogRecyAdapter(getContext(), userData);
+            dialogRecyAdapter.setRecyItemOnClickListener(this);
+            rv_family.setAdapter(dialogRecyAdapter);
             tv_count_time.setVisibility(View.VISIBLE);
-            startTimes();
+            startTimesMatch();
         } else {
             ll_match.setVisibility(View.GONE);
         }
@@ -157,21 +170,24 @@ public class WeightDialog extends Dialog implements View.OnClickListener {
 
 
     /**
-     * 设置倒计时时间
+     * 设置匹配倒计时时间
      *
      * @param
      */
-    private  void startTimes() {
-        countDownTimers = new CountDownTimers(30000, 1000);
-        countDownTimers.start();
+    private void startTimesMatch() {
+        countDownTimersMatch = new CountDownTimers(30000, 1000);
+        countDownTimersMatch.start();
     }
-
+    private void startTimesData() {
+        countDownTimersData = new CountDownTimers(30000, 1000);
+        countDownTimersData.start();
+    }
     /**
      * 设置体重
      *
      * @param t
      */
-    public static void setWeigth(String t) {
+    public void setWeigth(String t) {
         tv_dialog_weight_cal.setText(t);
     }
 
@@ -180,7 +196,7 @@ public class WeightDialog extends Dialog implements View.OnClickListener {
      *
      * @param weight
      */
-    public static void setMatchWeight(String weight) {
+    public void setMatchWeight(String weight) {
         tv_dialog_weight_match.setText(weight);
     }
 
@@ -189,7 +205,7 @@ public class WeightDialog extends Dialog implements View.OnClickListener {
      *
      * @param t
      */
-    public static void setTitle(String t) {
+    public void setTitle(String t) {
         tv_title_dialog.setText(t);
     }
 
@@ -228,12 +244,18 @@ public class WeightDialog extends Dialog implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.iv_close_dialog:
                 dismiss();
+                weightDialog = null;
+                break;
+            case R.id.tv_add_family:
+                Intent intent = new Intent();
+                intent.setAction("com.unilife.fridge.app.family.add");
+                getContext().startActivity(intent);
                 break;
         }
     }
 
 
-    public static void setStyle(String style) {
+    public void setStyle(String style) {
         tv_dialog_style.setText(style);
     }
 
@@ -244,13 +266,27 @@ public class WeightDialog extends Dialog implements View.OnClickListener {
      * @param name
      * @param weight
      */
-    public static void setPersonlData(String bmi, String name, String weight, String bodyFat, String boneWeight, String muscleRate) {
+    public void setPersonlData(String bmi, String name, String weight, String bodyFat, String boneWeight, String muscleRate) {
         tv_dialog_bmi.setText(bmi);
         tv_dialog_name.setText(name);
         tv_dialog_weight.setText(weight);
         tv_body_fat.setText(bodyFat);
         tv_bone_weight.setText(boneWeight);
         tv_muscle_rate.setText(muscleRate);
+    }
+
+    /**
+     * 匹配弹窗item点击事件
+     *
+     * @param pos
+     */
+    @Override
+    public void itemOnClickListener(int pos) {
+        diaLogRecyItemOnClick.itemOnClickListener(pos);
+    }
+
+    public interface DiaLogRecyItemOnClick {
+        void itemOnClickListener(int pos);
     }
 
     /**
@@ -276,7 +312,7 @@ public class WeightDialog extends Dialog implements View.OnClickListener {
 
         @Override
         public void onFinish() {
-           dismiss();
+            dismiss();
         }
     }
 

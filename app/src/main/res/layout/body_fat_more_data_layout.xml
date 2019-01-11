@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/mLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50px"
+        android:layout_marginTop="40px">
+
+        <TextView
+            android:id="@+id/tv_metabolism_name"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px"
+            tools:text="基础代谢" />
+
+        <ProgressBar
+            android:id="@+id/pb_metabolism"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="544px"
+            android:layout_height="16px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24px"
+            android:layout_toRightOf="@id/tv_metabolism_name"
+            android:background="@drawable/progressbar_bg"
+            android:indeterminate="false"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progress="20"
+            android:progressDrawable="@drawable/progressbar_drawable_2db4a3" />
+
+        <TextView
+            android:id="@+id/tv_metabolism"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25px"
+            android:layout_toRightOf="@id/pb_metabolism"
+            android:text="10012"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:id="@+id/mUnitText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_metabolism"
+            android:paddingTop="2dp"
+            android:text="千焦/日"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:id="@+id/tv_metabolism_level"
+            android:layout_width="93px"
+            android:layout_height="36px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="64px"
+            android:background="@drawable/shape_rectangle_green_bg"
+            android:gravity="center"
+            android:minWidth="40dp"
+            android:textColor="@color/white"
+            android:textSize="24px"
+            tools:text="过多" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50px"
+        android:layout_marginTop="40px">
+
+        <TextView
+            android:id="@+id/tv_bone"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px"
+            tools:text="骨          重" />
+
+        <ProgressBar
+            android:id="@+id/pb_bone_weight"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="544px"
+            android:layout_height="16px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24px"
+            android:layout_toRightOf="@id/tv_bone"
+            android:background="@drawable/progressbar_bg"
+            android:indeterminate="false"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progress="10"
+            android:progressDrawable="@drawable/progressbar_drawable_2db4a3" />
+
+        <TextView
+            android:id="@+id/tv_bone_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25px"
+            android:layout_toRightOf="@id/pb_bone_weight"
+            android:text="1"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_bone_weight"
+            android:paddingTop="2dp"
+            android:text="KG"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:id="@+id/tv_bone_level"
+            android:layout_width="93px"
+            android:layout_height="36px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="64px"
+            android:background="@drawable/shape_rectangle_green_bg"
+            android:gravity="center"
+            android:minWidth="40dp"
+            android:textColor="@color/white"
+            android:textSize="24px"
+            tools:text="过多" />
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="50px"
+        android:layout_marginTop="40px">
+
+        <TextView
+            android:id="@+id/tv_rate_of_muscle_"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px"
+            tools:text="肌  肉  率" />
+
+        <ProgressBar
+            android:id="@+id/pb_rate_of_muscle"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="544px"
+            android:layout_height="16px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24px"
+            android:layout_toRightOf="@id/tv_rate_of_muscle_"
+            android:background="@drawable/progressbar_bg"
+            android:indeterminate="false"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progress="10"
+            android:progressDrawable="@drawable/progressbar_drawable_2db4a3" />
+
+        <TextView
+            android:id="@+id/tv_rate_of_muscle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25px"
+            android:layout_toRightOf="@id/pb_rate_of_muscle"
+            android:text="1"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_rate_of_muscle"
+            android:paddingTop="2dp"
+            android:text=""
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:id="@+id/tv_rate_of_muscle_level"
+            android:layout_width="93px"
+            android:layout_height="36px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="64px"
+            android:background="@drawable/shape_rectangle_green_bg"
+            android:gravity="center"
+            android:minWidth="40dp"
+            android:textColor="@color/white"
+            android:textSize="24px"
+            tools:text="过多" />
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="50px"
+        android:layout_marginTop="40px">
+
+        <TextView
+            android:id="@+id/tv_muscle_weight_"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px"
+            tools:text="肌肉重量" />
+
+        <ProgressBar
+            android:id="@+id/pb_muscle_weight"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="544px"
+            android:layout_height="16px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24px"
+            android:layout_toRightOf="@id/tv_muscle_weight_"
+            android:background="@drawable/progressbar_bg"
+            android:indeterminate="false"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progress="10"
+            android:progressDrawable="@drawable/progressbar_drawable_2db4a3" />
+
+        <TextView
+            android:id="@+id/tv_muscle_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25px"
+            android:layout_toRightOf="@id/pb_muscle_weight"
+            android:text="1"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_muscle_weight"
+            android:paddingTop="2dp"
+            android:text="KG"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:id="@+id/tv_muscle_weight_level"
+            android:layout_width="93px"
+            android:layout_height="36px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="64px"
+            android:background="@drawable/shape_rectangle_green_bg"
+            android:gravity="center"
+            android:minWidth="40dp"
+            android:textColor="@color/white"
+            android:textSize="24px"
+            tools:text="过多" />
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="50px"
+        android:layout_marginTop="40px">
+
+        <TextView
+            android:id="@+id/tv_visceral_fat_"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px"
+            tools:text="内脏脂肪" />
+
+        <ProgressBar
+            android:id="@+id/pb_visceral_fat"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="544px"
+            android:layout_height="16px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24px"
+            android:layout_toRightOf="@id/tv_visceral_fat_"
+            android:background="@drawable/progressbar_bg"
+            android:indeterminate="false"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progress="10"
+            android:progressDrawable="@drawable/progressbar_drawable_2db4a3" />
+
+        <TextView
+            android:id="@+id/tv_visceral_fat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25px"
+            android:layout_toRightOf="@id/pb_visceral_fat"
+            android:text="1"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_visceral_fat"
+            android:paddingTop="2dp"
+            android:text="级"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:id="@+id/tv_visceral_fat_level"
+            android:layout_width="93px"
+            android:layout_height="36px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="64px"
+            android:background="@drawable/shape_rectangle_green_bg"
+            android:gravity="center"
+            android:minWidth="40dp"
+            android:textColor="@color/white"
+            android:textSize="24px"
+            tools:text="过多" />
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="50px"
+        android:layout_marginTop="40px">
+
+        <TextView
+            android:id="@+id/tv_water_points_"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px"
+            tools:text="水          分" />
+
+        <ProgressBar
+            android:id="@+id/pb_water_points"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="544px"
+            android:layout_height="16px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24px"
+            android:layout_toRightOf="@id/tv_water_points_"
+            android:background="@drawable/progressbar_bg"
+            android:indeterminate="false"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progress="10"
+            android:progressDrawable="@drawable/progressbar_drawable_2db4a3" />
+
+        <TextView
+            android:id="@+id/tv_water_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25px"
+            android:layout_toRightOf="@id/pb_water_points"
+            android:text="1"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_water_points"
+            android:paddingTop="2dp"
+            android:text=""
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:id="@+id/tv_water_points_level"
+            android:layout_width="93px"
+            android:layout_height="36px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="64px"
+            android:background="@drawable/shape_rectangle_green_bg"
+            android:gravity="center"
+            android:minWidth="40dp"
+            android:textColor="@color/white"
+            android:textSize="24px"
+            tools:text="过多" />
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="50px"
+        android:layout_marginTop="40px">
+
+        <TextView
+            android:id="@+id/tv_water_content_"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px"
+            tools:text="水  含   量" />
+
+        <ProgressBar
+            android:id="@+id/pb_water_content"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="544px"
+            android:layout_height="16px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24px"
+            android:layout_toRightOf="@id/tv_water_content_"
+            android:background="@drawable/progressbar_bg"
+            android:indeterminate="false"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progress="10"
+            android:progressDrawable="@drawable/progressbar_drawable_2db4a3" />
+
+        <TextView
+            android:id="@+id/tv_water_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25px"
+            android:layout_toRightOf="@id/pb_water_content"
+            android:text="1"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_water_content"
+            android:paddingTop="2dp"
+            android:text="KG"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:id="@+id/tv_water_content_level"
+            android:layout_width="93px"
+            android:layout_height="36px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="64px"
+            android:background="@drawable/shape_rectangle_green_bg"
+            android:gravity="center"
+            android:minWidth="40dp"
+            android:textColor="@color/white"
+            android:textSize="24px"
+            tools:text="过多" />
+    </RelativeLayout
+>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="50px"
+        android:layout_marginTop="40px">
+
+        <TextView
+            android:id="@+id/tv_obesity_"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px"
+            tools:text="肥   胖  度" />
+
+        <ProgressBar
+            android:id="@+id/pb_obesity"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="544px"
+            android:layout_height="16px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24px"
+            android:layout_toRightOf="@id/tv_obesity_"
+            android:background="@drawable/progressbar_bg"
+            android:indeterminate="false"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progress="10"
+            android:progressDrawable="@drawable/progressbar_drawable_2db4a3" />
+
+        <TextView
+            android:id="@+id/tv_obesity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25px"
+            android:layout_toRightOf="@id/pb_obesity"
+            android:text="1"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_obesity"
+            android:paddingTop="2dp"
+            android:text=""
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:id="@+id/tv_obesity_level"
+            android:layout_width="93px"
+            android:layout_height="36px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="64px"
+            android:background="@drawable/shape_rectangle_green_bg"
+            android:gravity="center"
+            android:minWidth="40dp"
+            android:textColor="@color/white"
+            android:textSize="24px"
+            tools:text="过多" />
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="50px"
+        android:layout_marginTop="40px">
+
+        <TextView
+            android:id="@+id/tv_bmi_"
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px"
+            tools:text="B   M    I" />
+
+        <ProgressBar
+            android:id="@+id/pb_bmi"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="544px"
+            android:layout_height="16px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24px"
+            android:layout_toRightOf="@id/tv_bmi_"
+            android:background="@drawable/progressbar_bg"
+            android:indeterminate="false"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progress="10"
+            android:progressDrawable="@drawable/progressbar_drawable_2db4a3" />
+
+        <TextView
+            android:id="@+id/tv_bmi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25px"
+            android:layout_toRightOf="@id/pb_bmi"
+            android:text="1"
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_bmi"
+            android:paddingTop="2dp"
+            android:text=""
+            android:textColor="@color/tv_A1ABBE"
+            android:textSize="24px" />
+
+        <TextView
+            android:id="@+id/tv_bmi_level"
+            android:layout_width="93px"
+            android:layout_height="36px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="64px"
+            android:background="@drawable/shape_rectangle_green_bg"
+            android:gravity="center"
+            android:minWidth="40dp"
+            android:textColor="@color/white"
+            android:textSize="24px"
+            tools:text="过多" />
+    </RelativeLayout>
+</LinearLayout>

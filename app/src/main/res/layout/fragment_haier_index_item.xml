@@ -44,7 +44,7 @@
             android:indeterminateOnly="false"
             android:max="100"
             android:progress="10"
-            android:progressDrawable="@drawable/progressbar_progress" />
+            android:progressDrawable="@drawable/progressbar_drawable_2db4a3" />
 
         <TextView
             android:id="@+id/mValueText"

@@ -22,14 +22,16 @@ public class Account extends PrefsUtil {
     private static Account instance;
     private Context context;
     private RoleDB mRoleDBUtil;
-    /** 保存已经加载数据完成的账号ID，多个账号用逗号分隔，
-     * 例如 “账号1， 账号2， 账号3，...”*/
+    /**
+     * 保存已经加载数据完成的账号ID，多个账号用逗号分隔，
+     * 例如 “账号1， 账号2， 账号3，...”
+     */
     public static final String KEY_ACCOUNT_LOAD_DATA_FINISHED = "KEY_ACCOUNT_LOAD_DATA_FINISHED";
 
     public static Account getInstance(Context context) {
         if (instance == null) {
             synchronized (Account.class) {
-                if(null == instance) {
+                if (null == instance) {
                     instance = new Account(context.getApplicationContext());
                 }
             }
@@ -58,8 +60,8 @@ public class Account extends PrefsUtil {
             return;
 
         int mainRoleId = getMainRoleInfo().getId();
-        for(RoleInfo roleInfo:roles) {
-            if(mainRoleId == roleInfo.getId()) {
+        for (RoleInfo roleInfo : roles) {
+            if (mainRoleId == roleInfo.getId()) {
                 setMainRoleInfo(roleInfo);
                 break;
             }
@@ -197,7 +199,7 @@ public class Account extends PrefsUtil {
 
     public void setLoadFinishedAccounts(String accountId) {
         String accounts = getValue(KEY_ACCOUNT_LOAD_DATA_FINISHED, "").trim();
-        if(TextUtils.isEmpty(accounts)) {
+        if (TextUtils.isEmpty(accounts)) {
             setValue(KEY_ACCOUNT_LOAD_DATA_FINISHED, accountId);
         } else {
             setValue(KEY_ACCOUNT_LOAD_DATA_FINISHED, accounts + "," + accountId);
@@ -218,6 +220,7 @@ public class Account extends PrefsUtil {
 
     /**
      * 是否当前账号数据已加载
+     *
      * @return true 已加载， false 未加载
      */
     public boolean isCurrentAccountDataLoaded() {
@@ -238,7 +241,7 @@ public class Account extends PrefsUtil {
             e.printStackTrace();
         }
 
-        return  accountLoaded;
+        return accountLoaded;
     }
 
     /**
@@ -253,6 +256,7 @@ public class Account extends PrefsUtil {
      * 设置当前角色信息
      */
     public void setRoleInfo(RoleInfo role) {
+        reMove("cur_role_info");
         setValue("cur_role_info", JsonMapper.toJson(role));
     }
 
@@ -276,32 +280,37 @@ public class Account extends PrefsUtil {
     public RoleInfo getMainRoleInfo() {
         return JsonMapper.fromJson(getValue("cur_main_role_info", "{}"), RoleInfo.class);
     }
+
     /**
      * 设置应用级token
      */
     public void setAccessToken(AccessToken token) {
         setValue("cur_access_token", JsonMapper.toJson(token));
     }
+
     /**
      * 获得应用级token
      */
     public AccessToken getAccessToken() {
         return JsonMapper.fromJson(getValue("cur_access_token", "{}"), AccessToken.class);
     }
+
     /**
      * 设置应用级token
      */
     public void setLoginResult(LoginResult loginResult) {
         setValue("cur_login_result", JsonMapper.toJson(loginResult));
     }
+
     /**
      * 获得应用级token
      */
     public LoginResult getLoginResult() {
         return JsonMapper.fromJson(getValue("cur_login_result", "{}"), LoginResult.class);
     }
+
     /**
-    /**
+     * /**
      * 是否该角色为主角色
      *
      * @return
@@ -444,13 +453,16 @@ public class Account extends PrefsUtil {
     public boolean isAccountLogined() {
         return getAccountInfo().getId() != 0;
     }
-    public String getCurrVersion(){
-        return getValue("curr_version_name",null) ;
+
+    public String getCurrVersion() {
+        return getValue("curr_version_name", null);
     }
-    public void setCurrVersion(String versionName){
-        setValue("curr_version_name",versionName);
+
+    public void setCurrVersion(String versionName) {
+        setValue("curr_version_name", versionName);
     }
-    public void clearPreferences(){
+
+    public void clearPreferences() {
         clear();
     }
 }

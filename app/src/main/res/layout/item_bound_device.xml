@@ -9,11 +9,12 @@
 
 
     <TextView
+        android:id="@+id/tv_bound_B"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="62px"
-        android:text="设备绑定"
+        android:text="蓝牙连接"
         android:textColor="@color/white"
         android:textSize="30px" />
 
@@ -68,9 +69,9 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="260px"
             android:text=""
-            android:visibility="gone"
             android:textColor="@color/white"
-            android:textSize="30px" />
+            android:textSize="30px"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_title_two"

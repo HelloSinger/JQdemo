@@ -104,19 +104,19 @@ public class HaierReportActivity extends FragmentActivity {
 
         fragments = new ArrayList<>();
 
-        if ((mCurWeightEntity.getR1() == 0 && mCurWeightEntity.getAxunge() <= 0) || (mCurWeightEntity.getSex() == 2)) {
-            // 只有体重和BMI
-            OnlyWeightBmiFragment onlyWeightBmiFragment = new OnlyWeightBmiFragment();
-            Log.v("===sess1", "" + onlyWeightBmiFragment.toString());
-            onlyWeightBmiFragment.setWeightEntity(mCurWeightEntity);
-            fragments.add(onlyWeightBmiFragment);
-
-            // 名字叫做“测量报告”
-            indexRb.setText(R.string.measure_report);
-            indexRb.setChecked(true);
-            indexImg.setVisibility(View.GONE);
-            reportLayout.setVisibility(View.GONE);
-        } else {
+//        if ((mCurWeightEntity.getR1() == 0 && mCurWeightEntity.getAxunge() <= 0) || (mCurWeightEntity.getSex() == 2)) {
+//            // 只有体重和BMI
+//            OnlyWeightBmiFragment onlyWeightBmiFragment = new OnlyWeightBmiFragment();
+//            Log.v("===sess1", "" + onlyWeightBmiFragment.toString());
+//            onlyWeightBmiFragment.setWeightEntity(mCurWeightEntity);
+//            fragments.add(onlyWeightBmiFragment);
+//
+//            // 名字叫做“测量报告”
+//            indexRb.setText(R.string.measure_report);
+//            indexRb.setChecked(true);
+//            indexImg.setVisibility(View.GONE);
+//            reportLayout.setVisibility(View.GONE);
+//        } else {
             HaierIndexFragment indexFragment = new HaierIndexFragment();
             indexFragment.setWeightEntity(mCurWeightEntity);
             BodyConstitutionFragment bodyConstitutionFragment = new BodyConstitutionFragment();
@@ -133,7 +133,7 @@ public class HaierReportActivity extends FragmentActivity {
             indexImg.setVisibility(View.VISIBLE);
             reportRb.setChecked(false);
             reportImg.setVisibility(View.INVISIBLE);
-        }
+//        }
 
         adapter = new MyPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);

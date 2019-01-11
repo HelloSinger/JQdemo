@@ -3,14 +3,31 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <com.jq.code.view.CircleImageView
-        android:id="@+id/iv_add_head"
-        android:layout_width="92px"
-        android:layout_height="92px"
-        android:layout_margin="10px"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/px50"
-        android:background="@mipmap/default_head_image" />
+    <LinearLayout
+        android:id="@+id/ll_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <com.jq.code.view.CircleImageView
+            android:id="@+id/iv_add_head"
+            android:layout_width="92px"
+            android:layout_height="92px"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10px"
+            android:layout_marginTop="@dimen/px50"
+            android:background="@mipmap/default_head_image" />
 
 
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12px"
+            android:text="小飞侠"
+            android:textColor="@color/tv_424242"
+            android:textSize="20px" />
+    </LinearLayout>
 </RelativeLayout>

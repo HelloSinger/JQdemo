@@ -11,7 +11,7 @@ public class MatchModel {
     /**
      * code : 200
      * message : 查询成功
-     * data : [{"id":5,"famaliyId":"236623","userId":"456","score":66.5,"weight":48,"metabolism":6.6,"boneWeight":0,"muscleRate":0,"muscleWeight":0,"visceralFat":0,"water":111,"waterWeight":0,"obesity":0,"bmi":444.4,"isDel":0,"create_time":"Dec 7, 2018 9:37:26 AM"},{"id":6,"famaliyId":"236623","userId":"1245","score":66.5,"weight":666,"metabolism":0,"boneWeight":0,"muscleRate":0,"muscleWeight":0,"visceralFat":0,"water":0,"waterWeight":0,"obesity":0,"bmi":0,"isDel":0,"create_time":"Dec 9, 2018 9:43:38 AM"}]
+     * data : [{"id":130,"famaliyId":"201611301119574263","userId":"201812261632201415","score":"0","weight":"8.1","metabolism":"0","boneWeight":"0.0","muscleRate":"0%","muscleWeight":"0.0","visceralFat":"0","water":"0%","waterWeight":"0.0","obesity":"-87.7%","bmi":"2.7","isDel":0,"createTime":"Dec 28, 2018 11:04:12 AM"}]
      */
 
     private String code;
@@ -44,40 +44,40 @@ public class MatchModel {
 
     public static class DataBean {
         /**
-         * id : 5
-         * famaliyId : 236623
-         * userId : 456
-         * score : 66.5
-         * weight : 48
-         * metabolism : 6.6
-         * boneWeight : 0
-         * muscleRate : 0
-         * muscleWeight : 0
+         * id : 130
+         * famaliyId : 201611301119574263
+         * userId : 201812261632201415
+         * score : 0
+         * weight : 8.1
+         * metabolism : 0
+         * boneWeight : 0.0
+         * muscleRate : 0%
+         * muscleWeight : 0.0
          * visceralFat : 0
-         * water : 111
-         * waterWeight : 0
-         * obesity : 0
-         * bmi : 444.4
+         * water : 0%
+         * waterWeight : 0.0
+         * obesity : -87.7%
+         * bmi : 2.7
          * isDel : 0
-         * create_time : Dec 7, 2018 9:37:26 AM
+         * createTime : Dec 28, 2018 11:04:12 AM
          */
 
         private int id;
         private String famaliyId;
         private String userId;
-        private double score;
-        private int weight;
-        private double metabolism;
-        private int boneWeight;
-        private int muscleRate;
-        private int muscleWeight;
-        private int visceralFat;
-        private int water;
-        private int waterWeight;
-        private int obesity;
-        private double bmi;
+        private String score;
+        private String weight;
+        private String metabolism;
+        private String boneWeight;
+        private String muscleRate;
+        private String muscleWeight;
+        private String visceralFat;
+        private String water;
+        private String waterWeight;
+        private String obesity;
+        private String bmi;
         private int isDel;
-        private String create_time;
+        private String createTime;
 
         public int getId() {
             return id;
@@ -103,91 +103,91 @@ public class MatchModel {
             this.userId = userId;
         }
 
-        public double getScore() {
+        public String getScore() {
             return score;
         }
 
-        public void setScore(double score) {
+        public void setScore(String score) {
             this.score = score;
         }
 
-        public int getWeight() {
+        public String getWeight() {
             return weight;
         }
 
-        public void setWeight(int weight) {
+        public void setWeight(String weight) {
             this.weight = weight;
         }
 
-        public double getMetabolism() {
+        public String getMetabolism() {
             return metabolism;
         }
 
-        public void setMetabolism(double metabolism) {
+        public void setMetabolism(String metabolism) {
             this.metabolism = metabolism;
         }
 
-        public int getBoneWeight() {
+        public String getBoneWeight() {
             return boneWeight;
         }
 
-        public void setBoneWeight(int boneWeight) {
+        public void setBoneWeight(String boneWeight) {
             this.boneWeight = boneWeight;
         }
 
-        public int getMuscleRate() {
+        public String getMuscleRate() {
             return muscleRate;
         }
 
-        public void setMuscleRate(int muscleRate) {
+        public void setMuscleRate(String muscleRate) {
             this.muscleRate = muscleRate;
         }
 
-        public int getMuscleWeight() {
+        public String getMuscleWeight() {
             return muscleWeight;
         }
 
-        public void setMuscleWeight(int muscleWeight) {
+        public void setMuscleWeight(String muscleWeight) {
             this.muscleWeight = muscleWeight;
         }
 
-        public int getVisceralFat() {
+        public String getVisceralFat() {
             return visceralFat;
         }
 
-        public void setVisceralFat(int visceralFat) {
+        public void setVisceralFat(String visceralFat) {
             this.visceralFat = visceralFat;
         }
 
-        public int getWater() {
+        public String getWater() {
             return water;
         }
 
-        public void setWater(int water) {
+        public void setWater(String water) {
             this.water = water;
         }
 
-        public int getWaterWeight() {
+        public String getWaterWeight() {
             return waterWeight;
         }
 
-        public void setWaterWeight(int waterWeight) {
+        public void setWaterWeight(String waterWeight) {
             this.waterWeight = waterWeight;
         }
 
-        public int getObesity() {
+        public String getObesity() {
             return obesity;
         }
 
-        public void setObesity(int obesity) {
+        public void setObesity(String obesity) {
             this.obesity = obesity;
         }
 
-        public double getBmi() {
+        public String getBmi() {
             return bmi;
         }
 
-        public void setBmi(double bmi) {
+        public void setBmi(String bmi) {
             this.bmi = bmi;
         }
 
@@ -199,12 +199,12 @@ public class MatchModel {
             this.isDel = isDel;
         }
 
-        public String getCreate_time() {
-            return create_time;
+        public String getCreateTime() {
+            return createTime;
         }
 
-        public void setCreate_time(String create_time) {
-            this.create_time = create_time;
+        public void setCreateTime(String createTime) {
+            this.createTime = createTime;
         }
     }
 }

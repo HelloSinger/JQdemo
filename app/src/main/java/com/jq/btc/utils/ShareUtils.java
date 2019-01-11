@@ -31,8 +31,9 @@ public class ShareUtils {
     }
     public String getTiXingString(){
         int bmiLevel = WeighDataParser.getBmiLevel(lastWeight) - 1;
-        int type = WeighDataParser.StandardSet.BMI.getStandards()[bmiLevel];
-        String typeStr = context.getString(type) ;
+//        int type = WeighDataParser.StandardSet.BMI.getStandards()[bmiLevel];
+        String type = WeighDataParser.StandardSet.BMI.getStandards()[bmiLevel];
+        String typeStr = type ;
         return context.getString(R.string.share_tixing_tip,typeStr) ;
     }
     public String getChangeText(){

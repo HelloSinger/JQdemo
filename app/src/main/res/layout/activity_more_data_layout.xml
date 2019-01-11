@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/icon_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/icon_bg"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="90px"
+                android:layout_marginTop="60px"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.jq.code.view.CircleImageView
+                        android:id="@+id/mRoleImage"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_horizontal|top"
+                        android:src="@mipmap/default_head_image" />
+
+                    <TextView
+                        android:id="@+id/mRoleName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10px"
+                        android:text="小飞侠"
+                        android:textColor="@color/tv_A1ABBE"
+                        android:textSize="24px" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true">
+
+                    <TextView
+                        android:id="@+id/mWeightTime"
+                        android:layout_width="220px"
+                        android:layout_height="wrap_content"
+                        android:text="2018年11月13日"
+                        android:textColor="@color/white"
+                        android:textSize="28px" />
+
+                    <View
+                        android:layout_width="220px"
+                        android:layout_height="1px"
+                        android:layout_below="@id/mWeightTime"
+                        android:layout_marginTop="13px"
+                        android:background="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10px"
+                        android:layout_toRightOf="@id/mWeightTime"
+                        android:text=" 的体质报告"
+                        android:textColor="@color/tv_A1ABBE"
+                        android:textSize="28px" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="224px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/mScore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="75"
+                        android:textColor="@color/white"
+                        android:textSize="88px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="分"
+                        android:textColor="@color/white"
+                        android:textSize="34px" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="100KG"
+                    android:textColor="@color/tv_A1ABBE"
+                    android:textSize="24px" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+                    <com.jq.btc.myview.ScrollChartView
+                        android:id="@+id/scroll_chart_main"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <com.jq.btc.myview.CircleIndicatorView
+                        android:id="@+id/civ_main"
+                        android:layout_width="33dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="25dp" />
+                    <!--android:background="@drawable/shape_circle_indicator"-->
+                </RelativeLayout>
+
+                <include layout="@layout/body_fat_more_data_layout" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="62px"
+            android:layout_height="62px"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="50px"
+            android:background="@mipmap/icon_back" />
+
+        <TextView
+            android:id="@+id/tv_no_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="暂无体脂数据,快去测量吧~"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</RelativeLayout>

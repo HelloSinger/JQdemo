@@ -333,13 +333,14 @@
                 android:id="@+id/mAbNormalIndexLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:orientation="vertical" />
             <ListView
                 android:id="@+id/lv_body_fat_data"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="64px"
+                android:visibility="gone"
                 android:layout_marginRight="64px" />
         </LinearLayout>
 

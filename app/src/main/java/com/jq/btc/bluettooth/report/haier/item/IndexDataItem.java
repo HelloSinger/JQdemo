@@ -14,7 +14,7 @@ public class IndexDataItem {
     public int nameRes;
     public String valueText;
     public int mLevelColorRes;
-    public int mLevelTextRes = -1;
+    public String mLevelTextRes = null;
     public String mUnitText;
 
     // 画区间值相关
@@ -38,8 +38,8 @@ public class IndexDataItem {
         mStandard = standard;
         value = va;
         this.levelNums = levelNums;
-        this.mLevelMaxtRes=mLevelMaxtRes;
-        this.criticalValue=criticalValue;
+        this.mLevelMaxtRes = mLevelMaxtRes;
+        this.criticalValue = criticalValue;
 
         // 计算级别
         int level = 0;
@@ -57,7 +57,7 @@ public class IndexDataItem {
         for (int i = 0; i < standard.getColor().length; i++) {
             colors.add(standard.getColor()[i]);
         }
-        bottomStr = standard.getStandards();
+//        bottomStr = standard.getStandards();
 
         mLevelTipRes = standard.getTips()[level];
         this.level = level;

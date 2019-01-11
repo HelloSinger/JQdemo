@@ -135,7 +135,7 @@ public class BuildItemsUtil {
         Log.e("AYD----->水分重量", "max--->" + max + "criticalValue--->" + criticalValue);
 
         System.arraycopy(waterStandard, 1, levelNumsWater, 0, levelNumsWater.length);
-        waterWeightItem.calLevel(max, criticalValue, water, levelNumsWater, WeighDataParser.StandardSet.WATER);
+        waterWeightItem.calLevel(max, criticalValue, waterWeight, levelNumsWater, WeighDataParser.StandardSet.WATER);
 
         String[] topStrWater = new String[levelNumsWater.length];
         for (int i = 0; i < levelNumsWater.length; i++) {
@@ -356,7 +356,7 @@ public class BuildItemsUtil {
 
         Log.e("AYD----->肌肉重量", "max--->" + max + "criticalValue--->" + criticalValue);
         System.arraycopy(muscleStandard, 1, levelNums, 0, levelNums.length);
-        muscleWeightItem.calLevel(max, criticalValue, muscle, levelNums, WeighDataParser.StandardSet.MUSCLE);
+        muscleWeightItem.calLevel(max, criticalValue, muscleWeight, levelNums, WeighDataParser.StandardSet.MUSCLE);
 
         String[] topStr = new String[levelNums.length];
         for (int i = 0; i < levelNums.length; i++) {

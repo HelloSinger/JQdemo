@@ -95,12 +95,14 @@ public class PrefsUtil {
         }
         return value;
     }
-    public void clear(){
-        if(sp_edit != null){
+
+    public void clear() {
+        if (sp_edit != null) {
             sp_edit.clear();
             sp_edit.commit();
         }
     }
+
     /**
      * 获得键值对
      *
@@ -137,6 +139,17 @@ public class PrefsUtil {
     public void setValue(String key, String value) {
         if (sp_edit != null) {
             sp_edit.putString(key, value);
+            sp_edit.commit();
+        }
+    }
+
+    /**
+     * 删除某一条
+     * @param key
+     */
+    public void reMove(String key) {
+        if (sp_edit != null) {
+            sp_edit.remove(key);
             sp_edit.commit();
         }
     }

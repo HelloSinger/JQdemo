@@ -23,5 +23,8 @@ public class ConstantUrl {
      */
     public static String GET_CHARTLINE_DATA_URL = BASE_URL + "cookbook/findBodyScaleListEveryday";
 
-
+    /**
+     * 查询当前用户最后一次体重
+     */
+    public static String GET_USER_LAST_WEIGHT = BASE_URL + "cookbook/findBodyScaleList";
 }

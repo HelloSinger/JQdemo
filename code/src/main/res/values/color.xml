@@ -51,6 +51,7 @@
     <color name="bloodpressure_level6">#EA4822</color>
 
     <color name="pwd_dialog_top">#00A9B0</color>
+    <color name="tv_424242">#424242</color>
 
     <color name="main_tab_bg">#3A3A42</color>
     <color name="main_tab_default_text">#626266</color>
@@ -129,7 +130,8 @@
     <color name="calendar_selected_range_bg">#EDF3FB</color>
     <color name="calendar_text_active">#ff778088</color>
     <color name="calendar_text_selected">#ff778088</color>
-    <color name="calendar_text_unselectable">#cccccc</color> //不能选择的文字颜色
+    <color name="calendar_text_unselectable">#cccccc</color>
+    //不能选择的文字颜色
     <color name="calendar_text_highlighted">#ff778088</color>
     <color name="login_upgrade_text_color">#FCAA57</color>
     <color name="login_upgrade_text_bg">#44FCAA57</color>

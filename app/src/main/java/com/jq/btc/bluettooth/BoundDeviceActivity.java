@@ -114,7 +114,6 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
     }
 
     private void initView() {
-
         mViewHolder = new ViewHolder();
         mViewHolder.viewpager = (ViewPager) findViewById(R.id.guide_viewpager);
         mPagerList = new ArrayList<>();
@@ -122,7 +121,6 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
         addBoundBLE();
         mViewHolder.viewpager.setAdapter(new ViewPagerAdapter(mPagerList));
         mViewHolder.viewpager.setOnPageChangeListener(this);
-
         mViewHolder.viewpager.setCurrentItem(mPagerList.size() - 1);
     }
 
@@ -157,6 +155,7 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
         mViewHolder.unit = view.findViewById(R.id.bound_unit);
         mViewHolder.animtor = view.findViewById(R.id.bound_animation);
         mViewHolder.un_bound_ll = view.findViewById(R.id.un_bound_ll);
+        mViewHolder.tv_bound_B = view.findViewById(R.id.tv_bound_B);
 //        mViewHolder.animtor.setImageResource(R.drawable.ble_bound_animation);
         mViewHolder.animtor.setImageResource(R.mipmap.icon_body_fat_scale);
         mViewHolder.mBackView.setOnClickListener(this);
@@ -264,6 +263,7 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
                             mViewHolder.tip.setText("已经发现智能营养秤，请确认秤显示的数值和搜索数值一样" + "\n" + "即可确认绑定");
                         } else {
                             mViewHolder.unit.setText(StandardUtil.getWeightExchangeUnit(BoundDeviceActivity.this));
+                            mViewHolder.tv_bound_B.setText("绑定设备");
                             mViewHolder.tip.setText("已经发现智能体脂秤，请确认秤显示的数值和搜索数值一样" + "\n" + "即可确认绑定");
                         }
                         mViewHolder.value.setBackgroundColor(Color.TRANSPARENT);
@@ -295,6 +295,7 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
         TextView value;
         TextView unit;
         LinearLayout un_bound_ll;
+        TextView tv_bound_B;
 
     }
 

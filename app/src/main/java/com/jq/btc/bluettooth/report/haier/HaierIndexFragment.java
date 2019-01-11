@@ -108,7 +108,6 @@ public class HaierIndexFragment extends Fragment {
     @BindView(R2.id.iv_back)
     ImageView iv_back;
     private WeightEntity mWeightEntity;
-
     @BindView(R2.id.scroll_chart_main)
     ScrollChartView scroll_chart_main;
     @BindView(R2.id.civ_main)
@@ -120,6 +119,9 @@ public class HaierIndexFragment extends Fragment {
 
     private NewBuidItemUtil newBuidItemUtil;
     private List<MoreDataModel.DataBean> data;
+    private List<String> timeList;
+    private List<Double> dataList;
+    MoreDataModel moreDataModel;
 
     public void setWeightEntity(WeightEntity weightEntity) {
         mWeightEntity = weightEntity;
@@ -172,14 +174,15 @@ public class HaierIndexFragment extends Fragment {
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            final List<String> timeList = new ArrayList<>();
-            for (int i = 0; i < 50; i++) {
-                timeList.add(i + "");
+            timeList = new ArrayList<>();
+            for (int i = 0; i < moreDataModel.getData().size(); i++) {
+                timeList.add(moreDataModel.getData().get(i).getScore());
             }
 
-            final List<Double> dataList = new ArrayList<>();
-            for (int i = 0; i < 50; i++) {
-                dataList.add((double) new Random().nextInt(200));
+            dataList = new ArrayList<>();
+            for (int i = 0; i < moreDataModel.getData().size(); i++) {
+//                dataList.add((double) new Random().nextInt(200));
+                dataList.add(Double.valueOf(moreDataModel.getData().get(i).getWeight()));
             }
             scroll_chart_main.setData(timeList, dataList);
             scroll_chart_main.setOnScaleListener(new ScrollChartView.OnScaleListener() {
@@ -187,10 +190,21 @@ public class HaierIndexFragment extends Fragment {
                 public void onScaleChanged(int position) {
                     mScore.setText(timeList.get(position));
                     Log.e("AYD", "" + timeList.get(position));
-                    tv_weight.setText(dataList.get(position) + "");
+                    tv_weight.setText(dataList.get(position) + "KG");
                     ScrollChartView.Point point = scroll_chart_main.getList().get(position);
                     civ_main.setCircleY(point.y);
-
+//                    try {
+//                        //weight_time=2017-06-01 16:16:15
+//                        String weightTime = weightEntity.getWeight_time();
+//                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//                        Date weightDate = sdf.parse(weightTime);
+//                        // "04月25日 13:25"
+//                        SimpleDateFormat textFormat = new SimpleDateFormat("yyyy年MM月dd日");
+//                        String text = textFormat.format(weightDate);
+                    mWeightTime.setText(moreDataModel.getData().get(position).getCreateTime());
+//                    } catch (ParseException e) {
+//                        e.printStackTrace();
+//                    }
                 }
             });
 
@@ -242,18 +256,7 @@ public class HaierIndexFragment extends Fragment {
         mBodily.setText(WeighDataParser.StandardSet.BODILY.getStandards()[bodilyLevel]);
 
         mRoleName.setText(roleInfo.getNickname());
-        try {
-            //weight_time=2017-06-01 16:16:15
-            String weightTime = weightEntity.getWeight_time();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date weightDate = sdf.parse(weightTime);
-            // "04月25日 13:25"
-            SimpleDateFormat textFormat = new SimpleDateFormat("yyyy年MM月dd日");
-            String text = textFormat.format(weightDate);
-            mWeightTime.setText(text);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+
         newBuidItemUtil = new NewBuidItemUtil(getContext(), roleInfo, csAlgoBuilder);
         BuildItemsUtil util = new BuildItemsUtil(getContext(), mWeightEntity, roleInfo, csAlgoBuilder);
         IndexDataItem weightItem = util.buildWeightItem();
@@ -284,7 +287,6 @@ public class HaierIndexFragment extends Fragment {
         judgeItemAndAdd(visceraItem, WeighDataParser.StandardSet.VISCERA);
         judgeItemAndAdd(waterItem, WeighDataParser.StandardSet.WATER);
         judgeItemAndAdd(waterWeightItem, WeighDataParser.StandardSet.CONTAINWATER);
-
         createViews();
     }
 
@@ -388,7 +390,6 @@ public class HaierIndexFragment extends Fragment {
             gd = (GradientDrawable) holder.mLevelText.getBackground();
             gd.setColor(getResources().getColor(item.mLevelColorRes));
 
-
             LayerDrawable drawable = (LayerDrawable) holder.progressBar.getProgressDrawable();
             GradientDrawable gradientDrawable = new GradientDrawable();
             //这里设置后台传过来的颜色
@@ -396,10 +397,11 @@ public class HaierIndexFragment extends Fragment {
             ClipDrawable clipDrawable = new ClipDrawable(gd, Gravity.START, ClipDrawable.HORIZONTAL);
             drawable.setDrawableByLayerId(R2.id.progressBar, clipDrawable);
 //            holder.progressBar.setProgressDrawableTiled(gd);
-            if (-1 != item.mLevelTextRes) {
+            if (null != item.mLevelTextRes) {
                 holder.mLevelText.setVisibility(View.VISIBLE);
                 holder.mLevelText.setText(item.mLevelTextRes);
-                Log.e("AYD", "item--->" + item.mLevelTextRes);
+                String a = String.valueOf(item.mLevelTextRes);
+                Log.e("AYD", "item--->" + item.mLevelTextRes + "========>" + a);
                 holder.mLevelText.setBackground(gd);
             } else {
                 holder.mLevelText.setVisibility(View.INVISIBLE);
@@ -408,7 +410,7 @@ public class HaierIndexFragment extends Fragment {
             if (null != item.levelNums) {
                 mDetailViews.add(holder.mOpenDetailView);
                 holder.mLayout.setTag(holder);
-                holder.mLayout.setOnClickListener(mOnLayoutClick);
+//                holder.mLayout.setOnClickListener(mOnLayoutClick);
             }
 
             parent.addView(view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -521,11 +523,10 @@ public class HaierIndexFragment extends Fragment {
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-                        MoreDataModel moreDataModel = new Gson().fromJson(response.body(), MoreDataModel.class);
+                        moreDataModel = new Gson().fromJson(response.body(), MoreDataModel.class);
                         data = moreDataModel.getData();
                         Log.e("AYD", "--->" + response.body());
                         Log.e("AYD", "" + newBuidItemUtil.buildVisceraItem(Float.parseFloat(data.get(0).getVisceralFat())));
-
                         Log.e("ADY", "an" + indexDataItem.mLevelTextRes);
                     }
                 });

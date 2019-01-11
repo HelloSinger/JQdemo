@@ -58,8 +58,8 @@ public class WeighDataParser extends PrefsUtil {
     }
 
     /*
-    * 增加滤波功能
-    * */
+     * 增加滤波功能
+     * */
     public void fillFatWithSmoothImpedance(WeightEntity fatScale, RoleInfo roleInfo) {
         try {
             fatScale.setBmi(getBMI(roleInfo.getHeight(), fatScale.getWeight()));
@@ -146,7 +146,7 @@ public class WeighDataParser extends PrefsUtil {
         float weight = fatScale.getWeight();
         float height = roleInfo.getHeight();
         if (age > 5) {
-           // CsAlgoBuilder csAlgoBuilder = new CsAlgoBuilder(height, weight, sex, age, fatScale.getR1());
+            // CsAlgoBuilder csAlgoBuilder = new CsAlgoBuilder(height, weight, sex, age, fatScale.getR1());
             CsAlgoBuilder csAlgoBuilder = new CsAlgoBuilder(height, weight, sex, age, fatScale.getR1(), fatScale.getRn8());
             fatScale.setAxunge(csAlgoBuilder.getBFR());
             fatScale.setViscera(csAlgoBuilder.getVFR());
@@ -1014,7 +1014,8 @@ public class WeighDataParser extends PrefsUtil {
                 0,
                 0,
                 new int[]{R.color.corState1, R.color.corState3, R.color.corState4, R.color.corState5, R.color.corState6},
-                new int[]{R.string.reportBodilyState1, R.string.reportBodilyState2, R.string.reportBodilyState3, R.string.reportBodilyState4, R.string.reportBodilyState5},
+//                new int[]{R.string.reportBodilyState1, R.string.reportBodilyState2, R.string.reportBodilyState3, R.string.reportBodilyState4, R.string.reportBodilyState5},
+                new String[]{"消瘦", "普通", "隐形肥胖", "肌肉型肥胖", "肥胖"},
                 new int[]{R.string.reportBodilyState1Text, R.string.reportBodilyState2Text, R.string.reportBodilyState3Text,
                         R.string.reportBodilyState4Text, R.string.reportBodilyState5Text}),
         CORPULENT(R.string.detailCorpulent,
@@ -1022,7 +1023,8 @@ public class WeighDataParser extends PrefsUtil {
                 R.mipmap.detail_corpulent,
                 R.mipmap.progress5,
                 new int[]{R.color.corState2, R.color.corState2, R.color.corState3, R.color.corState4, R.color.corState5, R.color.corState6, R.color.corState7},
-                new int[]{R.string.corState1, R.string.corState2, R.string.corState3, R.string.corState4, R.string.corState5, R.string.corState6, R.string.corState7},
+//                new int[]{R.string.corState1, R.string.corState2, R.string.corState3, R.string.corState4, R.string.corState5, R.string.corState6, R.string.corState7},
+                new String[]{"消瘦", "偏瘦", "标准", "超重", "轻度", "中度", "重度"},
                 new int[]{R.string.reportCorStatTip1, R.string.reportCorStatTip2, R.string.reportCorStatTip3, R.string.reportCorStatTip4, R.string.reportCorStatTip5, R.string.reportCorStatTip6, R.string.reportCorStatTip7},
                 new float[]{-20, -10, 10, 20, 30, 50}),
         WEIGHT(R.string.detailWeight,
@@ -1031,14 +1033,16 @@ public class WeighDataParser extends PrefsUtil {
                 R.mipmap.detail_weight,
                 R.mipmap.progress4,
                 new int[]{R.color.corState2, R.color.corState3, R.color.corState4, R.color.corState6},
-                new int[]{R.string.reportSlim, R.string.reportStandard, R.string.reportExtraBaggage, R.string.reportObesity},
+//                new int[]{R.string.reportSlim, R.string.reportStandard, R.string.reportExtraBaggage, R.string.reportObesity},
+                new String[]{"偏瘦", "标准", "偏胖", "肥胖"},
                 new int[]{R.string.reportBMISlimTip, R.string.reportBMIStandardTip, R.string.reportBMIExtraTip, R.string.reportBMIObesityTip}),
         BMI(R.string.detailBmi,
                 R.mipmap.report_bmi_icon,
                 R.mipmap.detail_bmi,
                 R.mipmap.progress4,
                 new int[]{R.color.corState2, R.color.corState3, R.color.corState4, R.color.corState6},
-                new int[]{R.string.reportSlim, R.string.reportStandard, R.string.reportExtraBaggage, R.string.reportObesity},
+//                new int[]{R.string.reportSlim, R.string.reportStandard, R.string.reportExtraBaggage, R.string.reportObesity},
+                new String[]{"偏瘦", "标准", "偏胖", "肥胖"},
                 new int[]{R.string.reportBMISlimTip, R.string.reportBMIStandardTip, R.string.reportBMIExtraTip, R.string.reportBMIObesityTip},
                 new float[]{18.5f, 24, 28}),
         AXUNGE(R.string.detailAxunge,
@@ -1047,7 +1051,8 @@ public class WeighDataParser extends PrefsUtil {
                 R.mipmap.detail_axunge,
                 R.mipmap.progress4,
                 new int[]{R.color.corState2, R.color.corState3, R.color.corState4, R.color.corState6},
-                new int[]{R.string.reportSlim, R.string.reportStandard, R.string.reportExtraBaggage, R.string.reportObesity},
+//                new int[]{R.string.reportSlim, R.string.reportStandard, R.string.reportExtraBaggage, R.string.reportObesity},
+                new String []{"偏瘦","标准","偏胖","肥胖"},
                 new int[]{R.string.reportAxungeSlimTip, R.string.reportAxungeStandardTip, R.string.reportAxungeExtraTip, R.string.reportAxungeObesityTip}),
         /**
          * Excel文档没有这项的说明
@@ -1057,7 +1062,8 @@ public class WeighDataParser extends PrefsUtil {
                 R.mipmap.detail_axunge,
                 R.mipmap.progress4,
                 new int[]{R.color.corState2, R.color.corState3, R.color.corState4, R.color.corState6},
-                new int[]{R.string.reportSlim, R.string.reportStandard, R.string.reportExtraBaggage, R.string.reportObesity},
+//                new int[]{R.string.reportSlim, R.string.reportStandard, R.string.reportExtraBaggage, R.string.reportObesity},
+                new String []{"偏瘦","标准","偏胖","肥胖"},
                 new int[]{R.string.reportAxungeSlimTip, R.string.reportAxungeStandardTip, R.string.reportAxungeExtraTip, R.string.reportAxungeObesityTip}),
         /**
          * Excel文档没有这项的说明
@@ -1068,21 +1074,24 @@ public class WeighDataParser extends PrefsUtil {
                 R.mipmap.detail_muscle,
                 R.mipmap.progress3,
                 new int[]{R.color.corState2, R.color.corState3, R.color.corState8},
-                new int[]{R.string.reportInsufficient, R.string.reportStandard, R.string.reportExcellent},
+//                new int[]{R.string.reportInsufficient, R.string.reportStandard, R.string.reportExcellent},
+                new String[]{"不足","标准","优"},
                 new int[]{R.string.reportMuscleLowTip, R.string.reportMuscleStandardTip, R.string.reportMuscleHightTip}),
         MUSCLEWEIGHT(R.string.detailMuscleWeight,
                 R.mipmap.report_muscle_weight_icon,
                 R.mipmap.detail_muscle,
                 R.mipmap.progress3,
                 new int[]{R.color.corState2, R.color.corState3, R.color.corState8},
-                new int[]{R.string.reportInsufficient, R.string.reportStandard, R.string.reportExcellent},
+//                new int[]{R.string.reportInsufficient, R.string.reportStandard, R.string.reportExcellent},
+                new String[]{"不足","标准","优"},
                 new int[]{R.string.reportMuscleLowTip, R.string.reportMuscleStandardTip, R.string.reportMuscleHightTip}),
         VISCERA(R.string.detailViscera,
                 R.mipmap.report_viscera_icon,
                 R.mipmap.detail_viscera,
                 R.mipmap.progress3_1,
                 new int[]{R.color.corState3, R.color.corState4, R.color.corState6},
-                new int[]{R.string.reportStandard, R.string.reportBevigilant, R.string.reportDanger},
+//                new int[]{R.string.reportStandard, R.string.reportBevigilant, R.string.reportDanger},
+                new String[]{"标准","稍微超标","过多"},
                 new int[]{R.string.reportVisceraStandardTip, R.string.reportVisceraExtraTip, R.string.reportVisceraObesityTip},
                 new float[]{9, 14}),
         WATER(R.string.detailWater,
@@ -1090,21 +1099,24 @@ public class WeighDataParser extends PrefsUtil {
                 R.mipmap.detail_water,
                 R.mipmap.progress3,
                 new int[]{R.color.corState2, R.color.corState3, R.color.corState8},
-                new int[]{R.string.reportInsufficient, R.string.reportStandard, R.string.reportExcellent},
+//                new int[]{R.string.reportInsufficient, R.string.reportStandard, R.string.reportExcellent},
+                new String[]{"不足", "标准", "优"},
                 new int[]{R.string.reportWaterLowTip, R.string.reportWaterStandardTip, R.string.reportWaterHightTip}),
         METABOLISM(R.string.detailMetabolism,
                 R.mipmap.report_metabolism_icon,
                 R.mipmap.detail_metabolism,
                 R.mipmap.progress2,
                 new int[]{R.color.corState6, R.color.corState3},
-                new int[]{R.string.reportMetabolismLow, R.string.reportMetabolismHigh},
+//                new int[]{R.string.reportMetabolismLow, R.string.reportMetabolismHigh},
+                new String[]{"未达标", "达标"},
                 new int[]{R.string.reportMetabolismLowTip, R.string.reportMetabolismHightTip}),
         PROTEIN(R.string.detailProtein,
                 R.mipmap.report_protein_icon,
                 R.mipmap.detail_protein,
                 R.mipmap.progress3_2,
                 new int[]{R.color.corState2, R.color.corState3, R.color.corState4},
-                new int[]{R.string.reportLow, R.string.reportStandard, R.string.reportHigh1},
+//                new int[]{R.string.reportLow, R.string.reportStandard, R.string.reportHigh1},
+                new String[]{"偏低", "标准", "偏高"},
                 new int[]{R.string.reportProteinStatTip1, R.string.reportProteinStatTip2, R.string.reportProteinStatTip3},
                 new float[]{16, 20}),
         BONE(R.string.detailBone,
@@ -1113,38 +1125,42 @@ public class WeighDataParser extends PrefsUtil {
                 R.mipmap.detail_bone,
                 R.mipmap.progress3,
                 new int[]{R.color.corState2, R.color.corState3, R.color.corState8},
-                new int[]{R.string.reportLow, R.string.reportStandard, R.string.reportExcellent},
+//                new int[]{R.string.reportLow, R.string.reportStandard, R.string.reportExcellent},
+                new String[]{"偏低", "标准", "优"},
                 new int[]{R.string.reportBoneLowTip, R.string.reportBoneStandardTip, R.string.reportBoneHightTip}),
         THIN(R.string.detailThinWeight,
                 R.mipmap.report_thin_weight_icon,
                 R.mipmap.detail_thin,
                 R.mipmap.progress4_1,
                 new int[]{R.color.standard6, R.color.standard3, R.color.standard8, R.color.standard8},
-                new int[]{R.string.thinState1, R.string.thinState2, R.string.thinState3, R.string.thinState4},
+//                new int[]{R.string.thinState1, R.string.thinState2, R.string.thinState3, R.string.thinState4},
+                new String[]{"偏弱", "标准", "强壮", "极壮"},
                 new int[]{R.string.reportThinStatTip1, R.string.reportThinStatTip2, R.string.reportThinStatTip3, R.string.reportThinStatTip4}),
         CONTAINWATER(R.string.detailWaterContain,
                 R.mipmap.report_water_icon,
                 R.mipmap.detail_watercontain,
                 R.mipmap.progress3,
-                new int[]{R.color.standard2, R.color.standard3, R.color.standard8},
-                new int[]{R.string.reportInsufficient, R.string.reportStandard, R.string.reportExcellent},
+//                new int[]{R.color.standard2, R.color.standard3, R.color.standard8},
+                new int[]{R.color.corState2, R.color.corState3, R.color.corState8},
+//                new int[]{R.string.reportInsufficient, R.string.reportStandard, R.string.reportExcellent},
+                new String[]{"不足", "标准", "优"},
                 new int[]{R.string.reportWaterContainStatTip1, R.string.reportWaterContainStatTip2, R.string.reportWaterContainStatTip3});
 
 
         int name;
         int icon;
         int[] colors;
-        int[] standards;
+        String[] standards;
         int[] tips;
         int detalisIcon;
         int progressBgRes;
         float[] levelNums;
 
-        StandardSet(int name, int icon, int detalisIcon, int progressBgRes, int[] colors, int[] standards, int[] tips) {
+        StandardSet(int name, int icon, int detalisIcon, int progressBgRes, int[] colors, String[] standards, int[] tips) {
             this(name, icon, detalisIcon, progressBgRes, colors, standards, tips, null);
         }
 
-        StandardSet(int name, int icon, int detalisIcon, int progressBgRes, int[] colors, int[] standards, int[] tips, float[] levelNums) {
+        StandardSet(int name, int icon, int detalisIcon, int progressBgRes, int[] colors, String[] standards, int[] tips, float[] levelNums) {
             this.name = name;
             this.icon = icon;
             this.detalisIcon = detalisIcon;
@@ -1167,7 +1183,7 @@ public class WeighDataParser extends PrefsUtil {
             return colors;
         }
 
-        public int[] getStandards() {
+        public String[] getStandards() {
             return standards;
         }
 

@@ -14,32 +14,8 @@
         </shape>
     </item>
 
-    <!--<item android:id="@android:id/secondaryProgress">-->
-    <!--<clip>-->
-    <!--<shape>-->
-    <!--<corners android:radius="5dip" />-->
-    <!--<gradient-->
-    <!--android:startColor="#16C6DC"-->
-    <!--android:centerColor="#16C6DC"-->
-    <!--android:centerY="0.75"-->
-    <!--android:endColor="#16C6DC"-->
-    <!--android:angle="270"-->
-    <!--/>-->
-    <!--</shape>-->
-    <!--</clip>-->
-    <!--</item>-->
 
-
-    <item android:id="@android:id/progress"
-        >
-
-        <!--<item android:id="@android:id/progress"-->
-        <!--android:drawable="@drawable/xx"-->
-        <!--android:height="20dp">-->
-        <!--<clip >-->
-        <!--<nine-patch android:src="@drawable/up_photo_progress"/>-->
-        <!--</clip>-->
-
+    <item android:id="@android:id/progress">
 
         <clip>
             <shape>
