@@ -229,7 +229,7 @@ public class ScrollChartView extends View {
 
         mLineStartColor = ContextCompat.getColor(context, R.color.colorSelected);
         mLineEndColor = ContextCompat.getColor(context, R.color.colorSelected);
-        mLineWidth = UIUtils.dp2px(context, 1);
+        mLineWidth = UIUtils.dp2px(context, 2);
 
         mTextColor = ContextCompat.getColor(context, R.color.colorText);
         mTextSize = UIUtils.dp2px(context, 9);
@@ -239,11 +239,11 @@ public class ScrollChartView extends View {
         mIndicateHeight = UIUtils.dp2px(context, 20);
         mIndicateWidth = UIUtils.dp2px(context, 2);
         mIndicateColor = Color.WHITE;
-        mIndicatePadding = UIUtils.dp2px(getContext(), 25);
+        mIndicatePadding = UIUtils.dp2px(getContext(), 87);
         mIndicateBottomPadding = UIUtils.dp2px(getContext(), 15);
 
-        mShadowStartColor = ContextCompat.getColor(getContext(), R.color.colorSelected);
-        mShadowEndColor = ContextCompat.getColor(getContext(), R.color.colorShadowEnd);
+        mShadowStartColor = ContextCompat.getColor(getContext(), R.color.color_353bb7);
+        mShadowEndColor = ContextCompat.getColor(getContext(), R.color.colorSelected1);
 //        mShadowMarginHeight = UIUtils.dp2px(getContext(), 30);
         mShadowMarginHeight = UIUtils.dp2px(getContext(), 30);
 
@@ -602,7 +602,7 @@ public class ScrollChartView extends View {
                 break;
             case MotionEvent.ACTION_UP: {
                 if (mIsDragged) {
-                    mVelocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);
+                    mVelocityTracker.computeCurrentVelocity(10, mMaximumVelocity);
                     int initialVelocity = (int) mVelocityTracker.getXVelocity();
 
                     if ((Math.abs(initialVelocity) > mMinimumVelocity)) {

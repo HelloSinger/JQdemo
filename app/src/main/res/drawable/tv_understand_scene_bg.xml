@@ -7,9 +7,9 @@
         android:color="@color/color_00ca98" />
 
     <size
-        android:width="167px"
-        android:height="48px" />
+        android:width="206px"
+        android:height="50px" />
 
-    <corners android:radius="3dp" />
+    <corners android:radius="4dp" />
 
 </shape>

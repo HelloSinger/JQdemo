@@ -75,7 +75,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="50px"
-            android:background="@drawable/shape_rectangle_green_bg"
+            android:background="@drawable/shape_rectangle_2"
             android:gravity="center"
             android:minWidth="40dp"
             android:textColor="@color/white"

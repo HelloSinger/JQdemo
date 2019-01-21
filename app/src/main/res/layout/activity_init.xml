@@ -35,23 +35,36 @@
             android:textColor="@color/white"
             android:textSize="24px" />
 
-        <TextView
-            android:id="@+id/tv_unserstand_scene"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_unserstand_scene"
+            android:layout_width="200px"
+            android:layout_height="60px"
             android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="65px"
             android:layout_marginRight="30px"
             android:background="@drawable/tv_understand_scene_bg"
-            android:drawableLeft="@mipmap/icon_understand_the_scene"
-            android:drawablePadding="10px"
-            android:gravity="center"
-            android:paddingLeft="20px"
-            android:paddingTop="11px"
-            android:paddingBottom="11px"
-            android:text="了解场景"
-            android:textSize="20px"
-            android:textColor="@color/white" />
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="34px"
+                android:background="@mipmap/icon_understand_the_scene" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="26px"
+                android:text="了解场景"
+                android:textColor="@color/white"
+                android:textSize="20px" />
+        </LinearLayout>
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -121,7 +134,7 @@
 
     <View
         android:id="@+id/view_v"
-        android:layout_width="1px"
+        android:layout_width="0.5px"
         android:layout_height="418px"
         android:layout_below="@id/view_h"
         android:layout_centerHorizontal="true"
@@ -129,7 +142,7 @@
 
     <View
         android:layout_width="868px"
-        android:layout_height="1px"
+        android:layout_height="0.5px"
         android:layout_below="@id/view_h"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="209px"
@@ -349,21 +362,34 @@
             android:layout_below="@id/mDynamicView"
             android:background="@color/white" />
 
-        <TextView
-            android:id="@+id/tv_bind_device"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_bind_device"
+            android:layout_width="167px"
+            android:layout_height="48px"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="90px"
+            android:layout_marginTop="100px"
             android:background="@drawable/tv_understand_scene_bg"
-            android:drawableLeft="@mipmap/icon_bind"
-            android:drawablePadding="20px"
-            android:paddingLeft="20px"
-            android:paddingTop="11px"
-            android:paddingBottom="11px"
-            android:text="绑 定"
-            android:textColor="@color/white"
-            android:textSize="28px" />
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="25px"
+                android:background="@mipmap/icon_bind" />
+
+            <TextView
+                android:id="@+id/tv_bind_device"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15px"
+                android:text="去绑定"
+                android:textColor="@color/white"
+                android:textSize="24px" />
+        </LinearLayout>
+
 
         <RelativeLayout
             android:layout_width="match_parent"

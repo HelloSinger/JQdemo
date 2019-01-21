@@ -3,32 +3,32 @@
 
     <item android:id="@android:id/background">
         <shape>
-            <corners android:radius="5dip" />
+            <corners android:radius="20dp" />
             <gradient
-                android:startColor="#AA999999"
-                android:centerColor="#AA999999"
+                android:angle="360"
+                android:centerColor="@color/color_Affffff"
                 android:centerY="0.75"
-                android:endColor="#AA999999"
-                android:angle="270"
-                />
+                android:endColor="@color/color_Affffff"
+                android:startColor="@color/color_Affffff" />
         </shape>
     </item>
 
-
     <item android:id="@android:id/progress">
 
-        <clip>
-            <shape>
-                <corners android:radius="5dip" />
-                <gradient
-                    android:startColor="#07a3d9"
-                    android:centerColor="#07a3d9"
-                    android:centerY="0.75"
-                    android:endColor="#07a3d9"
-                    android:angle="270"
-                    />
-            </shape>
-        </clip>
+        <!--<clip>-->
+        <!--<shape>-->
+        <!--<corners android:radius="20dp" />-->
+        <!--<gradient-->
+        <!--android:startColor="#2db4a3"-->
+        <!--android:centerColor="#2db4a3"-->
+        <!--android:centerY="0.75"-->
+        <!--android:endColor="#2db4a3"-->
+        <!--android:angle="270"-->
+        <!--/>-->
+        <!--</shape>-->
+        <!--</clip>-->
+        <scale
+            android:drawable="@drawable/progress_bg_07a3d9"
+            android:scaleWidth="100%" />
     </item>
-
 </layer-list>

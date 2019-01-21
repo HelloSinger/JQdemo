@@ -29,8 +29,12 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * 更多数据页面
@@ -114,7 +118,7 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
         tv_water_points_ = findViewById(R2.id.tv_water_points_);
         tv_water_points_.setText("水       分");
         tv_water_content_ = findViewById(R2.id.tv_water_content_);
-        tv_water_content_.setText("水 含 量");
+        tv_water_content_.setText("水  含  量");
         tv_obesity_ = findViewById(R2.id.tv_obesity_);
         tv_obesity_.setText("肥  胖  度");
         tv_bmi_ = findViewById(R2.id.tv_bmi_);
@@ -165,10 +169,10 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
         pb_metabolism.setMax((int) maxs);
         pb_metabolism.setProgress((int) values);
         if (sourceStrArray[1].equals("未达标")) {
-            tv_metabolism_level.setBackgroundResource(R.color.corState6);
+            tv_metabolism_level.setBackgroundResource(R.drawable.shape_rectangle_6);
             pb_metabolism.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_f66361));
         } else if (sourceStrArray[1].equals("达标")) {
-            tv_metabolism_level.setBackgroundResource(R.color.corState3);
+            tv_metabolism_level.setBackgroundResource(R.drawable.shape_rectangle_3);
             pb_metabolism.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_07a3d9));
         }
     }
@@ -192,13 +196,13 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
             Log.e("AYD", "interceptbone: " + sourceStrArray[i]);
         }
         if (sourceStrArray[1].equals("偏低")) {
-            tv_bone_level.setBackgroundResource(R.color.corState2);
+            tv_bone_level.setBackgroundResource(R.drawable.shape_rectangle_2);
             pb_bone_weight.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_d28672));
         } else if (sourceStrArray[1].equals("标准")) {
-            tv_bone_level.setBackgroundResource(R.color.corState3);
+            tv_bone_level.setBackgroundResource(R.drawable.shape_rectangle_3);
             pb_bone_weight.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_07a3d9));
         } else if (sourceStrArray[1].equals("优")) {
-            tv_bone_level.setBackgroundResource(R.color.corState8);
+            tv_bone_level.setBackgroundResource(R.drawable.shape_rectangle_8);
             pb_bone_weight.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_1e56d9));
         }
     }
@@ -219,13 +223,13 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
         pb_rate_of_muscle.setMax((int) maxs);
         pb_rate_of_muscle.setProgress((int) values);
         if (sourceStrArray[1].equals("不足")) {
-            tv_rate_of_muscle_level.setBackgroundResource(R.color.corState2);
+            tv_rate_of_muscle_level.setBackgroundResource(R.drawable.shape_rectangle_2);
             pb_rate_of_muscle.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_f66361));
         } else if (sourceStrArray[1].equals("标准")) {
-            tv_rate_of_muscle_level.setBackgroundResource(R.color.corState3);
+            tv_rate_of_muscle_level.setBackgroundResource(R.drawable.shape_rectangle_3);
             pb_rate_of_muscle.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_07a3d9));
         } else if (sourceStrArray[1].equals("优")) {
-            tv_rate_of_muscle_level.setBackgroundResource(R.color.corState8);
+            tv_rate_of_muscle_level.setBackgroundResource(R.drawable.shape_rectangle_8);
             pb_rate_of_muscle.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_1e56d9));
         }
     }
@@ -246,13 +250,13 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
         pb_muscle_weight.setMax((int) maxs);
         pb_muscle_weight.setProgress((int) values);
         if (sourceStrArray[1].equals("不足")) {
-            tv_muscle_weight_level.setBackgroundResource(R.color.corState2);
+            tv_muscle_weight_level.setBackgroundResource(R.drawable.shape_rectangle_2);
             pb_muscle_weight.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_f66361));
         } else if (sourceStrArray[1].equals("标准")) {
-            tv_muscle_weight_level.setBackgroundResource(R.color.corState3);
+            tv_muscle_weight_level.setBackgroundResource(R.drawable.shape_rectangle_3);
             pb_muscle_weight.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_07a3d9));
         } else if (sourceStrArray[1].equals("优")) {
-            tv_muscle_weight_level.setBackgroundResource(R.color.corState8);
+            tv_muscle_weight_level.setBackgroundResource(R.drawable.shape_rectangle_8);
             pb_muscle_weight.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_1e56d9));
         }
     }
@@ -273,13 +277,13 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
         pb_visceral_fat.setMax((int) maxs);
         pb_visceral_fat.setProgress((int) values);
         if (sourceStrArray[1].equals("不足")) {
-            tv_visceral_fat_level.setBackgroundResource(R.color.corState2);
+            tv_visceral_fat_level.setBackgroundResource(R.drawable.shape_rectangle_2);
             pb_visceral_fat.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_f66361));
         } else if (sourceStrArray[1].equals("标准")) {
-            tv_visceral_fat_level.setBackgroundResource(R.color.corState3);
+            tv_visceral_fat_level.setBackgroundResource(R.drawable.shape_rectangle_3);
             pb_visceral_fat.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_07a3d9));
         } else if (sourceStrArray[1].equals("优")) {
-            tv_visceral_fat_level.setBackgroundResource(R.color.corState8);
+            tv_visceral_fat_level.setBackgroundResource(R.drawable.shape_rectangle_8);
             pb_visceral_fat.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_1e56d9));
         }
     }
@@ -300,13 +304,13 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
         pb_water_points.setMax((int) maxs);
         pb_water_points.setProgress((int) values);
         if (sourceStrArray[1].equals("不足")) {
-            tv_water_points_level.setBackgroundResource(R.color.corState2);
+            tv_water_points_level.setBackgroundResource(R.drawable.shape_rectangle_2);
             pb_water_points.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_f66361));
         } else if (sourceStrArray[1].equals("标准")) {
-            tv_water_points_level.setBackgroundResource(R.color.corState3);
+            tv_water_points_level.setBackgroundResource(R.drawable.shape_rectangle_3);
             pb_water_points.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_07a3d9));
         } else if (sourceStrArray[1].equals("优")) {
-            tv_water_points_level.setBackgroundResource(R.color.corState8);
+            tv_water_points_level.setBackgroundResource(R.drawable.shape_rectangle_8);
             pb_water_points.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_1e56d9));
         }
     }
@@ -327,13 +331,13 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
         pb_water_content.setMax((int) maxs);
         pb_water_content.setProgress((int) values);
         if (sourceStrArray[1].equals("不足")) {
-            tv_water_content_level.setBackgroundResource(R.color.corState2);
+            tv_water_content_level.setBackgroundResource(R.drawable.shape_rectangle_2);
             pb_water_content.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_f66361));
         } else if (sourceStrArray[1].equals("标准")) {
-            tv_water_content_level.setBackgroundResource(R.color.corState3);
+            tv_water_content_level.setBackgroundResource(R.drawable.shape_rectangle_3);
             pb_water_content.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_07a3d9));
         } else if (sourceStrArray[1].equals("优")) {
-            tv_water_content_level.setBackgroundResource(R.color.corState8);
+            tv_water_content_level.setBackgroundResource(R.drawable.shape_rectangle_8);
             pb_water_content.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_1e56d9));
         }
     }
@@ -354,25 +358,25 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
         pb_obesity.setMax((int) maxs);
         pb_obesity.setProgress((int) values);
         if (sourceStrArray[1].equals("消瘦")) {
-            tv_obesity_level.setBackgroundResource(R.color.corState2);
+            tv_obesity_level.setBackgroundResource(R.drawable.shape_rectangle_2);
             pb_obesity.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_f66361));
         } else if (sourceStrArray[1].equals("偏瘦")) {
-            tv_obesity_level.setBackgroundResource(R.color.corState2);
+            tv_obesity_level.setBackgroundResource(R.drawable.shape_rectangle_2);
             pb_obesity.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_f66361));
         } else if (sourceStrArray[1].equals("标准")) {
-            tv_obesity_level.setBackgroundResource(R.color.corState3);
+            tv_obesity_level.setBackgroundResource(R.drawable.shape_rectangle_3);
             pb_obesity.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_07a3d9));
         } else if (sourceStrArray[1].equals("超重")) {
-            tv_obesity_level.setBackgroundResource(R.color.corState4);
+            tv_obesity_level.setBackgroundResource(R.drawable.shape_rectangle_4);
             pb_obesity.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_e6c878));
         } else if (sourceStrArray[1].equals("轻度")) {
-            tv_obesity_level.setBackgroundResource(R.color.corState5);
+            tv_obesity_level.setBackgroundResource(R.drawable.shape_rectangle_5);
             pb_obesity.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_eb876e));
         } else if (sourceStrArray[1].equals("中度")) {
-            tv_obesity_level.setBackgroundResource(R.color.corState6);
+            tv_obesity_level.setBackgroundResource(R.drawable.shape_rectangle_6);
             pb_obesity.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_f66361));
         } else if (sourceStrArray[1].equals("重度")) {
-            tv_obesity_level.setBackgroundResource(R.color.corState7);
+            tv_obesity_level.setBackgroundResource(R.drawable.shape_rectangle_7);
             pb_obesity.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_c84455));
         }
 
@@ -394,16 +398,16 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
         pb_bmi.setMax((int) maxs);
         pb_bmi.setProgress((int) values);
         if (sourceStrArray[1].equals("偏瘦")) {
-            tv_bmi_level.setBackgroundResource(R.color.corState2);
+            tv_bmi_level.setBackgroundResource(R.drawable.shape_rectangle_2);
             pb_bmi.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_d28672));
         } else if (sourceStrArray[1].equals("标准")) {
-            tv_bmi_level.setBackgroundResource(R.color.corState3);
+            tv_bmi_level.setBackgroundResource(R.drawable.shape_rectangle_3);
             pb_bmi.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_07a3d9));
         } else if (sourceStrArray[1].equals("偏胖")) {
-            tv_bmi_level.setBackgroundResource(R.color.corState4);
+            tv_bmi_level.setBackgroundResource(R.drawable.shape_rectangle_4);
             pb_bmi.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_e6c878));
         } else if (sourceStrArray[1].equals("肥胖")) {
-            tv_bmi_level.setBackgroundResource(R.color.corState6);
+            tv_bmi_level.setBackgroundResource(R.drawable.shape_rectangle_6);
             pb_bmi.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_drawable_f66361));
         }
 
@@ -461,7 +465,15 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
                                 tv_weight.setText(dataList.get(position) + "KG");
                                 ScrollChartView.Point point = scroll_chart_main.getList().get(position);
                                 civ_main.setCircleY(point.y);
-                                mWeightTime.setText(moreDataModel.getData().get(position).getCreateTime());
+                                SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy年MM月dd日");
+                                SimpleDateFormat sdf2 = new SimpleDateFormat("MMM d, yyyy HH:mm:ss", Locale.ENGLISH);
+                                try {
+                                    String dateCH = sdf1.format(sdf2.parse(moreDataModel.getData().get(position).getCreateTime()));
+                                    Log.e("AYD", "----->" + dateCH);
+                                    mWeightTime.setText(dateCH);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
                                 interceptMetabolism(moreDataModel.getData().get(position).getMetabolism());
                                 interceptbone(moreDataModel.getData().get(position).getBoneWeight());
                                 interceptRateOfMuscle(moreDataModel.getData().get(position).getMuscleRate());

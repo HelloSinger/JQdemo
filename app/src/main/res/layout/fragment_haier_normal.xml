@@ -483,7 +483,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="40px"
-                android:layout_marginRight="82px"
+                android:layout_marginRight="45px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -492,7 +492,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/tv_add_member_bg"
                     android:gravity="center"
-                    android:text="添加用户"
+                    android:text="添加家庭成员"
                     android:textColor="@color/tv_4B83E9"
                     android:textSize="17px" />
 
@@ -503,7 +503,7 @@
                     android:layout_marginLeft="10px"
                     android:background="@drawable/tv_add_member_bg"
                     android:gravity="center"
-                    android:text="更多体脂数据"
+                    android:text="更多体质数据"
                     android:textColor="@color/tv_4B83E9"
                     android:textSize="17px" />
             </LinearLayout>
@@ -576,7 +576,7 @@
                     android:layout_marginLeft="414px"
                     android:layout_marginTop="50px"
                     android:layout_toRightOf="@id/ll_head"
-                    android:background="@color/white" />
+                    android:background="#aaffffff" />
 
                 <View
                     android:layout_width="652px"
@@ -584,7 +584,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="88px"
                     android:layout_toRightOf="@id/ll_head"
-                    android:background="@color/white" />
+                    android:background="#aaffffff" />
 
 
                 <include
@@ -735,13 +735,12 @@
 
                     <TextView
                         android:id="@+id/tv_tips"
-                        android:layout_width="wrap_content"
+                        android:layout_width="750px"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/ll_score"
-                        android:layout_marginLeft="30px"
+                        android:layout_marginLeft="40px"
                         android:layout_marginTop="20px"
                         android:lineSpacingExtra="5dp"
-                        android:maxEms="20"
                         android:text=""
                         android:textColor="@color/tv_6EABFF"
                         android:textSize="18px" />

@@ -95,7 +95,7 @@
                         android:id="@+id/mScore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="75"
+                        android:text=""
                         android:textColor="@color/white"
                         android:textSize="88px" />
 
@@ -112,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="100KG"
+                    android:text=""
                     android:textColor="@color/tv_A1ABBE"
                     android:textSize="24px" />
 
@@ -131,7 +131,7 @@
                         android:layout_height="match_parent"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="25dp" />
+                        android:layout_marginBottom="20dp" />
                     <!--android:background="@drawable/shape_circle_indicator"-->
                 </RelativeLayout>
 

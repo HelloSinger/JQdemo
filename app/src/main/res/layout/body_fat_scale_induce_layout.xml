@@ -36,7 +36,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="32px"
                 android:layout_toRightOf="@id/iv_scale"
-                android:text="体脂报告"
+                android:text="体质报告"
                 android:textColor="@color/white"
                 android:textSize="24px" />
 
@@ -72,7 +72,7 @@
             android:layout_below="@id/tv_induce"
             android:layout_marginLeft="36px"
             android:layout_marginTop="84px"
-            android:text="匹配型号：海尔智能体脂秤-Q81W"
+            android:text="匹配型号：海尔智能体脂秤-Q81"
             android:textColor="@color/white"
             android:textSize="16px" />
 

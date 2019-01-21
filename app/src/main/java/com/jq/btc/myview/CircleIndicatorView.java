@@ -2,9 +2,11 @@ package com.jq.btc.myview;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.DashPathEffect;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PathEffect;
 import android.graphics.Shader;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -17,9 +19,6 @@ import com.jq.btc.app.R;
 /**
  * describe：圆形指示器
  *
- * @author ：鲁宇峰 on 2018/11/26 16：47
- * email：466708987@qq.com
- * github：https://github.com/Victory-Over
  */
 public class CircleIndicatorView extends View {
 
@@ -95,6 +94,8 @@ public class CircleIndicatorView extends View {
         mLinePaint.setStyle(Paint.Style.STROKE);
         mLinePaint.setAntiAlias(true);
         mLinePaint.setStrokeWidth(mLineWidth);
+        PathEffect effects = new DashPathEffect(new float[]{4,4,4,4},1);
+        mLinePaint.setPathEffect(effects);
         Shader shader = new LinearGradient(0, getHeight(), getWidth(), 0, mLineEndColor, mLineStartColor, Shader.TileMode.CLAMP);
         mLinePaint.setShader(shader);
 

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.jq.btc.app.R;
 import com.jq.btc.bluettooth.BoundDeviceActivity;
+import com.jq.btc.utils.SpUtils;
 
 /**
  * Create by AYD on 2018/12/5
@@ -39,6 +40,7 @@ public class BodyFatScaleInduceActivity extends AppCompatActivity implements Vie
                 finish();
                 break;
             case R.id.tv_open:
+                SpUtils.getInstance(BodyFatScaleInduceActivity.this).setIsFirst(true);
                 startActivity(new Intent(this, BoundDeviceActivity.class));
                 break;
         }

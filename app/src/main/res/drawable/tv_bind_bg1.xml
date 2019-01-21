@@ -7,7 +7,7 @@
         android:color="@color/tv_00CF9B" />
 
     <size
-        android:width="132px"
-        android:height="45px" />
+        android:width="280px"
+        android:height="64px" />
 
 </shape>

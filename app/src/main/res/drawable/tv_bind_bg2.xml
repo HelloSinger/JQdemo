@@ -6,8 +6,8 @@
         android:color="@color/color_00ca98" />
 
     <size
-        android:width="132px"
-        android:height="45px" />
+        android:width="280px"
+        android:height="64px" />
 
     <corners android:radius="3dp" />
 </shape>

@@ -4,7 +4,7 @@ package com.jq.btc;
  * Create by AYD on 2018/12/18
  */
 public class ConstantUrl {
-
+    //http://enxcook.xcook.cn:8888/
     private static String BASE_URL = "http://enxcook.xcook.cn:8888/CookbookResourcePlatform-api/v1/";
 
     public static String GET_USER_URL = "https://sso.xcook.cn/v3/family/familymember.info.list";

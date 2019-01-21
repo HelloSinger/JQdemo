@@ -18,7 +18,7 @@
             android:id="@+id/tv_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50px"
+            android:layout_marginLeft="20px"
             android:layout_toRightOf="@id/mTypeIcon1"
             android:text="- -"
             android:textColor="@color/white"
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_weight"
-            android:layout_marginLeft="120px"
+            android:layout_marginLeft="90px"
             android:text="体重"
             android:textColor="@color/white"
             android:textSize="20px" />

@@ -42,6 +42,7 @@ import com.jq.btc.kitchenscale.ble.BleConnectionCallback;
 import com.jq.btc.kitchenscale.ble.BleHelper;
 import com.jq.btc.kitchenscale.ble.BleReadOrWriteCallback;
 import com.jq.btc.kitchenscale.ble.BleScanResultCallback;
+import com.jq.btc.utils.SpUtils;
 import com.jq.btlib.util.CsBtUtil_v11;
 import com.jq.code.code.business.Account;
 import com.jq.code.code.business.ScaleParser;
@@ -207,6 +208,7 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
                 mBleController.reBound();
             }
             isStartSearch = true;
+            Log.e("AYD", "-------1");
         }
         runOnUiThread(new Runnable() {
             @Override
@@ -339,6 +341,7 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
     private void startAnimation() {
         mViewHolder.title.setVisibility(View.VISIBLE);
         mViewHolder.tv_title_two.setVisibility(View.VISIBLE);
+        mViewHolder.tv_bound_B.setText("蓝牙连接");
         mViewHolder.title.setText(R.string.tutorialboundTitle);
 //        mViewHolder.tv_title_two.setText(R.string.tv_title_two);
         mViewHolder.animtor.setVisibility(View.VISIBLE);
@@ -355,6 +358,7 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
         if (mBleController != null) {
             mBleController.unregisterReceiver(this);
             isStartSearch = true;
+            Log.e("AYD", "-------2");
             mBleController.stopSeach();
             stopAnimation();
         }
@@ -421,6 +425,7 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
         if (mBleController != null) {
             mBleController.reBound();
             isStartSearch = true;
+            Log.e("AYD", "-------3");
         }
     }
 
@@ -445,6 +450,7 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
     }
 
     private void toActivity() {
+        SpUtils.getInstance(this).setIsFirst(true);
         Intent intent = new Intent();
         intent.setClass(this, NewMainActivity.class);
         intent.putExtra("mak", 11);

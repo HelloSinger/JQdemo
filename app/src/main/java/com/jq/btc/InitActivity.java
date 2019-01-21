@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,7 +16,9 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
@@ -24,6 +28,7 @@ import com.jq.btc.bluettooth.BLEController;
 import com.jq.btc.bluettooth.BoundDeviceActivity;
 import com.jq.btc.homePage.NewMainActivity;
 import com.jq.btc.model.UserData;
+import com.jq.btc.utils.BMToastUtil;
 import com.jq.btc.utils.ShareUtils;
 import com.jq.btc.utils.SpUtils;
 import com.jq.code.code.business.Account;
@@ -52,9 +57,8 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
     private static final int TIME_OUT = 2 * 1000;
     private ImageView boot;
     private boolean isKeyBack;
-    private TextView tv_bind_device, tv_unserstand_scene;
     private ImageView iv_back;
-
+    private boolean isBound = false;
     private String[] dangerousPermission = new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -62,25 +66,31 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
     private Context _context;
     private BLEController mBleController;
     private String useIds;
+    private LinearLayout ll_bind_device, ll_unserstand_scene;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_init);
-
+        _context = this;
+        isBound = SpUtils.getInstance(_context).getIsFirst();
+        if (isBound) {
+            startActivity(new Intent(InitActivity.this, NewMainActivity.class));
+            finish();
+        }
         DisplayMetrics metrics = new DisplayMetrics();
 
         getWindowManager().getDefaultDisplay().getRealMetrics(metrics);
         int width = metrics.widthPixels;
         int height = metrics.heightPixels;
         Log.e("fenbianlv", "onCreate: " + width + "---" + height);
-        _context = this;
+
         mBleController = BLEController.create(this);
         mBleController.setBound(true);
         if (Build.VERSION.SDK_INT >= 23) {
             boolean hasSelfPermission = PermissionUtils.hasSelfPermissions(this, dangerousPermission);
             if (hasSelfPermission) {
-                boot = (ImageView) findViewById(R.id.boot_img);
+                boot = findViewById(R.id.boot_img);
                 initBoot();
                 init();
             } else {
@@ -88,12 +98,12 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
             }
         } else {
             boot = findViewById(R.id.boot_img);
-            tv_bind_device = findViewById(R.id.tv_bind_device);
             iv_back = findViewById(R.id.iv_back);
-            tv_unserstand_scene = findViewById(R.id.tv_unserstand_scene);
-            tv_bind_device.setOnClickListener(this);
+            ll_unserstand_scene = findViewById(R.id.ll_unserstand_scene);
+            ll_bind_device = findViewById(R.id.ll_bind_device);
+            ll_bind_device.setOnClickListener(this);
             iv_back.setOnClickListener(this);
-            tv_unserstand_scene.setOnClickListener(this);
+            ll_unserstand_scene.setOnClickListener(this);
             initBoot();
             init();
         }
@@ -129,10 +139,10 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
             setBootImage();
         } else {
             final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-            alertDialog.setTitle(this.getResources().getString(R.string.versionErr));
-            alertDialog.setMessage(this.getResources().getString(
+            alertDialog.setTitle(getResources().getString(R.string.versionErr));
+            alertDialog.setMessage(getResources().getString(
                     R.string.versionHead) + android.os.Build.VERSION.RELEASE
-                    + this.getResources().getString(R.string.versionFoot));
+                    + getResources().getString(R.string.versionFoot));
             alertDialog.setCanceledOnTouchOutside(true);
             alertDialog.show();
             new Handler().postDelayed(new Runnable() {
@@ -324,15 +334,45 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_bind_device:
-                startActivity(new Intent(this, BoundDeviceActivity.class).putExtra("where", 2));
+            case R.id.ll_bind_device:
+                if (mBleController != null) {
+                    if (mBleController.isBluetoothEnable()) {
+                        if (isNetworkAvailable(_context)) {
+                            startActivity(new Intent(this, BoundDeviceActivity.class).putExtra("where", 2));
+                            finish();
+                        } else {
+                            BMToastUtil.showToastShort(_context,"当前无网络");
+                        }
+                    } else {
+                        BMToastUtil.showToastShort(_context,"请先开启蓝牙");
+                    }
+                }
                 break;
-            case R.id.tv_unserstand_scene:
+            case R.id.ll_unserstand_scene:
                 startActivity(new Intent(this, BodyFatScaleInduceActivity.class));
                 break;
             case R.id.iv_back:
                 finish();
                 break;
         }
+    }
+
+
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager manager = (ConnectivityManager) context
+                .getApplicationContext().getSystemService(
+                        Context.CONNECTIVITY_SERVICE);
+
+        if (manager == null) {
+            return false;
+        }
+
+        NetworkInfo networkinfo = manager.getActiveNetworkInfo();
+
+        if (networkinfo == null || !networkinfo.isAvailable()) {
+            return false;
+        }
+
+        return true;
     }
 }

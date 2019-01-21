@@ -31,8 +31,8 @@ import com.jq.btc.model.UserData;
 public class WeightDialog extends Dialog implements View.OnClickListener, DialogRecyAdapter.RecyItemOnClickListener {
     //----以下显示计算中的布局
     private TextView tv_count_time;
-    private ImageView iv_progress;
     private RelativeLayout rl_progress;
+    private RelativeLayout rl_progress_1;
     private ImageView iv_close_dialog;
     private TextView tv_dialog_weight_cal;
     private TextView tv_title_dialog;//title
@@ -95,7 +95,7 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
         tv_count_time = findViewById(R.id.tv_count_time);
         ll_result = findViewById(R.id.ll_result);
         rl_progress = findViewById(R.id.rl_progress);
-        iv_progress = findViewById(R.id.iv_progress);
+        rl_progress_1 = findViewById(R.id.rl_progress_1);
         ll_match = findViewById(R.id.ll_match);
         iv_close_dialog = findViewById(R.id.iv_close_dialog);
         tv_dialog_weight_cal = findViewById(R.id.tv_dialog_weight_cal);
@@ -130,9 +130,13 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
             ll_result.setVisibility(View.VISIBLE);
             tv_count_time.setVisibility(View.VISIBLE);
             countDownTimersMatch.cancel();
+            iv_close_dialog.setVisibility(View.VISIBLE);
             startTimesData();
         } else {
             ll_result.setVisibility(View.GONE);
+            if (countDownTimersData!=null){
+            countDownTimersData.cancel();
+            }
         }
     }
 
@@ -145,6 +149,8 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
         if (b) {
             rl_progress.setVisibility(View.VISIBLE);
             tv_count_time.setVisibility(View.GONE);
+            iv_close_dialog.setVisibility(View.GONE);
+
         } else {
             rl_progress.setVisibility(View.GONE);
         }
@@ -162,9 +168,13 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
             dialogRecyAdapter.setRecyItemOnClickListener(this);
             rv_family.setAdapter(dialogRecyAdapter);
             tv_count_time.setVisibility(View.VISIBLE);
+            iv_close_dialog.setVisibility(View.VISIBLE);
             startTimesMatch();
         } else {
             ll_match.setVisibility(View.GONE);
+            if (countDownTimersMatch!=null){
+            countDownTimersMatch.cancel();
+            }
         }
     }
 
@@ -178,10 +188,12 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
         countDownTimersMatch = new CountDownTimers(30000, 1000);
         countDownTimersMatch.start();
     }
+
     private void startTimesData() {
         countDownTimersData = new CountDownTimers(30000, 1000);
         countDownTimersData.start();
     }
+
     /**
      * 设置体重
      *
@@ -210,7 +222,7 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
     }
 
     private void setAnimator() {
-        final ObjectAnimator animator = ObjectAnimator.ofFloat(iv_progress, "rotation", 0f, 360f);
+        final ObjectAnimator animator = ObjectAnimator.ofFloat(rl_progress_1, "rotation", 0f, 360f);
         LinearInterpolator lin = new LinearInterpolator();
         animator.setInterpolator(lin);
         animator.addListener(new Animator.AnimatorListener() {
@@ -271,8 +283,8 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
         tv_dialog_name.setText(name);
         tv_dialog_weight.setText(weight);
         tv_body_fat.setText(bodyFat);
-        tv_bone_weight.setText(boneWeight);
-        tv_muscle_rate.setText(muscleRate);
+        tv_bone_weight.setText(boneWeight + "KG");
+        tv_muscle_rate.setText(muscleRate + "%");
     }
 
     /**

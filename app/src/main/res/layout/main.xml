@@ -49,23 +49,35 @@
             android:textColor="@color/white"
             android:textSize="18px" />
 
-        <TextView
-            android:id="@+id/tv_unserstand_scene"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_unserstand_scene"
+            android:layout_width="206px"
+            android:layout_height="50px"
             android:layout_alignParentRight="true"
             android:layout_marginTop="65px"
             android:layout_marginRight="82px"
-            android:background="@drawable/tv_understand_scene_bg"
-            android:drawableLeft="@mipmap/icon_un_bing"
-            android:drawablePadding="20px"
-            android:gravity="center"
-            android:paddingLeft="15px"
-            android:paddingTop="11px"
-            android:paddingRight="20px"
-            android:paddingBottom="11px"
-            android:text="解除绑定"
-            android:textColor="@color/white" />
+            android:background="@drawable/tv_understand_scene_bg">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="35px"
+                android:background="@mipmap/icon_un_bing" />
+
+
+            <TextView
+                android:id="@+id/tv_unserstand_scene"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20px"
+                android:text="解除绑定"
+                android:textColor="@color/white"
+                android:textSize="20px" />
+        </LinearLayout>
+
+
     </RelativeLayout>
 
     <FrameLayout
@@ -75,12 +87,29 @@
         android:layout_weight="1"
         android:visibility="gone" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:visibility="visible" />
+        android:layout_weight="1">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_no_user"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autoLink="all"
+            android:gravity="center"
+            android:text="请先去用户用心添加用户吧~"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="wrap_content"

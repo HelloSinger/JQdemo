@@ -45,6 +45,20 @@ public class SpUtils {
         mEditor.commit();
     }
 
+    public boolean setIsFirst(boolean b) {
+        mEditor.putBoolean("isFirst", b);
+        return mEditor.commit();
+    }
+
+    public boolean getIsFirst() {
+        return sharedPreferences.getBoolean("isFirst", false);
+    }
+
+    public void cleanMak(){
+        mEditor.remove("isFirst");
+        mEditor.commit();
+    }
+
     //userid
     public boolean setUserid(String userid) {
         mEditor.putString("USE_ID", userid);
