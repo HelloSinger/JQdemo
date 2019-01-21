@@ -77,7 +77,16 @@
                 android:textSize="20px" />
         </LinearLayout>
 
-
+        <TextView
+            android:id="@+id/tv_ble"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_below="@+id/titleLayout"
+            android:background="#ff0000"
+            android:gravity="center"
+            android:text="@string/HaierBluetooth_open_bluetooth"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <FrameLayout

@@ -629,6 +629,7 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/ll_jy"
             android:layout_width="match_parent"
             android:layout_height="240px"
             android:layout_below="@id/rl_head"
@@ -747,6 +748,47 @@
 
                 </RelativeLayout>
             </ScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ll_jy"
+            android:layout_marginLeft="40px"
+            android:layout_marginRight="40px"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_recommend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="24px" />
+
+                <TextView
+                    android:id="@+id/tv_recommend_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10px"
+                    android:text="(绑定设备称重后，会根据健康信息推荐菜谱)"
+                    android:textColor="@color/color_BFBFBF"
+                    android:textSize="18px"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="1000px"
+                android:layout_height="700px"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10px"
+                android:background="@mipmap/icon_caipu"
+                android:scaleType="centerCrop" />
+
         </LinearLayout>
     </RelativeLayout>
 </FrameLayout>

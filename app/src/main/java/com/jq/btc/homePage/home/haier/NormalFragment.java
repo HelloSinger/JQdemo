@@ -151,6 +151,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     NumberFormat formatter;
     String userName;
 
+    private TextView tv_recommend;
     private TextView tv_weight, tv_body_fat, tv_bone_weight, tv_muscle_rate;
     private TextView tv_weight_unit, tv_body_fat_unit, tv_bone_weight_unit, tv_muscle_rate_unit;
 
@@ -298,6 +299,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         tv_more_data.setOnClickListener(this);
         mTrends = view.findViewById(R2.id.mTrends);
         tv_add_member = view.findViewById(R2.id.tv_add_member);
+        tv_recommend = view.findViewById(R2.id.tv_recommend);
         tv_add_member.setOnClickListener(this);
         Log.e("AYD", "初始化");
 
@@ -1141,6 +1143,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                         LastWeightModel lastWeightModel = new Gson().fromJson(response.body(), LastWeightModel.class);
                         if (lastWeightModel.getData().size() == 0) {
                             tv_user_name.setText(userData.getData().getMemberList().get(pos).getNickName());
+                            tv_recommend.setText("为" + userData.getData().getMemberList().get(pos).getNickName() + "推荐的健康菜谱");
                             tv_weight.setText("- -");
                             tv_weight_unit.setText("");
                             tv_body_fat.setText("- -");
@@ -1169,6 +1172,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 String[] axungeArray = axunge.split(",");
 
                                 tv_user_name.setText(userData.getData().getMemberList().get(pos).getNickName());
+                                tv_recommend.setText("为" + userData.getData().getMemberList().get(pos).getNickName() + "推荐的健康菜谱");
                                 tv_weight.setText(lastWeight + "");
                                 tv_weight_unit.setText("KG");
                                 if (axungeArray[0].equals("0") || axungeArray[0].equals("0.0") || axungeArray[0].equals("-1%")) {

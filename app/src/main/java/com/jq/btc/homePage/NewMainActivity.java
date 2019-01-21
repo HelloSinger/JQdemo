@@ -96,11 +96,13 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
 
     private TextView tv_no_user;
 
-    private int listSize;
+    private TextView tv_ble;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e("AYD", "onCreate");
         setContentView(R.layout.main);
         ActivityUtil.getInstance().addActivity(this);
         mBleController = BLEController.create(this);
@@ -110,7 +112,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         userDataList = new ArrayList<>();
         mFragments = new ArrayList<>();
         initView();
-        getUseList();
+//        getUseList();
     }
 
 
@@ -123,7 +125,8 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
 //        }
 //        initBlutooth();
         Log.e("AYD", "------onResume");
-//        getUseList();
+//        showLoadProgress();
+        getUseList();
         onBlEChangeListener.syncHistoryEnd(null);
         doRefreshIfNeeded();
 
@@ -153,6 +156,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         iv_left = findViewById(R.id.iv_left);
         rl_left = findViewById(R.id.rl_left);
         rl_right = findViewById(R.id.rl_right);
+        tv_ble = findViewById(R.id.tv_ble);
         ll_unserstand_scene = findViewById(R.id.ll_unserstand_scene);
         ll_unserstand_scene.setOnClickListener(this);
         rl_left.setOnClickListener(this);
@@ -162,7 +166,13 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         iv_back.setOnClickListener(this);
         mTabRg.setOnCheckedChangeListener(this);
         mFragments = new ArrayList<>();
-
+        if (mBleController != null) {
+            if (mBleController.isBluetoothEnable()) {
+                tv_ble.setVisibility(View.GONE);
+            } else {
+                tv_ble.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     @Override
@@ -234,6 +244,28 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         }
     }
 
+//    /**
+//     * 显示等待框
+//     */
+//    public void showLoadProgress() {
+//        this.showLoadProgress((String) null);
+//    }
+//
+//    public void showLoadProgress(String msg) {
+//        LoadProgress.get().getDialog(this).setLoadingTip(msg);
+//        if (!this.isFinishing() && !LoadProgress.get().getDialog(this).isShowing()) {
+//            LoadProgress.get().getDialog(this).show();
+//        }
+//
+//    }
+//
+//    /**
+//     * 关闭等待框
+//     */
+//    public void dismissLoadProgress() {
+//        LoadProgress.get().dismissDialog(this);
+//    }
+
     /**
      * 请求冰箱用户列表
      */
@@ -250,6 +282,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
+//                        dismissLoadProgress();
                         userDataList.clear();
                         mFragments.clear();
                         userData = new Gson().fromJson(response.body(), UserData.class);
@@ -279,9 +312,8 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                                 mFragments.add(normalFragment);
                             }
                             viewPagerMainAdapter = new ViewPagerMainAdapter(getSupportFragmentManager(), mFragments);
-                            viewPagerMainAdapter.notifyDataSetChanged();
                             vp.setAdapter(viewPagerMainAdapter);
-//                            mFragments.get(0).getUserLastWeight(UserUtils.get().userId(), userData.getData().getMemberList().get(0).getFamilyMemeberId());
+                            viewPagerMainAdapter.notifyDataSetChanged();
                             initBlutooth();
                         }
                     }

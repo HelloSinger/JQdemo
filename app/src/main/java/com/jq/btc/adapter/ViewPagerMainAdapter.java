@@ -3,6 +3,7 @@ package com.jq.btc.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.ViewGroup;
 
 import com.jq.btc.homePage.home.haier.NormalFragment;
@@ -12,7 +13,7 @@ import java.util.List;
 /**
  * Create by AYD on 2018/12/5
  */
-public class ViewPagerMainAdapter extends FragmentPagerAdapter {
+public class ViewPagerMainAdapter extends FragmentStatePagerAdapter {
 
     List<NormalFragment> fragments;
     FragmentManager fragmentManager;

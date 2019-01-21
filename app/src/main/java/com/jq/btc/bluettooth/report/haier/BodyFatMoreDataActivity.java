@@ -1,9 +1,6 @@
 package com.jq.btc.bluettooth.report.haier;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -24,7 +21,6 @@ import com.jq.btc.model.MoreDataModel;
 import com.jq.btc.myview.CircleIndicatorView;
 import com.jq.btc.myview.ScrollChartView;
 import com.jq.code.view.CircleImageView;
-import com.jq.btc.app.R2;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -32,7 +28,6 @@ import com.lzy.okgo.model.Response;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -149,6 +144,8 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
         getMoreData(UserUtils.get().userId(), useId);
         mRoleName.setText(userName);
     }
+
+
 
     /**
      * 基础代谢
