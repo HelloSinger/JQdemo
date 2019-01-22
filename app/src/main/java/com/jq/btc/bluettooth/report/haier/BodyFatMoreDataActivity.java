@@ -47,7 +47,7 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
     private ImageView iv_back;
     private LinearLayout ll_data;
     private TextView tv_no_data;
-
+    private LinearLayout ll_loading;
     private ProgressBar pb_metabolism, pb_bone_weight, pb_rate_of_muscle, pb_muscle_weight, pb_visceral_fat,
             pb_water_points, pb_water_content, pb_obesity, pb_bmi;
 
@@ -137,6 +137,7 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
         pb_water_content = findViewById(R2.id.pb_water_content);
         pb_obesity = findViewById(R2.id.pb_obesity);
         pb_bmi = findViewById(R2.id.pb_bmi);
+        ll_loading = findViewById(R2.id.ll_loading);
 
     }
 
@@ -144,7 +145,6 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
         getMoreData(UserUtils.get().userId(), useId);
         mRoleName.setText(userName);
     }
-
 
 
     /**
@@ -440,7 +440,7 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
 //                        data = moreDataModel.getData();
                         Log.e("AYD", "--->" + response.body());
                         Log.e("ADY", "an" + indexDataItem.mLevelTextRes);
-
+                        ll_loading.setVisibility(View.GONE);
                         if (moreDataModel.getData().size() == 0) {
                             ll_data.setVisibility(View.GONE);
                             tv_no_data.setVisibility(View.VISIBLE);

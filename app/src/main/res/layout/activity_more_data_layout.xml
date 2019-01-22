@@ -143,6 +143,30 @@
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/ll_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <com.jq.btc.dialog.LoadingProgress
+                android:layout_width="80px"
+                android:layout_height="80px"
+                android:layout_gravity="center"
+                android:background="@color/transparent"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40px"
+                android:text="加载中"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:visibility="visible" />
+        </LinearLayout>
+
         <ImageView
             android:id="@+id/iv_back"
             android:layout_width="62px"

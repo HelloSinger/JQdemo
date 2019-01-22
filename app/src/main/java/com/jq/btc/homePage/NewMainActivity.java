@@ -73,31 +73,24 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
     private NormalFragment normalFragment;
     private RadioButton trend_rb, dynamic_rb, trend_shop, find_rb, me_rb;
     private ImageView iv_back;
-
     private BaseFragment baseFragment;
     private ViewPagerMainAdapter viewPagerMainAdapter;
-
     private UserData userData;
     private WeightDialog weightDialog;
     private ViewPager vp;
     private NumberFormat df;
-
-
     private LinearLayout ll_unserstand_scene;
-
     private ImageView iv_left, iv_right;
     private RelativeLayout rl_left, rl_right;
-
     private int pos;
     private WeightEntity curEntity;
     private WeightEntity lastEntity;
     private String useIds;
     List<UserData.DataBean.MemberListBean> userDataList;
-
     private TextView tv_no_user;
-
     private TextView tv_ble;
 
+    private LinearLayout ll_loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +150,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         rl_left = findViewById(R.id.rl_left);
         rl_right = findViewById(R.id.rl_right);
         tv_ble = findViewById(R.id.tv_ble);
+        ll_loading = findViewById(R.id.ll_loading);
         ll_unserstand_scene = findViewById(R.id.ll_unserstand_scene);
         ll_unserstand_scene.setOnClickListener(this);
         rl_left.setOnClickListener(this);
@@ -244,28 +238,6 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         }
     }
 
-//    /**
-//     * 显示等待框
-//     */
-//    public void showLoadProgress() {
-//        this.showLoadProgress((String) null);
-//    }
-//
-//    public void showLoadProgress(String msg) {
-//        LoadProgress.get().getDialog(this).setLoadingTip(msg);
-//        if (!this.isFinishing() && !LoadProgress.get().getDialog(this).isShowing()) {
-//            LoadProgress.get().getDialog(this).show();
-//        }
-//
-//    }
-//
-//    /**
-//     * 关闭等待框
-//     */
-//    public void dismissLoadProgress() {
-//        LoadProgress.get().dismissDialog(this);
-//    }
-
     /**
      * 请求冰箱用户列表
      */
@@ -282,7 +254,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-//                        dismissLoadProgress();
+                        ll_loading.setVisibility(View.GONE);
                         userDataList.clear();
                         mFragments.clear();
                         userData = new Gson().fromJson(response.body(), UserData.class);
@@ -292,9 +264,9 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                         if (userDataList.size() == 0) {
                             tv_no_user.setVisibility(View.VISIBLE);
                         } else {
-                            if (userDataList.size() == 1) {
-                                rl_right.setVisibility(View.GONE);
-                                rl_left.setVisibility(View.GONE);
+                            if (userDataList.size() > 1) {
+                                rl_right.setVisibility(View.VISIBLE);
+                                rl_left.setVisibility(View.VISIBLE);
                             }
                             ArrayList<String> useid = new ArrayList<>();
                             for (int i = 0; i < userDataList.size(); i++) {
@@ -358,6 +330,13 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (mBleController != null) {
+            mBleController.unregisterReceiver(NewMainActivity.this);
+            mBleController.setBound(false);
+            mBleController.setReConnectable(false);
+            mBleController.disconnectBluetooth();
+        }
+        Log.e("AYD", "onDestroy");
         if (mSoundPlayer != null) {
             mSoundPlayer.release();
             mSoundPlayer = null;
@@ -496,6 +475,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
 //        }
         MobclickAgent.onPause(this);
     }
+
 
 //    @Override
 //    public void setUserVisibleHint(boolean isVisibleToUser) {

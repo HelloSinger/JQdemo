@@ -107,6 +107,30 @@
             android:layout_height="match_parent"
             android:visibility="visible" />
 
+        <LinearLayout
+            android:id="@+id/ll_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <com.jq.btc.dialog.LoadingProgress
+                android:layout_width="80px"
+                android:layout_height="80px"
+                android:layout_gravity="center"
+                android:background="@color/transparent"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40px"
+                android:text="加载中"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:visibility="visible" />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/tv_no_user"
             android:layout_width="match_parent"
@@ -131,7 +155,8 @@
             android:id="@+id/rl_left"
             android:layout_width="60px"
             android:layout_height="60px"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center_vertical"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/iv_left"
@@ -154,7 +179,8 @@
             android:layout_width="60px"
             android:layout_height="60px"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="84px">
+            android:layout_marginLeft="84px"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/iv_right"

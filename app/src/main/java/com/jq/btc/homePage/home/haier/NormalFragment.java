@@ -120,13 +120,6 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     WeightDialog weightDialog;
     ImageView mTrends;
     TextView tv_add_member;
-
-    private int sx;
-    private int sy;
-    private SharedPreferences sp;
-    private RadioButton radioButton;
-
-    private WeightEntity mWeightEntity;
     private CsAlgoBuilder csAlgoBuilder;
     private List<IndexDataItem> mAbnormalIndexList = new ArrayList<>();
     RoleInfo roleInfo;
@@ -150,7 +143,6 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     BuildItemsUtil util;
     NumberFormat formatter;
     String userName;
-
     private TextView tv_recommend;
     private TextView tv_weight, tv_body_fat, tv_bone_weight, tv_muscle_rate;
     private TextView tv_weight_unit, tv_body_fat_unit, tv_bone_weight_unit, tv_muscle_rate_unit;
@@ -168,21 +160,12 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
             waterContainValue, ciroulenValue, bmiValue, axungeValue;
 
     private String lastHeavy;
-
-
     String tips;
     private ViewPagerCurrentListener viewPagerCurrentListener;
 
     public interface ViewPagerCurrentListener {
         void setViewPagerCurrent(int pos);
     }
-
-//    public NormalFragment(UserData userData, int pos) {
-//        this.userData = userData;
-//        this.pos = pos;
-//        Log.e("AYD", "构造方法");
-////        getUserLastWeight(UserUtils.get().userId(), userData.getData().getMemberList().get(pos).getFamilyMemeberId());
-//    }
 
     // 按照这个顺序排序显示 并上传服务器
     private ArrayList<Integer> mSortedNames = new ArrayList<>();
@@ -311,12 +294,6 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         this.pos = pos;
 //        getUserLastWeight(UserUtils.get().userId(), userData.getData().getMemberList().get(pos).getFamilyMemeberId());
     }
-
-//    @Override
-//    public void setUserVisibleHint(boolean isVisibleToUser) {
-//        super.setUserVisibleHint(isVisibleToUser);
-//        Log.e("AYD", "isVisibleToUser");
-//    }
 
     /**
      * 匹配查询家庭成员
@@ -507,67 +484,42 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
             tv_tips.setText(WeighDataParser.StandardSet.CORPULENT.getTips()[level]);
             tv_tips.setText(tips);
         }
-        // 体脂率、水分比例、肌肉率
-        int[] icons = new int[]{WeighDataParser.StandardSet.WEIGHT.getIcon(), WeighDataParser.StandardSet.AXUNGE.getIcon(), WeighDataParser.StandardSet.BONE.getIcon(), WeighDataParser.StandardSet.MUSCLE.getIcon()};
-        String[] names = new String[]{getString(WeighDataParser.StandardSet.WEIGHT.getName()), getString(WeighDataParser.StandardSet.AXUNGE.getName()), getString(WeighDataParser.StandardSet.BONE.getName()), getString(WeighDataParser.StandardSet.MUSCLE.getName())};
-        View[] views = new View[]{mWeightUnit1, mFatUnit1, mBoneUnit1, mMuscleUnit1};
-
-        UnitHolder weightHolder = (UnitHolder) mWeightUnit1.getTag();
-        UnitHolder axungeHolder = (UnitHolder) mFatUnit1.getTag();
-        UnitHolder boneHolder = (UnitHolder) mBoneUnit1.getTag();
-        UnitHolder muscleHolder = (UnitHolder) mMuscleUnit1.getTag();
-
         if (weight <= 0) {
-//            weightHolder.mTypeValue1.setText("- -");
-//            weightHolder.mUnitUnit1.setText("");
             tv_weight.setText("- -");
             tv_weight_unit.setText("");
         } else {
-//            weightHolder.mTypeValue1.setText(weight + "");
-//            weightHolder.mUnitUnit1.setText(mCurrentWeightUnit);
             tv_weight.setText(weight + "");
             tv_weight_unit.setText("KG");
         }
         if (axunge <= 0) {
-//            axungeHolder.mTypeValue1.setText("- -");
             tv_body_fat.setText("- -");
             tv_body_fat_unit.setText("");
         } else {
-//            axungeHolder.mTypeValue1.setText(df.format(axunge) + "%");
             tv_body_fat.setText(df.format(axunge) + "");
             tv_body_fat_unit.setText("%");
         }
         if (bone <= 0) {
-//            boneHolder.mTypeValue1.setText("- -");
-//            boneHolder.mUnitUnit1.setText("");
             tv_bone_weight.setText("- -");
             tv_bone_weight_unit.setText("");
         } else {
-//            boneHolder.mTypeValue1.setText(df.format(bone));
-//            boneHolder.mUnitUnit1.setText(mCurrentWeightUnit);
             tv_bone_weight.setText(df.format(bone) + "");
             tv_bone_weight_unit.setText("KG");
         }
         if (muscle <= 0) {
-//            muscleHolder.mTypeValue1.setText("- -");
             tv_muscle_rate.setText("- -");
             tv_muscle_rate_unit.setText("");
         } else {
-//            muscleHolder.mTypeValue1.setText(df.format(muscle) + "%");
             tv_muscle_rate.setText(df.format(muscle) + "");
             tv_muscle_rate_unit.setText("%");
         }
 
         if (weight > lastWeight) {
-//            mCompareLastText_new.setText(R.string.weight_more_than_last);
             lastHeavy = "你的体重比上次重了" + StandardUtil.getWeightExchangeValue(getContext(), (weight - lastWeight), "", (byte) 1) + "KG";
             mCompareLastWeight_new.setText(lastHeavy);
         } else if (weight < lastWeight) {
-//            mCompareLastText_new.setText(R.string.weight_less_than_last);
             lastHeavy = "你的体重比上次轻了" + StandardUtil.getWeightExchangeValue(getContext(), (lastWeight - weight), "", (byte) 1) + "KG";
             mCompareLastWeight_new.setText(lastHeavy);
         } else {
-//            mCompareLastText_new.setText(R.string.weight_less_than_last);
             lastHeavy = "你的体重比上次轻了0";
             mCompareLastWeight_new.setText(lastHeavy);
         }
@@ -584,18 +536,6 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                 , mAbnormalIndexList.get(8).valueText + "," + bmiLevels + "," + bmiMax + "," + bmiValue
                 , mAbnormalIndexList.get(9).valueText + "," + axungeLevel + "," + axungeMax + "," + axungeValue + "," + lastHeavy
                 , tips);
-
-
-        Log.e("AYD", "onSuccess:bmi " + bmi);
-        Log.e("AYD", "onSuccess: score" + score);
-        Log.e("AYD", "onSuccess:age " + age);
-        Log.e("AYD", "onSuccess: height" + height);
-        Log.e("AYD", "onSuccess:weight " + weight);
-        Log.e("AYD", "onSuccess: bone" + bone);
-        Log.e("AYD", "onSuccess: axunge" + axunge);
-        Log.e("AYD", "onSuccess:muscle " + muscle);
-        Log.e("AYD", "onSuccess: " + roleInfo.getUseId());
-
     }
 
     protected void initValue() {
@@ -613,195 +553,6 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         weight = Double.valueOf(temp);
         tv_user_name.setText(userData.getData().getMemberList().get(pos).getNickName());
         mactchUse(UserUtils.get().userId(), SpUtils.getInstance(getContext()).getUserid(), weight);
-//        if (null != entity) {
-//            Log.e("AYD", "------>" + entity.toString());
-//
-//            mWeightText.setVisibility(View.VISIBLE);
-//            mBmiLayout.setVisibility(View.VISIBLE);
-//            mNoDataIcon.setVisibility(View.GONE);
-//
-//            mCompareLayout.setVisibility(View.VISIBLE);
-//            mHasDataBottom.setVisibility(View.VISIBLE);
-//
-//            mNoDataBottom.setVisibility(View.GONE);
-//
-//            try {
-//                //weight_time=2017-06-01 16:16:15
-//                String weightTime = entity.getWeight_time();
-//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//                Date weightDate = sdf.parse(weightTime);
-//                // "04月25日 13:25"
-//                SimpleDateFormat textFormat = new SimpleDateFormat("MM月dd日 HH:mm");
-//                String text = textFormat.format(weightDate);
-//                mTimeText.setText("上次称重时间: " + "\n" + text);
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
-//
-//            bmi = entity.getBmi();
-//            mWeightText.setText(entity.getDisplayWeight(getContext(), mCurrentWeightUnit));
-//            Log.e("AYD", "-----?" + entity.getDisplayWeight(getContext(), mCurrentWeightUnit));
-//            df = NumberFormat.getNumberInstance();
-//            df.setMaximumFractionDigits(1);
-//            bmiLevel = WeighDataParser.getBmiLevel(entity) - 1;
-//            mBmiText_one.setText("BMI:" + df.format(bmi));
-//            mBmiLevelText_one.setText(WeighDataParser.StandardSet.BMI.getStandards()[bmiLevel]);
-//            tv_user_name.setText(userData.getData().getMemberList().get(pos).getNickName());
-//
-//
-//            // 身体得分
-//            int age = WeighDataParser.getCalAge(roleInfo, entity);
-//            int height = WeighDataParser.getCalHeight(roleInfo, entity);
-//            String sexStr = WeighDataParser.getCalSex(roleInfo, entity);
-//            byte sex = (byte) (sexStr.equals("女") ? 0 : 1);
-//            csAlgoBuilder = new CsAlgoBuilder(height, entity.getWeight(), sex, age, entity.getR1());
-//
-//
-//            if (entity.getSex() == 2) {
-//                tv_tips.setText(R.string.HaierReport_index_hint1);
-//            } else if (age < 18) {
-//                tv_tips.setText(R.string.age_tip);
-//            } else {
-//                // 显示肥胖度的提示
-//                float corpulent;
-//                if (entity.getR1() > 0) {
-//                    corpulent = csAlgoBuilder.getOD();
-//                } else {
-//                    corpulent = CsAlgoBuilder.calOD(csAlgoBuilder.getH(), entity.getWeight(), csAlgoBuilder.getSex(),
-//                            csAlgoBuilder.getAge());
-//                }
-//                float[] levelNums = WeighDataParser.StandardSet.CORPULENT.getLevelNums();
-//                int level = 0;
-//                for (int i = 0; i < levelNums.length; i++) {
-//                    if (corpulent < levelNums[i]) {
-//                        break;
-//                    } else {
-//                        level++;
-//                    }
-//                }
-//                tv_tips.setText(WeighDataParser.StandardSet.CORPULENT.getTips()[level]);
-//                tv_tips.setText(getString(WeighDataParser.StandardSet.CORPULENT.getTips()[level],
-//                        StandardUtil.getWeightExchangeValue(getContext(), csAlgoBuilder.getBW(), "", (byte) 5) + mCurrentWeightUnit));
-//            }
-//
-//            // 与上次体重比较
-//            curWeight = entity.getWeight();
-//
-//            if (null != mLastWeightEntity) {
-//                float lastWeight = mLastWeightEntity.getWeight();
-//                if (curWeight > lastWeight) {
-//                    mCompareLastText_new.setText(R.string.weight_more_than_last);
-//                    mCompareLastWeight_new.setText(StandardUtil.getWeightExchangeValue(getContext(), (curWeight - lastWeight), "", (byte) 1) + "KG");
-//                } else if (curWeight < lastWeight) {
-//                    mCompareLastText_new.setText(R.string.weight_less_than_last);
-//                    mCompareLastWeight_new.setText(StandardUtil.getWeightExchangeValue(getContext(), (lastWeight - curWeight), "", (byte) 1) + "KG");
-//                } else {
-//                    mCompareLastText_new.setText(R.string.weight_less_than_last);
-//                    mCompareLastWeight_new.setText("0");
-//                }
-//            } else {
-//                mCompareLastText_new.setText(R.string.weight_less_than_last);
-//                mCompareLastWeight_new.setText("- -");
-//            }
-//            mCompareLastWeightUnit.setText(mCurrentWeightUnit);
-//
-//            // 体脂率、水分比例、肌肉率
-//            int[] icons = new int[]{WeighDataParser.StandardSet.WEIGHT.getIcon(), WeighDataParser.StandardSet.AXUNGE.getIcon(), WeighDataParser.StandardSet.BONE.getIcon(), WeighDataParser.StandardSet.MUSCLE.getIcon()};
-//            String[] names = new String[]{getString(WeighDataParser.StandardSet.WEIGHT.getName()), getString(WeighDataParser.StandardSet.AXUNGE.getName()), getString(WeighDataParser.StandardSet.BONE.getName()), getString(WeighDataParser.StandardSet.MUSCLE.getName())};
-//            View[] views = new View[]{mWeightUnit1, mFatUnit1, mBoneUnit1, mMuscleUnit1};
-//            for (int i = 0; i < views.length; i++) {
-//                View v = views[i];
-//                UnitHolder holder = new UnitHolder();
-//                v.setTag(holder);
-//                holder.mTypeIcon1 = v.findViewById(R.id.mTypeIcon1);
-//                holder.mTypeName1 = v.findViewById(R.id.mTypeName1);
-//                holder.mTypeValue1 = v.findViewById(R.id.mTypeValue1);
-//                holder.mUnitUnit1 = v.findViewById(R.id.mUnitUnit1);
-////                holder.mLevelText = (TextView) v.findViewById(R.id.mLevelText);
-//
-//                holder.mTypeIcon1.setImageResource(icons[i]);
-//                holder.mTypeName1.setText(names[i]);
-//            }
-//            //体重
-//            weight = entity.getWeight();
-//            // 脂肪率
-//            axunge = entity.getAxunge();
-//            // 骨量
-//            bone = entity.getBone();
-//            // 肌肉
-//            muscle = entity.getMuscle() / 2;
-//            UnitHolder weightHolder = (UnitHolder) mWeightUnit1.getTag();
-//            UnitHolder axungeHolder = (UnitHolder) mFatUnit1.getTag();
-//            UnitHolder boneHolder = (UnitHolder) mBoneUnit1.getTag();
-//            UnitHolder muscleHolder = (UnitHolder) mMuscleUnit1.getTag();
-//
-//            if (weight <= 0) {
-//                weightHolder.mTypeValue1.setText("- -");
-//                weightHolder.mUnitUnit1.setText("");
-////                weightHolder.mLevelText.setVisibility(View.INVISIBLE);
-//            } else {
-//                weightHolder.mTypeValue1.setText(weight + "");
-//                weightHolder.mUnitUnit1.setText(mCurrentWeightUnit);
-//            }
-//
-//            if (axunge <= 0) {
-//                axungeHolder.mTypeValue1.setText("- -");
-////                axungeHolder.mLevelText.setVisibility(View.INVISIBLE);
-//            } else {
-//                axungeHolder.mTypeValue1.setText(df.format(axunge) + "%");
-////                int axungeLevel = WeighDataParser.getAxungeLevel(roleInfo, entity) - 1;
-////                GradientDrawable gd = (GradientDrawable) axungeHolder.mLevelText.getBackground();
-////                gd.setColor(getResources().getColor(WeighDataParser.StandardSet.AXUNGE.getColor()[axungeLevel]));
-////                axungeHolder.mLevelText.setText(WeighDataParser.StandardSet.AXUNGE.getStandards()[axungeLevel]);
-//            }
-//
-//            if (bone <= 0) {
-//                boneHolder.mTypeValue1.setText("- -");
-//                boneHolder.mUnitUnit1.setText("");
-////                boneHolder.mLevelText.setVisibility(View.INVISIBLE);
-//            } else {
-//                boneHolder.mTypeValue1.setText(df.format(bone));
-//                boneHolder.mUnitUnit1.setText(mCurrentWeightUnit);
-//                float[] boneStandard = WeighDataParser.getBoneStandardRange(WeighDataParser.getCalSex(roleInfo, entity),
-//                        WeighDataParser.getCalAge(roleInfo, entity));
-////                float[] levelNums = new float[boneStandard.length - 2];
-////                System.arraycopy(boneStandard, 1, levelNums, 0, levelNums.length);
-////                // 计算级别
-////                int boneLevel = 0;
-////                for (int i = 0; i < levelNums.length; i++) {
-////                    if (bone < levelNums[i]) {
-////                        break;
-////                    } else {
-////                        boneLevel++;
-////                    }
-////                }
-////
-////                GradientDrawable gd = (GradientDrawable) boneHolder.mLevelText.getBackground();
-////                gd.setColor(getResources().getColor(WeighDataParser.StandardSet.BONE.getColor()[boneLevel]));
-////                boneHolder.mLevelText.setText(WeighDataParser.StandardSet.BONE.getStandards()[boneLevel]);
-//            }
-//            if (muscle <= 0) {
-//                muscleHolder.mTypeValue1.setText("- -");
-////                muscleHolder.mLevelText1.setVisibility(View.INVISIBLE);
-//            } else {
-//                muscleHolder.mTypeValue1.setText(df.format(muscle) + "%");
-////                int muscleLevel = WeighDataParser.getMuscleLevel(roleInfo, entity) - 1;
-////                GradientDrawable gd = (GradientDrawable) muscleHolder.mLevelText.getBackground();
-////                gd.setColor(getResources().getColor(WeighDataParser.StandardSet.MUSCLE.getColor()[muscleLevel]));
-////                muscleHolder.mLevelText.setText(WeighDataParser.StandardSet.MUSCLE.getStandards()[muscleLevel]);
-//            }
-//
-//            getUserLastWeight(UserUtils.get().userId(), roleInfo.getUseId());
-//        } else {
-//            mWeightText.setVisibility(View.GONE);
-//            mBmiLayout.setVisibility(View.GONE);
-//            mNoDataIcon.setVisibility(View.VISIBLE);
-//
-//            mCompareLayout.setVisibility(View.GONE);
-//            mHasDataBottom.setVisibility(View.GONE);
-//
-//            mNoDataBottom.setVisibility(View.VISIBLE);
-//        }
     }
 
     private void inList(List<IndexDataItem> items) {
@@ -828,18 +579,6 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         });
     }
 
-
-    /**
-     * 创建算法对象
-     */
-    private void buildSuanfa() {
-        RoleInfo curRoleInfo = Account.getInstance(getActivity()).getRoleInfo();
-        int age = WeighDataParser.getCalAge(curRoleInfo, mCurrentWeightEntity);
-        int height = WeighDataParser.getCalHeight(curRoleInfo, mCurrentWeightEntity);
-        String sexStr = WeighDataParser.getCalSex(curRoleInfo, mCurrentWeightEntity);
-        byte sex = (byte) (sexStr.equals("女") ? 0 : 1);
-        csAlgoBuilder = new CsAlgoBuilder(height, mCurrentWeightEntity.getWeight(), sex, age, mCurrentWeightEntity.getR1());
-    }
 
     @Override
     public void onAttachFragment(Fragment childFragment) {
@@ -876,28 +615,6 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         }
     }
 
-
-    /**
-     * 当体重单位变化时，刷新控件
-     */
-    private void refreshUnitText() {
-        float curWeight = mCurrentWeightEntity.getWeight();
-        if (null != mLastWeightEntity) {
-            float lastWeight = mLastWeightEntity.getWeight();
-            if (curWeight > lastWeight) {
-                mCompareLastWeight.setText(StandardUtil.getWeightExchangeValue(getContext(), (curWeight - lastWeight), "", (byte) 1));
-            } else if (curWeight < lastWeight) {
-                mCompareLastWeight.setText(StandardUtil.getWeightExchangeValue(getContext(), (lastWeight - curWeight), "", (byte) 1));
-            } else {
-                mCompareLastWeight.setText("0");
-            }
-        } else {
-            mCompareLastWeight.setText("- -");
-        }
-
-        mCompareLastWeightUnit.setText(mCurrentWeightUnit);
-        setWeightGoalViews();
-    }
 
     /**
      * 设置目标体重界面
@@ -945,42 +662,6 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         mCompareGoalWeightUnit.setText(mCurrentWeightUnit);
     }
 
-//    @Override
-//    public void setMsgLayout(int bluetoothIcon) {
-//        String s = ((HomeFragment) getParentFragment()).getMsg();
-//        int bluetoothIconRes;
-//        if (bluetoothIcon == R.mipmap.ble_connected || bluetoothIcon == R.mipmap.bt_connected) {
-//            // 已连接标志
-//            bluetoothIconRes = R.mipmap.bt_connected;
-//        } else {
-//            bluetoothIconRes = R.mipmap.bt_not_connected;
-//        }
-//        if (getContext().getString(R.string.matchDataTip).equals(s)) {
-//            bluetoothIconRes = R.mipmap.icon_tishi;
-//        }
-//        mBluetoothIcon.setImageResource(bluetoothIconRes);
-//        if (null == s || s.trim().length() == 0) {
-//            mBluetoothStateLayout.setVisibility(View.GONE);
-//        } else {
-//            mBluetoothStateLayout.setVisibility(View.VISIBLE);
-//            final String msg = s;
-//            mBluetoothStateText.setText(msg);
-//            if (getContext().getString(R.string.reportBoundTip).equals(msg)) {
-//                // 显示箭头，且点击去绑定
-//                mIconGo.setVisibility(View.VISIBLE);
-//            } else if (getContext().getString(R.string.locationServiceNotOpen).equals(msg)) {
-//                // 显示箭头，且点击打开设置
-//                mIconGo.setVisibility(View.VISIBLE);
-//            } else if (getContext().getString(R.string.matchDataTip).equals(msg)) {
-//                // 显示箭头，且点击打开 认领体重数据界面
-//                mIconGo.setVisibility(View.VISIBLE);
-//            } else {
-//                mIconGo.setVisibility(View.GONE);
-//            }
-//            View.OnClickListener listener = ((HomeFragment) getParentFragment()).new OnBlueToothLayoutClick(msg);
-//            mBluetoothStateLayout.setOnClickListener(listener);
-//        }
-//    }
 
     /**
      * 显示蓝牙秤得到的未锁定的体重数据，即临时的未锁定的体重
@@ -997,8 +678,10 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
 //        mWeightText.setText(temp.getDisplayWeight(getContext(), mCurrentWeightUnit));
         entity = temp;
         if (temp.getDisplayWeight(getContext(), mCurrentWeightUnit).equals("0.00")) {
+            if (weightDialog == null) return;
             weightDialog.dismiss();
         } else {
+            if (weightDialog == null) return;
             weightDialog.show();
             weightDialog.setProgressVisibility(true);
             weightDialog.setMatchVisibility(false);
@@ -1013,16 +696,9 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     public void onDestroyView() {
         super.onDestroyView();
         Log.e("tag", "  onDestroyView");
+        weightDialog = null;
     }
 
-
-    private static class UnitHolder {
-        ImageView mTypeIcon1;
-        TextView mTypeName1;
-        TextView mTypeValue1;
-        TextView mUnitUnit1;
-        TextView mLevelText1;
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -1031,20 +707,6 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
-    }
-
-    //设置目标
-    private void onWeightGoalOrInit() {
-        int weightUnit = Config.getInstance(getActivity()).getIntWeightUnit();
-        Intent data = new Intent();
-        if (weightUnit == Config.ST) {
-            data.setClass(getActivity(), STWeightGoalActivity.class);
-        } else {
-            data.setClass(getActivity(), WeightGoalActivity.class);
-        }
-        data.putExtra(RoleInfo.ROLE_KEY, Account.getInstance(getContext()).getRoleInfo());
-        data.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivityForResult(data, REQUEST_GOAL_WEIGHT_SETTINGS);
     }
 
 
@@ -1056,67 +718,14 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                 intent.setAction("com.unilife.fridge.app.family.add");
                 startActivity(intent);
                 break;
-
             case R2.id.tv_more_data:
                 toMoreActivity();
                 break;
         }
     }
 
-    @OnClick({R2.id.mTrends, R2.id.mRoleImage, R2.id.mShareView, R2.id.mHistoryView, R2.id.mSetWeightGoalView
-            , R2.id.mAddWeight, R2.id.mToReportPage, R2.id.tv_add_member, R2.id.tv_more_data})
-    public void onClicks(View view) {
-        switch (view.getId()) {
-            case R2.id.mSetWeightGoalView:
-                // 点击“设置目标体重”
-                onWeightGoalOrInit();
-                break;
-            case R2.id.mAddWeight:
-                // 手动添加体重
-                AddWeightDialogFragment addWeightDialogFragment = new AddWeightDialogFragment();
-                addWeightDialogFragment.show(getChildFragmentManager(), "AddWeightDialogFragment");
-                mAddWeight.setVisibility(View.GONE);
-                addWeightDialogFragment.setLastWeightEntity(mCurrentWeightEntity);
-                addWeightDialogFragment.setCallback(new AddWeightDialogFragment.Callback() {
-
-                    @Override
-                    public void onAddWeightFinish(WeightEntity newWeightEntity) {
-                        mAddWeight.setVisibility(View.VISIBLE);
-                        setWeightEntity(newWeightEntity, mCurrentWeightEntity);
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        mAddWeight.setVisibility(View.VISIBLE);
-                    }
-
-                    @Override
-                    public void onRoleChange() {
-                        mAddWeight.setVisibility(View.VISIBLE);
-//                        doChangeRole();
-                    }
-
-                    @Override
-                    public void onClickDaka() {
-                        mAddWeight.setVisibility(View.VISIBLE);
-                    }
-                });
-                break;
-            case R2.id.mToReportPage:
-                // 点击 查看身体报告
-                toReportActivity();
-                break;
-
-
-        }
-    }
-
     private void toMoreActivity() {
-//        Intent intent = new Intent(getActivity(), HaierReportActivity.class);
         Intent intent = new Intent(getActivity(), BodyFatMoreDataActivity.class);
-        intent.putExtra(HaierReportActivity.INTENT_KEY_WEIGHT, mCurrentWeightEntity);
-        intent.putExtra(HaierReportActivity.INTENT_KEY_LAST_WEIGHT, mLastWeightEntity);
-        intent.putExtra(HaierReportActivity.INTENT_KEY_FROM_HOME, true);
         intent.putExtra("useId", userData.getData().getMemberList().get(pos).getFamilyMemberId());
         intent.putExtra("useName", userData.getData().getMemberList().get(pos).getNickName());
         startActivity(intent);
@@ -1206,10 +815,6 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     }
 
 
-    public boolean isMainThread() {
-        return Thread.currentThread() == Looper.getMainLooper().getThread();
-    }
-
     /**
      * 上传体脂数据
      */
@@ -1232,9 +837,6 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         json.put("bmi", bmi);
         json.put("body", axunge);
         json.put("healith", tips);
-
-        Log.e("AYD", "onSuccess---->" + userId);
-        Log.e("AYD", "onSuccess---->" + json.toJSONString());
         OkGo.<String>post(ConstantUrl.UPDATA_URL)
                 .upJson(String.valueOf(json))
                 .execute(new StringCallback() {
@@ -1250,9 +852,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                             String[] axungeArray = axunge.split(",");
                             weightDialog.setPersonlData("BMI: " + entity.getBmi(), userName, weight,
                                     axungeArray[0] + "", df.format(bone) + "", df.format(muscle) + "");
-//                            getUserLastWeight(UserUtils.get().userId(), userId);
                         } else {
-//                            Toast.makeText(getActivity(), "保存失败", Toast.LENGTH_SHORT).show();
                             BMToastUtil.showToastShort(getActivity(), "保存失败");
                         }
                     }
