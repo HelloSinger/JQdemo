@@ -2,7 +2,16 @@ package com.jq.btc.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.text.TextUtils;
+import android.util.Base64;
+
+import com.jq.code.model.WeightEntity;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 /**
  * 个人信息sp储存工具
@@ -54,7 +63,7 @@ public class SpUtils {
         return sharedPreferences.getBoolean("isFirst", false);
     }
 
-    public void cleanMak(){
+    public void cleanMak() {
         mEditor.remove("isFirst");
         mEditor.commit();
     }
@@ -67,6 +76,117 @@ public class SpUtils {
 
     public String getUserid() {
         return sharedPreferences.getString("USE_ID", "");
+    }
+
+    public boolean isDiaLogAddUser(boolean b) {
+        mEditor.putBoolean("isDialogAdd", b);
+        return mEditor.commit();
+    }
+
+    public boolean getIsDialogAdd() {
+        return sharedPreferences.getBoolean("isDialogAdd", false);
+    }
+
+    public void cleanDialog() {
+        mEditor.remove("isDialogAdd");
+        mEditor.commit();
+    }
+
+    public void putBean(WeightEntity obj) {
+        if (obj instanceof Serializable) {// obj必须实现Serializable接口，否则会出问题
+            try {
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ObjectOutputStream oos = new ObjectOutputStream(baos);
+                oos.writeObject(obj);
+                String string64 = new String(Base64.encode(baos.toByteArray(), 0));
+                mEditor.putString("USER_BEAN", string64).commit();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            throw new IllegalArgumentException("the obj must implement Serializble");
+        }
+
+    }
+
+    public WeightEntity getBean() {
+        WeightEntity obj = null;
+        try {
+//            String base64 = context.getSharedPreferences(context).getString(key, "");
+            String base64 = sharedPreferences.getString("USER_BEAN", "");
+            if (base64.equals("")) {
+                return null;
+            }
+            byte[] base64Bytes = Base64.decode(base64.getBytes(), 1);
+            ByteArrayInputStream bais = new ByteArrayInputStream(base64Bytes);
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            obj = (WeightEntity) ois.readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return obj;
+    }
+
+    public void cleanBean() {
+        mEditor.remove("USER_BEAN");
+        mEditor.commit();
+    }
+
+    public boolean putListSize(int listSize) {
+        mEditor.putInt("LIST_SIZE", listSize);
+        return mEditor.commit();
+    }
+
+    public Integer getListSize() {
+        return sharedPreferences.getInt("LIST_SIZE", -1);
+    }
+
+
+    public boolean putProvince(String province) {
+        mEditor.putString("PROVINCE", province);
+        return mEditor.commit();
+    }
+
+    public String getProvince() {
+
+        return sharedPreferences.getString("PROVINCE", "");
+    }
+
+    public boolean putProvinceId(String provinceId) {
+        mEditor.putString("PROVINCEID", provinceId);
+        return mEditor.commit();
+    }
+
+    public String getProvinceId() {
+
+        return sharedPreferences.getString("PROVINCEID", "");
+    }
+
+    public boolean putCity(String city) {
+        mEditor.putString("CITY", city);
+        return mEditor.commit();
+    }
+
+    public String getCity() {
+        return sharedPreferences.getString("CITY", "");
+    }
+
+    public boolean putCityId(String cityId) {
+        mEditor.putString("CITYID", cityId);
+        return mEditor.commit();
+    }
+
+    public String getCityId() {
+        return sharedPreferences.getString("CITYID", "");
+    }
+    public boolean putMac(String cityId) {
+        mEditor.putString("MAC", cityId);
+        return mEditor.commit();
+    }
+
+    public String getMac() {
+        return sharedPreferences.getString("MAC", "");
     }
     //   //手机号
 //   public boolean setRealName(String realname){

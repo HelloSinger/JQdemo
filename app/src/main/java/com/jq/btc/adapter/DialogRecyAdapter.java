@@ -34,6 +34,7 @@ public class DialogRecyAdapter extends RecyclerView.Adapter<DialogRecyAdapter.My
     public DialogRecyAdapter(Context context, UserData userData) {
         this.context = context;
         this.userData = userData;
+        notifyDataSetChanged();
         inflater = LayoutInflater.from(context);
     }
 

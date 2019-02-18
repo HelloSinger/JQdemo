@@ -48,6 +48,7 @@ import com.jq.code.model.RoleInfo;
 import com.jq.code.model.ScaleInfo;
 import com.jq.code.model.WeightEntity;
 import com.jq.code.view.CustomToast;
+import com.jq.code.view.waveview.DynamicWave2;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -86,11 +87,15 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
     private WeightEntity curEntity;
     private WeightEntity lastEntity;
     private String useIds;
-    List<UserData.DataBean.MemberListBean> userDataList;
+    public static List<UserData.DataBean.MemberListBean> userDataList;
     private TextView tv_no_user;
     private TextView tv_ble;
-
+    private int userMak;
     private LinearLayout ll_loading;
+    private int _pos;
+    private RelativeLayout rl_no_user;
+    private LinearLayout ll_add_user;
+    private DynamicWave2 mDynamicView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +110,6 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         userDataList = new ArrayList<>();
         mFragments = new ArrayList<>();
         initView();
-//        getUseList();
     }
 
 
@@ -118,10 +122,12 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
 //        }
 //        initBlutooth();
         Log.e("AYD", "------onResume");
-//        showLoadProgress();
+        vp = findViewById(R.id.vp);
+        vp.addOnPageChangeListener(this);
+        _pos = getIntent().getIntExtra("pos", -1);
         getUseList();
         onBlEChangeListener.syncHistoryEnd(null);
-        doRefreshIfNeeded();
+//        doRefreshIfNeeded();
 
     }
 
@@ -155,7 +161,10 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         ll_unserstand_scene.setOnClickListener(this);
         rl_left.setOnClickListener(this);
         iv_right = findViewById(R.id.iv_right);
-        tv_no_user = findViewById(R.id.tv_no_user);
+        rl_no_user = findViewById(R.id.rl_no_user);
+        ll_add_user = findViewById(R.id.ll_add_user);
+        mDynamicView = findViewById(R.id.mDynamicView);
+        ll_add_user.setOnClickListener(this);
         rl_right.setOnClickListener(this);
         iv_back.setOnClickListener(this);
         mTabRg.setOnCheckedChangeListener(this);
@@ -235,6 +244,12 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                 SpUtils.getInstance(NewMainActivity.this).cleanMak();
                 System.exit(0);
                 break;
+
+            case R.id.ll_add_user:
+                Intent intent = new Intent();
+                intent.setAction("com.unilife.fridge.app.family.add");
+                startActivity(intent);
+                break;
         }
     }
 
@@ -262,12 +277,14 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                         Log.e("AYD", "act:--- " + userDataList.size());
                         Collections.reverse(userDataList);
                         if (userDataList.size() == 0) {
-                            tv_no_user.setVisibility(View.VISIBLE);
-                        } else {
-                            if (userDataList.size() > 1) {
-                                rl_right.setVisibility(View.VISIBLE);
-                                rl_left.setVisibility(View.VISIBLE);
-                            }
+                            rl_no_user.setVisibility(View.VISIBLE);
+                            rl_right.setVisibility(View.GONE);
+                            rl_left.setVisibility(View.GONE);
+                        } else if (userDataList.size() == 1) {
+                            mDynamicView.setVisibility(View.GONE);
+                            rl_no_user.setVisibility(View.GONE);
+                            rl_right.setVisibility(View.GONE);
+                            rl_left.setVisibility(View.GONE);
                             ArrayList<String> useid = new ArrayList<>();
                             for (int i = 0; i < userDataList.size(); i++) {
                                 useid.add(userDataList.get(i).getFamilyMemeberId());
@@ -278,15 +295,64 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                             SpUtils.getInstance(NewMainActivity.this).setUserid(useIds);
                             Log.e("AYD----->", "" + useIds);
                             for (int i = 0; i < userDataList.size(); i++) {
-//                                normalFragment = new NormalFragment(userData, i);
                                 normalFragment = new NormalFragment();
                                 normalFragment.setUserData(userData, i);
                                 mFragments.add(normalFragment);
+//                                if (userDataList.size() != userMak) {
+//                                    if (SpUtils.getInstance(NewMainActivity.this).getIsDialogAdd()) {
+//                                        if (i == 0) {
+//                                            SpUtils.getInstance(NewMainActivity.this).putListSize(userDataList.size());
+//                                            mFragments.get(0).setFirstUserData();
+//                                        }
+//                                    }
+//
                             }
                             viewPagerMainAdapter = new ViewPagerMainAdapter(getSupportFragmentManager(), mFragments);
                             vp.setAdapter(viewPagerMainAdapter);
                             viewPagerMainAdapter.notifyDataSetChanged();
                             initBlutooth();
+                            if (_pos != -1) {
+                                vp.setCurrentItem(_pos);
+                                mFragments.get(_pos).getUserLastWeight(UserUtils.get().userId(),
+                                        userData.getData().getMemberList().get(_pos).getFamilyMemeberId());
+                            }
+                        } else if (userDataList.size() > 1) {
+                            rl_right.setVisibility(View.VISIBLE);
+                            rl_left.setVisibility(View.VISIBLE);
+                            mDynamicView.setVisibility(View.GONE);
+                            rl_no_user.setVisibility(View.GONE);
+                            mDynamicView.setVisibility(View.GONE);
+                            ArrayList<String> useid = new ArrayList<>();
+                            for (int i = 0; i < userDataList.size(); i++) {
+                                useid.add(userDataList.get(i).getFamilyMemeberId());
+                            }
+                            String str = useid.toString();
+                            int len = str.length() - 1;
+                            useIds = str.substring(1, len).replace(" ", "");
+                            SpUtils.getInstance(NewMainActivity.this).setUserid(useIds);
+                            Log.e("AYD----->", "" + useIds);
+                            for (int i = 0; i < userDataList.size(); i++) {
+                                normalFragment = new NormalFragment();
+                                normalFragment.setUserData(userData, i);
+                                mFragments.add(normalFragment);
+//                                if (userDataList.size() != userMak) {
+//                                    if (SpUtils.getInstance(NewMainActivity.this).getIsDialogAdd()) {
+//                                        if (i == 0) {
+//                                            SpUtils.getInstance(NewMainActivity.this).putListSize(userDataList.size());
+//                                            mFragments.get(0).setFirstUserData();
+//                                        }
+//                                    }
+//
+                            }
+                            viewPagerMainAdapter = new ViewPagerMainAdapter(getSupportFragmentManager(), mFragments);
+                            vp.setAdapter(viewPagerMainAdapter);
+                            viewPagerMainAdapter.notifyDataSetChanged();
+                            initBlutooth();
+                            if (_pos != -1) {
+                                vp.setCurrentItem(_pos);
+                                mFragments.get(_pos).getUserLastWeight(UserUtils.get().userId(),
+                                        userData.getData().getMemberList().get(_pos).getFamilyMemeberId());
+                            }
                         }
                     }
                 });

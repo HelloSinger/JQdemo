@@ -131,16 +131,7 @@
                 android:visibility="visible" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_no_user"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:autoLink="all"
-            android:gravity="center"
-            android:text="请先去用户用心添加用户吧~"
-            android:textColor="@color/white"
-            android:visibility="gone" />
-
+        <include layout="@layout/fragment_no_user_layout" />
     </RelativeLayout>
 
 

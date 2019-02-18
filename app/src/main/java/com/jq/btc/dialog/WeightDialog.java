@@ -23,6 +23,7 @@ import com.jq.btc.adapter.DialogRecyAdapter;
 import com.jq.btc.app.R;
 import com.jq.btc.model.MatchModel;
 import com.jq.btc.model.UserData;
+import com.jq.btc.utils.SpUtils;
 
 /**
  * Create by AYD on 2018/12/7
@@ -58,6 +59,7 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
     private static CountDownTimers countDownTimersMatch;
     private static CountDownTimers countDownTimersData;
     private DiaLogRecyItemOnClick diaLogRecyItemOnClick;
+    private diaLogAddUserOnClick diaLogAddUserOnClick;
 
     private WeightDialog weightDialog;
 
@@ -77,6 +79,10 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
         this.userData = userData;
         Log.e("ADY", "setUserDataList: " + userData.getData().getMemberList().size());
 
+    }
+
+    public void setDiaLogAddUserOnClick(WeightDialog.diaLogAddUserOnClick diaLogAddUserOnClick) {
+        this.diaLogAddUserOnClick = diaLogAddUserOnClick;
     }
 
     public void setDiaLogRecyItemOnClick(DiaLogRecyItemOnClick diaLogRecyItemOnClick) {
@@ -99,7 +105,6 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
         ll_match = findViewById(R.id.ll_match);
         iv_close_dialog = findViewById(R.id.iv_close_dialog);
         tv_dialog_weight_cal = findViewById(R.id.tv_dialog_weight_cal);
-        tv_add_family = findViewById(R.id.tv_add_family);
         rv_family = findViewById(R.id.rv_family);
         tv_title_dialog = findViewById(R.id.tv_title_dialog);
         tv_dialog_name = findViewById(R.id.tv_dialog_name);
@@ -134,8 +139,8 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
             startTimesData();
         } else {
             ll_result.setVisibility(View.GONE);
-            if (countDownTimersData!=null){
-            countDownTimersData.cancel();
+            if (countDownTimersData != null) {
+                countDownTimersData.cancel();
             }
         }
     }
@@ -172,8 +177,8 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
             startTimesMatch();
         } else {
             ll_match.setVisibility(View.GONE);
-            if (countDownTimersMatch!=null){
-            countDownTimersMatch.cancel();
+            if (countDownTimersMatch != null) {
+                countDownTimersMatch.cancel();
             }
         }
     }
@@ -262,6 +267,9 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
                 Intent intent = new Intent();
                 intent.setAction("com.unilife.fridge.app.family.add");
                 getContext().startActivity(intent);
+                SpUtils.getInstance(getContext()).isDiaLogAddUser(true);
+                dismiss();
+//                diaLogAddUserOnClick.onDialogAddUsetListener();
                 break;
         }
     }
@@ -282,9 +290,22 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
         tv_dialog_bmi.setText(bmi);
         tv_dialog_name.setText(name);
         tv_dialog_weight.setText(weight);
-        tv_body_fat.setText(bodyFat);
-        tv_bone_weight.setText(boneWeight + "KG");
-        tv_muscle_rate.setText(muscleRate + "%");
+        if (bodyFat.equals("-1%") || bodyFat.equals("0") || bodyFat.equals("0%")) {
+            tv_body_fat.setText("一 一");
+        } else {
+            tv_body_fat.setText(bodyFat);
+        }
+        if (boneWeight.equals("0") || boneWeight.equals("0.0")) {
+            tv_bone_weight.setText("一 一");
+        } else {
+            tv_bone_weight.setText(boneWeight + "KG");
+        }
+        if (muscleRate.equals("0%") || muscleRate.equals("0.0") || muscleRate.equals("0")) {
+            tv_muscle_rate.setText("一 一");
+        } else {
+            tv_muscle_rate.setText(muscleRate + "%");
+
+        }
     }
 
     /**
@@ -299,6 +320,11 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
 
     public interface DiaLogRecyItemOnClick {
         void itemOnClickListener(int pos);
+    }
+
+
+    public interface diaLogAddUserOnClick {
+        void onDialogAddUsetListener();
     }
 
     /**

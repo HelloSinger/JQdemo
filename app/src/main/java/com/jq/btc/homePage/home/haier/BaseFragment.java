@@ -84,8 +84,8 @@ public abstract class BaseFragment extends Fragment {
         }, 1500);
 
         Intent intent = new Intent(getActivity(), HaierReportActivity.class);
-        intent.putExtra(HaierReportActivity.INTENT_KEY_WEIGHT, mCurrentWeightEntity);
-        intent.putExtra(HaierReportActivity.INTENT_KEY_LAST_WEIGHT, mLastWeightEntity);
+//        intent.putExtra(HaierReportActivity.INTENT_KEY_WEIGHT, mCurrentWeightEntity);
+//        intent.putExtra(HaierReportActivity.INTENT_KEY_LAST_WEIGHT, mLastWeightEntity);
         intent.putExtra(HaierReportActivity.INTENT_KEY_FROM_HOME, true);
 //        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);

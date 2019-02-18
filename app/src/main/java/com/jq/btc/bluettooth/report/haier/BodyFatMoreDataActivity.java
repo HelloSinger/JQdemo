@@ -1,5 +1,6 @@
 package com.jq.btc.bluettooth.report.haier;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -17,6 +19,7 @@ import com.jq.btc.ConstantUrl;
 import com.jq.btc.app.R;
 import com.jq.btc.app.R2;
 import com.jq.btc.bluettooth.report.haier.item.IndexDataItem;
+import com.jq.btc.homePage.NewMainActivity;
 import com.jq.btc.model.MoreDataModel;
 import com.jq.btc.myview.CircleIndicatorView;
 import com.jq.btc.myview.ScrollChartView;
@@ -47,6 +50,7 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
     private ImageView iv_back;
     private LinearLayout ll_data;
     private TextView tv_no_data;
+    private ImageView iv_no_data;
     private LinearLayout ll_loading;
     private ProgressBar pb_metabolism, pb_bone_weight, pb_rate_of_muscle, pb_muscle_weight, pb_visceral_fat,
             pb_water_points, pb_water_content, pb_obesity, pb_bmi;
@@ -65,6 +69,9 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
     private MoreDataModel moreDataModel;
     private String useId;
     private String userName;
+    private int pos;
+    private RelativeLayout rl_title;
+    private TextView tv_not_data;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,6 +85,7 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
     private void initView() {
         useId = getIntent().getStringExtra("useId");
         userName = getIntent().getStringExtra("useName");
+        pos = getIntent().getIntExtra("pos", -1);
         mRoleImage = findViewById(R2.id.mRoleImage);
         mRoleName = findViewById(R2.id.mRoleName);
         mWeightTime = findViewById(R2.id.mWeightTime);
@@ -99,6 +107,7 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
         tv_water_points = findViewById(R2.id.tv_water_points);
         tv_water_content = findViewById(R2.id.tv_water_content);
         tv_obesity = findViewById(R2.id.tv_obesity);
+        iv_no_data = findViewById(R2.id.iv_no_data);
         tv_bmi = findViewById(R2.id.tv_bmi);
         tv_metabolism_name = findViewById(R2.id.tv_metabolism_name);
         tv_metabolism_name.setText("基础代谢");
@@ -138,6 +147,8 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
         pb_obesity = findViewById(R2.id.pb_obesity);
         pb_bmi = findViewById(R2.id.pb_bmi);
         ll_loading = findViewById(R2.id.ll_loading);
+        rl_title = findViewById(R2.id.rl_title);
+        tv_not_data = findViewById(R2.id.tv_not_data);
 
     }
 
@@ -414,6 +425,9 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
     public void onClick(View v) {
         switch (v.getId()) {
             case R2.id.iv_back:
+                Intent intent = new Intent(this, NewMainActivity.class);
+                intent.putExtra("pos", pos);
+                startActivity(intent);
                 finish();
                 break;
         }
@@ -443,9 +457,13 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
                         ll_loading.setVisibility(View.GONE);
                         if (moreDataModel.getData().size() == 0) {
                             ll_data.setVisibility(View.GONE);
-                            tv_no_data.setVisibility(View.VISIBLE);
+                            tv_not_data.setVisibility(View.VISIBLE);
+//                            tv_no_data.setVisibility(View.VISIBLE);
+                            iv_no_data.setVisibility(View.VISIBLE);
                             return;
                         }
+                        tv_not_data.setVisibility(View.GONE);
+                        rl_title.setVisibility(View.VISIBLE);
                         timeList = new ArrayList<>();
                         for (int i = 0; i < moreDataModel.getData().size(); i++) {
                             timeList.add(moreDataModel.getData().get(i).getScore());

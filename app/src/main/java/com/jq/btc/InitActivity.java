@@ -8,6 +8,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -48,7 +50,10 @@ import com.lzy.okgo.callback.AbsCallback;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Map;
 
 
@@ -73,6 +78,32 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_init);
         _context = this;
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            String province = bundle.getString("province");
+            if (!province.equals(SpUtils.getInstance(_context).getProvince())) {
+                SpUtils.getInstance(_context).putProvince(province);
+                Log.e("AYD", "--->" + province);
+            }
+            String city = bundle.getString("city");
+            if (!city.equals(SpUtils.getInstance(_context).getCity())) {
+                SpUtils.getInstance(_context).putCity(city);
+                Log.e("AYD", "--->" + city);
+            }
+            String cityId = bundle.getString("cityId");
+            if (!cityId.equals(SpUtils.getInstance(_context).getCityId())) {
+                SpUtils.getInstance(_context).putCityId(cityId);
+                Log.e("AYD", "--->" + cityId);
+            }
+//            String deviceId = bundle.getString("deviceId");
+            String deviceId = getLocalMacAddress(this).toUpperCase();
+            if (!deviceId.equals(SpUtils.getInstance(_context).getMac())) {
+                SpUtils.getInstance(_context).putMac(deviceId);
+                Log.e("AYD", "--->" + deviceId);
+            }
+
+        }
         isBound = SpUtils.getInstance(_context).getIsFirst();
         if (isBound) {
             startActivity(new Intent(InitActivity.this, NewMainActivity.class));
@@ -182,113 +213,8 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
             bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.haier_welcome_img);
         }
 
-        showViewpager(true);
-//        if (mBleController != null) {
-//            if (mBleController.isBluetoothEnable()) {
-//                startActivity(new Intent(this, BoundDeviceActivity.class));
-//            } else {
-//                startActivity(new Intent(this, NewMainActivity.class));
-//            }
-//        }
-//        if (bitmap != null) {
-//            boot.setImageBitmap(bitmap);
-//            new Handler().postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    if (!isKeyBack) {
-//                        showViewpager(true);
-//                    }
-//                }
-//            }, TIME_OUT);
-//        } else {
-//            showViewpager(false);
-//        }
     }
 
-    public void showViewpager(boolean isAnima) {
-//        toActivity(isAnima);
-    }
-
-    private void toActivity(boolean isAnima) {
-        judgeUpgrades();
-        JSONObject use = new JSONObject();
-        use.put("user_id", UserUtils.get().userId());
-        JSONObject data = new JSONObject();
-        data.put("app", use);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("verify_info", data);
-        Log.e("AYD", "--->" + jsonObject.toJSONString());
-        OkGo.<String>post(ConstantUrl.GET_USER_URL)
-                .upJson(String.valueOf(jsonObject))
-                .execute(new StringCallback() {
-                    @Override
-                    public void onSuccess(Response<String> response) {
-                        UserData userData = new Gson().fromJson(response.body(), UserData.class);
-                        ArrayList<String> useid = new ArrayList<>();
-                        for (int i = 0; i < userData.getData().getMemberList().size(); i++) {
-                            useid.add(userData.getData().getMemberList().get(i).getFamilyMemeberId());
-                        }
-                        String str = useid.toString();
-                        int len = str.length() - 1;
-                        useIds = str.substring(1, len).replace(" ", "");
-                        SpUtils.getInstance(_context).setUserid(useIds);
-                        Log.e("AYD----->", "" + useIds);
-                        AccountEntity af = new AccountEntity();
-                        af.setId(100);
-                        af.setAccess_token("sss");
-                        af.setWeixin("123123");
-                        Account.getInstance(InitActivity.this).setAccountInfo(af);
-                        RoleInfo roleInfo = new RoleInfo();
-                        roleInfo.setSex(userData.getData().getMemberList().get(0).getSex());
-                        roleInfo.setNickname(userData.getData().getMemberList().get(0).getNickName());
-                        roleInfo.setHeight(Integer.parseInt(userData.getData().getMemberList().get(0).getHeight()));
-                        roleInfo.setUseId(userData.getData().getMemberList().get(0).getFamilyMemeberId());
-                        roleInfo.setAccount_id(195871);
-                        roleInfo.setBirthday(userData.getData().getMemberList().get(0).getBirthday());
-                        roleInfo.setId(1993456);
-                        roleInfo.setCurrent_state(1);
-                        roleInfo.setCreate_time("2018-11-29 11:01:11");
-                        roleInfo.setWeight_init(Float.parseFloat(userData.getData().getMemberList().get(0).getWeight()));
-                        roleInfo.setWeight_goal(Float.parseFloat(userData.getData().getMemberList().get(0).getWeight()));
-                        roleInfo.setRole_type(0);
-                        Account.getInstance(InitActivity.this).setRoleInfo(roleInfo);
-
-                    }
-                });
-    }
-//
-////        AccountEntity af = new AccountEntity();
-////        af.setId(100);
-////        af.setAccess_token("sss");
-////        af.setWeixin("123123");
-////        Account.getInstance(this).setAccountInfo(af);
-////        RoleInfo roleInfo = new RoleInfo();
-////        roleInfo.setSex("男");
-////        roleInfo.setNickname("测试");
-////        roleInfo.setHeight(180);
-////        roleInfo.setAccount_id(195871);
-////        roleInfo.setBirthday("1990-09-09");
-////        roleInfo.setId(1993456);
-////        roleInfo.setCurrent_state(1);
-////        roleInfo.setCreate_time("2018-11-29 11:01:11");
-////        roleInfo.setWeight_init(70);
-////        roleInfo.setWeight_goal(70);
-////        roleInfo.setRole_type(0);
-////        Account.getInstance(this).setRoleInfo(roleInfo);
-//        Log.e("AYD", "---->" + UserUtils.get().familyId());
-//        Log.e("AYD", "---->" + UserUtils.get().userId());
-//
-//
-//        // 初始化单位
-////        Intent intent = new Intent();
-////        intent.setClass(InitActivity.this, NewMainActivity.class);
-////        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-////        startActivity(intent);
-////        this.finish();
-////        if (isAnima) {
-////            overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
-////        }
-//    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -341,10 +267,10 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
                             startActivity(new Intent(this, BoundDeviceActivity.class).putExtra("where", 2));
                             finish();
                         } else {
-                            BMToastUtil.showToastShort(_context,"当前无网络");
+                            BMToastUtil.showToastShort(_context, "当前无网络");
                         }
                     } else {
-                        BMToastUtil.showToastShort(_context,"请先开启蓝牙");
+                        BMToastUtil.showToastShort(_context, "请先开启蓝牙");
                     }
                 }
                 break;
@@ -374,5 +300,74 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
         }
 
         return true;
+    }
+
+
+    /**
+     * 获取mac地址
+     *
+     * @param context
+     * @return
+     */
+    public static String getLocalMacAddress(Context context) {
+        String mac;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mac = getMachineHardwareAddress();
+        } else {
+            WifiManager wifi = (WifiManager) context
+                    .getSystemService(Context.WIFI_SERVICE);
+            WifiInfo info = wifi.getConnectionInfo();
+            mac = info.getMacAddress().replace(":", "");
+        }
+
+        return mac;
+    }
+
+    /**
+     * 获取设备的mac地址和IP地址（android6.0以上专用）
+     *
+     * @return
+     */
+    public static String getMachineHardwareAddress() {
+        Enumeration<NetworkInterface> interfaces = null;
+        try {
+            interfaces = NetworkInterface.getNetworkInterfaces();
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+        String hardWareAddress = null;
+        NetworkInterface iF = null;
+        while (interfaces.hasMoreElements()) {
+            iF = interfaces.nextElement();
+            try {
+                hardWareAddress = bytesToString(iF.getHardwareAddress());
+                if (hardWareAddress == null) continue;
+            } catch (SocketException e) {
+                e.printStackTrace();
+            }
+        }
+        if (iF != null && iF.getName().equals("wlan0")) {
+            hardWareAddress = hardWareAddress.replace(":", "");
+        }
+        return hardWareAddress;
+    }
+
+    /***
+     * byte转为String
+     * @param bytes
+     * @return
+     */
+    private static String bytesToString(byte[] bytes) {
+        if (bytes == null || bytes.length == 0) {
+            return null;
+        }
+        StringBuilder buf = new StringBuilder();
+        for (byte b : bytes) {
+            buf.append(String.format("%02X:", b));
+        }
+        if (buf.length() > 0) {
+            buf.deleteCharAt(buf.length() - 1);
+        }
+        return buf.toString();
     }
 }

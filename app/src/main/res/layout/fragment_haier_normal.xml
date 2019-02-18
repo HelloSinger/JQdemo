@@ -468,7 +468,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
-
         <RelativeLayout
             android:id="@+id/rl_head"
             android:layout_width="match_parent"
@@ -552,7 +551,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="20px"
-                            android:text="--"
+                            android:text="一 一"
                             android:textColor="@color/tv_00CF9B"
                             android:textSize="20px" />
 
@@ -562,7 +561,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="20px"
-                            android:text="--"
+                            android:text="一 一"
                             android:textColor="@color/tv_00CF9B"
                             android:textSize="20px" />
                     </LinearLayout>
@@ -572,7 +571,7 @@
                 <View
                     android:id="@+id/view_v"
                     android:layout_width="1px"
-                    android:layout_height="418px"
+                    android:layout_height="400px"
                     android:layout_marginLeft="414px"
                     android:layout_marginTop="50px"
                     android:layout_toRightOf="@id/ll_head"
@@ -581,8 +580,8 @@
                 <View
                     android:layout_width="652px"
                     android:layout_height="1px"
-                    android:layout_centerVertical="true"
                     android:layout_marginLeft="88px"
+                    android:layout_marginTop="220px"
                     android:layout_toRightOf="@id/ll_head"
                     android:background="#aaffffff" />
 
@@ -593,7 +592,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="90px"
                     android:layout_marginLeft="141px"
-                    android:layout_marginTop="60px"
+                    android:layout_marginTop="80px"
                     android:layout_toRightOf="@id/ll_head" />
 
                 <include
@@ -602,7 +601,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="90px"
                     android:layout_marginLeft="80px"
-                    android:layout_marginTop="60px"
+                    android:layout_marginTop="80px"
                     android:layout_toRightOf="@id/view_v" />
 
                 <include
@@ -612,7 +611,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/mWeightUnit1"
                     android:layout_marginLeft="141px"
-                    android:layout_marginTop="120px"
+                    android:layout_marginTop="100px"
                     android:layout_toRightOf="@id/ll_head" />
 
                 <include
@@ -622,7 +621,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/mWeightUnit1"
                     android:layout_marginLeft="80px"
-                    android:layout_marginTop="120px"
+                    android:layout_marginTop="100px"
                     android:layout_toRightOf="@id/view_v" />
 
             </RelativeLayout>
@@ -631,7 +630,7 @@
         <LinearLayout
             android:id="@+id/ll_jy"
             android:layout_width="match_parent"
-            android:layout_height="240px"
+            android:layout_height="wrap_content"
             android:layout_below="@id/rl_head"
             android:layout_marginTop="76px"
             android:orientation="horizontal">
@@ -699,8 +698,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="30px"
-                            android:layout_marginTop="50px"
-                            android:text="身体得分："
+                            android:layout_marginTop="40px"
+                            android:text=""
                             android:textColor="@color/tv_6EABFF"
                             android:textSize="18px" />
 
@@ -708,7 +707,7 @@
                             android:id="@+id/tv_score"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="50px"
+                            android:layout_marginTop="40px"
                             android:text=""
                             android:textColor="@color/tv_6EABFF"
                             android:textSize="18px" />
@@ -717,7 +716,7 @@
                             android:id="@+id/mCompareLastText_new"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="50px"
+                            android:layout_marginTop="40px"
                             android:text=""
                             android:textColor="@color/tv_6EABFF"
                             android:textSize="18px" />
@@ -726,7 +725,7 @@
                             android:id="@+id/mCompareLastWeight_new"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="50px"
+                            android:layout_marginTop="40px"
                             android:text=""
                             android:textColor="@color/tv_6EABFF"
                             android:textSize="18px" />
@@ -739,7 +738,7 @@
                         android:layout_width="750px"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/ll_score"
-                        android:layout_marginLeft="40px"
+                        android:layout_marginLeft="30px"
                         android:layout_marginTop="20px"
                         android:lineSpacingExtra="5dp"
                         android:text=""
@@ -752,7 +751,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/ll_jy"
             android:layout_marginLeft="40px"
             android:layout_marginRight="40px"
@@ -761,12 +760,14 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="60px"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/tv_recommend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="24px" />
 
@@ -778,17 +779,47 @@
                     android:text="(绑定设备称重后，会根据健康信息推荐菜谱)"
                     android:textColor="@color/color_BFBFBF"
                     android:textSize="18px"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
             </LinearLayout>
 
-            <ImageView
+            <RelativeLayout
                 android:layout_width="1000px"
                 android:layout_height="700px"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10px"
-                android:background="@mipmap/icon_caipu"
-                android:scaleType="centerCrop" />
+                android:layout_marginTop="32px">
 
+
+                <ImageView
+                    android:layout_width="1000px"
+                    android:layout_height="700px"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@mipmap/icon_caipu"
+                    android:scaleType="centerCrop" />
+            </RelativeLayout>
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_fragment_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <com.jq.btc.dialog.LoadingProgress
+                android:layout_width="80px"
+                android:layout_height="80px"
+                android:layout_gravity="center"
+                android:background="@color/transparent"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40px"
+                android:text="加载中"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:visibility="visible" />
+        </LinearLayout>
+
     </RelativeLayout>
 </FrameLayout>

@@ -5,10 +5,12 @@ import android.os.Parcel;
 
 import com.jq.code.code.util.StandardUtil;
 
+import java.io.Serializable;
+
 /**
  * 秤数据信息实体类
  */
-public class WeightEntity extends PutBase {
+public class WeightEntity extends PutBase implements Serializable {
 
     /**
      *

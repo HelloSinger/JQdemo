@@ -33,7 +33,7 @@
             android:indeterminate="false"
             android:indeterminateOnly="false"
             android:max="100"
-            android:progress="20"
+
              />
 
         <TextView
@@ -100,7 +100,7 @@
             android:indeterminate="false"
             android:indeterminateOnly="false"
             android:max="100"
-            android:progress="10"
+
            />
 
         <TextView
@@ -167,7 +167,7 @@
             android:indeterminate="false"
             android:indeterminateOnly="false"
             android:max="100"
-            android:progress="10"
+
             />
 
         <TextView
@@ -234,7 +234,7 @@
             android:indeterminate="false"
             android:indeterminateOnly="false"
             android:max="100"
-            android:progress="10"
+
             />
 
         <TextView
@@ -301,7 +301,7 @@
             android:indeterminate="false"
             android:indeterminateOnly="false"
             android:max="100"
-            android:progress="10"
+
             />
 
         <TextView
@@ -368,7 +368,7 @@
             android:indeterminate="false"
             android:indeterminateOnly="false"
             android:max="100"
-            android:progress="10"
+
             />
         <!--progressbar_drawable_2db4a3-->
         <TextView
@@ -435,7 +435,6 @@
             android:indeterminate="false"
             android:indeterminateOnly="false"
             android:max="100"
-            android:progress="10"
             />
 
         <TextView
@@ -472,8 +471,7 @@
             android:textColor="@color/white"
             android:textSize="24px"
             tools:text="过多" />
-    </RelativeLayout
->
+    </RelativeLayout>
 
     <RelativeLayout
 
@@ -503,7 +501,7 @@
             android:indeterminate="false"
             android:indeterminateOnly="false"
             android:max="100"
-            android:progress="10"
+
             />
 
         <TextView
@@ -570,7 +568,6 @@
             android:indeterminate="false"
             android:indeterminateOnly="false"
             android:max="100"
-            android:progress="10"
             />
 
         <TextView

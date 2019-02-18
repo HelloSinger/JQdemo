@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30px"
             android:layout_toRightOf="@id/mTypeIcon1"
-            android:text="- -"
+            android:text="一 一"
             android:textColor="@color/white"
             android:textSize="50px" />
 
