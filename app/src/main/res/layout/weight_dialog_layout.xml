@@ -404,6 +404,33 @@
 
     </LinearLayout>
     <!--匹配家庭成员布局以上-->
+    <LinearLayout
+        android:id="@+id/ll_dialog_loading"
+        android:layout_width="552px"
+        android:layout_height="780px"
+        android:layout_centerInParent="true"
+        android:background="#aaffffff"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.jq.btc.dialog.LoadingProgress
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:layout_gravity="center"
+            android:layout_marginTop="350px"
+            android:background="@color/transparent"
+            android:visibility="visible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40px"
+            android:text="上传数据中……"
+            android:textColor="@color/tv_4B83E9"
+            android:textSize="14sp"
+            android:visibility="visible" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_count_time"

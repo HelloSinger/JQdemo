@@ -180,13 +180,28 @@ public class SpUtils {
     public String getCityId() {
         return sharedPreferences.getString("CITYID", "");
     }
-    public boolean putMac(String cityId) {
-        mEditor.putString("MAC", cityId);
+
+    public boolean putMac(String macid) {
+        mEditor.putString("MAC", macid);
         return mEditor.commit();
     }
 
     public String getMac() {
         return sharedPreferences.getString("MAC", "");
+    }
+
+    public boolean putPos(int pos) {
+        mEditor.putInt("POS", pos);
+        return mEditor.commit();
+    }
+
+    public Integer getPos() {
+        return sharedPreferences.getInt("POS", -1);
+    }
+
+    public void cleanPos() {
+        mEditor.remove("POS");
+        mEditor.commit();
     }
     //   //手机号
 //   public boolean setRealName(String realname){

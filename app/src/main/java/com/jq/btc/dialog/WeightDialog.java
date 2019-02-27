@@ -60,6 +60,7 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
     private static CountDownTimers countDownTimersData;
     private DiaLogRecyItemOnClick diaLogRecyItemOnClick;
     private diaLogAddUserOnClick diaLogAddUserOnClick;
+    private LinearLayout ll_dialog_loading;
 
     private WeightDialog weightDialog;
 
@@ -117,6 +118,7 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
         tv_muscle_rate = findViewById(R.id.tv_muscle_rate);
         tv_dialog_weight_match = findViewById(R.id.tv_dialog_weight_match);
         tv_add_family = findViewById(R.id.tv_add_family);
+        ll_dialog_loading = findViewById(R.id.ll_dialog_loading);
         tv_add_family.setOnClickListener(this);
         rv_family = findViewById(R.id.rv_family);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -183,6 +185,13 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
         }
     }
 
+    public void setLoading(boolean b) {
+        if (b) {
+            ll_dialog_loading.setVisibility(View.VISIBLE);
+        } else {
+            ll_dialog_loading.setVisibility(View.GONE);
+        }
+    }
 
     /**
      * 设置匹配倒计时时间

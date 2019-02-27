@@ -1,6 +1,8 @@
 package com.jq.btc.bluettooth;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -27,6 +29,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -62,6 +65,8 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.jq.btc.app.R2.id.iv_bound;
 
 public class BoundDeviceActivity extends Activity implements OnClickListener, OnPageChangeListener, BLEController.OnBlEChangeListener {
 
@@ -157,6 +162,7 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
         mViewHolder.animtor = view.findViewById(R.id.bound_animation);
         mViewHolder.un_bound_ll = view.findViewById(R.id.un_bound_ll);
         mViewHolder.tv_bound_B = view.findViewById(R.id.tv_bound_B);
+        mViewHolder.iv_bound = view.findViewById(R.id.iv_bound);
 //        mViewHolder.animtor.setImageResource(R.drawable.ble_bound_animation);
         mViewHolder.animtor.setImageResource(R.mipmap.icon_body_fat_scale);
         mViewHolder.mBackView.setOnClickListener(this);
@@ -187,6 +193,35 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
         gdValue.setColor(0x0d32beff);
         gdValue.setCornerRadius(getResources().getDisplayMetrics().density * 90);
 //        mViewHolder.mValueLayout.setBackground(gdValue);
+    }
+
+    private void setAnimator() {
+        final ObjectAnimator animator = ObjectAnimator.ofFloat(mViewHolder.iv_bound, "rotation", 0f, 360f);
+        LinearInterpolator lin = new LinearInterpolator();
+        animator.setInterpolator(lin);
+        animator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                setAnimator();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        animator.setDuration(5000);
+        animator.start();
     }
 
     @Override
@@ -298,6 +333,7 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
         TextView unit;
         LinearLayout un_bound_ll;
         TextView tv_bound_B;
+        ImageView iv_bound;
 
     }
 
@@ -377,6 +413,7 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
 //        mViewHolder.title.setText(R.string.HaierBluetooth_bluetooth_confirming);
 //        mViewHolder.buyBt.setVisibility(View.GONE);
         mViewHolder.boundedLL.setVisibility(View.VISIBLE);
+        setAnimator();
         mViewHolder.animtor.setVisibility(View.GONE);
     }
 
@@ -702,5 +739,6 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
         return result;
 
     }
+
 
 }

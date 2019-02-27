@@ -115,6 +115,7 @@
                 android:background="@mipmap/icon_circle_bg" />
 
             <ImageView
+                android:id="@+id/iv_bound"
                 android:layout_width="410px"
                 android:layout_height="410px"
                 android:layout_centerHorizontal="true"

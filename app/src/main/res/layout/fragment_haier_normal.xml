@@ -632,7 +632,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/rl_head"
-            android:layout_marginTop="76px"
+            android:layout_marginTop="40px"
             android:orientation="horizontal">
 
             <RelativeLayout
@@ -707,7 +707,7 @@
                             android:id="@+id/tv_score"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="40px"
+                            android:layout_marginTop="15px"
                             android:text=""
                             android:textColor="@color/tv_6EABFF"
                             android:textSize="18px" />
@@ -725,7 +725,7 @@
                             android:id="@+id/mCompareLastWeight_new"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="40px"
+                            android:layout_marginTop="15px"
                             android:text=""
                             android:textColor="@color/tv_6EABFF"
                             android:textSize="18px" />
@@ -739,7 +739,6 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/ll_score"
                         android:layout_marginLeft="30px"
-                        android:layout_marginTop="20px"
                         android:lineSpacingExtra="5dp"
                         android:text=""
                         android:textColor="@color/tv_6EABFF"
@@ -753,14 +752,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ll_jy"
-            android:layout_marginLeft="40px"
-            android:layout_marginRight="40px"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60px"
+                android:layout_marginTop="55px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -782,19 +781,43 @@
                     android:visibility="visible" />
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="1000px"
-                android:layout_height="700px"
-                android:layout_marginTop="32px">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25px"
+                android:orientation="horizontal">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="1000px"
-                    android:layout_height="700px"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@mipmap/icon_caipu"
-                    android:scaleType="centerCrop" />
-            </RelativeLayout>
+                    <ImageView
+                        android:layout_width="200px"
+                        android:layout_height="244px"
+                        android:background="@drawable/icon_menu_morning" />
+
+                    <ImageView
+                        android:layout_width="200px"
+                        android:layout_height="244px"
+                        android:layout_marginTop="23px"
+                        android:background="@drawable/icon_menu_noon" />
+
+                    <ImageView
+                        android:layout_width="200px"
+                        android:layout_height="244px"
+                        android:layout_marginTop="20px"
+                        android:background="@drawable/icon_menu_night" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rcy_menu"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="-20px"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10px" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout

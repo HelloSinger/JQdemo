@@ -27,4 +27,9 @@ public class ConstantUrl {
      * 查询当前用户最后一次体重
      */
     public static String GET_USER_LAST_WEIGHT = BASE_URL + "cookbook/findBodyScaleList";
+
+    /**
+     * 冷启动获取推荐菜谱
+     */
+    public static String GET_NO_DATA_EMNU = BASE_URL + "cookbook/recomRecipesNoScale";
 }

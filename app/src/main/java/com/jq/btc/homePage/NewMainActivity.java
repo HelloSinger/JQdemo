@@ -128,7 +128,6 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         getUseList();
         onBlEChangeListener.syncHistoryEnd(null);
 //        doRefreshIfNeeded();
-
     }
 
 
@@ -244,7 +243,6 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                 SpUtils.getInstance(NewMainActivity.this).cleanMak();
                 System.exit(0);
                 break;
-
             case R.id.ll_add_user:
                 Intent intent = new Intent();
                 intent.setAction("com.unilife.fridge.app.family.add");
@@ -274,7 +272,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                         mFragments.clear();
                         userData = new Gson().fromJson(response.body(), UserData.class);
                         userDataList = userData.getData().getMemberList();
-                        Log.e("AYD", "act:--- " + userDataList.size());
+                        Log.e("AYD", "act:---" + userDataList.size());
                         Collections.reverse(userDataList);
                         if (userDataList.size() == 0) {
                             rl_no_user.setVisibility(View.VISIBLE);
@@ -342,7 +340,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
 //                                            mFragments.get(0).setFirstUserData();
 //                                        }
 //                                    }
-//
+//                                }
                             }
                             viewPagerMainAdapter = new ViewPagerMainAdapter(getSupportFragmentManager(), mFragments);
                             vp.setAdapter(viewPagerMainAdapter);
@@ -353,6 +351,13 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                                 mFragments.get(_pos).getUserLastWeight(UserUtils.get().userId(),
                                         userData.getData().getMemberList().get(_pos).getFamilyMemeberId());
                             }
+                            if (SpUtils.getInstance(NewMainActivity.this).getPos() != -1) {
+                                vp.setCurrentItem(SpUtils.getInstance(NewMainActivity.this).getPos());
+                                mFragments.get(SpUtils.getInstance(NewMainActivity.this).getPos()).getUserLastWeight(UserUtils.get().userId(),
+                                        userData.getData().getMemberList().get(SpUtils.getInstance(NewMainActivity.this).getPos()).getFamilyMemeberId());
+                                SpUtils.getInstance(NewMainActivity.this).cleanPos();
+                            }
+
                         }
                     }
                 });
@@ -575,6 +580,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
      * @param entity 体重数据
      */
     private void onShowBluetoothTempWeightData(boolean needShowAnim, boolean isLock, final WeightEntity entity) {
+        if (userDataList.size() == 0) return;
         mFragments.get(pos).setTempBluetoothWeight(entity);
 //        mFragments.get(position).setTempBluetoothWeight(entity);
 
@@ -646,6 +652,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         lastEntity = curEntity;
         curEntity = entity;
 //        if (null != mCurFragment && mCurFragment.isAdded()) {
+        if (userDataList.size() == 0) return;
         mFragments.get(pos).setWeightEntity(entity, lastEntity);
 //        }
     }

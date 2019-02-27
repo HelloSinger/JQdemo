@@ -162,8 +162,9 @@
                 android:layout_height="1156px"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="350px"
-                android:background="@mipmap/icon_nomore_data"
+                android:background="@drawable/icon_nomore_data"
                 android:visibility="gone" />
+            <!--android:background="@mipmap/icon_nomore_data"-->
         </LinearLayout>
 
         <LinearLayout
