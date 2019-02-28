@@ -47,8 +47,8 @@
     <color name="colorBackCircle">#101113</color>
     <color name="colorIndicatorStart">#3E4B7B</color>
     <color name="colorIndicatorEnd">#0780ED</color>
-    <color name="colorSelected1">#AA2ac6f6</color>
-    <color name="color_353bb7">#AA35ebb7</color>
+    <color name="colorSelected1">#B32ac6f6</color>
+    <color name="color_353bb7">#0035ebb7</color>
     <color name="color_Affffff">#012683</color>
 
 </resources>

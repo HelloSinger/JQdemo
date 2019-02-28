@@ -457,7 +457,7 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
                         ll_loading.setVisibility(View.GONE);
                         if (moreDataModel.getData().size() == 0) {
                             ll_data.setVisibility(View.GONE);
-                            tv_not_data.setVisibility(View.VISIBLE);
+//                            tv_not_data.setVisibility(View.VISIBLE);
 //                            tv_no_data.setVisibility(View.VISIBLE);
                             iv_no_data.setVisibility(View.VISIBLE);
                             return;

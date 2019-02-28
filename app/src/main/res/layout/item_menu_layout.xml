@@ -16,7 +16,6 @@
             android:id="@+id/iv_pic"
             android:layout_width="200px"
             android:layout_height="188px"
-            android:background="@drawable/icon_menu_normal"
             android:scaleType="centerCrop" />
 
         <TextView

@@ -752,9 +752,10 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     long startTime3 = System.currentTimeMillis(); //起始时间
 
     public void getUserLastWeight(final String famaliyId, final String userId) {
-        JSONObject jsonObject = new JSONObject();
+        final JSONObject jsonObject = new JSONObject();
         jsonObject.put("famaliyId", famaliyId);
         jsonObject.put("userId", userId);
+        jsonObject.put("macId", SpUtils.getInstance(getContext()).getMac());
         Log.e("AYD", "onSuccess---->" + userId);
         OkGo.<String>post(ConstantUrl.GET_USER_LAST_WEIGHT)
                 .upJson(String.valueOf(jsonObject))
@@ -762,6 +763,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                     @Override
                     public void onSuccess(Response<String> response) {
                         Log.e("AYD", "网络请求");
+                        Log.e("jsonObject", "---" + String.valueOf(jsonObject));
                         ll_fragment_loading.setVisibility(View.GONE);
                         SpUtils.getInstance(getActivity()).cleanDialog();
                         lastWeightModel = new Gson().fromJson(response.body(), LastWeightModel.class);
@@ -898,6 +900,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 String[] axungeArray = axunge.split(",");
                                 weightDialog.setPersonlData("BMI: " + entity.getBmi(), userName, weight,
                                         axungeArray[0] + "", df.format(bone) + "", df.format(muscle) + "");
+                                if (recipes == null) return;
                                 recipes = menuModel.getData().getData().getRecipes();
                                 cookBookAdapter.setMenuModels(menuModel.getData().getData().getRecipes());
                                 rcy_menu.setAdapter(cookBookAdapter);
@@ -906,6 +909,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 Log.e("time", "上传数据执行时间" + String.format("方法使用时间 %d ms", runTime));
                             } else {
                                 weightDialog.dismiss();
+                                weightDialog.setLoading(false);
                                 BMToastUtil.showToastShort(getActivity(), "上传数据失败");
                             }
                         }
@@ -933,7 +937,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-                        MatchModel matchModel = new Gson().fromJson(response.body(), MatchModel.class);
+//                        MatchModel matchModel = new Gson().fromJson(response.body(), MatchModel.class);
                         if (weightDialog == null) return;
                         runOnUiThread(new Runnable() {
                             @Override
@@ -953,6 +957,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     }
 
     long startTime1 = System.currentTimeMillis(); //起始时间
+
     private void getNoDataMenu(String famaliyId, String userId, String macId) {
         final JSONObject json = new JSONObject();
         json.put("famaliyId", famaliyId);
@@ -965,6 +970,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                     public void onSuccess(Response<String> response) {
                         Log.e("shuju", "--->" + response.body());
                         noDataModel = new Gson().fromJson(response.body(), NoDataModel.class);
+                        if (noDataModel.getData() == null) return;
                         cookBookNoDataAdapter.setMenuModels(noDataModel.getData().getRecipes());
                         rcy_menu.setAdapter(cookBookNoDataAdapter);
                         long endTime = System.currentTimeMillis(); //结束时间

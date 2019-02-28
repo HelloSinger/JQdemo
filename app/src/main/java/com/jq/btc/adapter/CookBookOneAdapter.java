@@ -10,13 +10,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.jq.btc.app.R;
 import com.jq.btc.model.MenuModel;
 import com.jq.btc.utils.GlideCircleTransform;
+import com.xiaweizi.cornerslibrary.RoundCornersTransformation;
 
 import java.util.List;
 
@@ -48,14 +51,18 @@ public class CookBookOneAdapter extends RecyclerView.Adapter<CookBookOneAdapter.
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 //        MenuModel.DataBeanX.DataBean.RecipesBean recipesBean = menuModels.get(position).getData().getData().getRecipes().get(position);
-        //设置图片圆角角度
-        RoundedCorners roundedCorners = new RoundedCorners(30);
-        //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
-        RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
+
+        RequestOptions options1 = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.icon_menu_normal)//预加载图片
+                .error(R.drawable.icon_menu_normal)//加载失败显示图片
+                .priority(Priority.HIGH)//优先级
+                .diskCacheStrategy(DiskCacheStrategy.NONE)//缓存策略
+                .transform(new GlideCircleTransform(10));//转化为圆角
 
 
         Glide.with(context).load(menuModels.get(position).getRecipeimage())
-                .apply(options)
+                .apply(options1)
                 .into(holder.iv_pic);
         holder.tv_menu_name.setText(menuModels.get(position).getRecipename());
         String recipetag = menuModels.get(position).getRecipetag().replace(",", "/");

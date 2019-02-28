@@ -28,8 +28,8 @@
 
                     <com.jq.code.view.CircleImageView
                         android:id="@+id/mRoleImage"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="120px"
+                        android:layout_height="120px"
                         android:layout_gravity="center_horizontal|top"
                         android:src="@mipmap/default_head_image" />
 
@@ -102,7 +102,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="270px"
+                    android:layout_marginTop="100px"
                     android:orientation="horizontal">
 
                     <TextView
@@ -132,7 +132,8 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp">
+                    android:layout_marginTop="160px"
+                    android:layout_height="250dp">
 
                     <com.jq.btc.myview.ScrollChartView
                         android:id="@+id/scroll_chart_main"

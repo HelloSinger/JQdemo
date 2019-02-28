@@ -242,8 +242,8 @@ public class ScrollChartView extends View {
         mIndicatePadding = UIUtils.dp2px(getContext(), 87);
         mIndicateBottomPadding = UIUtils.dp2px(getContext(), 15);
 
-        mShadowStartColor = ContextCompat.getColor(getContext(), R.color.color_353bb7);
-        mShadowEndColor = ContextCompat.getColor(getContext(), R.color.colorSelected1);
+        mShadowStartColor = ContextCompat.getColor(getContext(), R.color.colorSelected1);
+        mShadowEndColor = ContextCompat.getColor(getContext(), R.color.color_353bb7);
 //        mShadowMarginHeight = UIUtils.dp2px(getContext(), 30);
         mShadowMarginHeight = UIUtils.dp2px(getContext(), 30);
 

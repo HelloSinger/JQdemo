@@ -575,7 +575,7 @@
                     android:layout_marginLeft="414px"
                     android:layout_marginTop="50px"
                     android:layout_toRightOf="@id/ll_head"
-                    android:background="#aaffffff" />
+                    android:background="#80ffffff" />
 
                 <View
                     android:layout_width="652px"
@@ -583,7 +583,7 @@
                     android:layout_marginLeft="88px"
                     android:layout_marginTop="220px"
                     android:layout_toRightOf="@id/ll_head"
-                    android:background="#aaffffff" />
+                    android:background="#80ffffff" />
 
 
                 <include
