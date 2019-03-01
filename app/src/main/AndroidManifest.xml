@@ -46,6 +46,10 @@
 
     <uses-permission android:name="com.jq.btc.app.MUSIC_SERVER" />
     <uses-permission android:name="hs.permission.user.info" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:name="com.jq.btc.CSApplication"
@@ -121,6 +125,24 @@
                 <action android:name="notification_clicked" />
             </intent-filter>
         </receiver>
+
+        <!-- 配置APP ID -->
+        <meta-data
+            android:name="BUGLY_APPID"
+            android:value="48c1c8faf7" />
+        <!-- 配置APP版本号 -->
+        <meta-data
+            android:name="BUGLY_APP_VERSION"
+            android:value="1.0" />
+        <!-- 配置APP渠道号 -->
+        <!--<meta-data-->
+            <!--android:name="BUGLY_APP_CHANNEL"-->
+            <!--android:value="<APP_Channel>" />-->
+        <!-- 配置Bugly调试模式（true或者false）-->
+        <meta-data
+            android:name="BUGLY_ENABLE_DEBUG"
+            android:value="false" />
+
         <!-- 微信分享回调 -->
 
 

@@ -12,4 +12,7 @@
     <string name="tv_jiankang">健 康\n\n建 议</string>
     <string name="tv_title_two">并保持常亮</string>
 
+    <string name="action_restart">重启</string>
+    <string name="error_title">程序错误</string>
+    <string name="error_message">对不起！应用程序出现异常退出了。\n\n请点击 重启 按钮重启当前应用进行重试。</string>
 </resources>

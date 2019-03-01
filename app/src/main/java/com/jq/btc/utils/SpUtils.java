@@ -203,6 +203,21 @@ public class SpUtils {
         mEditor.remove("POS");
         mEditor.commit();
     }
+
+    public boolean putClick(String pos) {
+        mEditor.putString("POS", pos);
+        return mEditor.commit();
+    }
+
+    public String getClick() {
+        return sharedPreferences.getString("POS", "");
+    }
+
+    public void cleanClick() {
+        mEditor.remove("POS");
+        mEditor.commit();
+    }
+
     //   //手机号
 //   public boolean setRealName(String realname){
 //

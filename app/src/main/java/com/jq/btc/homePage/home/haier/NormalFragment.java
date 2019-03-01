@@ -168,9 +168,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     private String lastHeavy;
     String tips;
     private ViewPagerCurrentListener viewPagerCurrentListener;
-
     private LinearLayout ll_fragment_loading;
-
     private RecyclerView rcy_menu;
     private CookBookOneAdapter cookBookAdapter;
     private CookBookNoDataAdapter cookBookNoDataAdapter;
@@ -304,9 +302,9 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         tv_recommend = view.findViewById(R2.id.tv_recommend);
         tv_recommend_two = view.findViewById(R2.id.tv_recommend_two);
         tv_add_member.setOnClickListener(this);
-        ll_fragment_loading = view.findViewById(R.id.ll_fragment_loading);
+        ll_fragment_loading = view.findViewById(R2.id.ll_fragment_loading);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 4);
-        rcy_menu = view.findViewById(R.id.rcy_menu);
+        rcy_menu = view.findViewById(R2.id.rcy_menu);
         rcy_menu.setLayoutManager(gridLayoutManager);
         cookBookAdapter = new CookBookOneAdapter(getContext());
         cookBookNoDataAdapter = new CookBookNoDataAdapter(getContext());
@@ -726,6 +724,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                 Intent intent = new Intent();
                 intent.setAction("com.unilife.fridge.app.family.add");
                 startActivity(intent);
+                SpUtils.getInstance(getContext()).putClick("click");
                 break;
             case R2.id.tv_more_data:
                 toMoreActivity();
@@ -740,7 +739,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         intent.putExtra("pos", position);
         startActivity(intent);
         getActivity().overridePendingTransition(R.anim.slide_bottom_in, 0);
-        getActivity().finish();
+//        getActivity().finish();
     }
 
     /**
@@ -762,8 +761,8 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-                        Log.e("AYD", "网络请求");
                         Log.e("jsonObject", "---" + String.valueOf(jsonObject));
+                        Log.e("jsonObject", "---" + response.body());
                         ll_fragment_loading.setVisibility(View.GONE);
                         SpUtils.getInstance(getActivity()).cleanDialog();
                         lastWeightModel = new Gson().fromJson(response.body(), LastWeightModel.class);

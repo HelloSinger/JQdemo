@@ -110,6 +110,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         userDataList = new ArrayList<>();
         mFragments = new ArrayList<>();
         initView();
+        getUseList();
     }
 
 
@@ -125,7 +126,9 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         vp = findViewById(R.id.vp);
         vp.addOnPageChangeListener(this);
         _pos = getIntent().getIntExtra("pos", -1);
-        getUseList();
+        if (SpUtils.getInstance(this).getClick().equals("click")) {
+            getUseList();
+        }
         onBlEChangeListener.syncHistoryEnd(null);
 //        doRefreshIfNeeded();
     }
@@ -273,6 +276,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                         userData = new Gson().fromJson(response.body(), UserData.class);
                         userDataList = userData.getData().getMemberList();
                         Log.e("AYD", "act:---" + userDataList.size());
+                        SpUtils.getInstance(NewMainActivity.this).cleanClick();
                         Collections.reverse(userDataList);
                         if (userDataList.size() == 0) {
                             rl_no_user.setVisibility(View.VISIBLE);
@@ -351,12 +355,12 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                                 mFragments.get(_pos).getUserLastWeight(UserUtils.get().userId(),
                                         userData.getData().getMemberList().get(_pos).getFamilyMemeberId());
                             }
-                            if (SpUtils.getInstance(NewMainActivity.this).getPos() != -1) {
-                                vp.setCurrentItem(SpUtils.getInstance(NewMainActivity.this).getPos());
-                                mFragments.get(SpUtils.getInstance(NewMainActivity.this).getPos()).getUserLastWeight(UserUtils.get().userId(),
-                                        userData.getData().getMemberList().get(SpUtils.getInstance(NewMainActivity.this).getPos()).getFamilyMemeberId());
-                                SpUtils.getInstance(NewMainActivity.this).cleanPos();
-                            }
+//                            if (SpUtils.getInstance(NewMainActivity.this).getPos() != -1) {
+//                                vp.setCurrentItem(SpUtils.getInstance(NewMainActivity.this).getPos());
+//                                mFragments.get(SpUtils.getInstance(NewMainActivity.this).getPos()).getUserLastWeight(UserUtils.get().userId(),
+//                                        userData.getData().getMemberList().get(SpUtils.getInstance(NewMainActivity.this).getPos()).getFamilyMemeberId());
+//                                SpUtils.getInstance(NewMainActivity.this).cleanPos();
+//                            }
 
                         }
                     }
