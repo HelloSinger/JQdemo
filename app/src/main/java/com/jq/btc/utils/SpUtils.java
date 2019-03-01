@@ -205,16 +205,16 @@ public class SpUtils {
     }
 
     public boolean putClick(String pos) {
-        mEditor.putString("POS", pos);
+        mEditor.putString("click", pos);
         return mEditor.commit();
     }
 
     public String getClick() {
-        return sharedPreferences.getString("POS", "");
+        return sharedPreferences.getString("click", "");
     }
 
     public void cleanClick() {
-        mEditor.remove("POS");
+        mEditor.remove("click");
         mEditor.commit();
     }
 

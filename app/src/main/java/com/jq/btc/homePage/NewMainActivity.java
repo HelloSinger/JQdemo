@@ -355,12 +355,12 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                                 mFragments.get(_pos).getUserLastWeight(UserUtils.get().userId(),
                                         userData.getData().getMemberList().get(_pos).getFamilyMemeberId());
                             }
-//                            if (SpUtils.getInstance(NewMainActivity.this).getPos() != -1) {
-//                                vp.setCurrentItem(SpUtils.getInstance(NewMainActivity.this).getPos());
-//                                mFragments.get(SpUtils.getInstance(NewMainActivity.this).getPos()).getUserLastWeight(UserUtils.get().userId(),
-//                                        userData.getData().getMemberList().get(SpUtils.getInstance(NewMainActivity.this).getPos()).getFamilyMemeberId());
-//                                SpUtils.getInstance(NewMainActivity.this).cleanPos();
-//                            }
+                            if (SpUtils.getInstance(NewMainActivity.this).getPos() != -1) {
+                                vp.setCurrentItem(SpUtils.getInstance(NewMainActivity.this).getPos());
+                                mFragments.get(SpUtils.getInstance(NewMainActivity.this).getPos()).getUserLastWeight(UserUtils.get().userId(),
+                                        userData.getData().getMemberList().get(SpUtils.getInstance(NewMainActivity.this).getPos()).getFamilyMemeberId());
+                                SpUtils.getInstance(NewMainActivity.this).cleanPos();
+                            }
 
                         }
                     }
