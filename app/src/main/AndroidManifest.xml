@@ -67,8 +67,12 @@
         <activity
             android:name="com.jq.btc.homePage.NewMainActivity"
             android:screenOrientation="portrait"
+            android:launchMode="singleTask"
             android:theme="@style/windowIsTranslucent_translucent" />
-
+        <activity
+            android:name="com.jq.btc.homePage.NetActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/windowIsTranslucent_translucent" />
         <activity
             android:name="com.jq.btc.BodyFatScaleInduceActivity"
             android:screenOrientation="portrait"

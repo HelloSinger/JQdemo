@@ -31,6 +31,7 @@ import com.jq.btc.bluettooth.BoundDeviceActivity;
 import com.jq.btc.homePage.NewMainActivity;
 import com.jq.btc.model.UserData;
 import com.jq.btc.utils.BMToastUtil;
+import com.jq.btc.utils.NetWorkUtils;
 import com.jq.btc.utils.ShareUtils;
 import com.jq.btc.utils.SpUtils;
 import com.jq.code.code.business.Account;
@@ -55,6 +56,8 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Map;
+
+import static com.jq.btc.utils.NetWorkUtils.isNetworkAvailable;
 
 
 public class InitActivity extends SimpleActivity implements View.OnClickListener {
@@ -263,7 +266,7 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
             case R.id.ll_bind_device:
                 if (mBleController != null) {
                     if (mBleController.isBluetoothEnable()) {
-                        if (isNetworkAvailable(_context)) {
+                        if (NetWorkUtils.isNetworkAvailable(_context)) {
                             startActivity(new Intent(this, BoundDeviceActivity.class).putExtra("where", 2));
                             finish();
                         } else {
@@ -282,26 +285,6 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
                 break;
         }
     }
-
-
-    public static boolean isNetworkAvailable(Context context) {
-        ConnectivityManager manager = (ConnectivityManager) context
-                .getApplicationContext().getSystemService(
-                        Context.CONNECTIVITY_SERVICE);
-
-        if (manager == null) {
-            return false;
-        }
-
-        NetworkInfo networkinfo = manager.getActiveNetworkInfo();
-
-        if (networkinfo == null || !networkinfo.isAvailable()) {
-            return false;
-        }
-
-        return true;
-    }
-
 
     /**
      * 获取mac地址

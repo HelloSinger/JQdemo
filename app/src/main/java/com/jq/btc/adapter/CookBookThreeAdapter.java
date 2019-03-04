@@ -15,6 +15,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.jq.btc.app.R;
 import com.jq.btc.model.LastWeightModel;
 import com.jq.btc.model.MenuModel;
+import com.jq.btc.utils.GlideOptions;
+import com.jq.btc.utils.ImageUtil;
 
 import java.util.List;
 
@@ -44,14 +46,15 @@ public class CookBookThreeAdapter extends RecyclerView.Adapter<CookBookThreeAdap
 
     @Override
     public void onBindViewHolder(CookBookThreeAdapter.MyViewHolder holder, final int position) {
-//        MenuModel.DataBeanX.DataBean.RecipesBean recipesBean = menuModels.get(position).getData().getData().getRecipes().get(position);
-        //设置图片圆角角度
-        RoundedCorners roundedCorners = new RoundedCorners(10);
-        //通过RequestOptions扩展功能,override:采样率,因为ImageView就这么大,可以压缩图片,降低内存消耗
-        RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
-        Glide.with(context).load(menuModels.get(position).getRecipeimage())
-                .apply(options)
-                .into(holder.iv_pic);
+
+//        Glide.with(context).load(menuModels.get(position).getRecipeimage())
+//                .into(holder.iv_pic);
+        GlideOptions glideOptions = new GlideOptions.Builder()
+                .radius(4)
+                .cornerType(GlideOptions.CornerType.ALL)
+                .build();
+        ImageUtil.display(context, menuModels.get(position).getRecipeimage(), holder.iv_pic, glideOptions);
+
         holder.tv_menu_name.setText(menuModels.get(position).getRecipename());
         String recipetag = menuModels.get(position).getRecipetag().replace(",", "/");
         holder.tv_tag.setText(recipetag);

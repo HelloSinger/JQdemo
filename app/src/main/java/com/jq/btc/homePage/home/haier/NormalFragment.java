@@ -34,6 +34,8 @@ import com.jq.btc.bluettooth.report.haier.item.BuildItemsUtil;
 import com.jq.btc.bluettooth.report.haier.item.IndexDataItem;
 import com.jq.btc.dialog.WeightDialog;
 import com.jq.btc.helper.WeighDataParser;
+import com.jq.btc.homePage.NetActivity;
+import com.jq.btc.listener.OnDoubleClickListener;
 import com.jq.btc.model.LastWeightModel;
 import com.jq.btc.model.MatchModel;
 import com.jq.btc.model.MenuModel;
@@ -152,6 +154,8 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     private TextView tv_weight, tv_body_fat, tv_bone_weight, tv_muscle_rate;
     private TextView tv_weight_unit, tv_body_fat_unit, tv_bone_weight_unit, tv_muscle_rate_unit;
 
+    private TextView tv_net;
+    private ImageView iv_head;
     private View myView;
     //每一项指标
     private String metabolismLevel, boneLevel, muscleLevel, muscleWeightLevel, visceraLevel, waterLevel,
@@ -173,6 +177,12 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     private CookBookOneAdapter cookBookAdapter;
     private CookBookNoDataAdapter cookBookNoDataAdapter;
     private CookBookThreeAdapter cookBookThreeAdapter;
+    RecyclerViewSpacesItemDecoration itemDecoration;
+    byte sex;
+    int age;
+    int height;
+    int score;
+    int _pos;
 
     public interface ViewPagerCurrentListener {
         void setViewPagerCurrent(int pos);
@@ -245,6 +255,8 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         weightDialog.setCanceledOnTouchOutside(false);
         weightDialog.setDiaLogRecyItemOnClick(this);
         tv_weight = view.findViewById(R2.id.tv_weight);
+        tv_net = view.findViewById(R2.id.tv_net);
+        iv_head = view.findViewById(R2.id.iv_head);
         tv_body_fat = view.findViewById(R2.id.tv_body_fat);
         tv_bone_weight = view.findViewById(R2.id.tv_bone_weight);
         tv_muscle_rate = view.findViewById(R2.id.tv_muscle_rate);
@@ -314,9 +326,16 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         cookBookThreeAdapter.setOnItemClickListener2(this);
         Log.e("AYD", "初始化");
         HashMap<String, Integer> stringIntegerHashMap = new HashMap<>();
-        stringIntegerHashMap.put(RecyclerViewSpacesItemDecoration.RIGHT_DECORATION, 5);
-        stringIntegerHashMap.put(RecyclerViewSpacesItemDecoration.TOP_DECORATION, 10);
-        rcy_menu.addItemDecoration(new RecyclerViewSpacesItemDecoration(stringIntegerHashMap));
+        stringIntegerHashMap.put(RecyclerViewSpacesItemDecoration.RIGHT_DECORATION, 10);
+        stringIntegerHashMap.put(RecyclerViewSpacesItemDecoration.TOP_DECORATION, 20);
+        itemDecoration = new RecyclerViewSpacesItemDecoration(stringIntegerHashMap);
+        rcy_menu.addItemDecoration(itemDecoration);
+        iv_head.setOnTouchListener(new OnDoubleClickListener(new OnDoubleClickListener.DoubleClickCallback() {
+            @Override
+            public void onDoubleClick() {
+                getActivity().startActivity(new Intent(getActivity(), NetActivity.class));
+            }
+        }));
     }
 
     public void setUserData(UserData userData, int pos) {
@@ -333,6 +352,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
      */
     @Override
     public void itemOnClickListener(int pos) {
+        _pos = pos;
         AccountEntity af = new AccountEntity();
         af.setId(100);
         af.setAccess_token("sss");
@@ -355,10 +375,10 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         Log.e("AYD", "onSuccess: " + roleInfo.toString());
         WeighDataParser.create(getActivity()).fillFatWithSmoothImpedance(entity, roleInfo);
 
-        int age = WeighDataParser.getCalAge(roleInfo, entity);
-        int height = WeighDataParser.getCalHeight(roleInfo, entity);
+        age = WeighDataParser.getCalAge(roleInfo, entity);
+        height = WeighDataParser.getCalHeight(roleInfo, entity);
         String sexStr = WeighDataParser.getCalSex(roleInfo, entity);
-        byte sex = (byte) (sexStr.equals("女") ? 0 : 1);
+        sex = (byte) (sexStr.equals("女") ? 0 : 1);
         csAlgoBuilder = new CsAlgoBuilder(height, entity.getWeight(), sex, age, entity.getR1());
         util = new BuildItemsUtil(getContext(), mCurrentWeightEntity, roleInfo, csAlgoBuilder);
         IndexDataItem boneItem = util.buildBoneItem();
@@ -381,7 +401,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         mAbnormalIndexList.add(corpulentItem);
         mAbnormalIndexList.add(bmiItem);
         mAbnormalIndexList.add(axungeItem);
-        sort(mAbnormalIndexList);
+//        sort(mAbnormalIndexList);
         inList(mAbnormalIndexList);
         metabolismLevel = metabolismItem.mLevelTextRes;
         boneLevel = boneItem.mLevelTextRes;
@@ -431,7 +451,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         mBmiText_one.setText("BMI:" + df.format(bmi));
         mBmiLevelText_one.setText(WeighDataParser.StandardSet.BMI.getStandards()[bmiLevel]);
         tv_user_name.setText(userName);
-        int score = 0;
+        score = 0;
         if (entity.getR1() > 0) {
             if (age > 5) {
                 score = (int) csAlgoBuilder.getScore();
@@ -515,24 +535,25 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         }
         tv_recommend_two.setVisibility(View.GONE);
         weightDialog.setLoading(true);
-        upData(UserUtils.get().userId(), roleInfo.getUseId(),
-                SpUtils.getInstance(getContext()).getMac(),
-                SpUtils.getInstance(getContext()).getProvinceId(),
-                SpUtils.getInstance(getContext()).getProvince(),
-                SpUtils.getInstance(getContext()).getCityId(),
-                SpUtils.getInstance(getContext()).getCity(), "", "",
-                sex + "", userData.getData().getMemberList().get(pos).getBirthday() + "", height + "", score + "", weight + ""
-                , mAbnormalIndexList.get(0).valueText + "," + metabolismLevel + "," + metabolismMax + "," + metabolismValue
-                , mAbnormalIndexList.get(1).valueText + "," + boneLevel + "," + boneMax + "," + boneValue
-                , mAbnormalIndexList.get(2).valueText + "," + muscleLevel + "," + muscleMax + "," + muscleValue
-                , mAbnormalIndexList.get(3).valueText + "," + muscleWeightLevel + "," + muscleWeightMax + "," + muscleWeightValue
-                , mAbnormalIndexList.get(4).valueText + "," + visceraLevel + "," + visceraMax + "," + visceraValue
-                , mAbnormalIndexList.get(5).valueText + "," + waterLevel + "," + waterMax + "," + waterValue
-                , mAbnormalIndexList.get(6).valueText + "," + waterContainLevel + "," + waterContainMax + "," + waterContainValue
-                , mAbnormalIndexList.get(7).valueText + "," + ciroulentLevel + "," + ciroulenMax + "," + ciroulenValue
-                , mAbnormalIndexList.get(8).valueText + "," + bmiLevels + "," + bmiMax + "," + bmiValue
-                , mAbnormalIndexList.get(9).valueText + "," + axungeLevel + "," + axungeMax + "," + axungeValue + "," + lastHeavy
-                , tips);
+        sort(mAbnormalIndexList);
+//        upData(UserUtils.get().userId(), roleInfo.getUseId(),
+//                SpUtils.getInstance(getContext()).getMac(),
+//                SpUtils.getInstance(getContext()).getProvinceId(),
+//                SpUtils.getInstance(getContext()).getProvince(),
+//                SpUtils.getInstance(getContext()).getCityId(),
+//                SpUtils.getInstance(getContext()).getCity(), "", "",
+//                sex + "", userData.getData().getMemberList().get(pos).getBirthday() + "", height + "", score + "", weight + ""
+//                , mAbnormalIndexList.get(0).valueText + "," + metabolismLevel + "," + metabolismMax + "," + metabolismValue
+//                , mAbnormalIndexList.get(1).valueText + "," + boneLevel + "," + boneMax + "," + boneValue
+//                , mAbnormalIndexList.get(2).valueText + "," + muscleLevel + "," + muscleMax + "," + muscleValue
+//                , mAbnormalIndexList.get(3).valueText + "," + muscleWeightLevel + "," + muscleWeightMax + "," + muscleWeightValue
+//                , mAbnormalIndexList.get(4).valueText + "," + visceraLevel + "," + visceraMax + "," + visceraValue
+//                , mAbnormalIndexList.get(5).valueText + "," + waterLevel + "," + waterMax + "," + waterValue
+//                , mAbnormalIndexList.get(6).valueText + "," + waterContainLevel + "," + waterContainMax + "," + waterContainValue
+//                , mAbnormalIndexList.get(7).valueText + "," + ciroulentLevel + "," + ciroulenMax + "," + ciroulenValue
+//                , mAbnormalIndexList.get(8).valueText + "," + bmiLevels + "," + bmiMax + "," + bmiValue
+//                , mAbnormalIndexList.get(9).valueText + "," + axungeLevel + "," + axungeMax + "," + axungeValue + "," + lastHeavy
+//                , tips);
         viewPagerCurrentListener.setViewPagerCurrent(pos);
     }
 
@@ -555,7 +576,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
 
     private void inList(List<IndexDataItem> items) {
         for (IndexDataItem item : items) {
-            Log.e("AYD", "fragment--value--->" + item.nameRes + "--->" + item.valueText);
+            Log.e("上传顺序", "fragment--value--->" + item.nameRes + "--->" + item.valueText);
         }
     }
 
@@ -575,7 +596,34 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                 return leftIndex - rightIndex;
             }
         });
-        Log.e("AYD---->items", items.toString() + "");
+        upData(UserUtils.get().userId(), roleInfo.getUseId(),
+                SpUtils.getInstance(getContext()).getMac(),
+                SpUtils.getInstance(getContext()).getProvinceId(),
+                SpUtils.getInstance(getContext()).getProvince(),
+                SpUtils.getInstance(getContext()).getCityId(),
+                SpUtils.getInstance(getContext()).getCity(), "", "",
+                sex + "", userData.getData().getMemberList().get(_pos).getBirthday() + "", height + "", score + "", weight + ""
+                , mAbnormalIndexList.get(0).valueText + "," + metabolismLevel + "," + metabolismMax + "," + metabolismValue
+                , mAbnormalIndexList.get(1).valueText + "," + boneLevel + "," + boneMax + "," + boneValue
+                , mAbnormalIndexList.get(2).valueText + "," + muscleLevel + "," + muscleMax + "," + muscleValue
+                , mAbnormalIndexList.get(3).valueText + "," + muscleWeightLevel + "," + muscleWeightMax + "," + muscleWeightValue
+                , mAbnormalIndexList.get(4).valueText + "," + visceraLevel + "," + visceraMax + "," + visceraValue
+                , mAbnormalIndexList.get(5).valueText + "," + waterLevel + "," + waterMax + "," + waterValue
+                , mAbnormalIndexList.get(6).valueText + "," + waterContainLevel + "," + waterContainMax + "," + waterContainValue
+                , mAbnormalIndexList.get(7).valueText + "," + ciroulentLevel + "," + ciroulenMax + "," + ciroulenValue
+                , mAbnormalIndexList.get(8).valueText + "," + bmiLevels + "," + bmiMax + "," + bmiValue
+                , mAbnormalIndexList.get(9).valueText + "," + axungeLevel + "," + axungeMax + "," + axungeValue + "," + lastHeavy
+                , tips);
+        Log.e("上传顺序---->items", "metabolism" + mAbnormalIndexList.get(0).valueText + "," + metabolismLevel + "," + metabolismMax + "," + metabolismValue + "\n"
+                + "boneWeight" + mAbnormalIndexList.get(1).valueText + "," + boneLevel + "," + boneMax + "," + boneValue + "\n"
+                + "muscleRate" + mAbnormalIndexList.get(2).valueText + "," + muscleLevel + "," + muscleMax + "," + muscleValue + "\n"
+                + "muscleweight" + mAbnormalIndexList.get(3).valueText + "," + muscleWeightLevel + "," + muscleWeightMax + "," + muscleWeightValue + "\n"
+                + "viscealfat" + mAbnormalIndexList.get(4).valueText + "," + visceraLevel + "," + visceraMax + "," + visceraValue + "\n"
+                + "water" + mAbnormalIndexList.get(5).valueText + "," + waterLevel + "," + waterMax + "," + waterValue + "\n"
+                + "waterWeight" + mAbnormalIndexList.get(6).valueText + "," + waterContainLevel + "," + waterContainMax + "," + waterContainValue + "\n"
+                + "obesity" + mAbnormalIndexList.get(7).valueText + "," + ciroulentLevel + "," + ciroulenMax + "," + ciroulenValue + "\n"
+                + "bmi" + mAbnormalIndexList.get(8).valueText + "," + bmiLevels + "," + bmiMax + "," + bmiValue + "\n"
+                + "axunge" + mAbnormalIndexList.get(9).valueText + "," + axungeLevel + "," + axungeMax + "," + axungeValue);
     }
 
 
@@ -588,7 +636,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     public void onResume() {
         super.onResume();
         Log.e("AYD", "----Fragment------onResume----");
-        initView(myView);
+//        initView(myView);
 //        if (NewMainActivity.userDataList.size() != SpUtils.getInstance(getActivity()).getListSize())
 //            if (SpUtils.getInstance(getActivity()).getIsDialogAdd()) {
 //                if (pos == 0) {
@@ -763,6 +811,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                     public void onSuccess(Response<String> response) {
                         Log.e("jsonObject", "---" + String.valueOf(jsonObject));
                         Log.e("jsonObject", "---" + response.body());
+                        if (ll_fragment_loading == null) return;
                         ll_fragment_loading.setVisibility(View.GONE);
                         SpUtils.getInstance(getActivity()).cleanDialog();
                         lastWeightModel = new Gson().fromJson(response.body(), LastWeightModel.class);
@@ -968,7 +1017,11 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                     @Override
                     public void onSuccess(Response<String> response) {
                         Log.e("shuju", "--->" + response.body());
-                        noDataModel = new Gson().fromJson(response.body(), NoDataModel.class);
+                        try {
+                            noDataModel = new Gson().fromJson(response.body(), NoDataModel.class);
+                        } catch (Exception e) {
+                            Log.e("数据解析", "" + e);
+                        }
                         if (noDataModel.getData() == null) return;
                         cookBookNoDataAdapter.setMenuModels(noDataModel.getData().getRecipes());
                         rcy_menu.setAdapter(cookBookNoDataAdapter);
@@ -982,6 +1035,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     public void setItemClickListener(int pos) {
+        if (recipes == null) return;
         ComponentName componetName = new ComponentName(
                 "com.unilife.fridge.haierbase.recipe",
                 "com.unilife.fridge.haierbase.um_library_recipe.activity.RecipeDetailsActivity");
@@ -994,11 +1048,12 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         intent.putExtras(bundle);
         intent.setComponent(componetName);
         getActivity().startActivity(intent);
-        SpUtils.getInstance(getContext()).putPos(position);
+//        SpUtils.getInstance(getContext()).putPos(position);
     }
 
     @Override
     public void setItemClickListener1(int pos) {
+        if (noDataModel.getData() == null) return;
         ComponentName componetName = new ComponentName(
                 "com.unilife.fridge.haierbase.recipe",
                 "com.unilife.fridge.haierbase.um_library_recipe.activity.RecipeDetailsActivity");
@@ -1011,11 +1066,12 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         intent.putExtras(bundle);
         intent.setComponent(componetName);
         getActivity().startActivity(intent);
-        SpUtils.getInstance(getContext()).putPos(position);
+//        SpUtils.getInstance(getContext()).putPos(position);
     }
 
     @Override
     public void setItemClickListener2(int pos) {
+        if (lastWeightModel.getData() == null) return;
         ComponentName componetName = new ComponentName(
                 "com.unilife.fridge.haierbase.recipe",
                 "com.unilife.fridge.haierbase.um_library_recipe.activity.RecipeDetailsActivity");
@@ -1028,6 +1084,6 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         intent.putExtras(bundle);
         intent.setComponent(componetName);
         getActivity().startActivity(intent);
-        SpUtils.getInstance(getContext()).putPos(position);
+//        SpUtils.getInstance(getContext()).putPos(position);
     }
 }

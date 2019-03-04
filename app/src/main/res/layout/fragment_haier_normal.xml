@@ -512,6 +512,11 @@
                 android:layout_height="390px"
                 android:layout_alignParentBottom="true">
 
+                <TextView
+                    android:id="@+id/tv_net"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp" />
+
                 <LinearLayout
                     android:id="@+id/ll_head"
                     android:layout_width="wrap_content"
@@ -813,9 +818,9 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rcy_menu"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="-20px"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10px" />
+                    android:layout_marginLeft="10px"
+                    android:layout_marginTop="-20px" />
             </LinearLayout>
 
         </LinearLayout>

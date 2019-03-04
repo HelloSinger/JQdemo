@@ -10,8 +10,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.jq.btc.app.R;
 import com.jq.btc.model.MenuModel;
+import com.jq.btc.utils.GlideOptions;
+import com.jq.btc.utils.ImageUtil;
 
 import java.util.List;
 
@@ -45,9 +48,15 @@ public class CookBookOneAdapter extends RecyclerView.Adapter<CookBookOneAdapter.
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 //        MenuModel.DataBeanX.DataBean.RecipesBean recipesBean = menuModels.get(position).getData().getData().getRecipes().get(position);
 
-        Glide.with(context).load(menuModels.get(position).getRecipeimage())
-//                .apply(RequestOptions.bitmapTransform(new BlurTransformation(20,3)))
-                .into(holder.iv_pic);
+//        Glide.with(context).load(menuModels.get(position).getRecipeimage())
+//                .apply(RequestOptions.centerCropTransform())
+//                .into(holder.iv_pic);
+
+        GlideOptions glideOptions = new GlideOptions.Builder()
+                .radius(4)
+                .cornerType(GlideOptions.CornerType.ALL)
+                .build();
+        ImageUtil.display(context, menuModels.get(position).getRecipeimage(), holder.iv_pic, glideOptions);
         holder.tv_menu_name.setText(menuModels.get(position).getRecipename());
         String recipetag = menuModels.get(position).getRecipetag().replace(",", "/");
         holder.tv_tag.setText(recipetag);

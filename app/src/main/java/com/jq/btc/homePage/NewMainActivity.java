@@ -34,6 +34,8 @@ import com.jq.btc.homePage.home.haier.BaseFragment;
 import com.jq.btc.homePage.home.haier.NormalFragment;
 import com.jq.btc.kitchenscale.ble.BleHelper;
 import com.jq.btc.model.UserData;
+import com.jq.btc.utils.BMToastUtil;
+import com.jq.btc.utils.NetWorkUtils;
 import com.jq.btc.utils.SpUtils;
 import com.jq.btlib.util.CsBtUtil_v11;
 import com.jq.code.code.business.Account;
@@ -110,7 +112,12 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         userDataList = new ArrayList<>();
         mFragments = new ArrayList<>();
         initView();
-        getUseList();
+        if (NetWorkUtils.isNetworkAvailable(this)) {
+            getUseList();
+        } else {
+            BMToastUtil.showToastShort(this, "当前无网络");
+        }
+
     }
 
 
@@ -313,11 +320,11 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                             vp.setAdapter(viewPagerMainAdapter);
                             viewPagerMainAdapter.notifyDataSetChanged();
                             initBlutooth();
-                            if (_pos != -1) {
-                                vp.setCurrentItem(_pos);
-                                mFragments.get(_pos).getUserLastWeight(UserUtils.get().userId(),
-                                        userData.getData().getMemberList().get(_pos).getFamilyMemeberId());
-                            }
+//                            if (_pos != -1) {
+//                                vp.setCurrentItem(_pos);
+//                                mFragments.get(_pos).getUserLastWeight(UserUtils.get().userId(),
+//                                        userData.getData().getMemberList().get(_pos).getFamilyMemeberId());
+//                            }
                         } else if (userDataList.size() > 1) {
                             rl_right.setVisibility(View.VISIBLE);
                             rl_left.setVisibility(View.VISIBLE);
@@ -350,17 +357,17 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                             vp.setAdapter(viewPagerMainAdapter);
                             viewPagerMainAdapter.notifyDataSetChanged();
                             initBlutooth();
-                            if (_pos != -1) {
-                                vp.setCurrentItem(_pos);
-                                mFragments.get(_pos).getUserLastWeight(UserUtils.get().userId(),
-                                        userData.getData().getMemberList().get(_pos).getFamilyMemeberId());
-                            }
-                            if (SpUtils.getInstance(NewMainActivity.this).getPos() != -1) {
-                                vp.setCurrentItem(SpUtils.getInstance(NewMainActivity.this).getPos());
-                                mFragments.get(SpUtils.getInstance(NewMainActivity.this).getPos()).getUserLastWeight(UserUtils.get().userId(),
-                                        userData.getData().getMemberList().get(SpUtils.getInstance(NewMainActivity.this).getPos()).getFamilyMemeberId());
-                                SpUtils.getInstance(NewMainActivity.this).cleanPos();
-                            }
+//                            if (_pos != -1) {
+//                                vp.setCurrentItem(_pos);
+//                                mFragments.get(_pos).getUserLastWeight(UserUtils.get().userId(),
+//                                        userData.getData().getMemberList().get(_pos).getFamilyMemeberId());
+//                            }
+//                            if (SpUtils.getInstance(NewMainActivity.this).getPos() != -1) {
+//                                vp.setCurrentItem(SpUtils.getInstance(NewMainActivity.this).getPos());
+//                                mFragments.get(SpUtils.getInstance(NewMainActivity.this).getPos()).getUserLastWeight(UserUtils.get().userId(),
+//                                        userData.getData().getMemberList().get(SpUtils.getInstance(NewMainActivity.this).getPos()).getFamilyMemeberId());
+//                                SpUtils.getInstance(NewMainActivity.this).cleanPos();
+//                            }
 
                         }
                     }
