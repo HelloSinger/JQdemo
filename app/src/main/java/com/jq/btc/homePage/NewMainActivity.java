@@ -133,8 +133,11 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         vp = findViewById(R.id.vp);
         vp.addOnPageChangeListener(this);
         _pos = getIntent().getIntExtra("pos", -1);
-        if (SpUtils.getInstance(this).getClick().equals("click")) {
+        if (SpUtils.getInstance(this).getClick().equals("click")
+                || SpUtils.getInstance(this).getIsDialogAdd()
+                || SpUtils.getInstance(this).getNoUserClick().equals("NoUser")) {
             getUseList();
+            iv_left.setBackgroundResource(R.mipmap.icon_left_normal);
         }
         onBlEChangeListener.syncHistoryEnd(null);
 //        doRefreshIfNeeded();
@@ -256,6 +259,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
             case R.id.ll_add_user:
                 Intent intent = new Intent();
                 intent.setAction("com.unilife.fridge.app.family.add");
+                SpUtils.getInstance(NewMainActivity.this).putNoUserClick("NoUser");
                 startActivity(intent);
                 break;
         }
@@ -284,16 +288,17 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                         userDataList = userData.getData().getMemberList();
                         Log.e("AYD", "act:---" + userDataList.size());
                         SpUtils.getInstance(NewMainActivity.this).cleanClick();
+                        SpUtils.getInstance(NewMainActivity.this).cleanNoUserClick();
                         Collections.reverse(userDataList);
                         if (userDataList.size() == 0) {
                             rl_no_user.setVisibility(View.VISIBLE);
-                            rl_right.setVisibility(View.GONE);
-                            rl_left.setVisibility(View.GONE);
+                            iv_right.setVisibility(View.GONE);
+                            iv_left.setVisibility(View.GONE);
                         } else if (userDataList.size() == 1) {
                             mDynamicView.setVisibility(View.GONE);
                             rl_no_user.setVisibility(View.GONE);
-                            rl_right.setVisibility(View.GONE);
-                            rl_left.setVisibility(View.GONE);
+                            iv_right.setVisibility(View.GONE);
+                            iv_left.setVisibility(View.GONE);
                             ArrayList<String> useid = new ArrayList<>();
                             for (int i = 0; i < userDataList.size(); i++) {
                                 useid.add(userDataList.get(i).getFamilyMemeberId());
@@ -307,14 +312,6 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                                 normalFragment = new NormalFragment();
                                 normalFragment.setUserData(userData, i);
                                 mFragments.add(normalFragment);
-//                                if (userDataList.size() != userMak) {
-//                                    if (SpUtils.getInstance(NewMainActivity.this).getIsDialogAdd()) {
-//                                        if (i == 0) {
-//                                            SpUtils.getInstance(NewMainActivity.this).putListSize(userDataList.size());
-//                                            mFragments.get(0).setFirstUserData();
-//                                        }
-//                                    }
-//
                             }
                             viewPagerMainAdapter = new ViewPagerMainAdapter(getSupportFragmentManager(), mFragments);
                             vp.setAdapter(viewPagerMainAdapter);
@@ -326,8 +323,8 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
 //                                        userData.getData().getMemberList().get(_pos).getFamilyMemeberId());
 //                            }
                         } else if (userDataList.size() > 1) {
-                            rl_right.setVisibility(View.VISIBLE);
-                            rl_left.setVisibility(View.VISIBLE);
+                            iv_right.setVisibility(View.VISIBLE);
+                            iv_left.setVisibility(View.VISIBLE);
                             mDynamicView.setVisibility(View.GONE);
                             rl_no_user.setVisibility(View.GONE);
                             mDynamicView.setVisibility(View.GONE);
@@ -344,31 +341,15 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                                 normalFragment = new NormalFragment();
                                 normalFragment.setUserData(userData, i);
                                 mFragments.add(normalFragment);
-//                                if (userDataList.size() != userMak) {
-//                                    if (SpUtils.getInstance(NewMainActivity.this).getIsDialogAdd()) {
-//                                        if (i == 0) {
-//                                            SpUtils.getInstance(NewMainActivity.this).putListSize(userDataList.size());
-//                                            mFragments.get(0).setFirstUserData();
-//                                        }
-//                                    }
-//                                }
                             }
                             viewPagerMainAdapter = new ViewPagerMainAdapter(getSupportFragmentManager(), mFragments);
                             vp.setAdapter(viewPagerMainAdapter);
                             viewPagerMainAdapter.notifyDataSetChanged();
+                            if (SpUtils.getInstance(NewMainActivity.this).getIsDialogAdd()) {
+                                Log.e("sp", "" + SpUtils.getInstance(NewMainActivity.this).getBean());
+                                mFragments.get(0).setFirstData(SpUtils.getInstance(NewMainActivity.this).getBean());
+                            }
                             initBlutooth();
-//                            if (_pos != -1) {
-//                                vp.setCurrentItem(_pos);
-//                                mFragments.get(_pos).getUserLastWeight(UserUtils.get().userId(),
-//                                        userData.getData().getMemberList().get(_pos).getFamilyMemeberId());
-//                            }
-//                            if (SpUtils.getInstance(NewMainActivity.this).getPos() != -1) {
-//                                vp.setCurrentItem(SpUtils.getInstance(NewMainActivity.this).getPos());
-//                                mFragments.get(SpUtils.getInstance(NewMainActivity.this).getPos()).getUserLastWeight(UserUtils.get().userId(),
-//                                        userData.getData().getMemberList().get(SpUtils.getInstance(NewMainActivity.this).getPos()).getFamilyMemeberId());
-//                                SpUtils.getInstance(NewMainActivity.this).cleanPos();
-//                            }
-
                         }
                     }
                 });

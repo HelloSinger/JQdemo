@@ -31,6 +31,7 @@ import com.lzy.okgo.model.Response;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -227,6 +228,9 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
         String max = sourceStrArray[2];
         String value = sourceStrArray[3];
         double maxs = Double.parseDouble(max);
+        for (int i = 0; i < sourceStrArray.length; i++) {
+            Log.e("肌肉率", "" + sourceStrArray[i]);
+        }
         double values = Double.parseDouble(value);
         pb_rate_of_muscle.setMax((int) maxs);
         pb_rate_of_muscle.setProgress((int) values);
@@ -456,14 +460,15 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
                         Log.e("ADY", "an" + indexDataItem.mLevelTextRes);
                         ll_loading.setVisibility(View.GONE);
                         if (moreDataModel.getData().size() == 0) {
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");// HH:mm:ss
+                            // 获取当前时间
+                            Date date = new Date(System.currentTimeMillis());
+                            mWeightTime.setText(simpleDateFormat.format(date));
                             ll_data.setVisibility(View.GONE);
-//                            tv_not_data.setVisibility(View.VISIBLE);
-//                            tv_no_data.setVisibility(View.VISIBLE);
                             iv_no_data.setVisibility(View.VISIBLE);
                             return;
                         }
                         tv_not_data.setVisibility(View.GONE);
-                        rl_title.setVisibility(View.VISIBLE);
                         timeList = new ArrayList<>();
                         for (int i = 0; i < moreDataModel.getData().size(); i++) {
                             timeList.add(moreDataModel.getData().get(i).getScore());

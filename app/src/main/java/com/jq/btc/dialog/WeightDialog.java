@@ -59,7 +59,7 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
     private static CountDownTimers countDownTimersMatch;
     private static CountDownTimers countDownTimersData;
     private DiaLogRecyItemOnClick diaLogRecyItemOnClick;
-    private diaLogAddUserOnClick diaLogAddUserOnClick;
+    private DiaLogAddUserOnClick diaLogAddUserOnClick;
     private LinearLayout ll_dialog_loading;
 
     private WeightDialog weightDialog;
@@ -82,7 +82,7 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
 
     }
 
-    public void setDiaLogAddUserOnClick(WeightDialog.diaLogAddUserOnClick diaLogAddUserOnClick) {
+    public void setDiaLogAddUserOnClick(DiaLogAddUserOnClick diaLogAddUserOnClick) {
         this.diaLogAddUserOnClick = diaLogAddUserOnClick;
     }
 
@@ -332,9 +332,10 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
     }
 
 
-    public interface diaLogAddUserOnClick {
+    public interface DiaLogAddUserOnClick {
         void onDialogAddUsetListener();
     }
+
 
     /**
      * 倒计时

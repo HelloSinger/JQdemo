@@ -50,7 +50,8 @@ public class BuildItemsUtil {
         this.context = context;
         this.mWeightEntity = entity;
         this.roleInfo = roleInfo;
-        currentWeightUnit = StandardUtil.getWeightExchangeUnit(context);
+//        currentWeightUnit = StandardUtil.getWeightExchangeUnit(context);
+        currentWeightUnit = "KG";
         this.csAlgoBuilder = csAlgoBuilder;
     }
 
@@ -311,6 +312,7 @@ public class BuildItemsUtil {
      */
     public IndexDataItem buildMuscleItem() {
         float muscle = mWeightEntity.getMuscle() / 2;
+        Log.e("肌肉率", "" + muscle);
         IndexDataItem muscleItem = new IndexDataItem();
         muscleItem.mIconRes = WeighDataParser.StandardSet.MUSCLE.getIcon();
         muscleItem.nameRes = WeighDataParser.StandardSet.MUSCLE.getName();

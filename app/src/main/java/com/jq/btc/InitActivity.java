@@ -85,16 +85,19 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
             String province = bundle.getString("province");
+            if (null == province) return;
             if (!province.equals(SpUtils.getInstance(_context).getProvince())) {
                 SpUtils.getInstance(_context).putProvince(province);
                 Log.e("AYD", "--->" + province);
             }
             String city = bundle.getString("city");
+            if (null == city) return;
             if (!city.equals(SpUtils.getInstance(_context).getCity())) {
                 SpUtils.getInstance(_context).putCity(city);
                 Log.e("AYD", "--->" + city);
             }
             String cityId = bundle.getString("cityId");
+            if (null == cityId) return;
             if (!cityId.equals(SpUtils.getInstance(_context).getCityId())) {
                 SpUtils.getInstance(_context).putCityId(cityId);
                 Log.e("AYD", "--->" + cityId);

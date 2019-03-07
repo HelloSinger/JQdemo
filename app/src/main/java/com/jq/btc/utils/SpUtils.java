@@ -218,6 +218,20 @@ public class SpUtils {
         mEditor.commit();
     }
 
+    public boolean putNoUserClick(String s) {
+        mEditor.putString("NoUser", s);
+        return mEditor.commit();
+    }
+
+    public String getNoUserClick() {
+        return sharedPreferences.getString("NoUser", "");
+    }
+
+    public void cleanNoUserClick() {
+        mEditor.remove("NoUser");
+        mEditor.commit();
+    }
+
     //   //手机号
 //   public boolean setRealName(String realname){
 //

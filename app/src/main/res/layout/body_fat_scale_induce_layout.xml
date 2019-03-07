@@ -51,7 +51,7 @@
                 android:background="@drawable/tv_open_bg"
                 android:gravity="center"
                 android:text="打开"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/white"
                 android:textSize="20px" />
         </RelativeLayout>
 
