@@ -293,7 +293,8 @@ public class BuildItemsUtil {
 
         float max = boneStandard[boneStandard.length - 1];
         float criticalValue = boneStandard[boneStandard.length - 2];
-        Log.e("AYD----->骨量", "max--->" + max + "criticalValue--->" + criticalValue);
+        Log.e("AYD----->骨量", "max--->" + max + "criticalValue--->" + criticalValue
+                + "\n" + "---->" + bone + "---->" + levelNums + "----->" + boneStandard);
         System.arraycopy(boneStandard, 1, levelNums, 0, levelNums.length);
         boneItem.calLevel(max, criticalValue, bone, levelNums, WeighDataParser.StandardSet.BONE);
 

@@ -132,6 +132,28 @@
         </LinearLayout>
 
         <include layout="@layout/fragment_no_user_layout" />
+
+        <LinearLayout
+            android:id="@+id/ll_no_net"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="226px"
+                android:layout_height="158px"
+                android:background="@drawable/load_error_img" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10px"
+                android:text="当前无网络~"
+                android:textColor="#BDBDBD" />
+        </LinearLayout>
     </RelativeLayout>
 
 

@@ -75,41 +75,15 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
     private BLEController mBleController;
     private String useIds;
     private LinearLayout ll_bind_device, ll_unserstand_scene;
+    private long lastClickTime;
+    private static final int FAST_CLICK_DELAY_TIME = 1500;  // 快速点击间隔
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_init);
         _context = this;
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        if (bundle != null) {
-            String province = bundle.getString("province");
-            if (null == province) return;
-            if (!province.equals(SpUtils.getInstance(_context).getProvince())) {
-                SpUtils.getInstance(_context).putProvince(province);
-                Log.e("AYD", "--->" + province);
-            }
-            String city = bundle.getString("city");
-            if (null == city) return;
-            if (!city.equals(SpUtils.getInstance(_context).getCity())) {
-                SpUtils.getInstance(_context).putCity(city);
-                Log.e("AYD", "--->" + city);
-            }
-            String cityId = bundle.getString("cityId");
-            if (null == cityId) return;
-            if (!cityId.equals(SpUtils.getInstance(_context).getCityId())) {
-                SpUtils.getInstance(_context).putCityId(cityId);
-                Log.e("AYD", "--->" + cityId);
-            }
-//            String deviceId = bundle.getString("deviceId");
-            String deviceId = getLocalMacAddress(this).toUpperCase();
-            if (!deviceId.equals(SpUtils.getInstance(_context).getMac())) {
-                SpUtils.getInstance(_context).putMac(deviceId);
-                Log.e("AYD", "--->" + deviceId);
-            }
 
-        }
         isBound = SpUtils.getInstance(_context).getIsFirst();
         if (isBound) {
             startActivity(new Intent(InitActivity.this, NewMainActivity.class));
@@ -144,7 +118,35 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
             initBoot();
             init();
         }
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            String province = bundle.getString("province");
+            if (null == province) return;
+            if (!province.equals(SpUtils.getInstance(_context).getProvince())) {
+                SpUtils.getInstance(_context).putProvince(province);
+                Log.e("AYD", "--->" + province);
+            }
+            String city = bundle.getString("city");
+            if (null == city) return;
+            if (!city.equals(SpUtils.getInstance(_context).getCity())) {
+                SpUtils.getInstance(_context).putCity(city);
+                Log.e("AYD", "--->" + city);
+            }
+            String cityId = bundle.getString("cityId");
+            if (null == cityId) return;
+            if (!cityId.equals(SpUtils.getInstance(_context).getCityId())) {
+                SpUtils.getInstance(_context).putCityId(cityId);
+                Log.e("AYD", "--->" + cityId);
+            }
+//            String deviceId = bundle.getString("deviceId");
+            String deviceId = getLocalMacAddress(this).toUpperCase();
+            if (!deviceId.equals(SpUtils.getInstance(_context).getMac())) {
+                SpUtils.getInstance(_context).putMac(deviceId);
+                Log.e("AYD", "--->" + deviceId);
+            }
 
+        }
 
     }
 
@@ -281,7 +283,12 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
                 }
                 break;
             case R.id.ll_unserstand_scene:
-                startActivity(new Intent(this, BodyFatScaleInduceActivity.class));
+                if (System.currentTimeMillis() - lastClickTime < FAST_CLICK_DELAY_TIME) {
+                    return;
+                } else {
+                    startActivity(new Intent(this, BodyFatScaleInduceActivity.class));
+                }
+                lastClickTime = System.currentTimeMillis();
                 break;
             case R.id.iv_back:
                 finish();

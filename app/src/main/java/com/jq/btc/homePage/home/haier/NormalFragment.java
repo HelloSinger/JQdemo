@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -26,6 +27,7 @@ import com.jq.btc.adapter.CookBookOneAdapter;
 import com.jq.btc.adapter.CookBookThreeAdapter;
 import com.jq.btc.app.R;
 import com.jq.btc.app.R2;
+import com.jq.btc.bluettooth.BLEController;
 import com.jq.btc.bluettooth.report.haier.BodyFatMoreDataActivity;
 import com.jq.btc.bluettooth.report.haier.item.BuildItemsUtil;
 import com.jq.btc.bluettooth.report.haier.item.IndexDataItem;
@@ -166,6 +168,8 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     private float metabolismValue, boneValue, muscleValue, muscleWeightValue, visceraValue, waterValue,
             waterContainValue, ciroulenValue, bmiValue, axungeValue;
 
+    private RelativeLayout rl_data;
+    private LinearLayout ll_no_net;
     private String lastHeavy;
     String tips;
     private ViewPagerCurrentListener viewPagerCurrentListener;
@@ -180,8 +184,9 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     int height;
     int score;
     int _pos;
-    private long lastClickTime;
-    private static final int FAST_CLICK_DELAY_TIME = 1500;  // 快速点击间隔
+
+    private LinearLayout ll_menu;
+    private RelativeLayout ll_failed;
 
     public interface ViewPagerCurrentListener {
         void setViewPagerCurrent(int pos);
@@ -241,8 +246,13 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         if (!NetWorkUtils.isNetworkAvailable(getContext())) {
             BMToastUtil.showToastShort(getContext(), "当前无网络");
         } else {
-            if (userData.getData().getMemberList().size() == 0) return;
-            getUserLastWeight(UserUtils.get().userId(), userData.getData().getMemberList().get(0).getFamilyMemeberId());
+            Log.e("AYDfragment", userData.getData() + "");
+            try {
+                if (userData.getData() == null) return;
+                getUserLastWeight(UserUtils.get().userId(), userData.getData().getMemberList().get(0).getFamilyMemeberId());
+            } catch (Exception e) {
+                Log.e("AYD", "onViewCreated: " + e);
+            }
         }
     }
 
@@ -264,6 +274,8 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         tv_bone_weight_unit = view.findViewById(R2.id.tv_bone_weight_unit);
         tv_muscle_rate_unit = view.findViewById(R2.id.tv_muscle_unit);
         click_kitchen_scale = view.findViewById(R2.id.click_kitchen_scale);
+        ll_failed = view.findViewById(R2.id.ll_failed);
+        ll_menu = view.findViewById(R2.id.ll_menu);
         mRoleImage = view.findViewById(R2.id.mRoleImage);
         mTimeText = view.findViewById(R2.id.mTimeText);
         mShareView = view.findViewById(R2.id.mShareView);
@@ -388,6 +400,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         IndexDataItem waterWeightItem = util.buildWaterWeightItem();
         IndexDataItem visceraItem = util.buildVisceraItem();
         IndexDataItem axungeItem = util.buildAxungeItem();
+        mAbnormalIndexList.clear();
         mAbnormalIndexList.add(metabolismItem);
         mAbnormalIndexList.add(boneItem);
         mAbnormalIndexList.add(muscleItem);
@@ -399,7 +412,6 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         mAbnormalIndexList.add(bmiItem);
         mAbnormalIndexList.add(axungeItem);
 //        sort(mAbnormalIndexList);
-        inList(mAbnormalIndexList);
         metabolismLevel = metabolismItem.mLevelTextRes;
         boneLevel = boneItem.mLevelTextRes;
         muscleLevel = muscleItem.mLevelTextRes;
@@ -520,18 +532,26 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
             tv_muscle_rate_unit.setText("%");
         }
 
-        if (weight > lastWeight) {
-            lastHeavy = "你的体重比上次重了" + StandardUtil.getWeightExchangeValue(getContext(), (weight - lastWeight), "", (byte) 1) + "KG";
+        if (lastWeight == 0.0) {
+            lastHeavy = " ";
             mCompareLastWeight_new.setText(lastHeavy);
-        } else if (weight < lastWeight) {
-            lastHeavy = "你的体重比上次轻了" + StandardUtil.getWeightExchangeValue(getContext(), (lastWeight - weight), "", (byte) 1) + "KG";
-            mCompareLastWeight_new.setText(lastHeavy);
+            lastWeight = weight;
         } else {
-            lastHeavy = "你的体重比上次轻了0";
-            mCompareLastWeight_new.setText(lastHeavy);
+            if (weight > lastWeight) {
+                lastHeavy = "你的体重比上次重了" + StandardUtil.getWeightExchangeValue(getContext(), (weight - lastWeight), "", (byte) 1) + "KG";
+                mCompareLastWeight_new.setText(lastHeavy);
+//            }
+            } else if (weight < lastWeight) {
+                lastHeavy = "你的体重比上次轻了" + StandardUtil.getWeightExchangeValue(getContext(), (lastWeight - weight), "", (byte) 1) + "KG";
+                mCompareLastWeight_new.setText(lastHeavy);
+            } else if (weight == lastWeight) {
+                lastHeavy = "你的体重比上次轻了0";
+                mCompareLastWeight_new.setText(lastHeavy);
+            }
         }
         tv_recommend_two.setVisibility(View.GONE);
         weightDialog.setLoading(true);
+        inList(mAbnormalIndexList);
         sort(mAbnormalIndexList);
         viewPagerCurrentListener.setViewPagerCurrent(pos);
     }
@@ -582,16 +602,16 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                 SpUtils.getInstance(getContext()).getCityId(),
                 SpUtils.getInstance(getContext()).getCity(), "", "",
                 sex + "", userData.getData().getMemberList().get(_pos).getBirthday() + "", height + "", score + "", weight + ""
-                , mAbnormalIndexList.get(0).valueText + "," + metabolismLevel + "," + metabolismMax + "," + metabolismValue
-                , mAbnormalIndexList.get(1).valueText + "," + boneLevel + "," + boneMax + "," + boneValue
-                , mAbnormalIndexList.get(2).valueText + "," + muscleLevel + "," + muscleMax + "," + muscleValue
-                , mAbnormalIndexList.get(3).valueText + "," + muscleWeightLevel + "," + muscleWeightMax + "," + muscleWeightValue
-                , mAbnormalIndexList.get(4).valueText + "," + visceraLevel + "," + visceraMax + "," + visceraValue
-                , mAbnormalIndexList.get(5).valueText + "," + waterLevel + "," + waterMax + "," + waterValue
-                , mAbnormalIndexList.get(6).valueText + "," + waterContainLevel + "," + waterContainMax + "," + waterContainValue
-                , mAbnormalIndexList.get(7).valueText + "," + ciroulentLevel + "," + ciroulenMax + "," + ciroulenValue
-                , mAbnormalIndexList.get(8).valueText + "," + bmiLevels + "," + bmiMax + "," + bmiValue
-                , mAbnormalIndexList.get(9).valueText + "," + axungeLevel + "," + axungeMax + "," + axungeValue + "," + lastHeavy
+                , items.get(0).valueText + "," + metabolismLevel + "," + metabolismMax + "," + metabolismValue
+                , items.get(1).valueText + "," + boneLevel + "," + boneMax + "," + boneValue
+                , items.get(2).valueText + "," + muscleLevel + "," + muscleMax + "," + muscleValue
+                , items.get(3).valueText + "," + muscleWeightLevel + "," + muscleWeightMax + "," + muscleWeightValue
+                , items.get(4).valueText + "," + visceraLevel + "," + visceraMax + "," + visceraValue
+                , items.get(5).valueText + "," + waterLevel + "," + waterMax + "," + waterValue
+                , items.get(6).valueText + "," + waterContainLevel + "," + waterContainMax + "," + waterContainValue
+                , items.get(7).valueText + "," + ciroulentLevel + "," + ciroulenMax + "," + ciroulenValue
+                , items.get(8).valueText + "," + bmiLevels + "," + bmiMax + "," + bmiValue
+                , items.get(9).valueText + "," + axungeLevel + "," + axungeMax + "," + axungeValue + "," + lastHeavy
                 , tips);
         Log.e("上传顺序---->items", "\n" + "metabolism:" + mAbnormalIndexList.get(0).valueText + "," + metabolismLevel + "," + metabolismMax + "," + metabolismValue + "\n"
                 + "boneWeight:" + mAbnormalIndexList.get(1).valueText + "," + boneLevel + "," + boneMax + "," + boneValue + "\n"
@@ -636,9 +656,9 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         df = NumberFormat.getNumberInstance();
         df.setMaximumFractionDigits(1);
         formatter = new DecimalFormat("0.##");
-        weightDialog = new WeightDialog(getActivity(), R.style.WeightDialog);
-        weightDialog.setCanceledOnTouchOutside(false);
-        weightDialog.setDiaLogRecyItemOnClick(this);
+//        weightDialog = new WeightDialog(getActivity(), R.style.WeightDialog);
+//        weightDialog.setCanceledOnTouchOutside(false);
+//        weightDialog.setDiaLogRecyItemOnClick(this);
         tv_weight = view.findViewById(R2.id.tv_weight);
         tv_net = view.findViewById(R2.id.tv_net);
         iv_head = view.findViewById(R2.id.iv_head);
@@ -650,6 +670,8 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         tv_bone_weight_unit = view.findViewById(R2.id.tv_bone_weight_unit);
         tv_muscle_rate_unit = view.findViewById(R2.id.tv_muscle_unit);
         click_kitchen_scale = view.findViewById(R2.id.click_kitchen_scale);
+        ll_failed = view.findViewById(R2.id.ll_failed);
+        ll_menu = view.findViewById(R2.id.ll_menu);
         mRoleImage = view.findViewById(R2.id.mRoleImage);
         mTimeText = view.findViewById(R2.id.mTimeText);
         mShareView = view.findViewById(R2.id.mShareView);
@@ -754,13 +776,15 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
 //            mWeightText.setVisibility(View.VISIBLE);
 //        }
 //        mWeightText.setText(temp.getDisplayWeight(getContext(), mCurrentWeightUnit));
+        BLEController mBleController = BLEController.create(getContext());
+        Log.e("AYD", mBleController.isBluetoothEnable() + "");
         entity = temp;
         if (!temp.getDisplayWeight(getContext(), mCurrentWeightUnit).equals("0.00")) {
             if (weightDialog == null) return;
             weightDialog.show();
             weightDialog.setProgressVisibility(true);
             weightDialog.setMatchVisibility(false);
-            weightDialog.setResultVisibility(false);
+            weightDialog.setResultVisibility(false, false);
             weightDialog.setWeigth(temp.getDisplayWeight(getContext(), mCurrentWeightUnit));
             weightDialog.setTitle("身体成分测量中...");
             SpUtils.getInstance(getActivity()).putBean(temp);
@@ -837,8 +861,6 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                         Log.e("最后一次数据", "--->" + response.body() + "\n"
                                 + "参数--->:" + String.valueOf(jsonObject) + "\n"
                                 + "URL--->:" + ConstantUrl.GET_USER_LAST_WEIGHT);
-                        if (ll_fragment_loading == null) return;
-                        ll_fragment_loading.setVisibility(View.GONE);
                         try {
                             lastWeightModel = new Gson().fromJson(response.body(), LastWeightModel.class);
                         } catch (Exception e) {
@@ -866,7 +888,10 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                         } else {
 //                            for (int i = 0; i < lastWeightModel.getData().size(); i++) {
                             //.get(lastWeightModel.getData().size() - 1);
+                            if (ll_fragment_loading == null) return;
+                            ll_fragment_loading.setVisibility(View.GONE);
                             lastWeight = Float.parseFloat(lastWeightModel.getData().getWeight());
+                            Log.e("上一次体重", "onSuccess:" + lastWeight);
                             String boneWeight = lastWeightModel.getData().getBoneWeight();
                             String[] boneWeightArray = boneWeight.split(",");
                             String muscleRate = lastWeightModel.getData().getMuscleRate();
@@ -922,10 +947,14 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
      */
     long startTime = System.currentTimeMillis(); //起始时间
 
-    private void upData(final String famaliyId, final String userId, String mac_id, String province_id, String province_name,
-                        String city_id, String city_name, String county_id, String county_name, String sex, String age, String height,
-                        String score, final String weight, String metabolism, String boneWeight, String muscleRate, String muscleWeight,
-                        String visceralFat, String water, String waterWeight, String obesity, final String bmi, final String axunge, String tips) {
+    private void upData(final String famaliyId, final String userId, String mac_id, String
+            province_id, String province_name,
+                        String city_id, String city_name, String county_id, String county_name, String
+                                sex, String age, String height,
+                        String score, final String weight, String metabolism, String boneWeight, String
+                                muscleRate, String muscleWeight,
+                        String visceralFat, String water, String waterWeight, String obesity,
+                        final String bmi, final String axunge, String tips) {
         final JSONObject json = new JSONObject();
         json.put("famaliyId", famaliyId);
         json.put("userId", userId);
@@ -970,7 +999,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 Log.e("AYD", "updateSuccess");
                                 if (weightDialog == null) return;
                                 weightDialog.setLoading(false);
-                                weightDialog.setResultVisibility(true);
+                                weightDialog.setResultVisibility(true, true);
                                 weightDialog.setProgressVisibility(false);
                                 weightDialog.setMatchVisibility(false);
                                 weightDialog.setTitle("海尔智能体脂秤-Q81");
@@ -1028,7 +1057,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 weightDialog.setProgressVisibility(false);
                                 String wei = formatter.format(weight);
                                 weightDialog.setMatchWeight(wei);
-                                weightDialog.setResultVisibility(false);
+                                weightDialog.setResultVisibility(false, false);
                                 weightDialog.setTitle("未匹配到家庭成员");
                             }
                         });
@@ -1051,17 +1080,24 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                         Log.e("默认菜谱:", "--->" + response.body() + "\n"
                                 + "参数--->:" + String.valueOf(json) + "\n"
                                 + "URL--->:" + ConstantUrl.GET_NO_DATA_EMNU);
-                        try {
-                            noDataModel = new Gson().fromJson(response.body(), NoDataModel.class);
-                        } catch (Exception e) {
-                            Log.e("数据解析", "" + e);
+                        if (response.code() == 200) {
+                            if (ll_fragment_loading == null) return;
+                            ll_fragment_loading.setVisibility(View.GONE);
+                            try {
+                                noDataModel = new Gson().fromJson(response.body(), NoDataModel.class);
+                            } catch (Exception e) {
+                                Log.e("数据解析", "" + e);
+                            }
+                            if (noDataModel.getData() == null) return;
+                            cookBookNoDataAdapter.setMenuModels(noDataModel.getData().getRecipes());
+                            rcy_menu.setAdapter(cookBookNoDataAdapter);
+                            long endTime = System.currentTimeMillis(); //结束时间
+                            long runTime = endTime - startTime1;
+                            Log.e("time", "冷启动获取数据执行时间" + String.format("方法使用时间 %d ms", runTime));
+                        } else {
+                            ll_failed.setVisibility(View.VISIBLE);
+                            ll_menu.setVisibility(View.GONE);
                         }
-                        if (noDataModel.getData() == null) return;
-                        cookBookNoDataAdapter.setMenuModels(noDataModel.getData().getRecipes());
-                        rcy_menu.setAdapter(cookBookNoDataAdapter);
-                        long endTime = System.currentTimeMillis(); //结束时间
-                        long runTime = endTime - startTime1;
-                        Log.e("time", "冷启动获取数据执行时间" + String.format("方法使用时间 %d ms", runTime));
                     }
                 });
     }

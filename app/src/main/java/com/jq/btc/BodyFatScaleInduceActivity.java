@@ -45,6 +45,7 @@ public class BodyFatScaleInduceActivity extends AppCompatActivity implements Vie
                 if (NetWorkUtils.isNetworkAvailable(this)) {
                     SpUtils.getInstance(BodyFatScaleInduceActivity.this).setIsFirst(true);
                     startActivity(new Intent(this, BoundDeviceActivity.class));
+                    finish();
                 } else {
                     BMToastUtil.showToastShort(this, "当前无网络");
                 }

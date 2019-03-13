@@ -62,7 +62,8 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
     private DiaLogAddUserOnClick diaLogAddUserOnClick;
     private LinearLayout ll_dialog_loading;
 
-    private WeightDialog weightDialog;
+    private static WeightDialog weightDialog;
+
 
     public WeightDialog(@NonNull Context context) {
         super(context);
@@ -132,7 +133,7 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
      *
      * @param b
      */
-    public void setResultVisibility(boolean b) {
+    public void setResultVisibility(boolean b, boolean isTime) {
         if (b) {
             ll_result.setVisibility(View.VISIBLE);
             tv_count_time.setVisibility(View.VISIBLE);
@@ -156,7 +157,7 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
         if (b) {
             rl_progress.setVisibility(View.VISIBLE);
             tv_count_time.setVisibility(View.GONE);
-            iv_close_dialog.setVisibility(View.GONE);
+            iv_close_dialog.setVisibility(View.VISIBLE);
 
         } else {
             rl_progress.setVisibility(View.GONE);
@@ -201,6 +202,13 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
     private void startTimesMatch() {
         countDownTimersMatch = new CountDownTimers(30000, 1000);
         countDownTimersMatch.start();
+    }
+
+
+    public void isTime(boolean isTime) {
+        if (isTime) {
+            startTimesMatch();
+        }
     }
 
     private void startTimesData() {
@@ -360,6 +368,7 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
 
         @Override
         public void onFinish() {
+            ll_dialog_loading.setVisibility(View.GONE);
             dismiss();
         }
     }

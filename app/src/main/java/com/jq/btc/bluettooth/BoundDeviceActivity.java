@@ -421,6 +421,7 @@ public class BoundDeviceActivity extends Activity implements OnClickListener, On
     public void onClick(View v) {
 
         if (v == mViewHolder.un_bound_ll) {
+            SpUtils.getInstance(BoundDeviceActivity.this).cleanMak();
             finish();
         } else if (v == mViewHolder.research) {
             reSearch();

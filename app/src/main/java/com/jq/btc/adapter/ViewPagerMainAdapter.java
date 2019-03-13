@@ -41,11 +41,9 @@ public class ViewPagerMainAdapter extends FragmentStatePagerAdapter {
 //        this.fragmentManager.beginTransaction().show(fragment).commit();
 //        return fragment;
 //    }
-//
-//    @Override
-//    public void destroyItem(ViewGroup container, int position, Object object) {
-//        super.destroyItem(container, position, object);
-//        Fragment fragment = fragments.get(position);
-//        fragmentManager.beginTransaction().hide(fragment).commit();
-//    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+
+    }
 }

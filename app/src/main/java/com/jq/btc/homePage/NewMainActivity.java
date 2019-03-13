@@ -98,6 +98,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
     private RelativeLayout rl_no_user;
     private LinearLayout ll_add_user;
     private DynamicWave2 mDynamicView;
+    private LinearLayout ll_no_net;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +116,8 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         if (NetWorkUtils.isNetworkAvailable(this)) {
             getUseList();
         } else {
-            BMToastUtil.showToastShort(this, "当前无网络");
+            ll_loading.setVisibility(View.GONE);
+            ll_no_net.setVisibility(View.VISIBLE);
         }
 
     }
@@ -143,10 +145,16 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
 //        doRefreshIfNeeded();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        initBlutooth();
+    }
 
     @Override
     protected void onRestart() {
         super.onRestart();
+        Log.d("onRestart", "onRestart");
         initBlutooth();
     }
 
@@ -158,6 +166,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         vp = findViewById(R.id.vp);
         vp.addOnPageChangeListener(this);
         trend_rb = findViewById(R.id.trend_rb);
+        ll_no_net = findViewById(R.id.ll_no_net);
         dynamic_rb = findViewById(R.id.dynamic_rb);
         trend_shop = findViewById(R.id.trend_shop);
         find_rb = findViewById(R.id.find_rb);
@@ -528,7 +537,8 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
     @Override
     public void onPause() {
         super.onPause();
-        Log.e("AYD", "------onPause");
+        Log.e("AYD", "activity------onPause");
+
         initBlutooth();
 //        if (mBleController != null) {
 //            mBleController.unregisterReceiver(NewMainActivity.this);
@@ -537,32 +547,6 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
 //            mBleController.disconnectBluetooth();
 //        }
         MobclickAgent.onPause(this);
-    }
-
-
-//    @Override
-//    public void setUserVisibleHint(boolean isVisibleToUser) {
-//        super.setUserVisibleHint(isVisibleToUser);
-//        if (mBleController == null) return;
-//        if (isVisibleToUser) {
-//            onBlEChangeListener.syncHistoryEnd(null);
-//            mBleController.initState();
-//        } else {
-//            mBleController.disconnectBluetooth();
-//        }
-//    }
-
-
-//    @Override
-//    public void onHiddenChanged(boolean hidden) {
-//        super.onHiddenChanged(hidden);
-//        if (!hidden) {
-//            doRefreshIfNeeded();
-//        }
-//    }
-
-    private void doRefreshIfNeeded() {
-//        loadDataAndShowView();
     }
 
     /**
@@ -735,7 +719,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                 public void run() {
                     if (this == null) return;
                     Log.e("AYD----->1", "act" + data);
-
+                    Log.e("AYD-->", mBleController.isBluetoothEnable() + "");
                     onShowBluetoothTempWeightData(true, isLock, data);
                     if (isLock) {
                         onWeight(data);
