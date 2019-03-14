@@ -415,7 +415,6 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
             mSoundPlayer.release();
             mSoundPlayer = null;
         }
-
 //        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mLocalReceiver);
     }
 
@@ -426,7 +425,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
 
     @Override
     public void onPageSelected(int position) {
-        Log.e("AYD", "onPageSelected:1 " + position);
+        Log.e("AYD", "刷新onPageSelected:1 " + position);
         pos = position;
         mFragments.get(pos).getUserLastWeight(UserUtils.get().userId(),
                 userData.getData().getMemberList().get(pos).getFamilyMemeberId());
@@ -447,8 +446,11 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
     public void onPageScrollStateChanged(int state) {
         switch (state) {
             case ViewPager.SCROLL_STATE_IDLE:
+            case ViewPager.SCROLL_STATE_DRAGGING:
+            case ViewPager.SCROLL_STATE_SETTLING:
                 mFragments.get(pos).getUserLastWeight(UserUtils.get().userId(),
                         userData.getData().getMemberList().get(pos).getFamilyMemeberId());
+                Log.e("AYD", "刷新zoumeizou");
                 break;
         }
     }

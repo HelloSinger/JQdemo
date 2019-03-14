@@ -242,6 +242,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         Log.e("fragment", "onViewCreated");
         myView = view;
         initView(view);
+        mCompareLastWeight_new.setVisibility(View.GONE);
 //        initValue();
         if (!NetWorkUtils.isNetworkAvailable(getContext())) {
             BMToastUtil.showToastShort(getContext(), "当前无网络");
@@ -532,28 +533,30 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
             tv_muscle_rate_unit.setText("%");
         }
 
-        if (lastWeight == 0.0) {
-            lastHeavy = " ";
-            mCompareLastWeight_new.setText(lastHeavy);
-            lastWeight = weight;
-        } else {
-            if (weight > lastWeight) {
-                lastHeavy = "你的体重比上次重了" + StandardUtil.getWeightExchangeValue(getContext(), (weight - lastWeight), "", (byte) 1) + "KG";
-                mCompareLastWeight_new.setText(lastHeavy);
+//        if (lastWeight == 0.0) {
+//            lastHeavy = " ";
+//            mCompareLastWeight_new.setText(lastHeavy);
+////            lastWeight = weight;
+//        } else {
+//            Log.e("Ayd", "las" + lastWeight);
+//            mCompareLastWeight_new.setVisibility(View.VISIBLE);
+//            if (weight > SpUtils.getInstance(getContext()).getLastWeight()) {
+//                lastHeavy = "你的体重比上次重了" + StandardUtil.getWeightExchangeValue(getContext(), (weight - SpUtils.getInstance(getContext()).getLastWeight()), "", (byte) 1) + "KG";
+//                mCompareLastWeight_new.setText(lastHeavy);
+////            }
+//            } else if (weight < SpUtils.getInstance(getContext()).getLastWeight()) {
+//                lastHeavy = "你的体重比上次轻了" + StandardUtil.getWeightExchangeValue(getContext(), (SpUtils.getInstance(getContext()).getLastWeight() - weight), "", (byte) 1) + "KG";
+//                mCompareLastWeight_new.setText(lastHeavy);
+//            } else if (weight == SpUtils.getInstance(getContext()).getLastWeight()) {
+//                lastHeavy = "你的体重比上次轻了0";
+//                mCompareLastWeight_new.setText(lastHeavy);
 //            }
-            } else if (weight < lastWeight) {
-                lastHeavy = "你的体重比上次轻了" + StandardUtil.getWeightExchangeValue(getContext(), (lastWeight - weight), "", (byte) 1) + "KG";
-                mCompareLastWeight_new.setText(lastHeavy);
-            } else if (weight == lastWeight) {
-                lastHeavy = "你的体重比上次轻了0";
-                mCompareLastWeight_new.setText(lastHeavy);
-            }
-        }
+//        }
         tv_recommend_two.setVisibility(View.GONE);
-        viewPagerCurrentListener.setViewPagerCurrent(pos);
         weightDialog.setLoading(true);
         inList(mAbnormalIndexList);
         sort(mAbnormalIndexList);
+
     }
 
     protected void initValue() {
@@ -943,6 +946,10 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                             mBmiLevelText_one.setText(bmiArray[1]);
                             tv_score.setText("身体得分：" + score + "分。");
                             tv_tips.setText(lastWeightModel.getData().getHealith());
+                            lastWeightModel.getData().getRecipes().get(8).setRecipename("黑椒牛排");
+                            lastWeightModel.getData().getRecipes().get(8).setRecipeimage("http://eco.haier.com/group1/M00/02/7E/Cp8ljlx5I1OAfSAXAAA5nruVWNI740.jpg");
+                            lastWeightModel.getData().getRecipes().get(8).setRecipetag("润燥/养肝明目/健脾");
+                            lastWeightModel.getData().getRecipes().get(8).setRecipeid("22257");
                             cookBookThreeAdapter.setMenuModels(lastWeightModel.getData().getRecipes());
                             rcy_menu.setAdapter(cookBookThreeAdapter);
                             long endTime = System.currentTimeMillis(); //结束时间
@@ -1007,9 +1014,8 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                             SpUtils.getInstance(getContext()).cleanDialog();
                         } else {
                             if (menuModel.getCode().equals("200")) {
+                                viewPagerCurrentListener.setViewPagerCurrent(_pos);
                                 Log.e("AYD", "response---->" + response.body());
-//                                getUserLastWeight(famaliyId, userId);
-                                Log.e("AYD", "updateSuccess");
                                 if (weightDialog == null) return;
                                 weightDialog.setLoading(false);
                                 weightDialog.setResultVisibility(true, true);
@@ -1020,7 +1026,11 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 weightDialog.setPersonlData("BMI: " + entity.getBmi(), userName, weight,
                                         axungeArray[0] + "", df.format(bone) + "", df.format(muscle) + "");
                                 if (recipes == null) return;
-                                recipes = menuModel.getData().getData().getRecipes();
+//                                recipes = menuModel.getData().getData().getRecipes();
+                                menuModel.getData().getData().getRecipes().get(8).setRecipename("黑椒牛排");
+                                menuModel.getData().getData().getRecipes().get(8).setRecipeimage("http://eco.haier.com/group1/M00/02/7E/Cp8ljlx5I1OAfSAXAAA5nruVWNI740.jpg");
+                                menuModel.getData().getData().getRecipes().get(8).setRecipetag("润燥/养肝明目/健脾");
+                                menuModel.getData().getData().getRecipes().get(8).setRecipeid("22257");
                                 cookBookAdapter.setMenuModels(menuModel.getData().getData().getRecipes());
                                 rcy_menu.setAdapter(cookBookAdapter);
                                 long endTime = System.currentTimeMillis(); //结束时间
@@ -1102,6 +1112,10 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 Log.e("数据解析", "" + e);
                             }
                             if (noDataModel.getData() == null) return;
+                            noDataModel.getData().getRecipes().get(8).setRecipename("黑椒牛排");
+                            noDataModel.getData().getRecipes().get(8).setRecipeimage("http://eco.haier.com/group1/M00/02/7E/Cp8ljlx5I1OAfSAXAAA5nruVWNI740.jpg");
+                            noDataModel.getData().getRecipes().get(8).setRecipetag("润燥/养肝明目/健脾");
+                            noDataModel.getData().getRecipes().get(8).setRecipeid("22257");
                             cookBookNoDataAdapter.setMenuModels(noDataModel.getData().getRecipes());
                             rcy_menu.setAdapter(cookBookNoDataAdapter);
                             long endTime = System.currentTimeMillis(); //结束时间
@@ -1119,54 +1133,78 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void setItemClickListener(int pos) {
         if (recipes == null) return;
-        ComponentName componetName = new ComponentName(
-                "com.unilife.fridge.haierbase.recipe",
-                "com.unilife.fridge.haierbase.um_library_recipe.activity.RecipeDetailsActivity");
-        Intent intent = new Intent();
-        Bundle bundle = new Bundle();
-        bundle.putString("recipe_name", recipes.get(pos).getRecipename());
-        bundle.putString("pageSource", "firstRecipe");
-        bundle.putString("recipeId", recipes.get(pos).getRecipeid());
-        bundle.putString("recipeSource", "douguo");
-        intent.putExtras(bundle);
-        intent.setComponent(componetName);
-        getActivity().startActivity(intent);
+        if (pos == 8) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.cookbook.detail");
+            intent.putExtra("i03", "22257");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else {
+            ComponentName componetName = new ComponentName(
+                    "com.unilife.fridge.haierbase.recipe",
+                    "com.unilife.fridge.haierbase.um_library_recipe.activity.RecipeDetailsActivity");
+            Intent intent = new Intent();
+            Bundle bundle = new Bundle();
+            bundle.putString("recipe_name", recipes.get(pos).getRecipename());
+            bundle.putString("pageSource", "firstRecipe");
+            bundle.putString("recipeId", recipes.get(pos).getRecipeid());
+            bundle.putString("recipeSource", "douguo");
+            intent.putExtras(bundle);
+            intent.setComponent(componetName);
+            getActivity().startActivity(intent);
 //        SpUtils.getInstance(getContext()).putPos(position);
+        }
     }
 
     @Override
     public void setItemClickListener1(int pos) {
         if (noDataModel.getData() == null) return;
-        ComponentName componetName = new ComponentName(
-                "com.unilife.fridge.haierbase.recipe",
-                "com.unilife.fridge.haierbase.um_library_recipe.activity.RecipeDetailsActivity");
-        Intent intent = new Intent();
-        Bundle bundle = new Bundle();
-        bundle.putString("recipe_name", noDataModel.getData().getRecipes().get(pos).getRecipename());
-        bundle.putString("pageSource", "firstRecipe");
-        bundle.putString("recipeId", noDataModel.getData().getRecipes().get(pos).getRecipeid());
-        bundle.putString("recipeSource", "douguo");
-        intent.putExtras(bundle);
-        intent.setComponent(componetName);
-        getActivity().startActivity(intent);
+        if (pos == 8) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.cookbook.detail");
+            intent.putExtra("i03", "22257");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else {
+            ComponentName componetName = new ComponentName(
+                    "com.unilife.fridge.haierbase.recipe",
+                    "com.unilife.fridge.haierbase.um_library_recipe.activity.RecipeDetailsActivity");
+            Intent intent = new Intent();
+            Bundle bundle = new Bundle();
+            bundle.putString("recipe_name", noDataModel.getData().getRecipes().get(pos).getRecipename());
+            bundle.putString("pageSource", "firstRecipe");
+            bundle.putString("recipeId", noDataModel.getData().getRecipes().get(pos).getRecipeid());
+            bundle.putString("recipeSource", "douguo");
+            intent.putExtras(bundle);
+            intent.setComponent(componetName);
+            getActivity().startActivity(intent);
 //        SpUtils.getInstance(getContext()).putPos(position);
+        }
     }
 
     @Override
     public void setItemClickListener2(int pos) {
         if (lastWeightModel.getData() == null) return;
-        ComponentName componetName = new ComponentName(
-                "com.unilife.fridge.haierbase.recipe",
-                "com.unilife.fridge.haierbase.um_library_recipe.activity.RecipeDetailsActivity");
-        Intent intent = new Intent();
-        Bundle bundle = new Bundle();
-        bundle.putString("recipe_name", lastWeightModel.getData().getRecipes().get(pos).getRecipename());
-        bundle.putString("pageSource", "firstRecipe");
-        bundle.putString("recipeId", lastWeightModel.getData().getRecipes().get(pos).getRecipeid());
-        bundle.putString("recipeSource", "douguo");
-        intent.putExtras(bundle);
-        intent.setComponent(componetName);
-        getActivity().startActivity(intent);
+        if (pos == 8) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.cookbook.detail");
+            intent.putExtra("i03", "22257");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else {
+            ComponentName componetName = new ComponentName(
+                    "com.unilife.fridge.haierbase.recipe",
+                    "com.unilife.fridge.haierbase.um_library_recipe.activity.RecipeDetailsActivity");
+            Intent intent = new Intent();
+            Bundle bundle = new Bundle();
+            bundle.putString("recipe_name", lastWeightModel.getData().getRecipes().get(pos).getRecipename());
+            bundle.putString("pageSource", "firstRecipe");
+            bundle.putString("recipeId", lastWeightModel.getData().getRecipes().get(pos).getRecipeid());
+            bundle.putString("recipeSource", "douguo");
+            intent.putExtras(bundle);
+            intent.setComponent(componetName);
+            getActivity().startActivity(intent);
+        }
 //        SpUtils.getInstance(getContext()).putPos(position);
     }
 

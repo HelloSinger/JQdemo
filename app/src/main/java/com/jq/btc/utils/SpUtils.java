@@ -231,6 +231,15 @@ public class SpUtils {
         mEditor.remove("NoUser");
         mEditor.commit();
     }
+    public boolean putLastWeight(float f) {
+        mEditor.putFloat("lastweight", f);
+        return mEditor.commit();
+    }
+
+
+    public float getLastWeight(){
+        return sharedPreferences.getFloat("lastweight",0);
+    }
 
     //   //手机号
 //   public boolean setRealName(String realname){
