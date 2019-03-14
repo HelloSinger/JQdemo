@@ -99,6 +99,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
     private LinearLayout ll_add_user;
     private DynamicWave2 mDynamicView;
     private LinearLayout ll_no_net;
+    private ScaleInfo mScaleInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +113,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         mSoundPlayer = new SoundPlayer(this, "Tethys.ogg");
         userDataList = new ArrayList<>();
         mFragments = new ArrayList<>();
+        mScaleInfo = new ScaleInfo();
         initView();
         if (NetWorkUtils.isNetworkAvailable(this)) {
             getUseList();
@@ -424,7 +426,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
 
     @Override
     public void onPageSelected(int position) {
-        Log.e("AYD", "onPageSelected: " + position);
+        Log.e("AYD", "onPageSelected:1 " + position);
         pos = position;
         mFragments.get(pos).getUserLastWeight(UserUtils.get().userId(),
                 userData.getData().getMemberList().get(pos).getFamilyMemeberId());
@@ -443,7 +445,12 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
 
     @Override
     public void onPageScrollStateChanged(int state) {
-
+        switch (state) {
+            case ViewPager.SCROLL_STATE_IDLE:
+                mFragments.get(pos).getUserLastWeight(UserUtils.get().userId(),
+                        userData.getData().getMemberList().get(pos).getFamilyMemeberId());
+                break;
+        }
     }
 
     @Override
@@ -720,6 +727,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                     if (this == null) return;
                     Log.e("AYD----->1", "act" + data);
                     Log.e("AYD-->", mBleController.isBluetoothEnable() + "");
+                    Log.e("AYD", "BLE" + mScaleInfo.getMac());
                     onShowBluetoothTempWeightData(true, isLock, data);
                     if (isLock) {
                         onWeight(data);

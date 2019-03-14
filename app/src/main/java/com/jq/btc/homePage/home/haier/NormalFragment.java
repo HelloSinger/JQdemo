@@ -550,10 +550,10 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
             }
         }
         tv_recommend_two.setVisibility(View.GONE);
+        viewPagerCurrentListener.setViewPagerCurrent(pos);
         weightDialog.setLoading(true);
         inList(mAbnormalIndexList);
         sort(mAbnormalIndexList);
-        viewPagerCurrentListener.setViewPagerCurrent(pos);
     }
 
     protected void initValue() {
@@ -570,7 +570,19 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         String temp = df.format(weight);
         weight = Double.valueOf(temp);
         tv_user_name.setText(userData.getData().getMemberList().get(position).getNickName());
-        mactchUse(UserUtils.get().userId(), SpUtils.getInstance(getContext()).getUserid(), weight);
+        matchDialog(weight);
+//        mactchUse(UserUtils.get().userId(), SpUtils.getInstance(getContext()).getUserid(), weight);
+    }
+
+
+    private void matchDialog(double weight) {
+        weightDialog.setUserData(userData);
+        weightDialog.setMatchVisibility(true);
+        weightDialog.setProgressVisibility(false);
+        String wei = formatter.format(weight);
+        weightDialog.setMatchWeight(wei);
+        weightDialog.setResultVisibility(false, false);
+        weightDialog.setTitle("未匹配到家庭成员");
     }
 
     private void inList(List<IndexDataItem> items) {
@@ -994,8 +1006,9 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                             getUserLastWeight(famaliyId, userId);
                             SpUtils.getInstance(getContext()).cleanDialog();
                         } else {
-                            Log.e("AYD", "response" + response.body());
                             if (menuModel.getCode().equals("200")) {
+                                Log.e("AYD", "response---->" + response.body());
+//                                getUserLastWeight(famaliyId, userId);
                                 Log.e("AYD", "updateSuccess");
                                 if (weightDialog == null) return;
                                 weightDialog.setLoading(false);
