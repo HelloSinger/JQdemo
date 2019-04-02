@@ -51,6 +51,7 @@ import com.lzy.okgo.callback.AbsCallback;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
+import java.io.FileInputStream;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.ArrayList;
@@ -125,25 +126,26 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
             if (null == province) return;
             if (!province.equals(SpUtils.getInstance(_context).getProvince())) {
                 SpUtils.getInstance(_context).putProvince(province);
-                Log.e("AYD", "--->" + province);
+                Log.e(TAG, "--->" + province);
             }
             String city = bundle.getString("city");
             if (null == city) return;
             if (!city.equals(SpUtils.getInstance(_context).getCity())) {
                 SpUtils.getInstance(_context).putCity(city);
-                Log.e("AYD", "--->" + city);
+                Log.e(TAG, "--->" + city);
             }
             String cityId = bundle.getString("cityId");
             if (null == cityId) return;
             if (!cityId.equals(SpUtils.getInstance(_context).getCityId())) {
                 SpUtils.getInstance(_context).putCityId(cityId);
-                Log.e("AYD", "--->" + cityId);
+                Log.e(TAG, "--->" + cityId);
             }
-//            String deviceId = bundle.getString("deviceId");
-            String deviceId = getLocalMacAddress(this).toUpperCase();
+            String deviceId = getLocalMacAddress().replace(":", "").toUpperCase();
+//            String deviceId = getLocalMacAddress(this).toUpperCase();
+            Log.e(TAG, "mac1: " + getLocalMacAddress().replace(":", ""));
             if (!deviceId.equals(SpUtils.getInstance(_context).getMac())) {
                 SpUtils.getInstance(_context).putMac(deviceId);
-                Log.e("AYD", "--->" + deviceId);
+                Log.e(TAG, "--->" + deviceId);
             }
 
         }
@@ -363,4 +365,49 @@ public class InitActivity extends SimpleActivity implements View.OnClickListener
         }
         return buf.toString();
     }
+
+    public String getLocalMacAddress() {
+        String mac = null;
+        try {
+            String path = "sys/class/net/eth0/address";
+            FileInputStream fis_name = new FileInputStream(path);
+            byte[] buffer_name = new byte[8192];
+            int byteCount_name = fis_name.read(buffer_name);
+            if (byteCount_name > 0) {
+                mac = new String(buffer_name, 0, byteCount_name, "utf-8");
+            }
+
+
+            if (mac == null) {
+                fis_name.close();
+                return "";
+            }
+            fis_name.close();
+        } catch (Exception io) {
+            String path = "sys/class/net/wlan0/address";
+            FileInputStream fis_name;
+            try {
+                fis_name = new FileInputStream(path);
+                byte[] buffer_name = new byte[8192];
+                int byteCount_name = fis_name.read(buffer_name);
+                if (byteCount_name > 0) {
+                    mac = new String(buffer_name, 0, byteCount_name, "utf-8");
+                }
+                fis_name.close();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+
+        if (mac == null) {
+            return "";
+        } else {
+            return mac.trim();
+        }
+
+    }
+
+
 }

@@ -364,11 +364,11 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void itemOnClickListener(int pos) {
         _pos = pos;
-        AccountEntity af = new AccountEntity();
-        af.setId(100);
-        af.setAccess_token("sss");
-        af.setWeixin("123123");
-        Account.getInstance(getActivity()).setAccountInfo(af);
+//        AccountEntity af = new AccountEntity();
+//        af.setId(100);
+//        af.setAccess_token("sss");
+//        af.setWeixin("123123");
+//        Account.getInstance(getActivity()).setAccountInfo(af);
         roleInfo = new RoleInfo();
         roleInfo.setSex(userData.getData().getMemberList().get(pos).getSex());
         roleInfo.setNickname(userData.getData().getMemberList().get(pos).getNickName());
@@ -382,7 +382,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         roleInfo.setWeight_init(Float.parseFloat(userData.getData().getMemberList().get(pos).getWeight()));
         roleInfo.setWeight_goal(Float.parseFloat(userData.getData().getMemberList().get(pos).getWeight()));
         roleInfo.setRole_type(0);
-        Account.getInstance(getActivity()).setRoleInfo(roleInfo);
+//        Account.getInstance(getActivity()).setRoleInfo(roleInfo);
         Log.e("AYD", "onSuccess: " + roleInfo.toString());
         WeighDataParser.create(getActivity()).fillFatWithSmoothImpedance(entity, roleInfo);
         age = WeighDataParser.getCalAge(roleInfo, entity);
@@ -878,84 +878,85 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 + "URL--->:" + ConstantUrl.GET_USER_LAST_WEIGHT);
                         try {
                             lastWeightModel = new Gson().fromJson(response.body(), LastWeightModel.class);
+
+                            if (lastWeightModel.getData() == null) {
+                                if (userData.getData().getMemberList().size() == 0) return;
+                                tv_user_name.setText(userData.getData().getMemberList().get(position).getNickName());
+                                tv_recommend.setText("为" + userData.getData().getMemberList().get(position).getNickName() + "推荐的健康菜谱");
+                                tv_weight.setText("一 一");
+                                tv_weight_unit.setText("");
+                                tv_body_fat.setText("一 一");
+                                tv_body_fat_unit.setText("");
+                                tv_bone_weight.setText("一 一");
+                                tv_bone_weight_unit.setText("");
+                                tv_muscle_rate.setText("一 一");
+                                tv_muscle_rate_unit.setText("");
+                                mCompareLastWeight_new.setText(" ");
+                                mBmiText_one.setText("一 一");
+                                mBmiLevelText_one.setText("一 一");
+                                tv_score.setText("");
+                                tv_tips.setText("使用体脂秤秤重，我们会根据你的健康信息，给出健康及营养建议哟～");
+                                tv_recommend_two.setVisibility(View.VISIBLE);
+                                getNoDataMenu(famaliyId, userId, SpUtils.getInstance(getContext()).getMac());
+                            } else {
+//                            for (int i = 0; i < lastWeightModel.getData().size(); i++) {
+                                //.get(lastWeightModel.getData().size() - 1);
+                                if (ll_fragment_loading == null) return;
+                                ll_fragment_loading.setVisibility(View.GONE);
+                                lastWeight = Float.parseFloat(lastWeightModel.getData().getWeight());
+                                Log.e("上一次体重", "onSuccess:" + lastWeight);
+                                String boneWeight = lastWeightModel.getData().getBoneWeight();
+                                String[] boneWeightArray = boneWeight.split(",");
+                                String muscleRate = lastWeightModel.getData().getMuscleRate();
+                                String[] muscleRateArray = muscleRate.split(",");
+                                String bmi = lastWeightModel.getData().getBmi();
+                                String[] bmiArray = bmi.split(",");
+                                String score = lastWeightModel.getData().getScore();
+                                String axunge = lastWeightModel.getData().getBody();
+                                String[] axungeArray = axunge.split(",");
+                                if (userData.getData().getMemberList().size() == 0) return;
+                                tv_user_name.setText(userData.getData().getMemberList().get(position).getNickName());
+                                tv_recommend.setText("为" + userData.getData().getMemberList().get(position).getNickName() + "推荐的健康菜谱");
+                                tv_recommend_two.setVisibility(View.GONE);
+                                tv_weight.setText(lastWeight + "");
+                                tv_weight_unit.setText("KG");
+                                if (axungeArray[0].equals("0") || axungeArray[0].equals("0.0") || axungeArray[0].equals("-1%") || axungeArray[0].equals("0%")) {
+                                    tv_body_fat.setText("一 一");
+                                } else {
+                                    tv_body_fat.setText(axungeArray[0].substring(0, axungeArray[0].length() - 1));
+                                    tv_body_fat_unit.setText("%");
+                                }
+                                if (boneWeightArray[0].equals("0") || boneWeightArray[0].equals("0.0")) {
+                                    tv_bone_weight.setText("一 一");
+                                } else {
+                                    tv_bone_weight.setText(boneWeightArray[0]);
+                                    tv_bone_weight_unit.setText("KG");
+                                }
+                                if (muscleRateArray[0].equals("0") || muscleRateArray[0].equals("0.0") || muscleRateArray[0].equals("0%")) {
+                                    tv_muscle_rate.setText("一 一");
+                                } else {
+                                    tv_muscle_rate.setText(muscleRateArray[0].substring(0, muscleRateArray[0].length() - 1));
+                                    tv_muscle_rate_unit.setText("%");
+                                }
+                                mCompareLastWeight_new.setText(axungeArray[4] + "。");
+//                            bmiLevel = WeighDataParser.getBmiLevel(entity) - 1;
+                                mBmiText_one.setText("BMI:" + bmiArray[0]);
+                                mBmiLevelText_one.setText(bmiArray[1]);
+                                tv_score.setText("身体得分：" + score + "分。");
+                                tv_tips.setText(lastWeightModel.getData().getHealith());
+                                lastWeightModel.getData().getRecipes().get(8).setRecipename("黑椒牛排");
+                                lastWeightModel.getData().getRecipes().get(8).setRecipeimage("http://eco.haier.com/group1/M00/02/7E/Cp8ljlx5I1OAfSAXAAA5nruVWNI740.jpg");
+                                lastWeightModel.getData().getRecipes().get(8).setRecipetag("润燥/养肝明目/健脾");
+                                lastWeightModel.getData().getRecipes().get(8).setRecipeid("22257");
+                                cookBookThreeAdapter.setMenuModels(lastWeightModel.getData().getRecipes());
+                                rcy_menu.setAdapter(cookBookThreeAdapter);
+                                long endTime = System.currentTimeMillis(); //结束时间
+                                long runTime = endTime - startTime3;
+                                Log.e("time", "获取最后一次执行时间" + String.format("方法使用时间 %d ms", runTime));
+//                        }
+                            }
                         } catch (Exception e) {
                             Log.e("Exception", "" + e);
-                        }
-                        if (lastWeightModel.getData() == null) {
-                            if (userData.getData().getMemberList().size() == 0) return;
-                            tv_user_name.setText(userData.getData().getMemberList().get(position).getNickName());
-                            tv_recommend.setText("为" + userData.getData().getMemberList().get(position).getNickName() + "推荐的健康菜谱");
-                            tv_weight.setText("一 一");
-                            tv_weight_unit.setText("");
-                            tv_body_fat.setText("一 一");
-                            tv_body_fat_unit.setText("");
-                            tv_bone_weight.setText("一 一");
-                            tv_bone_weight_unit.setText("");
-                            tv_muscle_rate.setText("一 一");
-                            tv_muscle_rate_unit.setText("");
-                            mCompareLastWeight_new.setText(" ");
-                            mBmiText_one.setText("一 一");
-                            mBmiLevelText_one.setText("一 一");
-                            tv_score.setText("");
-                            tv_tips.setText("使用体脂秤秤重，我们会根据你的健康信息，给出健康及营养建议哟～");
-                            tv_recommend_two.setVisibility(View.VISIBLE);
-                            getNoDataMenu(famaliyId, userId, SpUtils.getInstance(getContext()).getMac());
-                        } else {
-//                            for (int i = 0; i < lastWeightModel.getData().size(); i++) {
-                            //.get(lastWeightModel.getData().size() - 1);
-                            if (ll_fragment_loading == null) return;
-                            ll_fragment_loading.setVisibility(View.GONE);
-                            lastWeight = Float.parseFloat(lastWeightModel.getData().getWeight());
-                            Log.e("上一次体重", "onSuccess:" + lastWeight);
-                            String boneWeight = lastWeightModel.getData().getBoneWeight();
-                            String[] boneWeightArray = boneWeight.split(",");
-                            String muscleRate = lastWeightModel.getData().getMuscleRate();
-                            String[] muscleRateArray = muscleRate.split(",");
-                            String bmi = lastWeightModel.getData().getBmi();
-                            String[] bmiArray = bmi.split(",");
-                            String score = lastWeightModel.getData().getScore();
-                            String axunge = lastWeightModel.getData().getBody();
-                            String[] axungeArray = axunge.split(",");
-                            if (userData.getData().getMemberList().size() == 0) return;
-                            tv_user_name.setText(userData.getData().getMemberList().get(position).getNickName());
-                            tv_recommend.setText("为" + userData.getData().getMemberList().get(position).getNickName() + "推荐的健康菜谱");
-                            tv_recommend_two.setVisibility(View.GONE);
-                            tv_weight.setText(lastWeight + "");
-                            tv_weight_unit.setText("KG");
-                            if (axungeArray[0].equals("0") || axungeArray[0].equals("0.0") || axungeArray[0].equals("-1%") || axungeArray[0].equals("0%")) {
-                                tv_body_fat.setText("一 一");
-                            } else {
-                                tv_body_fat.setText(axungeArray[0].substring(0, axungeArray[0].length() - 1));
-                                tv_body_fat_unit.setText("%");
-                            }
-                            if (boneWeightArray[0].equals("0") || boneWeightArray[0].equals("0.0")) {
-                                tv_bone_weight.setText("一 一");
-                            } else {
-                                tv_bone_weight.setText(boneWeightArray[0]);
-                                tv_bone_weight_unit.setText("KG");
-                            }
-                            if (muscleRateArray[0].equals("0") || muscleRateArray[0].equals("0.0") || muscleRateArray[0].equals("0%")) {
-                                tv_muscle_rate.setText("一 一");
-                            } else {
-                                tv_muscle_rate.setText(muscleRateArray[0].substring(0, muscleRateArray[0].length() - 1));
-                                tv_muscle_rate_unit.setText("%");
-                            }
-                            mCompareLastWeight_new.setText(axungeArray[4] + "。");
-//                            bmiLevel = WeighDataParser.getBmiLevel(entity) - 1;
-                            mBmiText_one.setText("BMI:" + bmiArray[0]);
-                            mBmiLevelText_one.setText(bmiArray[1]);
-                            tv_score.setText("身体得分：" + score + "分。");
-                            tv_tips.setText(lastWeightModel.getData().getHealith());
-                            lastWeightModel.getData().getRecipes().get(8).setRecipename("黑椒牛排");
-                            lastWeightModel.getData().getRecipes().get(8).setRecipeimage("http://eco.haier.com/group1/M00/02/7E/Cp8ljlx5I1OAfSAXAAA5nruVWNI740.jpg");
-                            lastWeightModel.getData().getRecipes().get(8).setRecipetag("润燥/养肝明目/健脾");
-                            lastWeightModel.getData().getRecipes().get(8).setRecipeid("22257");
-                            cookBookThreeAdapter.setMenuModels(lastWeightModel.getData().getRecipes());
-                            rcy_menu.setAdapter(cookBookThreeAdapter);
-                            long endTime = System.currentTimeMillis(); //结束时间
-                            long runTime = endTime - startTime3;
-                            Log.e("time", "获取最后一次执行时间" + String.format("方法使用时间 %d ms", runTime));
-//                        }
                         }
                     }
                 });
@@ -1112,6 +1113,11 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 Log.e("数据解析", "" + e);
                             }
                             if (noDataModel.getData() == null) return;
+                            if (noDataModel.getCode().equals("500")) {
+                                ll_failed.setVisibility(View.VISIBLE);
+                                ll_menu.setVisibility(View.GONE);
+                                return;
+                            }
                             noDataModel.getData().getRecipes().get(8).setRecipename("黑椒牛排");
                             noDataModel.getData().getRecipes().get(8).setRecipeimage("http://eco.haier.com/group1/M00/02/7E/Cp8ljlx5I1OAfSAXAAA5nruVWNI740.jpg");
                             noDataModel.getData().getRecipes().get(8).setRecipetag("润燥/养肝明目/健脾");

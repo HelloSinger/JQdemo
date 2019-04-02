@@ -830,19 +830,29 @@
             <RelativeLayout
                 android:id="@+id/ll_failed"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="210px"
                 android:layout_marginTop="425px"
                 android:orientation="horizontal"
                 android:visibility="gone">
 
-
                 <TextView
+                    android:id="@+id/tv_frail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="获取菜谱失败~"
-                    android:textSize="25px"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="25px" />
+
+                <ImageView
+                    android:id="@+id/iv_reset"
+                    android:layout_width="30px"
+                    android:layout_height="30px"
+                    android:layout_marginLeft="10px"
+                    android:layout_marginTop="85px"
+                    android:layout_toRightOf="@id/tv_frail"
+                    android:background="@mipmap/icon_reset"
+                    android:visibility="gone" />
             </RelativeLayout>
         </LinearLayout>
 
