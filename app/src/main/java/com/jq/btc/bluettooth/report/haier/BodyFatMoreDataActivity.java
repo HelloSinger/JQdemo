@@ -69,6 +69,7 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
     private List<Double> dataList;
     private MoreDataModel moreDataModel;
     private String useId;
+    private String famaliyId;
     private String userName;
     private int pos;
     private RelativeLayout rl_title;
@@ -84,6 +85,7 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
     }
 
     private void initView() {
+        famaliyId = getIntent().getStringExtra("famaliyId");
         useId = getIntent().getStringExtra("useId");
         userName = getIntent().getStringExtra("useName");
         pos = getIntent().getIntExtra("pos", -1);
@@ -154,7 +156,7 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
     }
 
     private void initData() {
-        getMoreData(UserUtils.get().userId(), useId);
+        getMoreData(famaliyId, useId);
         mRoleName.setText(userName);
     }
 
@@ -446,7 +448,7 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
      */
     private void getMoreData(String famaliyId, String userId) {
         final IndexDataItem indexDataItem = new IndexDataItem();
-        JSONObject jsonObject = new JSONObject();
+        final JSONObject jsonObject = new JSONObject();
         jsonObject.put("famaliyId", famaliyId);
         jsonObject.put("userId", userId);
         OkGo.<String>post(ConstantUrl.GET_CHARTLINE_DATA_URL)
@@ -456,7 +458,9 @@ public class BodyFatMoreDataActivity extends AppCompatActivity implements View.O
                     public void onSuccess(Response<String> response) {
                         moreDataModel = new Gson().fromJson(response.body(), MoreDataModel.class);
 //                        data = moreDataModel.getData();
-                        Log.e("AYD", "--->" + response.body());
+                        Log.e("更多数据", "--->" + response.body() + "\n"
+                                + "参数--->:" + String.valueOf(jsonObject) + "\n"
+                                + "URL--->:" + ConstantUrl.GET_CHARTLINE_DATA_URL);
                         Log.e("ADY", "an" + indexDataItem.mLevelTextRes);
                         ll_loading.setVisibility(View.GONE);
                         if (moreDataModel.getData().size() == 0) {

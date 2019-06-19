@@ -1,10 +1,12 @@
 package com.jq.btc.homePage;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -33,7 +35,12 @@ import com.jq.btc.helper.WeighDataParser;
 import com.jq.btc.homePage.home.haier.BaseFragment;
 import com.jq.btc.homePage.home.haier.NormalFragment;
 import com.jq.btc.kitchenscale.ble.BleHelper;
+import com.jq.btc.model.TokenEntity;
 import com.jq.btc.model.UserData;
+import com.jq.btc.model.UsersDataBean;
+import com.jq.btc.thread.GetAppTokenThread;
+import com.jq.btc.thread.GetTokenResultListener;
+import com.jq.btc.thread.RefreshAppTokenThread;
 import com.jq.btc.utils.BMToastUtil;
 import com.jq.btc.utils.NetWorkUtils;
 import com.jq.btc.utils.SpUtils;
@@ -56,6 +63,8 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.umeng.analytics.MobclickAgent;
 
+import org.json.JSONException;
+
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -68,6 +77,8 @@ import java.util.List;
  */
 public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCheckedChangeListener
         , View.OnClickListener, ViewPager.OnPageChangeListener, NormalFragment.ViewPagerCurrentListener {
+
+    private String TAG = "NewMainActivity";
     private RadioGroup mTabRg;
     private int showTabIndex = -1;
     private List<NormalFragment> mFragments;
@@ -89,7 +100,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
     private WeightEntity curEntity;
     private WeightEntity lastEntity;
     private String useIds;
-    public static List<UserData.DataBean.MemberListBean> userDataList;
+//    public static List<UserData.DataBean.MemberListBean> userDataList;
     private TextView tv_no_user;
     private TextView tv_ble;
     private int userMak;
@@ -100,6 +111,11 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
     private DynamicWave2 mDynamicView;
     private LinearLayout ll_no_net;
     private ScaleInfo mScaleInfo;
+    private GetAppTokenThread getAppTokenThread;
+    private RefreshAppTokenThread refreshAppTokenThread;
+    private int getTokenNumber = 0;
+    List<UsersDataBean.DataBean> dataBeanList;
+    UsersDataBean usersDataBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,12 +127,14 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         mBleController.setOnBLEChangeListener(onBlEChangeListener);
         mBleController.setBound(true);
         mSoundPlayer = new SoundPlayer(this, "Tethys.ogg");
-        userDataList = new ArrayList<>();
+//        userDataList = new ArrayList<>();
+        dataBeanList = new ArrayList<>();
         mFragments = new ArrayList<>();
         mScaleInfo = new ScaleInfo();
         initView();
         if (NetWorkUtils.isNetworkAvailable(this)) {
-            getUseList();
+//            getUseList();
+            getAppToken(UserUtils.get().uCenterToken());
         } else {
             ll_loading.setVisibility(View.GONE);
             ll_no_net.setVisibility(View.VISIBLE);
@@ -140,7 +158,8 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         if (SpUtils.getInstance(this).getClick().equals("click")
                 || SpUtils.getInstance(this).getIsDialogAdd()
                 || SpUtils.getInstance(this).getNoUserClick().equals("NoUser")) {
-            getUseList();
+//            getUseList();
+            getAppToken(UserUtils.get().uCenterToken());
             iv_left.setBackgroundResource(R.mipmap.icon_left_normal);
         }
         onBlEChangeListener.syncHistoryEnd(null);
@@ -256,12 +275,20 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
                 }
                 break;
             case R.id.rl_right:
-                if (pos != userData.getData().getMemberList().size() - 1) {
+//                if (pos != userData.getData().getMemberList().size() - 1) {
+//                    iv_left.setBackgroundResource(R.mipmap.icon_left_select);
+//                    iv_right.setBackgroundResource(R.mipmap.icon_right_select);
+//                    pos++;
+//                    vp.setCurrentItem(pos, true);
+//                }
+                if (pos != usersDataBean.getData().size() - 1) {
                     iv_left.setBackgroundResource(R.mipmap.icon_left_select);
                     iv_right.setBackgroundResource(R.mipmap.icon_right_select);
                     pos++;
                     vp.setCurrentItem(pos, true);
                 }
+
+
                 break;
             case R.id.ll_unserstand_scene:
                 SpUtils.getInstance(NewMainActivity.this).cleanMak();
@@ -276,95 +303,229 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         }
     }
 
-    /**
-     * 请求冰箱用户列表
-     */
-    private void getUseList() {
-        final JSONObject use = new JSONObject();
-        use.put("user_id", UserUtils.get().userId());
-        JSONObject data = new JSONObject();
-        data.put("app", use);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("verify_info", data);
-        Log.e("AYD", "--->" + jsonObject.toJSONString());
-        OkGo.<String>post(ConstantUrl.GET_USER_URL)
-                .upJson(String.valueOf(jsonObject))
-                .execute(new StringCallback() {
-                    @Override
-                    public void onSuccess(Response<String> response) {
-                        ll_loading.setVisibility(View.GONE);
-                        userDataList.clear();
-                        mFragments.clear();
-                        userData = new Gson().fromJson(response.body(), UserData.class);
-                        userDataList = userData.getData().getMemberList();
-                        Log.e("AYD", "act:---" + userDataList.size());
-                        SpUtils.getInstance(NewMainActivity.this).cleanClick();
-                        SpUtils.getInstance(NewMainActivity.this).cleanNoUserClick();
-                        Collections.reverse(userDataList);
-                        if (userDataList.size() == 0) {
-                            rl_no_user.setVisibility(View.VISIBLE);
-                            iv_right.setVisibility(View.GONE);
-                            iv_left.setVisibility(View.GONE);
-                        } else if (userDataList.size() == 1) {
-                            mDynamicView.setVisibility(View.GONE);
-                            rl_no_user.setVisibility(View.GONE);
-                            iv_right.setVisibility(View.GONE);
-                            iv_left.setVisibility(View.GONE);
-                            ArrayList<String> useid = new ArrayList<>();
-                            for (int i = 0; i < userDataList.size(); i++) {
-                                useid.add(userDataList.get(i).getFamilyMemeberId());
-                            }
-                            String str = useid.toString();
-                            int len = str.length() - 1;
-                            useIds = str.substring(1, len).replace(" ", "");
-                            SpUtils.getInstance(NewMainActivity.this).setUserid(useIds);
-                            Log.e("AYD----->", "" + useIds);
-                            for (int i = 0; i < userDataList.size(); i++) {
-                                normalFragment = new NormalFragment();
-                                normalFragment.setUserData(userData, i);
-                                mFragments.add(normalFragment);
-                            }
-                            viewPagerMainAdapter = new ViewPagerMainAdapter(getSupportFragmentManager(), mFragments);
-                            vp.setAdapter(viewPagerMainAdapter);
-                            viewPagerMainAdapter.notifyDataSetChanged();
-                            initBlutooth();
+//    /**
+//     * 请求冰箱用户列表
+//     */
+//    private void getUseList() {
+//        final JSONObject use = new JSONObject();
+//        use.put("user_id", UserUtils.get().userId());
+//        JSONObject data = new JSONObject();
+//        data.put("app", use);
+//        JSONObject jsonObject = new JSONObject();
+//        jsonObject.put("verify_info", data);
+//        Log.e("AYD", "--->" + jsonObject.toJSONString());
+//        OkGo.<String>post(ConstantUrl.GET_USER_URL)
+//                .upJson(String.valueOf(jsonObject))
+//                .execute(new StringCallback() {
+//                    @Override
+//                    public void onSuccess(Response<String> response) {
+//                        ll_loading.setVisibility(View.GONE);
+//                        userDataList.clear();
+//                        mFragments.clear();
+//                        userData = new Gson().fromJson(response.body(), UserData.class);
+//                        userDataList = userData.getData().getMemberList();
+//                        Log.e("AYD", "act:---" + userDataList.size());
+//                        SpUtils.getInstance(NewMainActivity.this).cleanClick();
+//                        SpUtils.getInstance(NewMainActivity.this).cleanNoUserClick();
+//                        Collections.reverse(userDataList);
+//                        if (userDataList.size() == 0) {
+//                            rl_no_user.setVisibility(View.VISIBLE);
+//                            iv_right.setVisibility(View.GONE);
+//                            iv_left.setVisibility(View.GONE);
+//                        } else if (userDataList.size() == 1) {
+//                            mDynamicView.setVisibility(View.GONE);
+//                            rl_no_user.setVisibility(View.GONE);
+//                            iv_right.setVisibility(View.GONE);
+//                            iv_left.setVisibility(View.GONE);
+//                            ArrayList<String> useid = new ArrayList<>();
+//                            for (int i = 0; i < userDataList.size(); i++) {
+//                                useid.add(userDataList.get(i).getFamilyMemeberId());
+//                            }
+//                            String str = useid.toString();
+//                            int len = str.length() - 1;
+//                            useIds = str.substring(1, len).replace(" ", "");
+//                            SpUtils.getInstance(NewMainActivity.this).setUserid(useIds);
+//                            Log.e("AYD----->", "" + useIds);
+//                            for (int i = 0; i < userDataList.size(); i++) {
+//                                normalFragment = new NormalFragment();
+//                                normalFragment.setUserData(userData, i);
+//                                mFragments.add(normalFragment);
+//                            }
+//                            viewPagerMainAdapter = new ViewPagerMainAdapter(getSupportFragmentManager(), mFragments);
+//                            vp.setAdapter(viewPagerMainAdapter);
+//                            viewPagerMainAdapter.notifyDataSetChanged();
+//                            initBlutooth();
+////                            if (_pos != -1) {
+////                                vp.setCurrentItem(_pos);
+////                                mFragments.get(_pos).getUserLastWeight(UserUtils.get().userId(),
+////                                        userData.getData().getMemberList().get(_pos).getFamilyMemeberId());
+////                            }
+//                        } else if (userDataList.size() > 1) {
+//                            iv_right.setVisibility(View.VISIBLE);
+//                            iv_left.setVisibility(View.VISIBLE);
+//                            mDynamicView.setVisibility(View.GONE);
+//                            rl_no_user.setVisibility(View.GONE);
+//                            mDynamicView.setVisibility(View.GONE);
+//                            ArrayList<String> useid = new ArrayList<>();
+//                            for (int i = 0; i < userDataList.size(); i++) {
+//                                useid.add(userDataList.get(i).getFamilyMemeberId());
+//                            }
+//                            String str = useid.toString();
+//                            int len = str.length() - 1;
+//                            useIds = str.substring(1, len).replace(" ", "");
+//                            SpUtils.getInstance(NewMainActivity.this).setUserid(useIds);
+//                            Log.e("AYD----->", "" + useIds);
+//                            for (int i = 0; i < userDataList.size(); i++) {
+//                                normalFragment = new NormalFragment();
+//                                normalFragment.setUserData(userData, i);
+//                                mFragments.add(normalFragment);
+//                            }
+//                            viewPagerMainAdapter = new ViewPagerMainAdapter(getSupportFragmentManager(), mFragments);
+//                            vp.setAdapter(viewPagerMainAdapter);
+//                            viewPagerMainAdapter.notifyDataSetChanged();
+//                            if (SpUtils.getInstance(NewMainActivity.this).getIsDialogAdd()) {
+//                                Log.e("sp", "" + SpUtils.getInstance(NewMainActivity.this).getBean());
+//                                mFragments.get(0).setFirstData(SpUtils.getInstance(NewMainActivity.this).getBean());
+//                            }
+//                            initBlutooth();
+//                        }
+//                    }
+//                });
+//    }
+
+    private void getAppToken(String accessToken) {
+        getAppTokenThread = new GetAppTokenThread(this, accessToken, new GetTokenResultListener() {
+            @Override
+            public void onSuccess(TokenEntity entity) {
+                getTokenNumber = 0;
+
+                JSONObject use = new JSONObject();
+                use.put("access_token", entity.getAccess_token());
+                use.put("cellphone", UserUtils.get().phoneNumber());
+                use.put("expires_in", entity.getExpires_in());
+                use.put("refresh_token", entity.getRefresh_token());
+
+                OkGo.<String>post(ConstantUrl.GET_UER_LIST)
+                        .upJson(String.valueOf(use))
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onSuccess(Response<String> response) {
+                                ll_loading.setVisibility(View.GONE);
+//                                userDataList.clear();
+                                dataBeanList.clear();
+                                mFragments.clear();
+//                                userData = new Gson().fromJson(response.body(), UserData.class);
+                                usersDataBean = new Gson().fromJson(response.body(), UsersDataBean.class);
+                                dataBeanList = usersDataBean.getData();
+//                                userDataList = userData.getData().getMemberList();
+                                Log.e("AYD", "act:---" + dataBeanList.size());
+                                SpUtils.getInstance(NewMainActivity.this).cleanClick();
+                                SpUtils.getInstance(NewMainActivity.this).cleanNoUserClick();
+                                Collections.reverse(dataBeanList);
+                                if (dataBeanList.size() == 0) {
+                                    rl_no_user.setVisibility(View.VISIBLE);
+                                    iv_right.setVisibility(View.GONE);
+                                    iv_left.setVisibility(View.GONE);
+                                } else if (dataBeanList.size() == 1) {
+                                    mDynamicView.setVisibility(View.GONE);
+                                    rl_no_user.setVisibility(View.GONE);
+                                    iv_right.setVisibility(View.GONE);
+                                    iv_left.setVisibility(View.GONE);
+                                    ArrayList<String> useid = new ArrayList<>();
+                                    for (int i = 0; i < dataBeanList.size(); i++) {
+                                        useid.add(dataBeanList.get(i).getGroupId());
+                                    }
+                                    String str = useid.toString();
+                                    int len = str.length() - 1;
+                                    useIds = str.substring(1, len).replace(" ", "");
+                                    SpUtils.getInstance(NewMainActivity.this).setUserid(useIds);
+                                    Log.e("AYD----->", "" + useIds);
+                                    for (int i = 0; i < dataBeanList.size(); i++) {
+                                        normalFragment = new NormalFragment();
+//                                        normalFragment.setUserData(userData, i);
+                                        normalFragment.setUserBean(usersDataBean, i);
+                                        mFragments.add(normalFragment);
+                                    }
+                                    viewPagerMainAdapter = new ViewPagerMainAdapter(getSupportFragmentManager(), mFragments);
+                                    vp.setAdapter(viewPagerMainAdapter);
+                                    viewPagerMainAdapter.notifyDataSetChanged();
+                                    initBlutooth();
 //                            if (_pos != -1) {
 //                                vp.setCurrentItem(_pos);
 //                                mFragments.get(_pos).getUserLastWeight(UserUtils.get().userId(),
 //                                        userData.getData().getMemberList().get(_pos).getFamilyMemeberId());
 //                            }
-                        } else if (userDataList.size() > 1) {
-                            iv_right.setVisibility(View.VISIBLE);
-                            iv_left.setVisibility(View.VISIBLE);
-                            mDynamicView.setVisibility(View.GONE);
-                            rl_no_user.setVisibility(View.GONE);
-                            mDynamicView.setVisibility(View.GONE);
-                            ArrayList<String> useid = new ArrayList<>();
-                            for (int i = 0; i < userDataList.size(); i++) {
-                                useid.add(userDataList.get(i).getFamilyMemeberId());
+                                } else if (dataBeanList.size() > 1) {
+                                    iv_right.setVisibility(View.VISIBLE);
+                                    iv_left.setVisibility(View.VISIBLE);
+                                    mDynamicView.setVisibility(View.GONE);
+                                    rl_no_user.setVisibility(View.GONE);
+                                    mDynamicView.setVisibility(View.GONE);
+                                    ArrayList<String> useid = new ArrayList<>();
+                                    for (int i = 0; i < dataBeanList.size(); i++) {
+                                        useid.add(dataBeanList.get(i).getGroupId());
+                                    }
+                                    String str = useid.toString();
+                                    int len = str.length() - 1;
+                                    useIds = str.substring(1, len).replace(" ", "");
+                                    SpUtils.getInstance(NewMainActivity.this).setUserid(useIds);
+                                    Log.e("AYD----->", "" + useIds);
+                                    for (int i = 0; i < dataBeanList.size(); i++) {
+                                        normalFragment = new NormalFragment();
+//                                        normalFragment.setUserData(userData, i);
+                                        normalFragment.setUserBean(usersDataBean, i);
+                                        mFragments.add(normalFragment);
+                                    }
+                                    viewPagerMainAdapter = new ViewPagerMainAdapter(getSupportFragmentManager(), mFragments);
+                                    vp.setAdapter(viewPagerMainAdapter);
+                                    viewPagerMainAdapter.notifyDataSetChanged();
+                                    if (SpUtils.getInstance(NewMainActivity.this).getIsDialogAdd()) {
+                                        Log.e("sp", "" + SpUtils.getInstance(NewMainActivity.this).getBean());
+                                        mFragments.get(0).setFirstData(SpUtils.getInstance(NewMainActivity.this).getBean());
+                                    }
+                                    initBlutooth();
+                                }
                             }
-                            String str = useid.toString();
-                            int len = str.length() - 1;
-                            useIds = str.substring(1, len).replace(" ", "");
-                            SpUtils.getInstance(NewMainActivity.this).setUserid(useIds);
-                            Log.e("AYD----->", "" + useIds);
-                            for (int i = 0; i < userDataList.size(); i++) {
-                                normalFragment = new NormalFragment();
-                                normalFragment.setUserData(userData, i);
-                                mFragments.add(normalFragment);
-                            }
-                            viewPagerMainAdapter = new ViewPagerMainAdapter(getSupportFragmentManager(), mFragments);
-                            vp.setAdapter(viewPagerMainAdapter);
-                            viewPagerMainAdapter.notifyDataSetChanged();
-                            if (SpUtils.getInstance(NewMainActivity.this).getIsDialogAdd()) {
-                                Log.e("sp", "" + SpUtils.getInstance(NewMainActivity.this).getBean());
-                                mFragments.get(0).setFirstData(SpUtils.getInstance(NewMainActivity.this).getBean());
-                            }
-                            initBlutooth();
-                        }
-                    }
-                });
+                        });
+
+            }
+
+            @Override
+            public void onFaild(String error) {
+                if (getTokenNumber < 12) {
+                    getTokenNumber++;
+                    handler.sendEmptyMessage(0);
+                } else {
+                    getTokenNumber = 0;
+                }
+                Log.e(TAG, "onFaild:" + error);
+            }
+        });
+        getAppTokenThread.start();
     }
+
+
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            refreshAppTokenThread = new RefreshAppTokenThread(NewMainActivity.this, new GetTokenResultListener() {
+                @Override
+                public void onSuccess(TokenEntity entity) {
+                    Log.e(TAG, "RefreshAppTokenThread:" + entity.getAccess_token());
+                    getAppToken(entity.getAccess_token());
+                }
+
+                @Override
+                public void onFaild(String error) {
+                    Log.e(TAG, "RefreshAppTokenThread:" + error);
+                }
+            });
+            refreshAppTokenThread.start();
+
+        }
+    };
+
 
     //------------------------------------------
     private static final int ADD_ROLE_REQUEST = 12;
@@ -427,14 +588,16 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
     public void onPageSelected(int position) {
         Log.e("AYD", "刷新onPageSelected:1 " + position);
         pos = position;
-        mFragments.get(pos).getUserLastWeight(UserUtils.get().userId(),
-                userData.getData().getMemberList().get(pos).getFamilyMemeberId());
+//        mFragments.get(pos).getUserLastWeight(UserUtils.get().userId(),
+//                userData.getData().getMemberList().get(pos).getFamilyMemeberId());
+        mFragments.get(pos).getUserLastWeight(usersDataBean.getData().get(position).getGroupId()
+                , usersDataBean.getData().get(position).getMemberInfoId() + "");
         if (position == 0) {
             iv_left.setBackgroundResource(R.mipmap.icon_left_normal);
         } else {
             iv_left.setBackgroundResource(R.mipmap.icon_left_select);
         }
-        if (position == userData.getData().getMemberList().size() - 1) {
+        if (position == usersDataBean.getData().size() - 1) {
             iv_right.setBackgroundResource(R.mipmap.icon_right_normal);
         } else {
             iv_right.setBackgroundResource(R.mipmap.icon_right_select);
@@ -448,8 +611,10 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
             case ViewPager.SCROLL_STATE_IDLE:
             case ViewPager.SCROLL_STATE_DRAGGING:
             case ViewPager.SCROLL_STATE_SETTLING:
-                mFragments.get(pos).getUserLastWeight(UserUtils.get().userId(),
-                        userData.getData().getMemberList().get(pos).getFamilyMemeberId());
+//                mFragments.get(pos).getUserLastWeight(UserUtils.get().userId(),
+//                        userData.getData().getMemberList().get(pos).getFamilyMemeberId());
+                mFragments.get(pos).getUserLastWeight(usersDataBean.getData().get(pos).getGroupId()
+                        , usersDataBean.getData().get(pos).getMemberInfoId() + "");
                 Log.e("AYD", "刷新zoumeizou");
                 break;
         }
@@ -565,7 +730,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
      * @param entity 体重数据
      */
     private void onShowBluetoothTempWeightData(boolean needShowAnim, boolean isLock, final WeightEntity entity) {
-        if (userDataList.size() == 0) return;
+        if (dataBeanList.size() == 0) return;
         mFragments.get(pos).setTempBluetoothWeight(entity);
 //        mFragments.get(position).setTempBluetoothWeight(entity);
 
@@ -637,7 +802,7 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
         lastEntity = curEntity;
         curEntity = entity;
 //        if (null != mCurFragment && mCurFragment.isAdded()) {
-        if (userDataList.size() == 0) return;
+        if (dataBeanList.size() == 0) return;
         mFragments.get(pos).setWeightEntity(entity, lastEntity);
 //        }
     }

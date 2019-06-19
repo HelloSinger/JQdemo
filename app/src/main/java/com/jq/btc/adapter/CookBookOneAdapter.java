@@ -70,7 +70,11 @@ public class CookBookOneAdapter extends RecyclerView.Adapter<CookBookOneAdapter.
 
     @Override
     public int getItemCount() {
-        return menuModels == null ? 0 : menuModels.size();
+        if (menuModels.size() > 12) {
+            return 12;
+        } else {
+            return menuModels == null ? 0 : menuModels.size();
+        }
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

@@ -5,7 +5,8 @@ package com.jq.btc;
  */
 public class ConstantUrl {
     //http://enxcook.xcook.cn:8888/
-    private static String BASE_URL = "http://enxcook.xcook.cn:8888/CookbookResourcePlatform-api/v1/";
+//    private static String BASE_URL = "http://enxcook.xcook.cn:8888/CookbookResourcePlatform-api/v1/";
+    private static String BASE_URL = "http://test.zwh5.xcook.cn:8080/CookbookResourcePlatform-api/v1/";
 
     public static String GET_USER_URL = "https://sso.xcook.cn/v3/family/familymember.info.list";
 
@@ -32,4 +33,7 @@ public class ConstantUrl {
      * 冷启动获取推荐菜谱
      */
     public static String GET_NO_DATA_EMNU = BASE_URL + "cookbook/recomRecipesNoScale";
+
+
+    public static String GET_UER_LIST = BASE_URL + "cookbook/getFamilyDetail";
 }

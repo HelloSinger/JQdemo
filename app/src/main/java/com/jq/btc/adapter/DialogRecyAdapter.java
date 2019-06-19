@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.jq.btc.app.R;
 import com.jq.btc.model.UserData;
+import com.jq.btc.model.UsersDataBean;
 
 import java.util.List;
 
@@ -23,7 +24,8 @@ public class DialogRecyAdapter extends RecyclerView.Adapter<DialogRecyAdapter.My
 
     private Context context;
     private LayoutInflater inflater;
-    private UserData userData;
+    //    private UserData userData;
+    private UsersDataBean usersDataBean;
     RecyItemOnClickListener recyItemOnClickListener;
 
 
@@ -31,9 +33,9 @@ public class DialogRecyAdapter extends RecyclerView.Adapter<DialogRecyAdapter.My
         this.recyItemOnClickListener = recyItemOnClickListener;
     }
 
-    public DialogRecyAdapter(Context context, UserData userData) {
+    public DialogRecyAdapter(Context context, UsersDataBean usersDataBean) {
         this.context = context;
-        this.userData = userData;
+        this.usersDataBean = usersDataBean;
         notifyDataSetChanged();
         inflater = LayoutInflater.from(context);
     }
@@ -50,7 +52,8 @@ public class DialogRecyAdapter extends RecyclerView.Adapter<DialogRecyAdapter.My
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         Glide.with(context).load(R.mipmap.default_head_image).into(holder.iv_add_head);
-        holder.tv_name.setText(userData.getData().getMemberList().get(position).getNickName());
+//        holder.tv_name.setText(userData.getData().getMemberList().get(position).getNickName());
+        holder.tv_name.setText(usersDataBean.getData().get(position).getNickName());
         holder.ll_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +64,7 @@ public class DialogRecyAdapter extends RecyclerView.Adapter<DialogRecyAdapter.My
 
     @Override
     public int getItemCount() {
-        return userData == null ? 0 : userData.getData().getMemberList().size();
+        return usersDataBean == null ? 0 : usersDataBean.getData().size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

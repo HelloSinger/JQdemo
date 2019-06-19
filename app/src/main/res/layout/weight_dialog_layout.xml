@@ -22,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="91px"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -261,7 +261,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <ImageView
             android:layout_width="356px"

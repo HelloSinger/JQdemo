@@ -36,9 +36,11 @@ import com.jq.btc.helper.WeighDataParser;
 import com.jq.btc.homePage.NetActivity;
 import com.jq.btc.listener.OnDoubleClickListener;
 import com.jq.btc.model.LastWeightModel;
+import com.jq.btc.model.MatchModel;
 import com.jq.btc.model.MenuModel;
 import com.jq.btc.model.NoDataModel;
 import com.jq.btc.model.UserData;
+import com.jq.btc.model.UsersDataBean;
 import com.jq.btc.utils.BMToastUtil;
 import com.jq.btc.utils.NetWorkUtils;
 import com.jq.btc.utils.RecyclerViewSpacesItemDecoration;
@@ -59,11 +61,14 @@ import com.lzy.okgo.model.Response;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TimeZone;
 
 import static com.growingio.android.sdk.utils.ThreadUtils.runOnUiThread;
 
@@ -188,6 +193,9 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     private LinearLayout ll_menu;
     private RelativeLayout ll_failed;
 
+    private UsersDataBean usersDataBean;
+
+
     public interface ViewPagerCurrentListener {
         void setViewPagerCurrent(int pos);
     }
@@ -247,10 +255,12 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         if (!NetWorkUtils.isNetworkAvailable(getContext())) {
             BMToastUtil.showToastShort(getContext(), "当前无网络");
         } else {
-            Log.e("AYDfragment", userData.getData() + "");
+//            Log.e("AYDfragment", userData.getData() + "");
             try {
-                if (userData.getData() == null) return;
-                getUserLastWeight(UserUtils.get().userId(), userData.getData().getMemberList().get(0).getFamilyMemeberId());
+                if (usersDataBean.getData() == null) return;
+//                getUserLastWeight(UserUtils.get().userId(), userData.getData().getMemberList().get(0).getFamilyMemeberId());
+                getUserLastWeight(usersDataBean.getData().get(0).getGroupId()
+                        , usersDataBean.getData().get(0).getMemberInfoId() + "");
             } catch (Exception e) {
                 Log.e("AYD", "onViewCreated: " + e);
             }
@@ -355,6 +365,11 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
 //        getUserLastWeight(UserUtils.get().userId(), userData.getData().getMemberList().get(pos).getFamilyMemeberId());
     }
 
+    public void setUserBean(UsersDataBean userBean, int pos) {
+        this.usersDataBean = userBean;
+        this.position = pos;
+    }
+
 
     /**
      * 匹配弹窗点击事件
@@ -370,17 +385,33 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
 //        af.setWeixin("123123");
 //        Account.getInstance(getActivity()).setAccountInfo(af);
         roleInfo = new RoleInfo();
-        roleInfo.setSex(userData.getData().getMemberList().get(pos).getSex());
-        roleInfo.setNickname(userData.getData().getMemberList().get(pos).getNickName());
-        roleInfo.setHeight(Integer.parseInt(userData.getData().getMemberList().get(pos).getHeight()));
-        roleInfo.setUseId(userData.getData().getMemberList().get(pos).getFamilyMemeberId());
+//        roleInfo.setSex(userData.getData().getMemberList().get(pos).getSex());
+//        roleInfo.setNickname(userData.getData().getMemberList().get(pos).getNickName());
+//        roleInfo.setHeight(Integer.parseInt(userData.getData().getMemberList().get(pos).getHeight()));
+//        roleInfo.setUseId(userData.getData().getMemberList().get(pos).getFamilyMemeberId());
+//        roleInfo.setBirthday(userData.getData().getMemberList().get(pos).getBirthday());
+        int sex = usersDataBean.getData().get(pos).getSex();
+        if (sex == 1) {
+            roleInfo.setSex("男");
+        } else {
+            roleInfo.setSex("女");
+        }
+        roleInfo.setNickname(usersDataBean.getData().get(pos).getNickName());
+        roleInfo.setHeight((int) usersDataBean.getData().get(pos).getHeight());
+        roleInfo.setUseId(usersDataBean.getData().get(pos).getMemberInfoId() + "");
+        roleInfo.setBirthday(stampToDate(String.valueOf(usersDataBean.getData().get(pos).getBirthday())));
+
+        Log.e("Sr", stampToDate(String.valueOf(usersDataBean.getData().get(pos).getBirthday())) + "");
         roleInfo.setAccount_id(195871);
-        roleInfo.setBirthday(userData.getData().getMemberList().get(pos).getBirthday());
         roleInfo.setId(1993456);
         roleInfo.setCurrent_state(1);
         roleInfo.setCreate_time("2018-11-29 11:01:11");
-        roleInfo.setWeight_init(Float.parseFloat(userData.getData().getMemberList().get(pos).getWeight()));
-        roleInfo.setWeight_goal(Float.parseFloat(userData.getData().getMemberList().get(pos).getWeight()));
+//        roleInfo.setWeight_init(Float.parseFloat(userData.getData().getMemberList().get(pos).getWeight()));
+//        roleInfo.setWeight_goal(Float.parseFloat(userData.getData().getMemberList().get(pos).getWeight()));
+
+        roleInfo.setWeight_init((float) usersDataBean.getData().get(pos).getWeight());
+        roleInfo.setWeight_goal((float) usersDataBean.getData().get(pos).getWeight());
+
         roleInfo.setRole_type(0);
 //        Account.getInstance(getActivity()).setRoleInfo(roleInfo);
         Log.e("AYD", "onSuccess: " + roleInfo.toString());
@@ -388,8 +419,8 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         age = WeighDataParser.getCalAge(roleInfo, entity);
         height = WeighDataParser.getCalHeight(roleInfo, entity);
         String sexStr = WeighDataParser.getCalSex(roleInfo, entity);
-        sex = (byte) (sexStr.equals("女") ? 0 : 1);
-        csAlgoBuilder = new CsAlgoBuilder(height, entity.getWeight(), sex, age, entity.getR1());
+        this.sex = (byte) (sexStr.equals("女") ? 0 : 1);
+        csAlgoBuilder = new CsAlgoBuilder(height, entity.getWeight(), this.sex, age, entity.getR1());
         util = new BuildItemsUtil(getContext(), mCurrentWeightEntity, roleInfo, csAlgoBuilder);
         IndexDataItem boneItem = util.buildBoneItem();
         IndexDataItem muscleItem = util.buildMuscleItem();
@@ -572,14 +603,24 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         DecimalFormat df = new DecimalFormat("#.00");//此为保留1位小数，若想保留2位小数，则填写#.00  ，以此类推
         String temp = df.format(weight);
         weight = Double.valueOf(temp);
-        tv_user_name.setText(userData.getData().getMemberList().get(position).getNickName());
+//        tv_user_name.setText(userData.getData().getMemberList().get(position).getNickName());
+        tv_user_name.setText(usersDataBean.getData().get(position).getNickName());
         matchDialog(weight);
 //        mactchUse(UserUtils.get().userId(), SpUtils.getInstance(getContext()).getUserid(), weight);
     }
 
+    public static String stampToDate(String s) {
+        String res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        long lt = new Long(s);
+        Date date = new Date(lt);
+        res = simpleDateFormat.format(date);
+        return res;
+    }
 
     private void matchDialog(double weight) {
-        weightDialog.setUserData(userData);
+//        weightDialog.setUserData(userData);
+        weightDialog.setUsersDataBean(usersDataBean);
         weightDialog.setMatchVisibility(true);
         weightDialog.setProgressVisibility(false);
         String wei = formatter.format(weight);
@@ -610,13 +651,14 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                 return leftIndex - rightIndex;
             }
         });
-        upData(UserUtils.get().userId(), roleInfo.getUseId(),
+        upData(/*UserUtils.get().userId()*/usersDataBean.getData().get(_pos).getGroupId(), roleInfo.getUseId(),
                 SpUtils.getInstance(getContext()).getMac(),
                 SpUtils.getInstance(getContext()).getProvinceId(),
                 SpUtils.getInstance(getContext()).getProvince(),
                 SpUtils.getInstance(getContext()).getCityId(),
                 SpUtils.getInstance(getContext()).getCity(), "", "",
-                sex + "", userData.getData().getMemberList().get(_pos).getBirthday() + "", height + "", score + "", weight + ""
+                sex + "", /*userData.getData().getMemberList().get(_pos).getBirthday()*/
+                stampToDateNO(String.valueOf(usersDataBean.getData().get(_pos).getBirthday())) + "", height + "", score + "", weight + ""
                 , items.get(0).valueText + "," + metabolismLevel + "," + metabolismMax + "," + metabolismValue
                 , items.get(1).valueText + "," + boneLevel + "," + boneMax + "," + boneValue
                 , items.get(2).valueText + "," + muscleLevel + "," + muscleMax + "," + muscleValue
@@ -846,8 +888,11 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
 
     private void toMoreActivity() {
         Intent intent = new Intent(getActivity(), BodyFatMoreDataActivity.class);
-        intent.putExtra("useId", userData.getData().getMemberList().get(position).getFamilyMemberId());
-        intent.putExtra("useName", userData.getData().getMemberList().get(position).getNickName());
+//        intent.putExtra("useId", userData.getData().getMemberList().get(position).getFamilyMemberId());
+//        intent.putExtra("useName", userData.getData().getMemberList().get(position).getNickName());
+        intent.putExtra("famaliyId", usersDataBean.getData().get(position).getGroupId());
+        intent.putExtra("useId", usersDataBean.getData().get(position).getMemberInfoId() + "");
+        intent.putExtra("useName", usersDataBean.getData().get(position).getNickName());
         intent.putExtra("pos", position);
         startActivity(intent);
         getActivity().overridePendingTransition(R.anim.slide_bottom_in, 0);
@@ -860,7 +905,6 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
      * @param famaliyId
      * @param userId
      */
-    long startTime3 = System.currentTimeMillis(); //起始时间
 
     public void getUserLastWeight(final String famaliyId, final String userId) {
         final JSONObject jsonObject = new JSONObject();
@@ -879,10 +923,15 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                         try {
                             lastWeightModel = new Gson().fromJson(response.body(), LastWeightModel.class);
 
-                            if (lastWeightModel.getData() == null) {
-                                if (userData.getData().getMemberList().size() == 0) return;
-                                tv_user_name.setText(userData.getData().getMemberList().get(position).getNickName());
-                                tv_recommend.setText("为" + userData.getData().getMemberList().get(position).getNickName() + "推荐的健康菜谱");
+                            if (lastWeightModel.getData().getWeight() == null) {
+//                                if (userData.getData().getMemberList().size() == 0) return;
+                                if (usersDataBean.getData().size() == 0) return;
+//                                tv_user_name.setText(userData.getData().getMemberList().get(position).getNickName());
+//                                tv_recommend.setText("为" + userData.getData().getMemberList().get(position).getNickName() + "推荐的健康菜谱");
+                                ll_fragment_loading.setVisibility(View.GONE);
+                                tv_user_name.setText(usersDataBean.getData().get(position).getNickName());
+                                tv_recommend.setText("为" + usersDataBean.getData().get(position).getNickName() + "推荐的健康菜谱");
+
                                 tv_weight.setText("一 一");
                                 tv_weight_unit.setText("");
                                 tv_body_fat.setText("一 一");
@@ -897,7 +946,51 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 tv_score.setText("");
                                 tv_tips.setText("使用体脂秤秤重，我们会根据你的健康信息，给出健康及营养建议哟～");
                                 tv_recommend_two.setVisibility(View.VISIBLE);
-                                getNoDataMenu(famaliyId, userId, SpUtils.getInstance(getContext()).getMac());
+//                                getNoDataMenu(famaliyId, userId, SpUtils.getInstance(getContext()).getMac());
+
+                                lastWeightModel.getData().getRecipes().get(0).setRecipename("蜂蜜烤面包片");
+                                lastWeightModel.getData().getRecipes().get(0).setRecipeimage("http://data.haier.net/oss/M00/00/FF/8ae4828369337ae50169c23424a90f84.jpg");
+                                lastWeightModel.getData().getRecipes().get(0).setRecipetag("智慧菜谱");
+                                lastWeightModel.getData().getRecipes().get(0).setRecipeid("22298");
+
+                                //晶钻Q3
+                                lastWeightModel.getData().getRecipes().get(1).setRecipename("南瓜银耳莲子羹");
+                                lastWeightModel.getData().getRecipes().get(1).setRecipeimage("http://eco.haier.com/group1/M00/01/4A/Cp8ljlrRYOGAZ41QAABcpeZb5QM363.jpg");
+                                lastWeightModel.getData().getRecipes().get(1).setRecipetag("智慧菜谱");
+                                lastWeightModel.getData().getRecipes().get(1).setRecipeid("22209");
+
+                                //OBT600-8GU1
+                                lastWeightModel.getData().getRecipes().get(4).setRecipename("蒜蓉扇贝");
+                                lastWeightModel.getData().getRecipes().get(4).setRecipeimage("http://data.haier.net/oss/M00/00/FF/8ae48183693374af0169946d1e910a38.jpg");
+                                lastWeightModel.getData().getRecipes().get(4).setRecipetag("智慧菜谱");
+                                lastWeightModel.getData().getRecipes().get(4).setRecipeid("22285");
+
+                                //OBT600-8GU1
+                                lastWeightModel.getData().getRecipes().get(5).setRecipename("锡纸金针菇");
+                                lastWeightModel.getData().getRecipes().get(5).setRecipeimage("http://data.haier.net/oss/M00/00/FF/8ae4828369337ae5016a04c0c3da1690.jpg");
+                                lastWeightModel.getData().getRecipes().get(5).setRecipetag("智慧菜谱");
+                                lastWeightModel.getData().getRecipes().get(5).setRecipeid("22313");
+
+                                //馨厨V8
+                                lastWeightModel.getData().getRecipes().get(6).setRecipename("菠萝蔬菜饮");
+                                lastWeightModel.getData().getRecipes().get(6).setRecipeimage("http://eco.haier.com/group1/M00/02/7A/Cp8ljlwkhW2AXyaXAAHSMPgSzWI199.png");
+                                lastWeightModel.getData().getRecipes().get(6).setRecipetag("智慧菜谱");
+                                lastWeightModel.getData().getRecipes().get(6).setRecipeid("22238");
+
+                                //
+                                lastWeightModel.getData().getRecipes().get(8).setRecipename("香烤排骨");
+                                lastWeightModel.getData().getRecipes().get(8).setRecipeimage("http://eco.haier.com/group1/M00/02/82/Cp8ljlyHXdOACzHUAAAzLdY0y6I923.jpg");
+                                lastWeightModel.getData().getRecipes().get(8).setRecipetag("智慧菜谱");
+                                lastWeightModel.getData().getRecipes().get(8).setRecipeid("22043");
+
+                                //馨厨V8
+                                lastWeightModel.getData().getRecipes().get(9).setRecipename("浓香鲫鱼汤");
+                                lastWeightModel.getData().getRecipes().get(9).setRecipeimage("http://eco.haier.com/group1/M00/02/85/Cp8ljlyIdBmAM2qOAABGEihh8W0671.jpg");
+                                lastWeightModel.getData().getRecipes().get(9).setRecipetag("智慧菜谱");
+                                lastWeightModel.getData().getRecipes().get(9).setRecipeid("22278");
+
+                                cookBookThreeAdapter.setMenuModels(lastWeightModel.getData().getRecipes());
+                                rcy_menu.setAdapter(cookBookThreeAdapter);
                             } else {
 //                            for (int i = 0; i < lastWeightModel.getData().size(); i++) {
                                 //.get(lastWeightModel.getData().size() - 1);
@@ -914,9 +1007,13 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 String score = lastWeightModel.getData().getScore();
                                 String axunge = lastWeightModel.getData().getBody();
                                 String[] axungeArray = axunge.split(",");
-                                if (userData.getData().getMemberList().size() == 0) return;
-                                tv_user_name.setText(userData.getData().getMemberList().get(position).getNickName());
-                                tv_recommend.setText("为" + userData.getData().getMemberList().get(position).getNickName() + "推荐的健康菜谱");
+//                                if (userData.getData().getMemberList().size() == 0) return;
+//                                tv_user_name.setText(userData.getData().getMemberList().get(position).getNickName());
+//                                tv_recommend.setText("为" + userData.getData().getMemberList().get(position).getNickName() + "推荐的健康菜谱");
+                                if (usersDataBean.getData().size() == 0) return;
+                                tv_user_name.setText(usersDataBean.getData().get(position).getNickName());
+                                tv_recommend.setText("为" + usersDataBean.getData().get(position).getNickName() + "推荐的健康菜谱");
+
                                 tv_recommend_two.setVisibility(View.GONE);
                                 tv_weight.setText(lastWeight + "");
                                 tv_weight_unit.setText("KG");
@@ -944,15 +1041,50 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 mBmiLevelText_one.setText(bmiArray[1]);
                                 tv_score.setText("身体得分：" + score + "分。");
                                 tv_tips.setText(lastWeightModel.getData().getHealith());
-                                lastWeightModel.getData().getRecipes().get(8).setRecipename("黑椒牛排");
-                                lastWeightModel.getData().getRecipes().get(8).setRecipeimage("http://eco.haier.com/group1/M00/02/7E/Cp8ljlx5I1OAfSAXAAA5nruVWNI740.jpg");
-                                lastWeightModel.getData().getRecipes().get(8).setRecipetag("润燥/养肝明目/健脾");
-                                lastWeightModel.getData().getRecipes().get(8).setRecipeid("22257");
+                                //OBT600-8GU1
+                                lastWeightModel.getData().getRecipes().get(0).setRecipename("蜂蜜烤面包片");
+                                lastWeightModel.getData().getRecipes().get(0).setRecipeimage("http://data.haier.net/oss/M00/00/FF/8ae4828369337ae50169c23424a90f84.jpg");
+                                lastWeightModel.getData().getRecipes().get(0).setRecipetag("智慧菜谱");
+                                lastWeightModel.getData().getRecipes().get(0).setRecipeid("22298");
+
+                                //晶钻Q3
+                                lastWeightModel.getData().getRecipes().get(1).setRecipename("南瓜银耳莲子羹");
+                                lastWeightModel.getData().getRecipes().get(1).setRecipeimage("http://eco.haier.com/group1/M00/01/4A/Cp8ljlrRYOGAZ41QAABcpeZb5QM363.jpg");
+                                lastWeightModel.getData().getRecipes().get(1).setRecipetag("智慧菜谱");
+                                lastWeightModel.getData().getRecipes().get(1).setRecipeid("22209");
+
+                                //OBT600-8GU1
+                                lastWeightModel.getData().getRecipes().get(4).setRecipename("蒜蓉扇贝");
+                                lastWeightModel.getData().getRecipes().get(4).setRecipeimage("http://data.haier.net/oss/M00/00/FF/8ae48183693374af0169946d1e910a38.jpg");
+                                lastWeightModel.getData().getRecipes().get(4).setRecipetag("智慧菜谱");
+                                lastWeightModel.getData().getRecipes().get(4).setRecipeid("22285");
+
+                                //OBT600-8GU1
+                                lastWeightModel.getData().getRecipes().get(5).setRecipename("锡纸金针菇");
+                                lastWeightModel.getData().getRecipes().get(5).setRecipeimage("http://data.haier.net/oss/M00/00/FF/8ae4828369337ae5016a04c0c3da1690.jpg");
+                                lastWeightModel.getData().getRecipes().get(5).setRecipetag("智慧菜谱");
+                                lastWeightModel.getData().getRecipes().get(5).setRecipeid("22313");
+
+                                //馨厨V8
+                                lastWeightModel.getData().getRecipes().get(6).setRecipename("菠萝蔬菜饮");
+                                lastWeightModel.getData().getRecipes().get(6).setRecipeimage("http://eco.haier.com/group1/M00/02/7A/Cp8ljlwkhW2AXyaXAAHSMPgSzWI199.png");
+                                lastWeightModel.getData().getRecipes().get(6).setRecipetag("智慧菜谱");
+                                lastWeightModel.getData().getRecipes().get(6).setRecipeid("22238");
+
+                                //
+                                lastWeightModel.getData().getRecipes().get(8).setRecipename("香烤排骨");
+                                lastWeightModel.getData().getRecipes().get(8).setRecipeimage("http://eco.haier.com/group1/M00/02/82/Cp8ljlyHXdOACzHUAAAzLdY0y6I923.jpg");
+                                lastWeightModel.getData().getRecipes().get(8).setRecipetag("智慧菜谱");
+                                lastWeightModel.getData().getRecipes().get(8).setRecipeid("22043");
+
+                                //馨厨V8
+                                lastWeightModel.getData().getRecipes().get(9).setRecipename("浓香鲫鱼汤");
+                                lastWeightModel.getData().getRecipes().get(9).setRecipeimage("http://eco.haier.com/group1/M00/02/85/Cp8ljlyIdBmAM2qOAABGEihh8W0671.jpg");
+                                lastWeightModel.getData().getRecipes().get(9).setRecipetag("智慧菜谱");
+                                lastWeightModel.getData().getRecipes().get(9).setRecipeid("22278");
+
                                 cookBookThreeAdapter.setMenuModels(lastWeightModel.getData().getRecipes());
                                 rcy_menu.setAdapter(cookBookThreeAdapter);
-                                long endTime = System.currentTimeMillis(); //结束时间
-                                long runTime = endTime - startTime3;
-                                Log.e("time", "获取最后一次执行时间" + String.format("方法使用时间 %d ms", runTime));
 //                        }
                             }
                         } catch (Exception e) {
@@ -965,8 +1097,6 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     /**
      * 上传体脂数据
      */
-    long startTime = System.currentTimeMillis(); //起始时间
-
     private void upData(final String famaliyId, final String userId, String mac_id, String
             province_id, String province_name,
                         String city_id, String city_name, String county_id, String county_name, String
@@ -1008,6 +1138,9 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                     @Override
                     public void onSuccess(Response<String> response) {
                         MenuModel menuModel = new Gson().fromJson(response.body(), MenuModel.class);
+                        Log.e("上传数据:", "" + response.body() + "\n"
+                                + "参数:" + String.valueOf(json) + "\n"
+                                + "Url--->" + ConstantUrl.UPDATA_URL);
                         if (SpUtils.getInstance(getContext()).getIsDialogAdd()) {
                             Log.e("AYD", "json" + String.valueOf(json));
                             weightDialog.dismiss();
@@ -1027,16 +1160,52 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 weightDialog.setPersonlData("BMI: " + entity.getBmi(), userName, weight,
                                         axungeArray[0] + "", df.format(bone) + "", df.format(muscle) + "");
                                 if (recipes == null) return;
-//                                recipes = menuModel.getData().getData().getRecipes();
-                                menuModel.getData().getData().getRecipes().get(8).setRecipename("黑椒牛排");
-                                menuModel.getData().getData().getRecipes().get(8).setRecipeimage("http://eco.haier.com/group1/M00/02/7E/Cp8ljlx5I1OAfSAXAAA5nruVWNI740.jpg");
-                                menuModel.getData().getData().getRecipes().get(8).setRecipetag("润燥/养肝明目/健脾");
-                                menuModel.getData().getData().getRecipes().get(8).setRecipeid("22257");
+
+                                //OBT600-8GU1
+
+                                menuModel.getData().getData().getRecipes().get(0).setRecipename("蜂蜜烤面包片");
+                                menuModel.getData().getData().getRecipes().get(0).setRecipeimage("http://data.haier.net/oss/M00/00/FF/8ae4828369337ae50169c23424a90f84.jpg");
+                                menuModel.getData().getData().getRecipes().get(0).setRecipetag("智慧菜谱");
+                                menuModel.getData().getData().getRecipes().get(0).setRecipeid("22298");
+
+                                //晶钻Q3
+                                menuModel.getData().getData().getRecipes().get(1).setRecipename("南瓜银耳莲子羹");
+                                menuModel.getData().getData().getRecipes().get(1).setRecipeimage("http://eco.haier.com/group1/M00/01/4A/Cp8ljlrRYOGAZ41QAABcpeZb5QM363.jpg");
+                                menuModel.getData().getData().getRecipes().get(1).setRecipetag("智慧菜谱");
+                                menuModel.getData().getData().getRecipes().get(1).setRecipeid("22209");
+
+                                //OBT600-8GU1
+                                menuModel.getData().getData().getRecipes().get(4).setRecipename("蒜蓉扇贝");
+                                menuModel.getData().getData().getRecipes().get(4).setRecipeimage("http://data.haier.net/oss/M00/00/FF/8ae48183693374af0169946d1e910a38.jpg");
+                                menuModel.getData().getData().getRecipes().get(4).setRecipetag("智慧菜谱");
+                                menuModel.getData().getData().getRecipes().get(4).setRecipeid("22285");
+
+                                //OBT600-8GU1
+                                menuModel.getData().getData().getRecipes().get(5).setRecipename("锡纸金针菇");
+                                menuModel.getData().getData().getRecipes().get(5).setRecipeimage("http://data.haier.net/oss/M00/00/FF/8ae4828369337ae5016a04c0c3da1690.jpg");
+                                menuModel.getData().getData().getRecipes().get(5).setRecipetag("智慧菜谱");
+                                menuModel.getData().getData().getRecipes().get(5).setRecipeid("22313");
+
+                                //馨厨V8
+                                menuModel.getData().getData().getRecipes().get(6).setRecipename("菠萝蔬菜饮");
+                                menuModel.getData().getData().getRecipes().get(6).setRecipeimage("http://eco.haier.com/group1/M00/02/7A/Cp8ljlwkhW2AXyaXAAHSMPgSzWI199.png");
+                                menuModel.getData().getData().getRecipes().get(6).setRecipetag("智慧菜谱");
+                                menuModel.getData().getData().getRecipes().get(6).setRecipeid("22238");
+
+                                //
+                                menuModel.getData().getData().getRecipes().get(8).setRecipename("香烤排骨");
+                                menuModel.getData().getData().getRecipes().get(8).setRecipeimage("http://eco.haier.com/group1/M00/02/82/Cp8ljlyHXdOACzHUAAAzLdY0y6I923.jpg");
+                                menuModel.getData().getData().getRecipes().get(8).setRecipetag("智慧菜谱");
+                                menuModel.getData().getData().getRecipes().get(8).setRecipeid("22043");
+
+                                //馨厨V8
+                                menuModel.getData().getData().getRecipes().get(9).setRecipename("浓香鲫鱼汤");
+                                menuModel.getData().getData().getRecipes().get(9).setRecipeimage("http://eco.haier.com/group1/M00/02/85/Cp8ljlyIdBmAM2qOAABGEihh8W0671.jpg");
+                                menuModel.getData().getData().getRecipes().get(9).setRecipetag("智慧菜谱");
+                                menuModel.getData().getData().getRecipes().get(9).setRecipeid("22278");
+
                                 cookBookAdapter.setMenuModels(menuModel.getData().getData().getRecipes());
                                 rcy_menu.setAdapter(cookBookAdapter);
-                                long endTime = System.currentTimeMillis(); //结束时间
-                                long runTime = endTime - startTime;
-                                Log.e("time", "上传数据执行时间" + String.format("方法使用时间 %d ms", runTime));
                             } else {
                                 weightDialog.dismiss();
                                 weightDialog.setLoading(false);
@@ -1076,7 +1245,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                             @Override
                             public void run() {
                                 //此时已在主线程中，更新UI
-                                weightDialog.setUserData(userData);
+//                                weightDialog.setUserData(userData);
                                 weightDialog.setMatchVisibility(true);
                                 weightDialog.setProgressVisibility(false);
                                 String wei = formatter.format(weight);
@@ -1088,8 +1257,6 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                     }
                 });
     }
-
-    long startTime1 = System.currentTimeMillis(); //起始时间
 
     private void getNoDataMenu(String famaliyId, String userId, String macId) {
         final JSONObject json = new JSONObject();
@@ -1118,15 +1285,49 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 ll_menu.setVisibility(View.GONE);
                                 return;
                             }
-                            noDataModel.getData().getRecipes().get(8).setRecipename("黑椒牛排");
-                            noDataModel.getData().getRecipes().get(8).setRecipeimage("http://eco.haier.com/group1/M00/02/7E/Cp8ljlx5I1OAfSAXAAA5nruVWNI740.jpg");
-                            noDataModel.getData().getRecipes().get(8).setRecipetag("润燥/养肝明目/健脾");
-                            noDataModel.getData().getRecipes().get(8).setRecipeid("22257");
+                            //OBT600-8GU1;OBT600-8HGU1
+                            noDataModel.getData().getRecipes().get(0).setRecipename("蜂蜜烤面包片");
+                            noDataModel.getData().getRecipes().get(0).setRecipeimage("http://data.haier.net/oss/M00/00/FF/8ae4828369337ae50169c23424a90f84.jpg");
+                            noDataModel.getData().getRecipes().get(0).setRecipetag("智慧菜谱");
+                            noDataModel.getData().getRecipes().get(0).setRecipeid("22298");
+
+                            //晶钻Q3
+                            noDataModel.getData().getRecipes().get(1).setRecipename("南瓜银耳莲子羹");
+                            noDataModel.getData().getRecipes().get(1).setRecipeimage("http://eco.haier.com/group1/M00/01/4A/Cp8ljlrRYOGAZ41QAABcpeZb5QM363.jpg");
+                            noDataModel.getData().getRecipes().get(1).setRecipetag("智慧菜谱");
+                            noDataModel.getData().getRecipes().get(1).setRecipeid("22209");
+
+                            //OBT600-8GU1;OBT600-8HGU1
+                            noDataModel.getData().getRecipes().get(4).setRecipename("蒜蓉扇贝");
+                            noDataModel.getData().getRecipes().get(4).setRecipeimage("http://data.haier.net/oss/M00/00/FF/8ae48183693374af0169946d1e910a38.jpg");
+                            noDataModel.getData().getRecipes().get(4).setRecipetag("智慧菜谱");
+                            noDataModel.getData().getRecipes().get(4).setRecipeid("22285");
+
+                            //OBT600-8GU1;OBT600-8HGU1
+                            noDataModel.getData().getRecipes().get(5).setRecipename("锡纸金针菇");
+                            noDataModel.getData().getRecipes().get(5).setRecipeimage("http://data.haier.net/oss/M00/00/FF/8ae4828369337ae5016a04c0c3da1690.jpg");
+                            noDataModel.getData().getRecipes().get(5).setRecipetag("智慧菜谱");
+                            noDataModel.getData().getRecipes().get(5).setRecipeid("22313");
+
+                            //馨厨V8
+                            noDataModel.getData().getRecipes().get(6).setRecipename("菠萝蔬菜饮");
+                            noDataModel.getData().getRecipes().get(6).setRecipeimage("http://eco.haier.com/group1/M00/02/7A/Cp8ljlwkhW2AXyaXAAHSMPgSzWI199.png");
+                            noDataModel.getData().getRecipes().get(6).setRecipetag("智慧菜谱");
+                            noDataModel.getData().getRecipes().get(6).setRecipeid("22238");
+
+                            //OBT600-8HGU1
+                            noDataModel.getData().getRecipes().get(8).setRecipename("香烤排骨");
+                            noDataModel.getData().getRecipes().get(8).setRecipeimage("http://eco.haier.com/group1/M00/02/82/Cp8ljlyHXdOACzHUAAAzLdY0y6I923.jpg");
+                            noDataModel.getData().getRecipes().get(8).setRecipetag("智慧菜谱");
+                            noDataModel.getData().getRecipes().get(8).setRecipeid("22043");
+
+                            //馨厨V8
+                            noDataModel.getData().getRecipes().get(9).setRecipename("浓香鲫鱼汤");
+                            noDataModel.getData().getRecipes().get(9).setRecipeimage("http://eco.haier.com/group1/M00/02/85/Cp8ljlyIdBmAM2qOAABGEihh8W0671.jpg");
+                            noDataModel.getData().getRecipes().get(9).setRecipetag("智慧菜谱");
+                            noDataModel.getData().getRecipes().get(9).setRecipeid("22278");
                             cookBookNoDataAdapter.setMenuModels(noDataModel.getData().getRecipes());
                             rcy_menu.setAdapter(cookBookNoDataAdapter);
-                            long endTime = System.currentTimeMillis(); //结束时间
-                            long runTime = endTime - startTime1;
-                            Log.e("time", "冷启动获取数据执行时间" + String.format("方法使用时间 %d ms", runTime));
                         } else {
                             ll_failed.setVisibility(View.VISIBLE);
                             ll_menu.setVisibility(View.GONE);
@@ -1139,10 +1340,61 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void setItemClickListener(int pos) {
         if (recipes == null) return;
-        if (pos == 8) {
+        if (pos == 0) {
             Intent intent = new Intent();
             intent.setAction("com.android.cookbook.detail");
-            intent.putExtra("i03", "22257");
+            intent.putExtra("i03", "22298");
+            intent.putExtra("typeId", "201043cd34d384341e01764fc9144be7f5ac8dce0b95128926ae6269d8f30ac0");
+            intent.putExtra("devcieType", "OBT600-8HGU1");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else if (pos == 1) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.brokenmachine.cookbook.detail");
+            intent.putExtra("i03", "22209");
+            intent.putExtra("current_type_id", "2010338b2020c0342809744bdb436a000000e260f4651650cc2fbd1f7b625cc0");
+            intent.putExtra("device_type", "晶钻Q3");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+
+        } else if (pos == 4) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.cookbook.detail");
+            intent.putExtra("i03", "22285");
+            intent.putExtra("typeId", "201043cd34d384341e01764fc9144be7f5ac8dce0b95128926ae6269d8f30ac0");
+            intent.putExtra("devcieType", "OBT600-8HGU1");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else if (pos == 5) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.cookbook.detail");
+            intent.putExtra("i03", "22313");
+            intent.putExtra("typeId", "201043cd34d384341e01764fc9144be7f5ac8dce0b95128926ae6269d8f30ac0");
+            intent.putExtra("devcieType", "OBT600-8HGU1");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else if (pos == 6) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.brokenmachine.cookbook.detail");
+            intent.putExtra("i03", "22238");
+            intent.putExtra("current_type_id", "2010338b2020c0342809ccc721c671000000087ac6d57fcf66e1b311781aa6c0");
+            intent.putExtra("device_type", "馨厨V8");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else if (pos == 8) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.cookbook.detail");
+            intent.putExtra("i03", "22043");
+            intent.putExtra("typeId", "201043cd34d384341e01764fc9144be7f5ac8dce0b95128926ae6269d8f30ac0");
+            intent.putExtra("devcieType", "OBT600-8HGU1");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else if (pos == 9) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.brokenmachine.cookbook.detail");
+            intent.putExtra("i03", "22278");
+            intent.putExtra("current_type_id", "2010338b2020c0342809ccc721c671000000087ac6d57fcf66e1b311781aa6c0");
+            intent.putExtra("device_type", "馨厨V8");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else {
@@ -1160,15 +1412,67 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
             getActivity().startActivity(intent);
 //        SpUtils.getInstance(getContext()).putPos(position);
         }
+
     }
 
     @Override
     public void setItemClickListener1(int pos) {
         if (noDataModel.getData() == null) return;
-        if (pos == 8) {
+        if (pos == 0) {
             Intent intent = new Intent();
             intent.setAction("com.android.cookbook.detail");
-            intent.putExtra("i03", "22257");
+            intent.putExtra("i03", "22298");
+            intent.putExtra("typeId", "201043cd34d384341e01764fc9144be7f5ac8dce0b95128926ae6269d8f30ac0");
+            intent.putExtra("devcieType", "OBT600-8HGU1");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else if (pos == 1) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.brokenmachine.cookbook.detail");
+            intent.putExtra("i03", "22209");
+            intent.putExtra("current_type_id", "2010338b2020c0342809744bdb436a000000e260f4651650cc2fbd1f7b625cc0");
+            intent.putExtra("device_type", "晶钻Q3");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+
+        } else if (pos == 4) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.cookbook.detail");
+            intent.putExtra("i03", "22285");
+            intent.putExtra("typeId", "201043cd34d384341e01764fc9144be7f5ac8dce0b95128926ae6269d8f30ac0");
+            intent.putExtra("devcieType", "OBT600-8HGU1");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else if (pos == 5) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.cookbook.detail");
+            intent.putExtra("i03", "22313");
+            intent.putExtra("typeId", "201043cd34d384341e01764fc9144be7f5ac8dce0b95128926ae6269d8f30ac0");
+            intent.putExtra("devcieType", "OBT600-8HGU1");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else if (pos == 6) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.brokenmachine.cookbook.detail");
+            intent.putExtra("i03", "22238");
+            intent.putExtra("current_type_id", "2010338b2020c0342809ccc721c671000000087ac6d57fcf66e1b311781aa6c0");
+            intent.putExtra("device_type", "馨厨V8");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else if (pos == 8) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.cookbook.detail");
+            intent.putExtra("i03", "22043");
+            intent.putExtra("typeId", "201043cd34d384341e01764fc9144be7f5ac8dce0b95128926ae6269d8f30ac0");
+            intent.putExtra("devcieType", "OBT600-8HGU1");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else if (pos == 9) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.brokenmachine.cookbook.detail");
+            intent.putExtra("i03", "22278");
+            intent.putExtra("current_type_id", "2010338b2020c0342809ccc721c671000000087ac6d57fcf66e1b311781aa6c0");
+            intent.putExtra("device_type", "馨厨V8");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else {
@@ -1191,10 +1495,61 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void setItemClickListener2(int pos) {
         if (lastWeightModel.getData() == null) return;
-        if (pos == 8) {
+        if (pos == 0) {
             Intent intent = new Intent();
             intent.setAction("com.android.cookbook.detail");
-            intent.putExtra("i03", "22257");
+            intent.putExtra("i03", "22298");
+            intent.putExtra("typeId", "201043cd34d384341e01764fc9144be7f5ac8dce0b95128926ae6269d8f30ac0");
+            intent.putExtra("devcieType", "OBT600-8HGU1");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else if (pos == 1) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.brokenmachine.cookbook.detail");
+            intent.putExtra("i03", "22209");
+            intent.putExtra("current_type_id", "2010338b2020c0342809744bdb436a000000e260f4651650cc2fbd1f7b625cc0");
+            intent.putExtra("device_type", "晶钻Q3");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+
+        } else if (pos == 4) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.cookbook.detail");
+            intent.putExtra("i03", "22285");
+            intent.putExtra("typeId", "201043cd34d384341e01764fc9144be7f5ac8dce0b95128926ae6269d8f30ac0");
+            intent.putExtra("devcieType", "OBT600-8HGU1");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else if (pos == 5) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.cookbook.detail");
+            intent.putExtra("i03", "22313");
+            intent.putExtra("typeId", "201043cd34d384341e01764fc9144be7f5ac8dce0b95128926ae6269d8f30ac0");
+            intent.putExtra("devcieType", "OBT600-8HGU1");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else if (pos == 6) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.brokenmachine.cookbook.detail");
+            intent.putExtra("i03", "22238");
+            intent.putExtra("current_type_id", "2010338b2020c0342809ccc721c671000000087ac6d57fcf66e1b311781aa6c0");
+            intent.putExtra("device_type", "馨厨V8");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else if (pos == 8) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.cookbook.detail");
+            intent.putExtra("i03", "22043");
+            intent.putExtra("typeId", "201043cd34d384341e01764fc9144be7f5ac8dce0b95128926ae6269d8f30ac0");
+            intent.putExtra("devcieType", "OBT600-8HGU1");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else if (pos == 9) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.brokenmachine.cookbook.detail");
+            intent.putExtra("i03", "22278");
+            intent.putExtra("current_type_id", "2010338b2020c0342809ccc721c671000000087ac6d57fcf66e1b311781aa6c0");
+            intent.putExtra("device_type", "馨厨V8");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else {
@@ -1225,27 +1580,46 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         af.setWeixin("123123");
         Account.getInstance(getActivity()).setAccountInfo(af);
         RoleInfo roleInfo = new RoleInfo();
-        roleInfo.setSex(userData.getData().getMemberList().get(0).getSex());
-        roleInfo.setNickname(userData.getData().getMemberList().get(0).getNickName());
-        roleInfo.setHeight(Integer.parseInt(userData.getData().getMemberList().get(0).getHeight()));
-        roleInfo.setUseId(userData.getData().getMemberList().get(0).getFamilyMemeberId());
+        int sex = usersDataBean.getData().get(0).getSex();
+        if (sex == 1) {
+            roleInfo.setSex("男");
+        } else {
+            roleInfo.setSex("女");
+        }
+        roleInfo.setNickname(usersDataBean.getData().get(0).getNickName());
+        roleInfo.setHeight((int) usersDataBean.getData().get(0).getHeight());
+        roleInfo.setUseId(usersDataBean.getData().get(0).getMemberInfoId() + "");
+        roleInfo.setBirthday(stampToDate(String.valueOf(usersDataBean.getData().get(0).getBirthday())));
+
         roleInfo.setAccount_id(195871);
-        roleInfo.setBirthday(userData.getData().getMemberList().get(0).getBirthday());
         roleInfo.setId(1993456);
         roleInfo.setCurrent_state(1);
         roleInfo.setCreate_time("2018-11-29 11:01:11");
-        roleInfo.setWeight_init(Float.parseFloat(userData.getData().getMemberList().get(0).getWeight()));
-        roleInfo.setWeight_goal(Float.parseFloat(userData.getData().getMemberList().get(0).getWeight()));
+//        roleInfo.setWeight_init(Float.parseFloat(userData.getData().getMemberList().get(pos).getWeight()));
+//        roleInfo.setWeight_goal(Float.parseFloat(userData.getData().getMemberList().get(pos).getWeight()));
+        roleInfo.setWeight_init((float) usersDataBean.getData().get(0).getWeight());
+        roleInfo.setWeight_goal((float) usersDataBean.getData().get(0).getWeight());
         roleInfo.setRole_type(0);
+//        roleInfo.setSex(userData.getData().getMemberList().get(0).getSex());
+//        roleInfo.setNickname(userData.getData().getMemberList().get(0).getNickName());
+//        roleInfo.setHeight(Integer.parseInt(userData.getData().getMemberList().get(0).getHeight()));
+//        roleInfo.setUseId(userData.getData().getMemberList().get(0).getFamilyMemeberId());
+//        roleInfo.setAccount_id(195871);
+//        roleInfo.setBirthday(userData.getData().getMemberList().get(0).getBirthday());
+//        roleInfo.setId(1993456);
+//        roleInfo.setCurrent_state(1);
+//        roleInfo.setCreate_time("2018-11-29 11:01:11");
+//        roleInfo.setWeight_init(Float.parseFloat(userData.getData().getMemberList().get(0).getWeight()));
+//        roleInfo.setWeight_goal(Float.parseFloat(userData.getData().getMemberList().get(0).getWeight()));
+//        roleInfo.setRole_type(0);
         Account.getInstance(getActivity()).setRoleInfo(roleInfo);
         Log.e("AYD", "roleInfo---->: " + roleInfo.toString());
         WeighDataParser.create(getActivity()).fillFatWithSmoothImpedance(entity, roleInfo);
-
         age = WeighDataParser.getCalAge(roleInfo, entity);
         height = WeighDataParser.getCalHeight(roleInfo, entity);
         String sexStr = WeighDataParser.getCalSex(roleInfo, entity);
-        sex = (byte) (sexStr.equals("女") ? 0 : 1);
-        CsAlgoBuilder csAlgoBuilder = new CsAlgoBuilder(height, entity.getWeight(), sex, age, entity.getR1());
+        this.sex = (byte) (sexStr.equals("女") ? 0 : 1);
+        CsAlgoBuilder csAlgoBuilder = new CsAlgoBuilder(height, entity.getWeight(), this.sex, age, entity.getR1());
         Log.e("AYD", "mCurrentWeightEntity---->: " + entity.toString());
         util = new BuildItemsUtil(CSApplication.getInstance(), mCurrentWeightEntity, roleInfo, csAlgoBuilder);
         IndexDataItem boneItem = util.buildBoneItem();
@@ -1408,7 +1782,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                 SpUtils.getInstance(getContext()).getProvince(),
                 SpUtils.getInstance(getContext()).getCityId(),
                 SpUtils.getInstance(getContext()).getCity(), "", "",
-                sex + "", userData.getData().getMemberList().get(0).getBirthday() + "", height + "", score + "", weight + ""
+                sex + "", stampToDateNO(userData.getData().getMemberList().get(0).getBirthday()), height + "", score + "", weight + ""
                 , mAbnormalIndexList.get(0).valueText + "," + metabolismLevel + "," + metabolismMax + "," + metabolismValue
                 , mAbnormalIndexList.get(1).valueText + "," + boneLevel + "," + boneMax + "," + boneValue
                 , mAbnormalIndexList.get(2).valueText + "," + muscleLevel + "," + muscleMax + "," + muscleValue
@@ -1420,16 +1794,16 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                 , mAbnormalIndexList.get(8).valueText + "," + bmiLevels + "," + bmiMax + "," + bmiValue
                 , mAbnormalIndexList.get(9).valueText + "," + axungeLevel + "," + axungeMax + "," + axungeValue + "," + lastHeavy
                 , tips);
-        Log.e("上传顺序---->items", "\n" + "metabolism:" + mAbnormalIndexList.get(0).valueText + "," + metabolismLevel + "," + metabolismMax + "," + metabolismValue + "\n"
-                + "boneWeight:" + mAbnormalIndexList.get(1).valueText + "," + boneLevel + "," + boneMax + "," + boneValue + "\n"
-                + "muscleRate:" + mAbnormalIndexList.get(2).valueText + "," + muscleLevel + "," + muscleMax + "," + muscleValue + "\n"
-                + "muscleweight:" + mAbnormalIndexList.get(3).valueText + "," + muscleWeightLevel + "," + muscleWeightMax + "," + muscleWeightValue + "\n"
-                + "viscealfat:" + mAbnormalIndexList.get(4).valueText + "," + visceraLevel + "," + visceraMax + "," + visceraValue + "\n"
-                + "water:" + mAbnormalIndexList.get(5).valueText + "," + waterLevel + "," + waterMax + "," + waterValue + "\n"
-                + "waterWeight:" + mAbnormalIndexList.get(6).valueText + "," + waterContainLevel + "," + waterContainMax + "," + waterContainValue + "\n"
-                + "obesity:" + mAbnormalIndexList.get(7).valueText + "," + ciroulentLevel + "," + ciroulenMax + "," + ciroulenValue + "\n"
-                + "bmi:" + mAbnormalIndexList.get(8).valueText + "," + bmiLevels + "," + bmiMax + "," + bmiValue + "\n"
-                + "axunge:" + mAbnormalIndexList.get(9).valueText + "," + axungeLevel + "," + axungeMax + "," + axungeValue);
+    }
+
+    public static String stampToDateNO(String s) {
+        String res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
+        long lt = new Long(s);
+        Date date = new Date(lt);
+        res = simpleDateFormat.format(date);
+        return res;
     }
 
 }

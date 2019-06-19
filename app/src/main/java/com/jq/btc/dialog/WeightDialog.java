@@ -23,6 +23,7 @@ import com.jq.btc.adapter.DialogRecyAdapter;
 import com.jq.btc.app.R;
 import com.jq.btc.model.MatchModel;
 import com.jq.btc.model.UserData;
+import com.jq.btc.model.UsersDataBean;
 import com.jq.btc.utils.SpUtils;
 
 /**
@@ -54,7 +55,9 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
     private RecyclerView rv_family;
     private DialogRecyAdapter dialogRecyAdapter;
 
-    private UserData userData;
+//    private UserData userData;
+
+    private UsersDataBean usersDataBean;
 
     private static CountDownTimers countDownTimersMatch;
     private static CountDownTimers countDownTimersData;
@@ -77,10 +80,14 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
         super(context, cancelable, cancelListener);
     }
 
-    public void setUserData(UserData userData) {
-        this.userData = userData;
-        Log.e("ADY", "setUserDataList: " + userData.getData().getMemberList().size());
+//    public void setUserData(UserData userData) {
+//        this.userData = userData;
+//        Log.e("ADY", "setUserDataList: " + userData.getData().getMemberList().size());
+//
+//    }
 
+    public void setUsersDataBean(UsersDataBean usersDataBean) {
+        this.usersDataBean = usersDataBean;
     }
 
     public void setDiaLogAddUserOnClick(DiaLogAddUserOnClick diaLogAddUserOnClick) {
@@ -172,7 +179,8 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
     public void setMatchVisibility(boolean b) {
         if (b) {
             ll_match.setVisibility(View.VISIBLE);
-            dialogRecyAdapter = new DialogRecyAdapter(getContext(), userData);
+//            dialogRecyAdapter = new DialogRecyAdapter(getContext(), userData);
+            dialogRecyAdapter = new DialogRecyAdapter(getContext(), usersDataBean);
             dialogRecyAdapter.setRecyItemOnClickListener(this);
             rv_family.setAdapter(dialogRecyAdapter);
             tv_count_time.setVisibility(View.VISIBLE);
@@ -273,7 +281,37 @@ public class WeightDialog extends Dialog implements View.OnClickListener, Dialog
     }
 
 
+    private void setRlAnimator() {
+        final ObjectAnimator animator = ObjectAnimator.ofFloat(rv_family, "rotation", 0f, 360f);
+        LinearInterpolator lin = new LinearInterpolator();
+        animator.setInterpolator(lin);
+        animator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                setAnimator();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        animator.setDuration(5000);
+        animator.start();
+    }
+
     @Override
+
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_close_dialog:
