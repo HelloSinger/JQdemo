@@ -972,10 +972,15 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 lastWeightModel.getData().getRecipes().get(5).setRecipeid("22313");
 
                                 //馨厨V8
-                                lastWeightModel.getData().getRecipes().get(6).setRecipename("菠萝蔬菜饮");
-                                lastWeightModel.getData().getRecipes().get(6).setRecipeimage("http://eco.haier.com/group1/M00/02/7A/Cp8ljlwkhW2AXyaXAAHSMPgSzWI199.png");
+//                                lastWeightModel.getData().getRecipes().get(6).setRecipename("菠萝蔬菜饮");
+//                                lastWeightModel.getData().getRecipes().get(6).setRecipeimage("http://eco.haier.com/group1/M00/02/7A/Cp8ljlwkhW2AXyaXAAHSMPgSzWI199.png");
+//                                lastWeightModel.getData().getRecipes().get(6).setRecipetag("智慧菜谱");
+//                                lastWeightModel.getData().getRecipes().get(6).setRecipeid("22238");
+                                lastWeightModel.getData().getRecipes().get(6).setRecipename("西芹彩椒思慕雪");
+                                lastWeightModel.getData().getRecipes().get(6).setRecipeimage("http://data.haier.net/oss/M00/00/0E/Csd_llzvVgqABdWpAAEAa2x5YyM321.jpg");
                                 lastWeightModel.getData().getRecipes().get(6).setRecipetag("智慧菜谱");
-                                lastWeightModel.getData().getRecipes().get(6).setRecipeid("22238");
+                                lastWeightModel.getData().getRecipes().get(6).setRecipeid("22205");
+
 
                                 //
                                 lastWeightModel.getData().getRecipes().get(8).setRecipename("香烤排骨");
@@ -987,7 +992,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 lastWeightModel.getData().getRecipes().get(9).setRecipename("浓香鲫鱼汤");
                                 lastWeightModel.getData().getRecipes().get(9).setRecipeimage("http://eco.haier.com/group1/M00/02/85/Cp8ljlyIdBmAM2qOAABGEihh8W0671.jpg");
                                 lastWeightModel.getData().getRecipes().get(9).setRecipetag("智慧菜谱");
-                                lastWeightModel.getData().getRecipes().get(9).setRecipeid("22278");
+                                lastWeightModel.getData().getRecipes().get(9).setRecipeid("22218");
 
                                 cookBookThreeAdapter.setMenuModels(lastWeightModel.getData().getRecipes());
                                 rcy_menu.setAdapter(cookBookThreeAdapter);
@@ -1066,10 +1071,14 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 lastWeightModel.getData().getRecipes().get(5).setRecipeid("22313");
 
                                 //馨厨V8
-                                lastWeightModel.getData().getRecipes().get(6).setRecipename("菠萝蔬菜饮");
-                                lastWeightModel.getData().getRecipes().get(6).setRecipeimage("http://eco.haier.com/group1/M00/02/7A/Cp8ljlwkhW2AXyaXAAHSMPgSzWI199.png");
+//                                lastWeightModel.getData().getRecipes().get(6).setRecipename("菠萝蔬菜饮");
+//                                lastWeightModel.getData().getRecipes().get(6).setRecipeimage("http://eco.haier.com/group1/M00/02/7A/Cp8ljlwkhW2AXyaXAAHSMPgSzWI199.png");
+//                                lastWeightModel.getData().getRecipes().get(6).setRecipetag("智慧菜谱");
+//                                lastWeightModel.getData().getRecipes().get(6).setRecipeid("22238");
+                                lastWeightModel.getData().getRecipes().get(6).setRecipename("西芹彩椒思慕雪");
+                                lastWeightModel.getData().getRecipes().get(6).setRecipeimage("http://data.haier.net/oss/M00/00/0E/Csd_llzvVgqABdWpAAEAa2x5YyM321.jpg");
                                 lastWeightModel.getData().getRecipes().get(6).setRecipetag("智慧菜谱");
-                                lastWeightModel.getData().getRecipes().get(6).setRecipeid("22238");
+                                lastWeightModel.getData().getRecipes().get(6).setRecipeid("22205");
 
                                 //
                                 lastWeightModel.getData().getRecipes().get(8).setRecipename("香烤排骨");
@@ -1078,10 +1087,15 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 lastWeightModel.getData().getRecipes().get(8).setRecipeid("22043");
 
                                 //馨厨V8
+//                                lastWeightModel.getData().getRecipes().get(9).setRecipename("浓香鲫鱼汤");
+//                                lastWeightModel.getData().getRecipes().get(9).setRecipeimage("http://eco.haier.com/group1/M00/02/85/Cp8ljlyIdBmAM2qOAABGEihh8W0671.jpg");
+//                                lastWeightModel.getData().getRecipes().get(9).setRecipetag("智慧菜谱");
+//                                lastWeightModel.getData().getRecipes().get(9).setRecipeid("22278");
                                 lastWeightModel.getData().getRecipes().get(9).setRecipename("浓香鲫鱼汤");
                                 lastWeightModel.getData().getRecipes().get(9).setRecipeimage("http://eco.haier.com/group1/M00/02/85/Cp8ljlyIdBmAM2qOAABGEihh8W0671.jpg");
                                 lastWeightModel.getData().getRecipes().get(9).setRecipetag("智慧菜谱");
-                                lastWeightModel.getData().getRecipes().get(9).setRecipeid("22278");
+                                lastWeightModel.getData().getRecipes().get(9).setRecipeid("22218");
+
 
                                 cookBookThreeAdapter.setMenuModels(lastWeightModel.getData().getRecipes());
                                 rcy_menu.setAdapter(cookBookThreeAdapter);
@@ -1187,10 +1201,10 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 menuModel.getData().getData().getRecipes().get(5).setRecipeid("22313");
 
                                 //馨厨V8
-                                menuModel.getData().getData().getRecipes().get(6).setRecipename("菠萝蔬菜饮");
-                                menuModel.getData().getData().getRecipes().get(6).setRecipeimage("http://eco.haier.com/group1/M00/02/7A/Cp8ljlwkhW2AXyaXAAHSMPgSzWI199.png");
+                                menuModel.getData().getData().getRecipes().get(6).setRecipename("西芹彩椒思慕雪");
+                                menuModel.getData().getData().getRecipes().get(6).setRecipeimage("http://data.haier.net/oss/M00/00/0E/Csd_llzvVgqABdWpAAEAa2x5YyM321.jpg");
                                 menuModel.getData().getData().getRecipes().get(6).setRecipetag("智慧菜谱");
-                                menuModel.getData().getData().getRecipes().get(6).setRecipeid("22238");
+                                menuModel.getData().getData().getRecipes().get(6).setRecipeid("22205");
 
                                 //
                                 menuModel.getData().getData().getRecipes().get(8).setRecipename("香烤排骨");
@@ -1202,7 +1216,7 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
                                 menuModel.getData().getData().getRecipes().get(9).setRecipename("浓香鲫鱼汤");
                                 menuModel.getData().getData().getRecipes().get(9).setRecipeimage("http://eco.haier.com/group1/M00/02/85/Cp8ljlyIdBmAM2qOAABGEihh8W0671.jpg");
                                 menuModel.getData().getData().getRecipes().get(9).setRecipetag("智慧菜谱");
-                                menuModel.getData().getData().getRecipes().get(9).setRecipeid("22278");
+                                menuModel.getData().getData().getRecipes().get(9).setRecipeid("22218");
 
                                 cookBookAdapter.setMenuModels(menuModel.getData().getData().getRecipes());
                                 rcy_menu.setAdapter(cookBookAdapter);
@@ -1376,9 +1390,9 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         } else if (pos == 6) {
             Intent intent = new Intent();
             intent.setAction("com.android.brokenmachine.cookbook.detail");
-            intent.putExtra("i03", "22238");
-            intent.putExtra("current_type_id", "2010338b2020c0342809ccc721c671000000087ac6d57fcf66e1b311781aa6c0");
-            intent.putExtra("device_type", "馨厨V8");
+            intent.putExtra("i03", "22205");
+            intent.putExtra("current_type_id", "2010338b2020c0342809744bdb436a000000e260f4651650cc2fbd1f7b625cc0");
+            intent.putExtra("device_type", "晶钻Q3");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else if (pos == 8) {
@@ -1392,9 +1406,9 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
         } else if (pos == 9) {
             Intent intent = new Intent();
             intent.setAction("com.android.brokenmachine.cookbook.detail");
-            intent.putExtra("i03", "22278");
-            intent.putExtra("current_type_id", "2010338b2020c0342809ccc721c671000000087ac6d57fcf66e1b311781aa6c0");
-            intent.putExtra("device_type", "馨厨V8");
+            intent.putExtra("i03", "22218");
+            intent.putExtra("current_type_id", "2010338b2020c0342809744bdb436a000000e260f4651650cc2fbd1f7b625cc0");
+            intent.putExtra("device_type", "晶钻Q3");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else {
@@ -1452,11 +1466,18 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else if (pos == 6) {
+//            Intent intent = new Intent();
+//            intent.setAction("com.android.brokenmachine.cookbook.detail");
+//            intent.putExtra("i03", "22238");
+//            intent.putExtra("current_type_id", "2010338b2020c0342809ccc721c671000000087ac6d57fcf66e1b311781aa6c0");
+//            intent.putExtra("device_type", "馨厨V8");
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            startActivity(intent);
             Intent intent = new Intent();
             intent.setAction("com.android.brokenmachine.cookbook.detail");
-            intent.putExtra("i03", "22238");
-            intent.putExtra("current_type_id", "2010338b2020c0342809ccc721c671000000087ac6d57fcf66e1b311781aa6c0");
-            intent.putExtra("device_type", "馨厨V8");
+            intent.putExtra("i03", "22205");
+            intent.putExtra("current_type_id", "2010338b2020c0342809744bdb436a000000e260f4651650cc2fbd1f7b625cc0");
+            intent.putExtra("device_type", "晶钻Q3");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else if (pos == 8) {
@@ -1468,11 +1489,18 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else if (pos == 9) {
+//            Intent intent = new Intent();
+//            intent.setAction("com.android.brokenmachine.cookbook.detail");
+//            intent.putExtra("i03", "22278");
+//            intent.putExtra("current_type_id", "2010338b2020c0342809ccc721c671000000087ac6d57fcf66e1b311781aa6c0");
+//            intent.putExtra("device_type", "馨厨V8");
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            startActivity(intent);
             Intent intent = new Intent();
             intent.setAction("com.android.brokenmachine.cookbook.detail");
-            intent.putExtra("i03", "22278");
-            intent.putExtra("current_type_id", "2010338b2020c0342809ccc721c671000000087ac6d57fcf66e1b311781aa6c0");
-            intent.putExtra("device_type", "馨厨V8");
+            intent.putExtra("i03", "22218");
+            intent.putExtra("current_type_id", "2010338b2020c0342809744bdb436a000000e260f4651650cc2fbd1f7b625cc0");
+            intent.putExtra("device_type", "晶钻Q3");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else {
@@ -1529,11 +1557,18 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else if (pos == 6) {
+//            Intent intent = new Intent();
+//            intent.setAction("com.android.brokenmachine.cookbook.detail");
+//            intent.putExtra("i03", "22238");
+//            intent.putExtra("current_type_id", "2010338b2020c0342809ccc721c671000000087ac6d57fcf66e1b311781aa6c0");
+//            intent.putExtra("device_type", "馨厨V8");
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            startActivity(intent);
             Intent intent = new Intent();
             intent.setAction("com.android.brokenmachine.cookbook.detail");
-            intent.putExtra("i03", "22238");
-            intent.putExtra("current_type_id", "2010338b2020c0342809ccc721c671000000087ac6d57fcf66e1b311781aa6c0");
-            intent.putExtra("device_type", "馨厨V8");
+            intent.putExtra("i03", "22205");
+            intent.putExtra("current_type_id", "2010338b2020c0342809744bdb436a000000e260f4651650cc2fbd1f7b625cc0");
+            intent.putExtra("device_type", "晶钻Q3");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else if (pos == 8) {
@@ -1545,11 +1580,18 @@ public class NormalFragment extends BaseFragment implements View.OnClickListener
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else if (pos == 9) {
+//            Intent intent = new Intent();
+//            intent.setAction("com.android.brokenmachine.cookbook.detail");
+//            intent.putExtra("i03", "22278");
+//            intent.putExtra("current_type_id", "2010338b2020c0342809ccc721c671000000087ac6d57fcf66e1b311781aa6c0");
+//            intent.putExtra("device_type", "馨厨V8");
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            startActivity(intent);
             Intent intent = new Intent();
             intent.setAction("com.android.brokenmachine.cookbook.detail");
-            intent.putExtra("i03", "22278");
-            intent.putExtra("current_type_id", "2010338b2020c0342809ccc721c671000000087ac6d57fcf66e1b311781aa6c0");
-            intent.putExtra("device_type", "馨厨V8");
+            intent.putExtra("i03", "22218");
+            intent.putExtra("current_type_id", "2010338b2020c0342809744bdb436a000000e260f4651650cc2fbd1f7b625cc0");
+            intent.putExtra("device_type", "晶钻Q3");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else {

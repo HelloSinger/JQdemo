@@ -492,12 +492,12 @@ public class NewMainActivity extends FragmentActivity implements RadioGroup.OnCh
 
             @Override
             public void onFaild(String error) {
-                if (getTokenNumber < 12) {
-                    getTokenNumber++;
+//                if (getTokenNumber < 12) {
+//                    getTokenNumber++;
                     handler.sendEmptyMessage(0);
-                } else {
-                    getTokenNumber = 0;
-                }
+//                } else {
+//                    getTokenNumber = 0;
+//                }
                 Log.e(TAG, "onFaild:" + error);
             }
         });

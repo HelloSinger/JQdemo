@@ -4,14 +4,12 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
 import com.haiersmart.user.sdk.UserUtils;
-
 import com.jq.btc.kitchenscale.ble.BleHelper;
 import com.jq.code.MyApplication;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
-import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.logging.Level;
 
@@ -59,7 +57,7 @@ public class CSApplication extends MyApplication {
 //                .addCommonHeaders(headers)                      //全局公共头
 //                .addCommonParams(params);
 
-        CrashReport.initCrashReport(getApplicationContext(), "48c1c8faf7", false);
+//        CrashReport.initCrashReport(getApplicationContext(), "48c1c8faf7", false);
 //        // 初始化文件目录
 //        SdcardConfig.getInstance().initSdcard();
 //        // 捕捉异常

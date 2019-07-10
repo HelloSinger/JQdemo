@@ -495,7 +495,8 @@
                     android:gravity="center"
                     android:text="添加家庭成员"
                     android:textColor="@color/tv_4B83E9"
-                    android:textSize="17px" />
+                    android:textSize="17px"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_more_data"

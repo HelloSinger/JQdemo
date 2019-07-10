@@ -111,6 +111,8 @@ public class GetAppTokenThread extends Thread {
 //        jsonObject.put("client_secret", "unilife_standard_api_haier_123456");
         String APP_ID = "MB-BXDKXKZ-0000";
         String APP_KEY = "15c0c5544355f7d26b2a89f0f5b8484a";
+//        String APP_ID = "MB-STZBG-0000";
+//        String APP_KEY = "93527666f529e743bb881c164719ae35";
 
         String uhome_client_id = getMac(context);
         jsonObject.put("uhome_client_id", uhome_client_id);
@@ -195,6 +197,7 @@ public class GetAppTokenThread extends Thread {
                 Log.e(TAG, "========" + result);
             } else {
                 Log.e(TAG, "请求数据失败 错误码：getResponseCode" + connection.getResponseCode());
+                Log.e(TAG, "请求数据失败 错误码：getResponseCode" + connection.getResponseMessage());
             }
 
         } finally {
@@ -339,7 +342,7 @@ public class GetAppTokenThread extends Thread {
         }
         StringBuffer sb = new StringBuffer();
         sb.append(appId).append(appKey).append(timestamp);
-        Log.e(TAG, sb.toString());
+       Log.e(TAG, sb.toString());
 
         return shaEncrypt(sb.toString());
     }
